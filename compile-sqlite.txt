@@ -1,0 +1,3 @@
+gcc -o sqlite3.lib -g -c -Wall -DSQLITE_THREADSAFE=0 -DSQLITE_OMIT_LOAD_EXTENSION sqlite3.c
+
+gcc -o sqlite3.lib -O2 -c -Wall -DSQLITE_THREADSAFE=0 -DSQLITE_OMIT_LOAD_EXTENSION sqlite3.c
