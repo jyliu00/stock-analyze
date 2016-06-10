@@ -1,0 +1,5 @@
+get GOOGL 2016-06-09 data
+wget -O googl.log 'http://ichart.finance.yahoo.com/table.csv?s=GOOGL&a=05&b=09&c=2016&d=05&e=09&f=2016&g=d&ignore=.csv'
+
+get GOOGL 2016-06-01 ~ 2016-06-09 data
+wget -O googl.log 'http://ichart.finance.yahoo.com/table.csv?s=GOOGL&a=05&b=01&c=2016&d=05&e=09&f=2016&g=d&ignore=.csv'
