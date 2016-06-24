@@ -33,7 +33,7 @@ static int fetch_symbol_price(int fetch_action, const char *orig_symbol)
 	switch (fetch_action) {
 	case FETCH_ACTION_ADD:
 		if (symbol_exist) {
-			anna_error("can't add symbol %s, which already exists\n", symbol);
+			anna_error("can't add symbol %s, which already exists in db\n", symbol);
 			return -1;
 		}
 
@@ -41,13 +41,18 @@ static int fetch_symbol_price(int fetch_action, const char *orig_symbol)
 
 	case FETCH_ACTION_DEL:
 		if (!symbol_exist) {
-			anna_error("can't del symbol %s, which doesn't exist\n", symbol);
+			anna_error("can't del symbol %s, which doesn't exist in db\n", symbol);
 			return -1;
 		}
 
 		break;
 
 	case FETCH_ACTION_UPDATE:
+		if (!symbol_exist) {
+			anna_error("can't update symbol %s, which doesn't exist in db\n", symbol);
+			return -1;
+		}
+
 		break;
 	}
 
