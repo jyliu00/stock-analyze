@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 #define STOCK_DB_NAME "stocks.db"
-#define TABLE_STOCK_METAINFO "stock_metainfo"
+#define TABLE_STOCK_INFO "stock_info"
 
 #define sqlite_error(sqlite_rt, fmt, args...) \
 	fprintf(stderr, "[%s:%s:%d] sqlite_rt=%d(%s), " fmt, __FILE__, __FUNCTION__, __LINE__, sqlite_rt, sqlite3_errstr(sqlite_rt), ##args)
@@ -52,6 +52,21 @@ static int table_exist(const char *tablename)
 	return check_exist("sqlite_master", where_str);
 }
 
+static int insert_into_table(const char *tablename, const char *columns_name, const char *values)
+{
+	char stmt_str[1024];
+
+	if (columns_name)
+		snprintf(stmt_str, sizeof(stmt_str), "INSERT INTO %s (%s) VALUES (%s);", tablename, columns_name, values);
+	else
+		snprintf(stmt_str, sizeof(stmt_str), "INSERT INTO %s VALUES (%s);", tablename, values);
+
+	int sqlite_rt = sqlite3_exec(sqlite_db, stmt_str, NULL, NULL, NULL);
+	check_sqlite_rt(sqlite_rt, "run '%s' failed\n", stmt_str);
+
+	return 0;
+}
+
 static int create_table(const char *tablename, const char *columns)
 {
 	char stmt_str[1024];
@@ -69,24 +84,16 @@ static int __init_db( )
 {
 	char column_def[1024];
 
-	if (table_exist(TABLE_STOCK_METAINFO) > 0)
+	if (table_exist(TABLE_STOCK_INFO) > 0)
 		return 0;
 
 	snprintf(column_def, sizeof(column_def),
 		 "symbol CHAR(10) PRIMARY KEY, "
 		 "name CHAR(64) NOT NULL, "
-		 "exchange CHAR(8), "
-		 "SMA_10 CHAR(10), "
-		 "SMA_20 CHAR(10), "
-		 "SMA_50 CHAR(10), "
-		 "SMA_60 CHAR(10), "
-		 "SMA_100 CHAR(10), "
-		 "SMA_120 CHAR(10), "
-		 "SMA_200 CHAR(10), "
-		 "SMA_250 CHAR(10)"
+		 "exchange CHAR(8) "
 		);
 
-	if (create_table(TABLE_STOCK_METAINFO, column_def) < 0)
+	if (create_table(TABLE_STOCK_INFO, column_def) < 0)
 		return -1;
 
 	return 0;
@@ -108,7 +115,7 @@ static int __open_db( )
 	return 0;
 }
 
-int sqlite_db_init(void)
+int db_init(void)
 {
 	if (__open_db( ) < 0)
 		return -1;
@@ -119,7 +126,7 @@ int sqlite_db_init(void)
 	return 0;
 }
 
-int stock_symbol_exist(const char *symbol)
+int db_symbol_exist(const char *symbol)
 {
 	char where_str[1024];
 
@@ -128,5 +135,14 @@ int stock_symbol_exist(const char *symbol)
 
 	snprintf(where_str, sizeof(where_str), "name='%s'", symbol);
 
-	return check_exist(TABLE_STOCK_METAINFO, where_str);
+	return check_exist(TABLE_STOCK_INFO, where_str);
+}
+
+int db_insert_stock_info(const char *symbol, const char *name, const char *exchange)
+{
+	char values_str[1024];
+
+	snprintf(values_str, sizeof(values_str), "'%s', '%s', '%s'", symbol, name, exchange);
+
+	return insert_into_table(TABLE_STOCK_INFO, NULL, values_str);
 }

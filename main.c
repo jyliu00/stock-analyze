@@ -14,7 +14,7 @@ static void print_usage(void)
 
 int main(int argc, const char **argv)
 {
-	if (sqlite_db_init( ) < 0)
+	if (db_init( ) < 0)
 		return -1;
 
 	if (argc < 2) {
