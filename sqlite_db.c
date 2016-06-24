@@ -123,6 +123,9 @@ int stock_symbol_exist(const char *symbol)
 {
 	char where_str[1024];
 
+	if (!symbol || !symbol[0])
+		return 0;
+
 	snprintf(where_str, sizeof(where_str), "name='%s'", symbol);
 
 	return check_exist(TABLE_STOCK_METAINFO, where_str);

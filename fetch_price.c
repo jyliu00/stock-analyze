@@ -1,5 +1,6 @@
 #include "fetch_price.h"
 
+#include "sqlite_db.h"
 #include "util.h"
 
 #include <stdio.h>
@@ -22,10 +23,34 @@ static int normalize_symbol(char *symbol, const char *orig_symbol, int symbol_sz
 static int fetch_symbol_price(int fetch_action, const char *orig_symbol)
 {
 	char symbol[32] = { 0 };
+	int symbol_exist;
 
 	if (normalize_symbol(symbol, orig_symbol, sizeof(symbol)) < 0)
 		return -1;
-	
+
+	symbol_exist = stock_symbol_exist(symbol);
+
+	switch (fetch_action) {
+	case FETCH_ACTION_ADD:
+		if (symbol_exist) {
+			anna_error("can't add symbol %s, which already exists\n", symbol);
+			return -1;
+		}
+
+		break;
+
+	case FETCH_ACTION_DEL:
+		if (!symbol_exist) {
+			anna_error("can't del symbol %s, which doesn't exist\n", symbol);
+			return -1;
+		}
+
+		break;
+
+	case FETCH_ACTION_UPDATE:
+		break;
+	}
+
 	return 0;
 }
 
