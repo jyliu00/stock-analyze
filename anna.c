@@ -139,7 +139,7 @@ static int parse_price(char *str, struct stock_price *price)
 	return 0;
 }
 
-int main(int argc, const char **argv)
+int _main(int argc, const char **argv)
 {
 	struct stock_price open, close, high, low;
 	int volume;
