@@ -115,13 +115,24 @@ static int __open_db( )
 	return 0;
 }
 
-int db_init(void)
+int db_open(void)
 {
 	if (__open_db( ) < 0)
 		return -1;
 
 	if (__init_db( ) < 0)
 		return -1;
+
+	return 0;
+}
+
+int db_close(void)
+{
+	if (!sqlite_db)
+		return 0;
+
+	sqlite3_close_v2(sqlite_db);
+	sqlite_db = NULL;
 
 	return 0;
 }
@@ -133,7 +144,7 @@ int db_symbol_exist(const char *symbol)
 	if (!symbol || !symbol[0])
 		return 0;
 
-	snprintf(where_str, sizeof(where_str), "name='%s'", symbol);
+	snprintf(where_str, sizeof(where_str), "symbol='%s'", symbol);
 
 	return check_exist(TABLE_STOCK_INFO, where_str);
 }

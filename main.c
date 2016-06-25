@@ -14,7 +14,7 @@ static void print_usage(void)
 
 int main(int argc, const char **argv)
 {
-	if (db_init( ) < 0)
+	if (db_open( ) < 0)
 		return -1;
 
 	if (argc < 2) {
@@ -36,8 +36,12 @@ int main(int argc, const char **argv)
 		fetch_price(FETCH_ACTION_UPDATE, argc - 2, &argv[2]);
 	}
 
+	db_close( );
+
 	return 0;
 
 usage:
+	db_close( );
 	print_usage( );
+	return -1;
 }

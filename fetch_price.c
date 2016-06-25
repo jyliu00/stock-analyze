@@ -12,9 +12,11 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <time.h>
 
-static int run_wget(char **argv)
+static int run_wget(char *output_fname, char *url)
 {
+	char *argv[] = { "wget", "-O", output_fname, url, NULL };
 	int  status;
 	pid_t wget_pid;
 
@@ -90,14 +92,15 @@ static int fetch_symbol_info(const char *symbol)
 {
 	char output_fname[64];
 	char url[256];
-	char *argv[] = { "wget", "-O", output_fname, url, NULL };
 	int rt = -1;
+
+	anna_info("\tFetching %s info ... ", symbol);
 
 	snprintf(output_fname, sizeof(output_fname), "%s.info", symbol);
 	snprintf(url, sizeof(url), "http://finance.yahoo.com/d/quotes.csv?s=%s&f=nx", symbol);
 
-	if (run_wget(argv) < 0)
-		return -1;
+	if (run_wget(output_fname, url) < 0)
+		goto finish;
 
 	if (insert_symbol_info_into_db(symbol, output_fname) < 0)
 		goto finish;
@@ -105,14 +108,55 @@ static int fetch_symbol_info(const char *symbol)
 	rt = 0;
 
 finish:
+	anna_info("%s.\n", rt == 0 ? "Done" : "Failed");
+
 	unlink(output_fname);
 
 	return rt;
 }
 
+static int fetch_symbol_price_since_date(const char *symbol, int year, int month, int mday)
+{
+	char output_fname[128];
+	char url[256];
+	int today_only = !year;
+
+	if (today_only)
+		anna_info("\tFetch %s today's price ... ", symbol);
+	else
+		anna_info("\tFetching %s price since %d-%02d-%02d ... ", symbol, year, month + 1, mday);
+
+	snprintf(output_fname, sizeof(output_fname), "%s.price", symbol);
+
+	if (today_only) {
+		snprintf(url, sizeof(url), "http://finance.yahoo.com/d/quotes.csv?s=%s&f=ohgl1v", symbol);
+	}
+	else {
+		snprintf(url, sizeof(url), "http://ichart.finance.yahoo.com/table.csv?s=%s&a=%d&b=%d&c=%d&g=d&ignore=.csv",
+			symbol, month, mday, year);
+	}
+
+	if (run_wget(output_fname, url) == 0) {
+		anna_info("Done.\n");
+	}
+	else {
+		anna_info("Failed.\n");
+		return -1;
+	}
+
+	return 0;
+}
+
 static void add_symbol(const char *symbol)
 {
 	if (fetch_symbol_info(symbol) < 0)
+		return;
+
+	/* get last 3 year's price */
+	time_t now_t = time(NULL);
+	struct tm *now_tm = localtime(&now_t);
+
+	if (fetch_symbol_price_since_date(symbol, 1900 + now_tm->tm_year - 3, now_tm->tm_mon, now_tm->tm_mday) < 0)
 		return;
 }
 
@@ -177,7 +221,12 @@ static int fetch_symbol_price(int fetch_action, const char *orig_symbol)
 
 	switch (fetch_action) {
 	case FETCH_ACTION_ADD:
+		anna_info("[Adding symbol %s]\n", symbol);
+
 		add_symbol(symbol);
+
+		anna_info("\n");
+
 		break;
 
 	case FETCH_ACTION_DEL:
