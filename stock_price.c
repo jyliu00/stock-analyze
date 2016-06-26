@@ -6,6 +6,7 @@
 #include <errno.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 static void parse_price(char *price_str, int *price)
 {
@@ -15,6 +16,7 @@ static void parse_price(char *price_str, int *price)
 		*price = atoi(price_str) * 1000;
 	}
 	else {
+		int i;
 		char saved_char = *dot;
 		*dot = 0;
 
@@ -22,17 +24,8 @@ static void parse_price(char *price_str, int *price)
 
 		*dot = saved_char;
 
-		if (strlen(dot + 1) <= 3) {
-			*price += atoi(dot + 1);
-		}
-		else {
-			saved_char = *(dot + 4);
-			*dot = 0;
-
-			*price += atoi(dot + 1) + (saved_char >= '5' ? 1 : 0);
-
-			*dot = saved_char;
-		}
+		for (i = 1; *(dot + i) && isdigit(*(dot+i)) && i <= 3; i++)
+			*price += (*(dot + i) - '0') * (i < 3 ? (3 - i) * 10 : 1);
 	}
 }
 
