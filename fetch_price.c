@@ -115,18 +115,16 @@ finish:
 	return rt;
 }
 
-static int fetch_symbol_price_since_date(const char *symbol, int year, int month, int mday)
+static int do_fetch_price(char *output_fname, const char *symbol, int today_only,
+			  int year, int month, int mday)
 {
-	char output_fname[128];
 	char url[256];
-	int today_only = !year;
 
 	if (today_only)
 		anna_info("\tFetch %s today's price ... ", symbol);
 	else
 		anna_info("\tFetching %s price since %d-%02d-%02d ... ", symbol, year, month + 1, mday);
 
-	snprintf(output_fname, sizeof(output_fname), "%s.price", symbol);
 
 	if (today_only) {
 		snprintf(url, sizeof(url), "http://finance.yahoo.com/d/quotes.csv?s=%s&f=ohgl1v", symbol);
@@ -143,6 +141,19 @@ static int fetch_symbol_price_since_date(const char *symbol, int year, int month
 		anna_info("Failed.\n");
 		return -1;
 	}
+
+	return 0;
+}
+
+static int fetch_symbol_price_since_date(const char *symbol, int year, int month, int mday)
+{
+	char output_fname[128];
+	int today_only = !year;
+
+	snprintf(output_fname, sizeof(output_fname), "%s.price", symbol);
+
+	if (do_fetch_price(output_fname, symbol, today_only, year, month, mday) < 0)
+		return -1;
 
 	return 0;
 }
