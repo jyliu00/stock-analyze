@@ -1,4 +1,5 @@
 #include "fetch_price.h"
+#include "stock_price.h"
 
 #include "sqlite_db.h"
 #include "util.h"
@@ -55,8 +56,11 @@ static int run_wget(char *output_fname, char *url)
 static int insert_symbol_info_into_db(const char *symbol, const char *info_fname)
 {
 	char buf[1024] = { 0 };
-	char name[64], exchange[16];
-	int i, j;
+	char name[64], exchange[16], sector[128], industry[128], country[32];
+	int  ticker_found = 0;
+	char *p, *e;
+	char saved_char;
+	int rt = -1;
 
 	FILE *fp = fopen(info_fname, "r");
 	if (!fp) {
@@ -64,28 +68,92 @@ static int insert_symbol_info_into_db(const char *symbol, const char *info_fname
 		return -1;
 	}
 
-	fgets(buf, sizeof(buf), fp);
-
-	fclose(fp);
-
-	for (i = 0, j = 1; buf[j]; i++, j++) {
-		if (buf[j] == '"')
+	while (fgets(buf, sizeof(buf), fp)) {
+		if ((p = strstr(buf, "id=\"ticker\"")) != NULL) {
+			ticker_found = 1;
 			break;
-		name[i] = buf[j];
+		}
 	}
-	name[i] = 0;
 
-	for (i = 0, j += 3; buf[j]; i++, j++) {
-		if (buf[j] == '"')
-			break;
-		exchange[i] = buf[j];
+	if (!ticker_found) {
+		anna_error("ticker %s is not found in file '%s'\n", symbol, info_fname);
+		goto finish;
 	}
-	exchange[i] = 0;
 
-	if (db_insert_stock_info(symbol, name, exchange) < 0)
+	/* get exchange */
+	if (!(p = strstr(p, ">[")) || !(e = strstr(p, "]<"))) {
+		anna_error("exchange is not found for %s\n", symbol);
+		goto finish;
+	}
+
+	saved_char = *e;
+	*e = 0;
+	strlcpy(exchange, p + 2, sizeof(exchange));
+	*e = saved_char;
+
+	/* get name */
+	if (fgets(buf, sizeof(buf), fp) == NULL) {
+		anna_error("name line is empty for %s\n", symbol);
+		goto finish;
+	}
+
+	if (!(p = strstr(buf, "<b>")) || !(e = strstr(p, "</b>"))) {
+		anna_error("name is not found for %s\n", symbol);
+		goto finish;
+	}
+
+	saved_char = *e;
+	*e = 0;
+	strlcpy(name, p + 3, sizeof(name));
+	*e = saved_char;
+
+	/* get sector */
+	if (fgets(buf, sizeof(buf), fp) == NULL) {
+		anna_error("sector line is not empty for %s\n", symbol);
+		goto finish;
+	}
+
+	if (!(p = strstr(buf, "f=sec_")) || !(p = strchr(p, '>')) || !(e = strchr(p, '<'))) {
+		anna_error("sector is not found for %s\n", symbol);
+		goto finish;
+	}
+
+	saved_char = *e;
+	*e = 0;
+	strlcpy(sector, p + 1, sizeof(sector));
+	*e = saved_char;
+
+	/* get industry */
+	if (!(p = strstr(p, "f=ind_")) || !(p = strchr(p, '>')) || !(e = strchr(p, '<'))) {
+		anna_error("industry is not found for %s\n", symbol);
+		goto finish;
+	}
+
+	saved_char = *e;
+	*e = 0;
+	strlcpy(industry, p + 1, sizeof(industry));
+	*e = saved_char;
+
+	/* get country */
+	if (!(p = strstr(p, "f=geo_")) || !(p = strchr(p, '>')) || !(e = strchr(p, '<'))) {
+		anna_error("country is not found for %s\n", symbol);
+		goto finish;
+	}
+
+	saved_char = *e;
+	*e = 0;
+	strlcpy(country, p + 1, sizeof(country));
+	*e = saved_char;
+
+	if (db_insert_stock_info(symbol, name, exchange, sector, industry, country) < 0)
 		return -1;
 
-	return 0;
+	rt = 0;
+
+finish:
+	fclose(fp);
+
+	return rt;
 }
 
 static int fetch_symbol_info(const char *symbol)
@@ -97,7 +165,7 @@ static int fetch_symbol_info(const char *symbol)
 	anna_info("\tFetching %s info ... ", symbol);
 
 	snprintf(output_fname, sizeof(output_fname), "%s.info", symbol);
-	snprintf(url, sizeof(url), "http://finance.yahoo.com/d/quotes.csv?s=%s&f=nx", symbol);
+	snprintf(url, sizeof(url), "http://finviz.com/quote.ashx?t=%s", symbol);
 
 	if (run_wget(output_fname, url) < 0)
 		goto finish;
@@ -149,10 +217,16 @@ static int fetch_symbol_price_since_date(const char *symbol, int year, int month
 {
 	char output_fname[128];
 	int today_only = !year;
+	struct stock_price prices[1024];
+	int price_cnt;
+
 
 	snprintf(output_fname, sizeof(output_fname), "%s.price", symbol);
 
 	if (do_fetch_price(output_fname, symbol, today_only, year, month, mday) < 0)
+		return -1;
+
+	if (get_stock_price_from_file(output_fname, today_only, prices, &price_cnt) < 0)
 		return -1;
 
 	return 0;

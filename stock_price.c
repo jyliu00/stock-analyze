@@ -8,11 +8,11 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-static void parse_price(char *price_str, int *price)
+static void parse_price(char *price_str, uint64_t *price)
 {
 	char *dot = strchr(price_str, '.');
 
-	if (dot) {
+	if (!dot) {
 		*price = atoi(price_str) * 1000;
 	}
 	else {
@@ -24,8 +24,11 @@ static void parse_price(char *price_str, int *price)
 
 		*dot = saved_char;
 
-		for (i = 1; *(dot + i) && isdigit(*(dot+i)) && i <= 3; i++)
-			*price += (*(dot + i) - '0') * (i < 3 ? (3 - i) * 10 : 1);
+		for (i = 1; *(dot + i) && isdigit(*(dot + i)) && i <= 3; i++)
+			*price += (*(dot + i) - '0') * (i == 1 ? 100 : ((i == 2) ? 10 : 1));
+
+		if (i == 4 && *(dot + i) && isdigit(*(dot + i)) && *(dot + i) >= '5')
+			*price += 1;
 	}
 }
 
@@ -52,19 +55,43 @@ int get_stock_price_from_file(const char *fname, int today_only, struct stock_pr
 
 	while (fgets(buf, sizeof(buf), fp)) {
 		struct stock_price *cur_price = &prices[*price_cnt];
+		char *token;
+		uint64_t  adj_close;
 
-		char open_str[32], high_str[32], low_str[32],
-		     close_str[32], adj_close_str[32];
-		int  adj_close;
+		token = strtok(buf, ",");
+		if (!token) continue;
+		strlcpy(cur_price->date, token, sizeof(cur_price->date));
 
-		sscanf(buf, "%s,%s,%s,%s,%s,%d,%s", cur_price->date, open_str, high_str,
-			low_str, close_str, &cur_price->volume, adj_close_str);
+		token = strtok(NULL, ",");
+		if (!token) continue;
+		parse_price(token, &cur_price->open);
 
-		parse_price(open_str, &cur_price->open);
-		parse_price(high_str, &cur_price->high);
-		parse_price(low_str, &cur_price->low);
-		parse_price(close_str, &cur_price->close);
-		parse_price(adj_close_str, &adj_close);
+		token = strtok(NULL, ",");
+		if (!token) continue;
+		parse_price(token, &cur_price->high);
+
+		token = strtok(NULL, ",");
+		if (!token) continue;
+		parse_price(token, &cur_price->low);
+
+		token = strtok(NULL, ",");
+		if (!token) continue;
+		parse_price(token, &cur_price->close);
+
+		token = strtok(NULL, ",");
+		if (!token) continue;
+		cur_price->volume = atoi(token);
+
+		token = strtok(NULL, ",");
+		if (!token) continue;
+		parse_price(token, &adj_close);
+
+		if (cur_price->close != adj_close) {
+			cur_price->open = cur_price->open * adj_close / cur_price->close;
+			cur_price->high = cur_price->high * adj_close /cur_price->close;
+			cur_price->low = cur_price->low * adj_close / cur_price->close;
+			cur_price->close = adj_close;
+		}
 
 		(*price_cnt) += 1;
 	}
