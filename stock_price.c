@@ -32,6 +32,14 @@ static void parse_price(char *price_str, uint64_t *price)
 	}
 }
 
+static void calculate_stock_price_average(int price_cnt, struct stock_price *prices)
+{
+	int i;
+
+	for (i = 0; i < price_cnt; i++) {
+	}
+}
+
 int get_stock_price_from_file(const char *fname, int today_only, struct stock_price *prices, int *price_cnt)
 {
 	FILE *fp;
@@ -97,6 +105,8 @@ int get_stock_price_from_file(const char *fname, int today_only, struct stock_pr
 	}
 
 	fclose(fp);
+
+	calculate_stock_price_average(*price_cnt, prices);
 
 	return 0;
 }
