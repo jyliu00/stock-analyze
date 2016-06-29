@@ -217,16 +217,14 @@ static int fetch_symbol_price_since_date(const char *symbol, int year, int month
 {
 	char output_fname[128];
 	int today_only = !year;
-	struct stock_price prices[1024];
-	int price_cnt;
-
+	struct stock_price price = { };
 
 	snprintf(output_fname, sizeof(output_fname), "%s.price", symbol);
 
 	if (do_fetch_price(output_fname, symbol, today_only, year, month, mday) < 0)
 		return -1;
 
-	if (get_stock_price_from_file(output_fname, today_only, prices, &price_cnt) < 0)
+	if (get_stock_price_from_file(output_fname, today_only, &price) < 0)
 		return -1;
 
 	return 0;

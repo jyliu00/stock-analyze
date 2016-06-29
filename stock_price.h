@@ -21,17 +21,48 @@ enum
 	BAR_TREND_NR
 };
 
-struct stock_price
+enum
+{
+	SMA_10d,
+	SMA_20d,
+	SMA_30d,
+	SMA_50d,
+	SMA_60d,
+	SMA_100d,
+	SMA_120d,
+	SMA_200d,
+
+	SMA_NR
+};
+
+enum
+{
+	VMA_10d,
+	VMA_20d,
+	VMA_60d,
+
+	VMA_NR
+};
+
+struct date_price
 {
 	char      date[12];
 	uint64_t  open, high, low, close;
 	uint64_t  volume;
-	uint64_t  sma_10d, sma_20d, sma_30d, sma_50d, sma_60d, sma_100d, sma_120d, sma_200d;
-	uint64_t  vma_10d, vma_20d, vma_60d; /* average volume */
+	uint64_t  sma[SMA_NR];
+	uint64_t  vma[VMA_NR];
 	uint8_t   bar_color;
 	uint8_t   bar_trend;
 };
 
-int get_stock_price_from_file(const char *fname, int today_only, struct stock_price *prices, int *price_cnt);
+struct stock_price
+{
+	int date_cnt;
+
+#define DATE_PRICE_SZ_MAX   1024
+	struct date_price dateprice[DATE_PRICE_SZ_MAX];
+};
+
+int get_stock_price_from_file(const char *fname, int today_only, struct stock_price *price);
 
 #endif /* __STOCK_PRICE_H__ */

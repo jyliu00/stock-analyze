@@ -32,38 +32,76 @@ static void parse_price(char *price_str, uint64_t *price)
 	}
 }
 
-static void calculate_stock_price_statistics(int price_cnt, struct stock_price *prices)
-{
-	int i, cnt;
-	uint64_t price_10d = 0, price_20d = 0, price_30d = 0, price_50d = 0,
-		 price_100d = 0, price_120d = 0, price_200d = 0;
-	uint64_t volume_10d = 0, volume_20d = 0, volume_60d = 0;
+static int sma_days[SMA_NR] = { 10, 20, 30, 50, 60, 100, 120, 200 };
+static int vma_days[VMA_NR] = { 10, 20, 60 };
 
-	for (i = price_cnt - 1, cnt = 0; i >= 0; i--, cnt++) {
-		price_10d += prices[i].close;
-		price_20d += prices[i].close;
-		price_30d += prices[i].close;
-		price_50d += prices[i].close;
-		price_100d += prices[i].close;
-		price_120d += prices[i].close;
-		price_200d += prices[i].close; 
-		volume_10d += prices[i].volume;
-		volume_20d += prices[i].volume;
-		volume_60d += prices[i].volume;
+static void calculate_moving_avg(int is_price, struct stock_price *price, int cur_idx, int ma_days, uint64_t *sum, uint64_t *ma)
+{
+	int cnt = price->date_cnt - cur_idx;
+	struct date_price *cur = &price->dateprice[cur_idx];
+
+	(*sum) += is_price ? cur->close : cur->volume;
+
+	if (cnt >= ma_days) {
+		if (cnt > ma_days)
+			(*sum) -= is_price ? (cur + ma_days)->close : (cur + ma_days)->volume;
+		*ma = (*sum) / ma_days;
 	}
 }
 
-int get_stock_price_from_file(const char *fname, int today_only, struct stock_price *prices, int *price_cnt)
+static void calculate_sma(struct stock_price *price, int cur_idx,
+			  int sma_type, uint64_t *price_sum, struct date_price *cur)
+{
+	if (sma_type < 0 || sma_type >= SMA_NR) {
+		anna_error("invalid sma_type=%d\n", sma_type);
+		return;
+	}
+
+	calculate_moving_avg(1, price, cur_idx, sma_days[sma_type], price_sum, &cur->sma[sma_type]);
+}
+
+static void calculate_vma(struct stock_price *price, int cur_idx,
+			  int vma_type, uint64_t *volume_sum, struct date_price *cur)
+{
+	if (vma_type < 0 || vma_type >= VMA_NR) {
+		anna_error("invalid vma_type=%d\n", vma_type);
+		return;
+	}
+
+	calculate_moving_avg(0, price, cur_idx, vma_days[vma_type], volume_sum, &cur->vma[vma_type]);
+}
+
+static void calculate_stock_price_statistics(struct stock_price *price)
+{
+	uint64_t price_sum[SMA_NR] = { 0 };
+	uint64_t volume_sum[VMA_NR] = { 0 };
+	int i, j;
+
+	for (i = price->date_cnt - 1; i >= 0; i--) {
+		struct date_price *cur = &price->dateprice[i];
+
+		for (j = 0; j < SMA_NR; j++)
+			calculate_sma(price, i, j, &price_sum[j], cur);
+
+		for (j = 0; j < VMA_NR; j++)
+			calculate_vma(price, i, j, &volume_sum[j], cur);
+printf("date=%s, sma_10d=%zu, sma_20d=%zu, sma_30d=%zu, sma_50d=%zu, sma_60d=%zu, sma_100d=%zu, sma_120d=%zu, sma_200d=%zu, vma_10d=%zu, vma_20d=%zu, vma_50d=%zu\n",
+	cur->date, cur->sma[SMA_10d], cur->sma[SMA_20d], cur->sma[SMA_30d], cur->sma[SMA_50d], cur->sma[SMA_60d],
+	cur->sma[SMA_100d], cur->sma[SMA_120d], cur->sma[SMA_200d], cur->vma[VMA_10d], cur->vma[VMA_20d], cur->vma[VMA_60d]);
+	}
+}
+
+int get_stock_price_from_file(const char *fname, int today_only, struct stock_price *price)
 {
 	FILE *fp;
 	char buf[1024];
 
-	if (!fname || !fname[0] || !prices || !price_cnt) {
+	if (!fname || !fname[0] || !price) {
 		anna_error("invalid input parameters\n");
 		return -1;
 	}
 
-	*price_cnt = 0;
+	price->date_cnt = 0;
 
 	fp = fopen(fname, "r");
 	if (!fp) {
@@ -75,7 +113,7 @@ int get_stock_price_from_file(const char *fname, int today_only, struct stock_pr
 		fgets(buf, sizeof(buf), fp);
 
 	while (fgets(buf, sizeof(buf), fp)) {
-		struct stock_price *cur_price = &prices[*price_cnt];
+		struct date_price *cur_price = &price->dateprice[price->date_cnt];
 		char *token;
 		uint64_t  adj_close;
 
@@ -114,12 +152,12 @@ int get_stock_price_from_file(const char *fname, int today_only, struct stock_pr
 			cur_price->close = adj_close;
 		}
 
-		(*price_cnt) += 1;
+		price->date_cnt += 1;
 	}
 
 	fclose(fp);
 
-	calculate_stock_price_statistics(*price_cnt, prices);
+	calculate_stock_price_statistics(price);
 
 	return 0;
 }
