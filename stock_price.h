@@ -5,20 +5,20 @@
 
 enum
 {
-	BAR_COLOR_DOJI,
-	BAR_COLOR_GREEN,
-	BAR_COLOR_RED,
+	CANDLE_COLOR_DOJI,
+	CANDLE_COLOR_GREEN,
+	CANDLE_COLOR_RED,
 
-	BAR_COLOR_NR
+	CANDLE_COLOR_NR
 };
 
 enum
 {
-	BAR_TREND_DOJI,
-	BAR_TREND_BULL,
-	BAR_TREND_BEAR,
+	CANDLE_TREND_DOJI,
+	CANDLE_TREND_BULL,
+	CANDLE_TREND_BEAR,
 
-	BAR_TREND_NR
+	CANDLE_TREND_NR
 };
 
 enum
@@ -51,8 +51,8 @@ struct date_price
 	uint64_t  volume;
 	uint64_t  sma[SMA_NR];
 	uint64_t  vma[VMA_NR];
-	uint8_t   bar_color;
-	uint8_t   bar_trend;
+	uint8_t   candle_color;
+	uint8_t   candle_trend;
 };
 
 struct stock_price
@@ -61,6 +61,8 @@ struct stock_price
 
 #define DATE_PRICE_SZ_MAX   1024
 	struct date_price dateprice[DATE_PRICE_SZ_MAX];
+
+	uint64_t low_250d, high_250d;
 };
 
 int get_stock_price_from_file(const char *fname, int today_only, struct stock_price *price);

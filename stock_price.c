@@ -71,6 +71,39 @@ static void calculate_vma(struct stock_price *price, int cur_idx,
 	calculate_moving_avg(0, price, cur_idx, vma_days[vma_type], volume_sum, &cur->vma[vma_type]);
 }
 
+static void calculate_250d_high_low(struct stock_price *price, int cur_idx)
+{
+	int cnt = price->date_cnt - cur_idx;
+	struct date_price *cur = &price->dateprice[cur_idx];
+}
+
+static void calculate_candle_stats(struct date_price *cur)
+{
+	/* calculate candle color */
+	if (cur->close > cur->open)
+		cur->candle_color = CANDLE_COLOR_GREEN;
+	else if (cur->close < cur->open)
+		cur->candle_color = CANDLE_COLOR_RED;
+	else
+		cur->candle_color = CANDLE_COLOR_DOJI;
+
+	/* calculate candle trend */
+	uint64_t diff_price = 0;
+	uint64_t up_price = cur->close - cur->low;
+	uint64_t down_price = cur->high - cur->close;
+	if (up_price > down_price) {
+		cur->candle_trend = CANDLE_TREND_BULL;
+		diff_price = up_price - down_price;
+	}
+	else if (up_price < down_price) {
+		cur->candle_trend = CANDLE_TREND_BEAR;
+		diff_price = down_price - up_price;
+	}
+
+	if ((diff_price * 100 / cur->open) < 1)
+		cur->candle_trend = CANDLE_TREND_DOJI;
+}
+
 static void calculate_stock_price_statistics(struct stock_price *price)
 {
 	uint64_t price_sum[SMA_NR] = { 0 };
@@ -85,9 +118,8 @@ static void calculate_stock_price_statistics(struct stock_price *price)
 
 		for (j = 0; j < VMA_NR; j++)
 			calculate_vma(price, i, j, &volume_sum[j], cur);
-printf("date=%s, sma_10d=%zu, sma_20d=%zu, sma_30d=%zu, sma_50d=%zu, sma_60d=%zu, sma_100d=%zu, sma_120d=%zu, sma_200d=%zu, vma_10d=%zu, vma_20d=%zu, vma_50d=%zu\n",
-	cur->date, cur->sma[SMA_10d], cur->sma[SMA_20d], cur->sma[SMA_30d], cur->sma[SMA_50d], cur->sma[SMA_60d],
-	cur->sma[SMA_100d], cur->sma[SMA_120d], cur->sma[SMA_200d], cur->vma[VMA_10d], cur->vma[VMA_20d], cur->vma[VMA_60d]);
+
+		calculate_candle_stats(cur);
 	}
 }
 
@@ -113,43 +145,43 @@ int get_stock_price_from_file(const char *fname, int today_only, struct stock_pr
 		fgets(buf, sizeof(buf), fp);
 
 	while (fgets(buf, sizeof(buf), fp)) {
-		struct date_price *cur_price = &price->dateprice[price->date_cnt];
+		struct date_price *cur = &price->dateprice[price->date_cnt];
 		char *token;
 		uint64_t  adj_close;
 
 		token = strtok(buf, ",");
 		if (!token) continue;
-		strlcpy(cur_price->date, token, sizeof(cur_price->date));
+		strlcpy(cur->date, token, sizeof(cur->date));
 
 		token = strtok(NULL, ",");
 		if (!token) continue;
-		parse_price(token, &cur_price->open);
+		parse_price(token, &cur->open);
 
 		token = strtok(NULL, ",");
 		if (!token) continue;
-		parse_price(token, &cur_price->high);
+		parse_price(token, &cur->high);
 
 		token = strtok(NULL, ",");
 		if (!token) continue;
-		parse_price(token, &cur_price->low);
+		parse_price(token, &cur->low);
 
 		token = strtok(NULL, ",");
 		if (!token) continue;
-		parse_price(token, &cur_price->close);
+		parse_price(token, &cur->close);
 
 		token = strtok(NULL, ",");
 		if (!token) continue;
-		cur_price->volume = atoi(token);
+		cur->volume = atoi(token);
 
 		token = strtok(NULL, ",");
 		if (!token) continue;
 		parse_price(token, &adj_close);
 
-		if (cur_price->close != adj_close) {
-			cur_price->open = cur_price->open * adj_close / cur_price->close;
-			cur_price->high = cur_price->high * adj_close /cur_price->close;
-			cur_price->low = cur_price->low * adj_close / cur_price->close;
-			cur_price->close = adj_close;
+		if (cur->close != adj_close) {
+			cur->open = cur->open * adj_close / cur->close;
+			cur->high = cur->high * adj_close /cur->close;
+			cur->low = cur->low * adj_close / cur->close;
+			cur->close = adj_close;
 		}
 
 		price->date_cnt += 1;
