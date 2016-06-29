@@ -32,11 +32,24 @@ static void parse_price(char *price_str, uint64_t *price)
 	}
 }
 
-static void calculate_stock_price_average(int price_cnt, struct stock_price *prices)
+static void calculate_stock_price_statistics(int price_cnt, struct stock_price *prices)
 {
-	int i;
+	int i, cnt;
+	uint64_t price_10d = 0, price_20d = 0, price_30d = 0, price_50d = 0,
+		 price_100d = 0, price_120d = 0, price_200d = 0;
+	uint64_t volume_10d = 0, volume_20d = 0, volume_60d = 0;
 
-	for (i = 0; i < price_cnt; i++) {
+	for (i = price_cnt - 1, cnt = 0; i >= 0; i--, cnt++) {
+		price_10d += prices[i].close;
+		price_20d += prices[i].close;
+		price_30d += prices[i].close;
+		price_50d += prices[i].close;
+		price_100d += prices[i].close;
+		price_120d += prices[i].close;
+		price_200d += prices[i].close; 
+		volume_10d += prices[i].volume;
+		volume_20d += prices[i].volume;
+		volume_60d += prices[i].volume;
 	}
 }
 
@@ -106,7 +119,7 @@ int get_stock_price_from_file(const char *fname, int today_only, struct stock_pr
 
 	fclose(fp);
 
-	calculate_stock_price_average(*price_cnt, prices);
+	calculate_stock_price_statistics(*price_cnt, prices);
 
 	return 0;
 }

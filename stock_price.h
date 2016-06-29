@@ -26,8 +26,8 @@ struct stock_price
 	char      date[12];
 	uint64_t  open, high, low, close;
 	uint64_t  volume;
-	uint64_t  sma_10, sma_20, sma_30, sma_50, sma_60, sma_100, sma_120, sma_200;
-	uint64_t  volume_10, volume_20, volume_60;
+	uint64_t  sma_10d, sma_20d, sma_30d, sma_50d, sma_60d, sma_100d, sma_120d, sma_200d;
+	uint64_t  vma_10d, vma_20d, vma_60d; /* average volume */
 	uint8_t   bar_color;
 	uint8_t   bar_trend;
 };
