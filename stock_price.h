@@ -61,8 +61,6 @@ struct stock_price
 
 #define DATE_PRICE_SZ_MAX   1024
 	struct date_price dateprice[DATE_PRICE_SZ_MAX];
-
-	uint64_t low_250d, high_250d;
 };
 
 int get_stock_price_from_file(const char *fname, int today_only, struct stock_price *price);
