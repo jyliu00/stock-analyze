@@ -98,6 +98,97 @@ static void calculate_candle_stats(struct date_price *cur)
 		cur->candle_trend = CANDLE_TREND_DOJI;
 }
 
+#define get_2ndlow(dateprice) \
+	((dateprice)->candle_color == CANDLE_COLOR_GREEN ? (dateprice)->open : (dateprice)->close)
+
+#define get_2ndhigh(dateprice) \
+	((dateprice)->candle_color == CANDLE_COLOR_GREEN ? (dateprice)->close : (dateprice)->open)
+
+static const int min_sr_candle_nr = 5;
+static const int max_sr_candle_nr = 20;
+static const int diff_margin_percent = 4;
+
+static void calculate_support_resistance(struct stock_price *price, int cur_idx, struct date_price *cur)
+{
+	int cnt = price->date_cnt - cur_idx;
+	uint64_t cur_2ndlow = get_2ndlow(cur);
+	uint64_t cur_2ndhigh = get_2ndhigh(cur);
+	int _low_is_spt = 1, _2ndlow_is_spt = 1;
+	int _high_is_rst = 1, _2ndhigh_is_rst = 1;
+	uint64_t max_low_diff, max_2ndlow_diff;
+	uint64_t max_high_diff, max_2ndhigh_diff;
+	int candle_low_nr = 0, candle_2ndlow_nr = 0;
+	int candle_high_nr = 0, candle_2ndhigh_nr = 0;
+	int i;
+
+	/* need at least <min_sr_candle_nr - 1> of candles on left and right */
+	if (cnt < min_sr_candle_nr || ((price->date_cnt - cnt) >= (min_sr_candle_nr - 1)))
+		return;
+
+	/* check left side candles */
+	for (i = cur_idx + 1; i < max_sr_candle_nr && i < price->date_cnt; i++) {
+		struct date_price *left = &price->dateprice[i];
+		uint64_t left_2ndlow = get_2ndlow(left);
+		uint64_t left_2ndhigh = get_2ndhigh(left);
+
+		if (!_low_is_spt && !_2ndlow_is_spt
+		    && !_high_is_rst && !_2ndhigh_is_rst)
+			break;
+
+		if (_low_is_spt) {
+			if (left->low < cur->low)
+				_low_is_spt = 0;
+			else if (left->high > cur->high) {
+				if (left->high - cur->low > max_low_diff)
+					max_low_diff = left->high - cur->low;
+				candle_low_nr += 1;
+			}
+		}
+
+		if (_2ndlow_is_spt) {
+			if (left_2ndlow < cur_2ndlow)
+				_2ndlow_is_spt = 0;
+			else if (left->high > cur->high) {
+				if (left->high - cur_2ndlow > max_2ndlow_diff)
+					max_2ndlow_diff = left->high - cur_2ndlow;
+				candle_2ndlow_nr += 1;
+			}
+		}
+
+		if (_high_is_rst) {
+			if (left->high > cur->high)
+				_high_is_rst = 0;
+			else if (left->low < cur->low) {
+				if (cur->high - left->low > max_high_diff)
+					max_high_diff = cur->high - left->low;
+				candle_high_nr += 1;
+			}
+		}
+
+		if (_2ndhigh_is_rst) {
+			if (left_2ndhigh > cur_2ndhigh)
+				_2ndhigh_is_rst = 0;
+			else if (left->low < cur->low) {
+				if (cur_2ndhigh - left->low > max_2ndhigh_diff)
+					max_2ndhigh_diff = cur_2ndhigh - left->low;
+				candle_2ndhigh_nr += 1;
+			}
+		}
+	}
+
+	if (candle_low_nr >= min_sr_candle_nr - 1
+	    && (max_low_diff * 100 / cur->low >= diff_margin_percent))
+	{
+		cur->sr_flag |= SR_F_SUPPORT_LOW;
+	}
+
+	if (candle_2ndlow_nr >= min_sr_candle_nr - 1
+	    && (max_2ndlow_diff * 100 / cur->low >= diff_margin_percent))
+	{
+		cur->sr_flag |= SR_F_SUPPORT_2ndLOW;
+	}
+}
+
 static void calculate_stock_price_statistics(struct stock_price *price)
 {
 	uint64_t price_sum[SMA_NR] = { 0 };
@@ -114,6 +205,8 @@ static void calculate_stock_price_statistics(struct stock_price *price)
 			calculate_vma(price, i, j, &volume_sum[j], cur);
 
 		calculate_candle_stats(cur);
+
+		calculate_support_resistance(price, i, cur);
 	}
 }
 
@@ -139,6 +232,11 @@ int get_stock_price_from_file(const char *fname, int today_only, struct stock_pr
 		fgets(buf, sizeof(buf), fp);
 
 	while (fgets(buf, sizeof(buf), fp)) {
+		if (price->date_cnt >= DATE_PRICE_SZ_MAX) {
+			anna_error("fname='%s', date_cnt=%d>%d\n", fname, price->date_cnt, DATE_PRICE_SZ_MAX);
+			return -1;
+		}
+
 		struct date_price *cur = &price->dateprice[price->date_cnt];
 		char *token;
 		uint64_t  adj_close;

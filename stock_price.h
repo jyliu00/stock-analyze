@@ -44,6 +44,11 @@ enum
 	VMA_NR
 };
 
+#define SR_F_SUPPORT_LOW	(1<<0)
+#define SR_F_SUPPORT_2ndLOW	(1<<1)
+#define SR_F_RESIST_HIGH	(1<<2)
+#define SR_F_RESIST_2ndHIGH	(1<<3)
+
 struct date_price
 {
 	char      date[12];
@@ -53,6 +58,7 @@ struct date_price
 	uint64_t  vma[VMA_NR];
 	uint8_t   candle_color;
 	uint8_t   candle_trend;
+	uint8_t   sr_flag; /* support/resist flag: SR_F_xxx */
 };
 
 struct stock_price
