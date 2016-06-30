@@ -6,3 +6,5 @@ anna
 *\.price
 *\.log
 *\.db
+cscope*
+tags

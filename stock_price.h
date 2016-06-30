@@ -59,6 +59,7 @@ struct date_price
 	uint8_t   candle_color;
 	uint8_t   candle_trend;
 	uint8_t   sr_flag; /* support/resist flag: SR_F_xxx */
+	uint64_t  height_low_spt, height_2ndlow_spt, height_high_rst, height_2ndhigh_rst;
 };
 
 struct stock_price
