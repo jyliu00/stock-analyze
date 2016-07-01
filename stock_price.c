@@ -119,17 +119,21 @@ static void calculate_one_side_sr(struct date_price *cur, struct date_price *tes
 	uint64_t tp_2ndlow = get_2ndlow(test_price);
 	uint64_t tp_2ndhigh = get_2ndhigh(test_price);
 
-	if (*is_low_spt) {
+	if (*is_low_spt && !(*stop_low)) {
 		if (test_price->low < cur->low) {
-			if (*candle_low_nr < min_sr_candle_nr - 1)
-				*is_low_spt = 0;
+			if (*candle_low_nr < min_sr_candle_nr - 1) {
+				if (test_price + 1 != cur && tp_2ndhigh < cur_2ndlow)
+					*stop_low = 1; /* gap down */
+				else
+					*is_low_spt = 0;
+			}
 			else
 				*stop_low = 1;
 		}
-		else if (!(*stop_low) && test_price->close > cur->close) {
+		else if (test_price->close > cur->close) {
 			if (tp_2ndhigh < cur->low) {
 				anna_error("is_low_spt algo error: cur_date=%s, test_date=%s\n", cur->date, test_price->date);
-				*stop_low = 1;
+				*stop_low = 2;
 			}
 			else {
 				if (tp_2ndhigh - cur->low > *max_low_diff)
@@ -139,17 +143,21 @@ static void calculate_one_side_sr(struct date_price *cur, struct date_price *tes
 		}
 	}
 
-	if (*is_2ndlow_spt) {
+	if (*is_2ndlow_spt && !(*stop_2ndlow)) {
 		if (tp_2ndlow < cur_2ndlow) {
-			if (*candle_2ndlow_nr < min_sr_candle_nr - 1)
-				*is_2ndlow_spt = 0;
+			if (*candle_2ndlow_nr < min_sr_candle_nr - 1) {
+				if (test_price + 1 != cur && tp_2ndhigh < cur_2ndlow)
+					*stop_2ndlow = 1; /* gap down */
+				else
+					*is_2ndlow_spt = 0;
+			}
 			else
 				*stop_2ndlow = 1;
 		}
-		else if (!(*stop_2ndlow) && test_price->close > cur->close) {
+		else if (test_price->close > cur->close) {
 			if (tp_2ndhigh < cur_2ndlow) {
-				anna_error("is_2ndlow_spt algo error: cur_date=%s, cur_2ndlow=%zu, test_date=%s, tp_2ndhigh=%zu, tp_color=%d\n", cur->date, cur_2ndlow, test_price->date, tp_2ndhigh, test_price->candle_color);
-				*stop_2ndlow = 1;
+				anna_error("is_2ndlow_spt algo error: cur_date=%s, test_date=%s\n", cur->date, test_price->date);
+				*stop_2ndlow = 2;
 			}
 			else {
 				if (tp_2ndhigh - cur_2ndlow > *max_low_diff)
@@ -159,17 +167,21 @@ static void calculate_one_side_sr(struct date_price *cur, struct date_price *tes
 		}
 	}
 
-	if (*is_high_rst) {
+	if (*is_high_rst && !(*stop_high)) {
 		if (test_price->high > cur->high) {
-			if (*candle_high_nr < min_sr_candle_nr - 1)
-				*is_high_rst = 0;
+			if (*candle_high_nr < min_sr_candle_nr - 1) {
+				if (test_price + 1 != cur && tp_2ndlow > cur_2ndhigh)
+					*stop_high = 1; /* gap up */
+				else
+					*is_high_rst = 0;
+			}
 			else
 				*stop_high = 1;
 		}
-		else if (!(*stop_high) && test_price->close < cur->close) {
+		else if (test_price->close < cur->close) {
 			if (cur->high < tp_2ndlow) {
 				anna_error("is_high_rst algo error: cur_date=%s, test_date=%s\n", cur->date, test_price->date);
-				*stop_high = 1;
+				*stop_high = 2;
 			}
 			if (cur->high - tp_2ndlow > *max_high_diff)
 				*max_high_diff = cur->high - tp_2ndlow;
@@ -177,17 +189,21 @@ static void calculate_one_side_sr(struct date_price *cur, struct date_price *tes
 		}
 	}
 
-	if (*is_2ndhigh_rst) {
+	if (*is_2ndhigh_rst && !(*stop_2ndhigh)) {
 		if (tp_2ndhigh > cur_2ndhigh) {
-			if (*candle_2ndhigh_nr < min_sr_candle_nr - 1)
-				*is_2ndhigh_rst = 0;
+			if (*candle_2ndhigh_nr < min_sr_candle_nr - 1) {
+				if (test_price + 1 != cur && tp_2ndlow > cur_2ndhigh)
+					*stop_2ndhigh = 1; /* gap up */
+				else
+					*is_2ndhigh_rst = 0;
+			}
 			else
 				*stop_2ndhigh = 1;
 		}
-		else if (!(*stop_2ndhigh) && test_price->close < cur->close) {
+		else if (test_price->close < cur->close) {
 			if (cur_2ndhigh < tp_2ndlow) {
 				anna_error("is_2ndhigh_rst algo error: cur_date=%s, test_date=%s\n", cur->date, test_price->date);
-				*stop_2ndhigh = 1;
+				*stop_2ndhigh = 2;
 			}
 			else {
 				if (cur_2ndhigh - tp_2ndlow > *max_2ndhigh_diff)
@@ -257,9 +273,9 @@ static void calculate_support_resistance(struct stock_price *price, int cur_idx,
 				      &right_is_2ndhigh_rst, &right_2ndhigh_stop, &right_candle_2ndhigh_nr, &right_max_2ndhigh_diff);
 	}
 
-	int left_ok = left_is_low_spt && (left_candle_low_nr >= min_sr_candle_nr - 1)
+	int left_ok = left_is_low_spt && (left_low_stop == 1 || left_candle_low_nr >= min_sr_candle_nr - 1)
 			&& (left_max_low_diff * 100 / get_2ndlow(cur) > diff_margin_percent);
-	int right_ok = right_is_low_spt && (right_candle_low_nr >= min_sr_candle_nr - 1)
+	int right_ok = right_is_low_spt && (right_low_stop == 1 || right_candle_low_nr >= min_sr_candle_nr - 1)
 			&& (right_max_low_diff * 100 / get_2ndlow(cur) > diff_margin_percent);
 
 	if (left_ok && right_ok) {
@@ -267,9 +283,9 @@ static void calculate_support_resistance(struct stock_price *price, int cur_idx,
 		cur->height_low_spt = left_max_low_diff > right_max_low_diff ? left_max_low_diff : right_max_low_diff;
 	}
 
-	left_ok = left_is_2ndlow_spt && (left_candle_2ndlow_nr >= min_sr_candle_nr - 1)
+	left_ok = left_is_2ndlow_spt && (left_2ndlow_stop == 1 || left_candle_2ndlow_nr >= min_sr_candle_nr - 1)
 			&& (left_max_2ndlow_diff * 100 / get_2ndlow(cur) > diff_margin_percent);
-	right_ok = right_is_2ndlow_spt && (right_candle_2ndlow_nr >= min_sr_candle_nr - 1)
+	right_ok = right_is_2ndlow_spt && (right_2ndlow_stop == 1 || right_candle_2ndlow_nr >= min_sr_candle_nr - 1)
 			&& (right_max_2ndlow_diff * 100 / get_2ndlow(cur) > diff_margin_percent);
 
 	if (left_ok && right_ok) {
@@ -277,9 +293,9 @@ static void calculate_support_resistance(struct stock_price *price, int cur_idx,
 		cur->height_2ndlow_spt = left_max_2ndlow_diff > right_max_2ndlow_diff ? left_max_2ndlow_diff : right_max_2ndlow_diff;
 	}
 
-	left_ok = left_is_high_rst && (left_candle_high_nr >= min_sr_candle_nr - 1)
+	left_ok = left_is_high_rst && (left_high_stop == 1 || left_candle_high_nr >= min_sr_candle_nr - 1)
 			&& (left_max_high_diff * 100 / get_2ndhigh(cur) > diff_margin_percent);
-	right_ok = right_is_high_rst && (right_candle_high_nr >= min_sr_candle_nr - 1)
+	right_ok = right_is_high_rst && (right_high_stop == 1 || right_candle_high_nr >= min_sr_candle_nr - 1)
 			&& (right_max_high_diff * 100 / get_2ndhigh(cur) > diff_margin_percent);
 
 	if (left_ok && right_ok) {
@@ -287,15 +303,17 @@ static void calculate_support_resistance(struct stock_price *price, int cur_idx,
 		cur->height_high_rst = left_max_high_diff > right_max_high_diff ? left_max_high_diff : right_max_high_diff;
 	}
 
-	left_ok = left_is_2ndhigh_rst && (left_candle_2ndhigh_nr >= min_sr_candle_nr - 1)
+	left_ok = left_is_2ndhigh_rst && (left_2ndhigh_stop == 1 || left_candle_2ndhigh_nr >= min_sr_candle_nr - 1)
 			&& (left_max_2ndhigh_diff * 100 / get_2ndhigh(cur) > diff_margin_percent);
-	right_ok = right_is_2ndhigh_rst && (right_candle_2ndhigh_nr >= min_sr_candle_nr - 1)
+	right_ok = right_is_2ndhigh_rst && (right_2ndhigh_stop == 1 || right_candle_2ndhigh_nr >= min_sr_candle_nr - 1)
 			&& (right_max_2ndhigh_diff * 100 / get_2ndhigh(cur) > diff_margin_percent);
 
 	if (left_ok && right_ok) {
 		cur->sr_flag |= SR_F_RESIST_2ndHIGH;
 		cur->height_2ndhigh_rst = left_max_2ndhigh_diff > right_max_2ndhigh_diff ? left_max_2ndhigh_diff : right_max_2ndhigh_diff;
 	}
+if (cur->sr_flag)
+printf("date=%s, sr_flag=0x%02x\n", cur->date, cur->sr_flag);
 }
 
 static void calculate_stock_price_statistics(struct stock_price *price)
