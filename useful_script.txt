@@ -1,0 +1,2 @@
+more nasdaq100.txt | cut -d "(" -f2 | cut -d ")" -f1  # get string betwenn ( )
+more list.txt | cut -d$'\t' -f2 | cut -d$'\t' -f1 # get string '\t'
