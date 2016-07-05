@@ -1,9 +1,12 @@
+#include "sqlite_db.h"
+
+#include "util.h"
+
 #include "sqlite3.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 
-#define STOCK_DB_NAME "stocks.db"
 #define TABLE_STOCK_INFO "stock_info"
 
 #define sqlite_error(sqlite_rt, fmt, args...) \
@@ -18,6 +21,11 @@
 	} while (0)
 
 static sqlite3 *sqlite_db;
+
+static const char *get_db_name(void)
+{
+	return "usa_stock.db";
+}
 
 static int get_count(void *cb, int column_nr, char **column_text, char **column_name)
 {
@@ -80,6 +88,40 @@ static int create_table(const char *tablename, const char *columns)
 	return 0;
 }
 
+static int create_symbol_table(const char *symbol)
+{
+	char column_def[1024];
+
+	snprintf(column_def, sizeof(column_def),
+		 "date CHAR(12) PRIMARY KEY"
+		 ", open INTEGER"
+		 ", high INTEGER"
+		 ", low  INTEGER"
+		 ", close INTEGER"
+		 ", volume INTEGER"
+		 ", sma_10d INTEGER"
+		 ", sma_20d INTEGER"
+		 ", sma_30d INTEGER"
+		 ", sma_50d INTEGER"
+		 ", sma_60d INTEGER"
+		 ", sma_100d INTEGER"
+		 ", sma_120d INTEGER"
+		 ", sma_200d INTEGER"
+		 ", vma_10d INTEGER"
+		 ", vma_20d INTEGER"
+		 ", vma_60d INTEGER"
+		 ", candle_color TINYINT"
+		 ", candle_trend TINYINT"
+		 ", sr_flag TINYINT"
+		 ", height_low_spt INTEGER"
+		 ", height_2ndlow_spt INTEGER"
+		 ", height_high_rst INTEGER"
+		 ", height_2ndhigh_rst INTEGER"
+		);
+
+	return create_table(symbol, column_def);
+}
+
 static int __init_db( )
 {
 	char column_def[1024];
@@ -104,6 +146,7 @@ static int __init_db( )
 
 static int __open_db( )
 {
+	const char *db_name = get_db_name( );
 	int sqlite_rt;
 
 	if (sqlite_db) {
@@ -112,8 +155,8 @@ static int __open_db( )
 		return -1;
 	}
 
-	sqlite_rt = sqlite3_open_v2(STOCK_DB_NAME, &sqlite_db, SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE, NULL);
-	check_sqlite_rt(sqlite_rt, "sqlite3_open_v2(%s) failed\n", STOCK_DB_NAME);
+	sqlite_rt = sqlite3_open_v2(db_name, &sqlite_db, SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE, NULL);
+	check_sqlite_rt(sqlite_rt, "sqlite3_open_v2(%s) failed\n", db_name);
 
 	return 0;
 }
@@ -160,4 +203,43 @@ int db_insert_stock_info(const char *symbol, const char *name, const char *excha
 	snprintf(values_str, sizeof(values_str), "'%s', '%s', '%s', '%s', '%s', '%s'", symbol, name, exchange, sector, industry, country);
 
 	return insert_into_table(TABLE_STOCK_INFO, NULL, values_str);
+}
+
+int db_insert_stock_price(const char *symbol, const struct stock_price *price)
+{
+	char values_str[1024];
+	int i;
+
+	if (table_exist(symbol) == 0) {
+		if (create_symbol_table(symbol) < 0)
+			return -1;
+	}
+
+	for (i = 0; i < price->date_cnt; i++) {
+		const struct date_price *p = &price->dateprice[i];
+
+		/* date, open, high, low, close, volume,
+		   sma_10/20/30/50/60/100/120/200d, vma_10/20/60d,
+		   candle_color, candle_trend, sr_flag,
+		   height_low_spt, height_2ndlow_spt, height_high_rst, height_2ndhigh_rst
+		*/
+		snprintf(values_str, sizeof(values_str),
+			 "'%s', %zu, %zu, %zu, %zu, %zu" /* date, open, high, low, close, volume */
+			 ", %zu, %zu, %zu, %zu, %zu, %zu, %zu, %zu" /* sma_10/20/30/50/60/100/120/200d */
+			 ", %zu, %zu, %zu" /* vma_10/20/60d */
+			 ", %d, %d, %d" /* candle_color, candle_trend, sr_flag */
+			 ", %zu, %zu, %zu, %zu", /* height_low_spt, height_2ndlow_spt, height_high_rst, height_2ndhigh_rst */
+			 p->date, p->open, p->high, p->low, p->close, p->volume,
+			 p->sma[SMA_10d], p->sma[SMA_20d], p->sma[SMA_30d], p->sma[SMA_50d],
+			 p->sma[SMA_60d], p->sma[SMA_100d], p->sma[SMA_120d], p->sma[SMA_200d],
+			 p->vma[VMA_10d], p->vma[VMA_20d], p->vma[VMA_60d],
+			 p->candle_color, p->candle_trend, p->sr_flag,
+			 p->height_low_spt, p->height_2ndlow_spt, p->height_high_rst, p->height_2ndhigh_rst);
+
+		if (insert_into_table(symbol, NULL, values_str) < 0) {
+			anna_error("insert_into_table(%s, date=%s) failed\n", symbol, p->date);
+		}
+	}
+
+	return 0;
 }

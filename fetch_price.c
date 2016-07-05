@@ -227,7 +227,15 @@ static int fetch_symbol_price_since_date(const char *symbol, int year, int month
 	if (get_stock_price_from_file(output_fname, today_only, &price) < 0)
 		return -1;
 
-	return 0;
+	unlink(output_fname);
+
+	anna_info("\tInsert %s price into db ... ", symbol);
+
+	int rt = db_insert_stock_price(symbol, &price);
+
+	anna_info(" %s.\n", rt < 0 ? "Failed" : "Done");
+
+	return rt;
 }
 
 static void add_symbol(const char *symbol)
