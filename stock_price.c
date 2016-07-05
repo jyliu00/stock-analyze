@@ -126,16 +126,14 @@ static void calculate_one_side_sr(struct date_price *cur, struct date_price *tes
 			else
 				*stop_low = 1;
 		}
-		else if (test_price->close > cur->close) {
-			if (test_price->high < cur->low) {
-				anna_error("is_low_spt algo error: cur_date=%s, test_date=%s\n", cur->date, test_price->date);
-				*stop_low = 1;
-			}
-			else {
-				if (test_price->high - cur->low > *max_low_diff)
-					*max_low_diff = test_price->high - cur->low;
-				(*candle_low_nr) += 1;
-			}
+		else if (test_price->high < cur->low) {
+			anna_error("is_low_spt algo error: cur_date=%s, test_date=%s\n", cur->date, test_price->date);
+			(*is_low_spt) = 0;
+		}
+		else {
+			if (test_price->high - cur->low > *max_low_diff)
+				*max_low_diff = test_price->high - cur->low;
+			(*candle_low_nr) += 1;
 		}
 	}
 
@@ -146,16 +144,14 @@ static void calculate_one_side_sr(struct date_price *cur, struct date_price *tes
 			else
 				*stop_2ndlow = 1;
 		}
-		else if (test_price->close > cur->close) {
-			if (test_price->high < cur_2ndlow) {
-				anna_error("is_2ndlow_spt algo error: cur_date=%s, test_date=%s\n", cur->date, test_price->date);
-				*stop_2ndlow = 1;
-			}
-			else {
-				if (test_price->high - cur_2ndlow > *max_2ndlow_diff)
-					*max_2ndlow_diff = test_price->high - cur_2ndlow;
-				(*candle_2ndlow_nr) += 1;
-			}
+		else if (test_price->high < cur_2ndlow) {
+			anna_error("is_2ndlow_spt algo error: cur_date=%s, test_date=%s\n", cur->date, test_price->date);
+			(*is_2ndlow_spt) = 0;
+		}
+		else {
+			if (test_price->high - cur_2ndlow > *max_2ndlow_diff)
+				*max_2ndlow_diff = test_price->high - cur_2ndlow;
+			(*candle_2ndlow_nr) += 1;
 		}
 	}
 
@@ -166,11 +162,11 @@ static void calculate_one_side_sr(struct date_price *cur, struct date_price *tes
 			else
 				*stop_high = 1;
 		}
-		else if (test_price->close < cur->close) {
-			if (cur->high < test_price->low) {
-				anna_error("is_high_rst algo error: cur_date=%s, test_date=%s\n", cur->date, test_price->date);
-				*stop_high = 1;
-			}
+		else if (cur->high < test_price->low) {
+			anna_error("is_high_rst algo error: cur_date=%s, test_date=%s\n", cur->date, test_price->date);
+			(*is_high_rst) = 0;
+		}
+		else {
 			if (cur->high - test_price->low > *max_high_diff)
 				*max_high_diff = cur->high - test_price->low;
 			(*candle_high_nr) += 1;
@@ -184,16 +180,14 @@ static void calculate_one_side_sr(struct date_price *cur, struct date_price *tes
 			else
 				*stop_2ndhigh = 1;
 		}
-		else if (test_price->close < cur->close) {
-			if (cur_2ndhigh < test_price->low) {
-				anna_error("is_2ndhigh_rst algo error: cur_date=%s, test_date=%s\n", cur->date, test_price->date);
-				*stop_2ndhigh = 1;
-			}
-			else {
-				if (cur_2ndhigh - test_price->low > *max_2ndhigh_diff)
-					*max_2ndhigh_diff = cur_2ndhigh - test_price->low;
-				(*candle_2ndhigh_nr) += 1;
-			}
+		else if (cur_2ndhigh < test_price->low) {
+			anna_error("is_2ndhigh_rst algo error: cur_date=%s, test_date=%s\n", cur->date, test_price->date);
+			*(is_2ndhigh_rst) = 0;
+		}
+		else {
+			if (cur_2ndhigh - test_price->low > *max_2ndhigh_diff)
+				*max_2ndhigh_diff = cur_2ndhigh - test_price->low;
+			(*candle_2ndhigh_nr) += 1;
 		}
 	}
 }
