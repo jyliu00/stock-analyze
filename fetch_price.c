@@ -218,6 +218,7 @@ static int fetch_symbol_price_since_date(const char *symbol, int year, int month
 	char output_fname[128];
 	int today_only = !year;
 	struct stock_price price = { };
+	time_t t1, t2;
 
 	snprintf(output_fname, sizeof(output_fname), "%s.price", symbol);
 
@@ -231,9 +232,13 @@ static int fetch_symbol_price_since_date(const char *symbol, int year, int month
 
 	anna_info("\tInsert %s price into db ... ", symbol);
 
+	t1 = time(NULL);
+
 	int rt = db_insert_stock_price(symbol, &price);
 
-	anna_info(" %s.\n", rt < 0 ? "Failed" : "Done");
+	t2 = time(NULL);
+
+	anna_info(" %s (%ld seconds).\n", rt < 0 ? "Failed" : "Done", t2 - t1);
 
 	return rt;
 }
