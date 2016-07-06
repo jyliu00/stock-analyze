@@ -306,7 +306,7 @@ static int get_symbols(void *cb, int column_nr, char **column_text, char **colum
 	struct symbol_array *a = cb;
 	int idx = *a->symbols_nr;
 
-	strcpy(a->symbols[idx], column_text[0]);
+	a->symbols[idx] = strdup(column_text[0]);
 
 	(*a->symbols_nr) += 1;
 

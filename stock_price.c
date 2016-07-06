@@ -292,6 +292,13 @@ static void calculate_support_resistance(struct stock_price *price, int cur_idx,
 		cur->sr_flag |= SR_F_RESIST_2ndHIGH;
 		cur->height_2ndhigh_rst = left_max_2ndhigh_diff > right_max_2ndhigh_diff ? left_max_2ndhigh_diff : right_max_2ndhigh_diff;
 	}
+
+	if ((cur->sr_flag & (SR_F_SUPPORT_LOW | SR_F_SUPPORT_2ndLOW))
+	    && (cur->sr_flag & (SR_F_RESIST_HIGH | SR_F_RESIST_2ndHIGH)))
+	{
+		anna_error("date=%s is set to both support and resistance, sr_flag=0x%02x\n", cur->date, cur->sr_flag);
+		cur->sr_flag = 0;
+	}
 }
 
 static void calculate_stock_price_statistics(struct stock_price *price)
@@ -400,14 +407,81 @@ int get_stock_price_from_file(const char *fname, int today_only, struct stock_pr
 	return 0;
 }
 
+static void check_support(struct stock_price *price_history, struct date_price *cur)
+{
+	struct date_price *prev;
+	int is_falling = 1;
+	uint64_t max_low_diff = 0;
+	//struct date_price date_hit[256];
+	//int hit_nr = 0;
+	int i, j, k;
+
+	/* find the date right before cur->date */
+	for (i = price_history->date_cnt - 1; i >= 0; i--) {
+		prev = &price_history->dateprice[i];
+		int cmp = strcmp(prev->date, cur->date);
+		if (cmp == 0) {
+			anna_error("prev_date==cur_date=%s\n", prev->date);
+			continue;
+		}
+		else if (cmp > 0)
+			continue;
+		else
+			break;
+	}
+
+	if (i < 0) {
+		anna_error("cur_date=%s is too old\n", cur->date);
+		return;
+	}
+
+	k = i;
+
+	/* check if cur_price has been fallen for some days */
+	for (j = 0; j < max_sr_candle_nr && i >= 0; i--, j++) {
+		prev = &price_history->dateprice[i];
+
+		if (prev->low < cur->low) {
+			if (j < min_sr_candle_nr - 1)
+				is_falling = 0;
+			break;
+		}
+
+		if (prev->high - cur->low > max_low_diff)
+			max_low_diff = prev->high - cur->low;
+	}
+
+	if (!is_falling || (max_low_diff * 100 / get_2ndlow(cur) < diff_margin_percent))
+		return;
+
+	/* now check if cur price is hiting some support/resistance */
+	for (i = k; i >= 0; i--) {
+		prev = &price_history->dateprice[i];
+		if (prev->sr_flag == 0)
+			continue;
+
+		if (prev->sr_flag & SR_F_SUPPORT_LOW) {
+		}
+
+		if (prev->sr_flag & SR_F_SUPPORT_2ndLOW) {
+		}
+
+		if (prev->sr_flag & SR_F_RESIST_HIGH) {
+		}
+
+		if (prev->sr_flag & SR_F_RESIST_2ndHIGH) {
+		}
+	}
+}
+
 void stock_check_support(const char *date, const char **symbols, int symbols_nr)
 {
-	char _symbols[1024][36];
+	char *_symbols[1024];
 	int _symbols_nr = 0;
 	int i;
 
 	if (symbols_nr == 0) { /* get all symbols from db */
-		if (db_get_all_symbols((char **)_symbols, &_symbols_nr) < 0)
+		if (db_get_all_symbols(_symbols, &_symbols_nr) < 0)
 			return;
 
 		symbols = (const char **)_symbols;
@@ -421,17 +495,17 @@ void stock_check_support(const char *date, const char **symbols, int symbols_nr)
 
 	for (i = 0; i < symbols_nr; i++) {
 		const char *symbol = symbols[i];
-		struct date_price price2check;
+		struct date_price cur_price;
 		struct stock_price price_history;
 
 		if (!date) {
-			if (fetch_today_price(symbol, &price2check) < 0) {
+			if (fetch_today_price(symbol, &cur_price) < 0) {
 				anna_error("Failed to fetch %s's today price\n", symbol);
 				continue;
 			}
 		}
 		else {
-			if (db_get_symbol_price_by_date(symbol, date, &price2check) < 0) {
+			if (db_get_symbol_price_by_date(symbol, date, &cur_price) < 0) {
 				anna_error("Failed to get %s price by date=%s\n", symbol, date);
 				continue;
 			}
@@ -440,5 +514,12 @@ void stock_check_support(const char *date, const char **symbols, int symbols_nr)
 		if (db_get_symbol_price_history(symbol, date, 0, &price_history) < 0) {
 			continue;
 		}
+
+		check_support(&price_history, &cur_price);
+	}
+
+	for (i = 0; i < _symbols_nr; i++) {
+		if (_symbols[i])
+			free(_symbols[i]);
 	}
 }
