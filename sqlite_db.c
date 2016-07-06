@@ -6,6 +6,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define TABLE_STOCK_INFO "stock_info"
 
@@ -46,9 +47,12 @@ static int check_exist(const char *tablename, const char *where_str)
 	snprintf(stmt_str, sizeof(stmt_str), "SELECT COUNT(*) FROM %s WHERE %s;", tablename, where_str);
 
 	sqlite_rt = sqlite3_exec(sqlite_db, stmt_str, get_count, &count, NULL);
-	check_sqlite_rt(sqlite_rt, "run '%s' failed\n", stmt_str);
+	if (sqlite_rt != SQLITE_OK) {
+		sqlite_error(sqlite_rt, "run '%s' failed\n", stmt_str);
+		return 0;
+	}
 
-	return count;
+	return !!count;
 }
 
 static int table_exist(const char *tablename)
@@ -68,6 +72,33 @@ static int insert_into_table(const char *tablename, const char *columns_name, co
 		snprintf(stmt_str, sizeof(stmt_str), "INSERT INTO %s (%s) VALUES (%s);", tablename, columns_name, values);
 	else
 		snprintf(stmt_str, sizeof(stmt_str), "INSERT INTO %s VALUES (%s);", tablename, values);
+
+	int sqlite_rt = sqlite3_exec(sqlite_db, stmt_str, NULL, NULL, NULL);
+	check_sqlite_rt(sqlite_rt, "run '%s' failed\n", stmt_str);
+
+	return 0;
+}
+
+static int delete_from_table(const char *tablename, const char *where_cond)
+{
+	char stmt_str[1024];
+
+	if (where_cond && where_cond[0])
+		snprintf(stmt_str, sizeof(stmt_str), "DELETE FROM %s WHERE %s;", tablename, where_cond);
+	else
+		snprintf(stmt_str, sizeof(stmt_str), "DELETE FROM %s;", tablename);
+
+	int sqlite_rt = sqlite3_exec(sqlite_db, stmt_str, NULL, NULL, NULL);
+	check_sqlite_rt(sqlite_rt, "run '%s' failed\n", stmt_str);
+
+	return 0;
+}
+
+static int drop_table(const char *tablename)
+{
+	char stmt_str[1024];
+
+	snprintf(stmt_str, sizeof(stmt_str), "DROP TABLE %s;", tablename);
 
 	int sqlite_rt = sqlite3_exec(sqlite_db, stmt_str, NULL, NULL, NULL);
 	check_sqlite_rt(sqlite_rt, "run '%s' failed\n", stmt_str);
@@ -240,6 +271,131 @@ int db_insert_stock_price(const char *symbol, const struct stock_price *price)
 			anna_error("insert_into_table(%s, date=%s) failed\n", symbol, p->date);
 		}
 	}
+
+	return 0;
+}
+
+int db_delete_symbol(const char *symbol)
+{
+	char where_cond[256];
+
+	if (!db_symbol_exist(symbol)) {
+		anna_error("symbol '%s' doesn't exist\n", symbol);
+		return -1;
+	}
+
+	snprintf(where_cond, sizeof(where_cond), "symbol='%s'", symbol);
+
+	if (delete_from_table(TABLE_STOCK_INFO, where_cond) < 0)
+		return -1;
+
+	if (drop_table(symbol) < 0)
+		return -1;
+
+	return 0;
+}
+
+struct symbol_array
+{
+	int *symbols_nr;
+	char **symbols;
+};
+
+static int get_symbols(void *cb, int column_nr, char **column_text, char **column_name)
+{
+	struct symbol_array *a = cb;
+	int idx = *a->symbols_nr;
+
+	strcpy(a->symbols[idx], column_text[0]);
+
+	(*a->symbols_nr) += 1;
+
+	return 0;
+}
+
+int db_get_all_symbols(char **symbols, int *symbols_nr)
+{
+	char stmt_str[1024];
+	struct symbol_array symbol_arr;
+	int sqlite_rt;
+
+	*symbols_nr = 0;
+	symbol_arr.symbols_nr = symbols_nr;
+	symbol_arr.symbols = symbols;
+
+	snprintf(stmt_str, sizeof(stmt_str), "SELECT symbol FROM %s;", TABLE_STOCK_INFO);
+
+	sqlite_rt = sqlite3_exec(sqlite_db, stmt_str, get_symbols, &symbol_arr, NULL);
+	check_sqlite_rt(sqlite_rt, "run '%s' failed\n", stmt_str);
+
+	return 0;
+}
+
+static int get_price_history(void *cb, int column_nr, char **column_text, char **column_name)
+{
+	struct stock_price *prices = cb;
+	struct date_price *cur = &prices->dateprice[prices->date_cnt];
+
+	strlcpy(cur->date, column_text[0], sizeof(cur->date));
+	cur->open = atoi(column_text[1]);
+	cur->high = atoi(column_text[2]);
+	cur->low = atoi(column_text[3]);
+	cur->close = atoi(column_text[4]);
+	cur->volume = atoi(column_text[5]);
+	cur->sr_flag = atoi(column_text[6]);
+	cur->height_low_spt = atoi(column_text[7]);
+	cur->height_2ndlow_spt = atoi(column_text[8]);
+	cur->height_high_rst = atoi(column_text[9]);
+	cur->height_2ndhigh_rst = atoi(column_text[10]);
+
+	prices->date_cnt += 1;
+
+	return 0;
+}
+
+int db_get_symbol_price_history(const char *symbol, const char *date, int date_include, struct stock_price *price_history)
+{
+	char stmt_str[1024];
+	const char *columns = "date, open, high, low, close, volume, sr_flag, height_low_spt, height_2ndlow_spt, height_high_rst, height_2ndhigh_rst";
+	int sqlite_rt;
+
+	if (date)
+		snprintf(stmt_str, sizeof(stmt_str), "SELECT %s FROM %s WHERE date %s '%s';", columns, symbol, date_include ? "<=" : "<", date);
+	else
+		snprintf(stmt_str, sizeof(stmt_str), "SELECT %s FROM %s;", columns, symbol);
+
+	price_history->date_cnt = 0;
+
+	sqlite_rt = sqlite3_exec(sqlite_db, stmt_str, get_price_history, price_history, NULL);
+	check_sqlite_rt(sqlite_rt, "run '%s' failed\n", stmt_str);
+
+	return 0;
+}
+
+static int get_date_price(void *cb, int column_nr, char **column_text, char **column_name)
+{
+	struct date_price *price = cb;
+
+	strlcpy(price->date, column_text[0], sizeof(price->date));
+	price->open = atoi(column_text[1]);
+	price->high = atoi(column_text[2]);
+	price->low = atoi(column_text[3]);
+	price->close = atoi(column_text[4]);
+	price->volume = atoi(column_text[5]);
+
+	return 0;
+}
+
+int db_get_symbol_price_by_date(const char *symbol, const char *date, struct date_price *price)
+{
+	char stmt_str[1024];
+	const char *columns = "date, open, high, low, close, volume";
+	int sqlite_rt;
+
+	snprintf(stmt_str, sizeof(stmt_str), "SELECT %s FROM %s WHERE date='%s';", columns, symbol, date);
+
+	sqlite_rt = sqlite3_exec(sqlite_db, stmt_str, get_date_price, price, NULL);
+	check_sqlite_rt(sqlite_rt, "run '%s' failed\n", stmt_str);
 
 	return 0;
 }

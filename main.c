@@ -9,6 +9,7 @@ static void print_usage(void)
 	printf("Usage: anna\n");
 	printf("       anna {-add | -delete} {symbol-1 symbol-2 ...}\n");
 	printf("       anna -update [symbol-1 symbol-2 ...]\n");
+	printf("       anna -check-support [-date yyyy-mm-dd] [symbol-1 symbol-2 ...]\n");
 	printf("       anna -help\n");
 }
 
@@ -35,6 +36,33 @@ int main(int argc, const char **argv)
 	else if (!strcmp(argv[1], "-update")) {
 		fetch_price(FETCH_ACTION_UPDATE, argc - 2, &argv[2]);
 	}
+	else if (!strcmp(argv[1], "-check-support")) {
+		const char *date = NULL;
+		const char **symbols = NULL;
+		int symbols_nr = 0;
+
+		if (argc < 3) {
+		}
+		else if (!strcmp(argv[2], "-date")) {
+			if (argc < 4)
+				goto usage;
+
+			date = argv[3];
+
+			if (argc > 4) {
+				symbols = &argv[4];
+				symbols_nr = argc - 4;
+			}
+		}
+		else if (argc > 2) {
+			symbols = &argv[2];
+			symbols_nr = argc - 2;
+		}
+
+		stock_check_support(date, symbols, symbols_nr);
+	}
+	else
+		goto usage;
 
 	db_close( );
 

@@ -1,6 +1,8 @@
 #include "stock_price.h"
 
 #include "util.h"
+#include "sqlite_db.h"
+#include "fetch_price.h"
 
 #include <stdio.h>
 #include <errno.h>
@@ -348,11 +350,13 @@ int get_stock_price_from_file(const char *fname, int today_only, struct stock_pr
 		char *token;
 		uint64_t  adj_close;
 
-		token = strtok(buf, ",");
-		if (!token) continue;
-		strlcpy(cur->date, token, sizeof(cur->date));
+		if (!today_only) {
+			token = strtok(buf, ",");
+			if (!token) continue;
+			strlcpy(cur->date, token, sizeof(cur->date));
+		}
 
-		token = strtok(NULL, ",");
+		token = strtok(!today_only ? NULL : buf, ",");
 		if (!token) continue;
 		parse_price(token, &cur->open);
 
@@ -372,15 +376,17 @@ int get_stock_price_from_file(const char *fname, int today_only, struct stock_pr
 		if (!token) continue;
 		cur->volume = atoi(token);
 
-		token = strtok(NULL, ",");
-		if (!token) continue;
-		parse_price(token, &adj_close);
+		if (!today_only) {
+			token = strtok(NULL, ",");
+			if (!token) continue;
+			parse_price(token, &adj_close);
 
-		if (cur->close != adj_close) {
-			cur->open = cur->open * adj_close / cur->close;
-			cur->high = cur->high * adj_close /cur->close;
-			cur->low = cur->low * adj_close / cur->close;
-			cur->close = adj_close;
+			if (cur->close != adj_close) {
+				cur->open = cur->open * adj_close / cur->close;
+				cur->high = cur->high * adj_close /cur->close;
+				cur->low = cur->low * adj_close / cur->close;
+				cur->close = adj_close;
+			}
 		}
 
 		price->date_cnt += 1;
@@ -388,7 +394,51 @@ int get_stock_price_from_file(const char *fname, int today_only, struct stock_pr
 
 	fclose(fp);
 
-	calculate_stock_price_statistics(price);
+	if (!today_only)
+		calculate_stock_price_statistics(price);
 
 	return 0;
+}
+
+void stock_check_support(const char *date, const char **symbols, int symbols_nr)
+{
+	char _symbols[1024][36];
+	int _symbols_nr = 0;
+	int i;
+
+	if (symbols_nr == 0) { /* get all symbols from db */
+		if (db_get_all_symbols((char **)_symbols, &_symbols_nr) < 0)
+			return;
+
+		symbols = (const char **)_symbols;
+		symbols_nr = _symbols_nr;
+	}
+
+	if (symbols_nr == 0) {
+		anna_info("No symbols to check support\n");
+		return;
+	}
+
+	for (i = 0; i < symbols_nr; i++) {
+		const char *symbol = symbols[i];
+		struct date_price price2check;
+		struct stock_price price_history;
+
+		if (!date) {
+			if (fetch_today_price(symbol, &price2check) < 0) {
+				anna_error("Failed to fetch %s's today price\n", symbol);
+				continue;
+			}
+		}
+		else {
+			if (db_get_symbol_price_by_date(symbol, date, &price2check) < 0) {
+				anna_error("Failed to get %s price by date=%s\n", symbol, date);
+				continue;
+			}
+		}
+
+		if (db_get_symbol_price_history(symbol, date, 0, &price_history) < 0) {
+			continue;
+		}
+	}
 }

@@ -256,6 +256,10 @@ static void add_symbol(const char *symbol)
 		return;
 }
 
+static void update_symbol(const char *symbol)
+{
+}
+
 static int normalize_symbol(char *symbol, const char *orig_symbol, int symbol_sz)
 {
 	int i;
@@ -326,9 +330,21 @@ static int fetch_symbol_price(int fetch_action, const char *orig_symbol)
 		break;
 
 	case FETCH_ACTION_DEL:
+		anna_info("[Deleting symbol %s]\n", symbol);
+
+		db_delete_symbol(symbol);
+
+		anna_info("\n");
+
 		break;
 
 	case FETCH_ACTION_UPDATE:
+		anna_info("[Updating symbol %s]\n", symbol);
+
+		update_symbol(symbol);
+
+		anna_info("\n");
+
 		break;
 	}
 
@@ -349,6 +365,31 @@ int fetch_price(int fetch_action, int symbol_nr, const char **symbols)
 	else {
 		anna_error("invalid parameters: fetch_action=%d, symbol_nr=%d\n", fetch_action, symbol_nr);
 	}
+
+	return 0;
+}
+
+int fetch_today_price(const char *symbol, struct date_price *today_price)
+{
+	char output_fname[128];
+	struct stock_price price;
+
+	snprintf(output_fname, sizeof(output_fname), "%s_today.price", symbol);
+
+	if (do_fetch_price(output_fname, symbol, 1, 0, 0, 0) < 0)
+		return -1;
+
+	if (get_stock_price_from_file(output_fname, 1, &price) < 0)
+		return -1;
+
+	memcpy(today_price, &price.dateprice[0], sizeof(*today_price));
+
+	time_t now_t = time(NULL);
+	struct tm *now_tm = localtime(&now_t);
+	snprintf(today_price->date, sizeof(today_price->date), "%d-%02d-%02d",
+		1900 + now_tm->tm_year, now_tm->tm_mon + 1, now_tm->tm_mday);
+
+	unlink(output_fname);
 
 	return 0;
 }

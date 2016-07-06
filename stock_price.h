@@ -72,4 +72,6 @@ struct stock_price
 
 int get_stock_price_from_file(const char *fname, int today_only, struct stock_price *price);
 
+void stock_check_support(const char *date, const char **symbols, int symbols_nr);
+
 #endif /* __STOCK_PRICE_H__ */
