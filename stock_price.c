@@ -407,42 +407,68 @@ int get_stock_price_from_file(const char *fname, int today_only, struct stock_pr
 	return 0;
 }
 
-static void check_support(struct stock_price *price_history, struct date_price *cur)
+struct stock_support
 {
-	struct date_price *prev;
+	char symbol[64];
+	char date2test[STOCK_DATE_SZ];
+#define STOCK_SUPPORT_MAX_DATES  48
+	char date[STOCK_SUPPORT_MAX_DATES][STOCK_DATE_SZ];
+	uint8_t sr_flag[STOCK_SUPPORT_MAX_DATES];
+	int date_nr;
+};
+
+static int sr_height_margin_datecnt(uint64_t height, uint64_t base, int datecnt)
+{
+	if (datecnt <= 63) { /* 0 ~ 3 month */
+		return (height * 100 / base >= 4) ? 1 : 0;
+	}
+	else if (datecnt <= 126) { /* 3 ~ 6 month */
+		return (height * 100 /base >= 5) ? 1 : 0;
+	}
+	else if (datecnt <= 252) { /* 6 month ~ 1 year */
+		return (height * 100 /base >= 6) ? 1 : 0;
+	}
+	else { /* > 1 year */
+		return (height * 100 / base >= 8) ? 1 : 0;
+	}
+}
+
+static int sr_hit(uint64_t cur_price, uint64_t base_price)
+{
+	uint64_t diff = cur_price > base_price ? cur_price - base_price : base_price - cur_price;
+	return (diff * 1000 / base_price <= 15);
+}
+
+static void date2sspt_copy(const struct date_price *prev, struct stock_support *sspt)
+{
+	strlcpy(sspt->date[sspt->date_nr], prev->date, sizeof(sspt->date[0]));
+	sspt->sr_flag[sspt->date_nr] = prev->sr_flag;
+	sspt->date_nr += 1;
+}
+
+static void check_support(const char *symbol, const struct stock_price *price_history,
+			const struct date_price *cur, struct stock_support *sspt)
+{
+	const struct date_price *prev;
 	int is_falling = 1;
 	uint64_t max_low_diff = 0;
-	//struct date_price date_hit[256];
-	//int hit_nr = 0;
-	int i, j, k;
+	int candle_falling_nr;
+	int i;
 
-	/* find the date right before cur->date */
-	for (i = price_history->date_cnt - 1; i >= 0; i--) {
-		prev = &price_history->dateprice[i];
-		int cmp = strcmp(prev->date, cur->date);
-		if (cmp == 0) {
-			anna_error("prev_date==cur_date=%s\n", prev->date);
-			continue;
-		}
-		else if (cmp > 0)
-			continue;
-		else
-			break;
-	}
-
-	if (i < 0) {
-		anna_error("cur_date=%s is too old\n", cur->date);
+	/* history date must be before cur->date */
+	i = price_history->date_cnt - 1;
+	prev = &price_history->dateprice[i];
+	if (strcmp(prev->date, cur->date) >= 0) {
+		anna_error("prev_date=%s is NOT older than cur_date=%s\n", prev->date, cur->date);
 		return;
 	}
 
-	k = i;
-
-	/* check if cur_price has been fallen for some days */
-	for (j = 0; j < max_sr_candle_nr && i >= 0; i--, j++) {
+	/* check if cur_price has been falling for some days */
+	for (candle_falling_nr = 0; candle_falling_nr < max_sr_candle_nr && i >= 0; i--, candle_falling_nr++) {
 		prev = &price_history->dateprice[i];
 
 		if (prev->low < cur->low) {
-			if (j < min_sr_candle_nr - 1)
+			if (candle_falling_nr < min_sr_candle_nr - 1)
 				is_falling = 0;
 			break;
 		}
@@ -455,29 +481,69 @@ static void check_support(struct stock_price *price_history, struct date_price *
 		return;
 
 	/* now check if cur price is hiting some support/resistance */
-	for (i = k; i >= 0; i--) {
+	for (i = price_history->date_cnt - 1; i >= 0; i--) {
 		prev = &price_history->dateprice[i];
+
 		if (prev->sr_flag == 0)
 			continue;
 
-		if (prev->sr_flag & SR_F_SUPPORT_LOW) {
+		int datecnt = price_history->date_cnt - i;
+		uint64_t prev_2ndhigh = get_2ndhigh(prev);
+		uint64_t prev_2ndlow = get_2ndlow(prev);
+		uint64_t cur_2ndlow = get_2ndlow(cur);
+
+		if ((prev->sr_flag & SR_F_SUPPORT_LOW)
+		    && sr_height_margin_datecnt(prev->height_low_spt, prev_2ndlow, datecnt))
+		{
+			if (sr_hit(cur->low, prev->low) || sr_hit(cur_2ndlow, prev->low)) {
+				date2sspt_copy(prev, sspt);
+				continue;
+			}
 		}
 
-		if (prev->sr_flag & SR_F_SUPPORT_2ndLOW) {
+		if ((prev->sr_flag & SR_F_SUPPORT_2ndLOW)
+		    && sr_height_margin_datecnt(prev->height_2ndlow_spt, prev_2ndlow, datecnt))
+		{
+			if (sr_hit(cur->low, prev_2ndlow) || sr_hit(cur_2ndlow, prev_2ndlow)) {
+				date2sspt_copy(prev, sspt);
+				continue;
+			}
 		}
 
-		if (prev->sr_flag & SR_F_RESIST_HIGH) {
+		if ((prev->sr_flag & SR_F_RESIST_HIGH)
+		    && sr_height_margin_datecnt(prev->height_high_rst, prev_2ndhigh, datecnt))
+		{
+			if (sr_hit(cur->low, prev->high) || sr_hit(cur_2ndlow, prev->high)) {
+				date2sspt_copy(prev, sspt);
+				continue;
+			}
 		}
 
-		if (prev->sr_flag & SR_F_RESIST_2ndHIGH) {
+		if ((prev->sr_flag & SR_F_RESIST_2ndHIGH)
+		    && sr_height_margin_datecnt(prev->height_2ndhigh_rst, prev_2ndhigh, datecnt))
+		{
+			if (sr_hit(cur->low, prev_2ndhigh) || sr_hit(cur_2ndlow, prev_2ndhigh)) {
+				date2sspt_copy(prev, sspt);
+				continue;
+			}
 		}
 	}
+}
+
+static int sspt_cmp(const void *v1, const void *v2)
+{
+	const struct stock_support *s1 = v1;
+	const struct stock_support *s2 = v2;
+
+	return (s1->date_nr > s2->date_nr ? -1 : 1);
 }
 
 void stock_check_support(const char *date, const char **symbols, int symbols_nr)
 {
 	char *_symbols[1024];
 	int _symbols_nr = 0;
+	struct stock_support *sspt;
+	int sspt_nr = 0;
 	int i;
 
 	if (symbols_nr == 0) { /* get all symbols from db */
@@ -490,6 +556,12 @@ void stock_check_support(const char *date, const char **symbols, int symbols_nr)
 
 	if (symbols_nr == 0) {
 		anna_info("No symbols to check support\n");
+		return;
+	}
+
+	sspt = calloc(symbols_nr, sizeof(*sspt));
+	if (!sspt) {
+		anna_error("calloc(%d of stock_support) failed\n", symbols_nr);
 		return;
 	}
 
@@ -515,8 +587,34 @@ void stock_check_support(const char *date, const char **symbols, int symbols_nr)
 			continue;
 		}
 
-		check_support(&price_history, &cur_price);
+		check_support(symbol, &price_history, &cur_price, &sspt[sspt_nr]);
+
+		if (sspt[sspt_nr].date_nr) {
+			strlcpy(sspt[sspt_nr].symbol, symbol, sizeof(sspt[sspt_nr].symbol));
+			strlcpy(sspt[sspt_nr].date2test, cur_price.date, sizeof(sspt[sspt_nr].date2test));
+			sspt_nr += 1;
+		}
 	}
+
+	if (sspt_nr == 0)
+		anna_info("No symbol hits support\n");
+	else {
+		qsort(sspt, sspt_nr, sizeof(*sspt), sspt_cmp);
+
+		for (i = 0; i < sspt_nr; i++) {
+			int j;
+
+			anna_info("\n%s: date=%s is supported by %d dates:", sspt[i].symbol, sspt[i].date2test, sspt->date_nr);
+
+			for (j = 0; j < sspt->date_nr; j++) {
+				anna_debug(" %s(%c)", sspt->date[j], is_support(sspt->sr_flag[j]) ? 's' : is_resist(sspt->sr_flag[j]) ? 'r' : '?');
+			}
+
+			anna_info("\n");
+		}
+	}
+
+	free(sspt);
 
 	for (i = 0; i < _symbols_nr; i++) {
 		if (_symbols[i])

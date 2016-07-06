@@ -335,18 +335,20 @@ static int get_price_history(void *cb, int column_nr, char **column_text, char *
 {
 	struct stock_price *prices = cb;
 	struct date_price *cur = &prices->dateprice[prices->date_cnt];
+	int idx = 0;
 
-	strlcpy(cur->date, column_text[0], sizeof(cur->date));
-	cur->open = atoi(column_text[1]);
-	cur->high = atoi(column_text[2]);
-	cur->low = atoi(column_text[3]);
-	cur->close = atoi(column_text[4]);
-	cur->volume = atoi(column_text[5]);
-	cur->sr_flag = atoi(column_text[6]);
-	cur->height_low_spt = atoi(column_text[7]);
-	cur->height_2ndlow_spt = atoi(column_text[8]);
-	cur->height_high_rst = atoi(column_text[9]);
-	cur->height_2ndhigh_rst = atoi(column_text[10]);
+	strlcpy(cur->date, column_text[idx++], sizeof(cur->date));
+	cur->open = atoi(column_text[idx++]);
+	cur->high = atoi(column_text[idx++]);
+	cur->low = atoi(column_text[idx++]);
+	cur->close = atoi(column_text[idx++]);
+	cur->volume = atoi(column_text[idx++]);
+	cur->candle_color = atoi(column_text[idx++]);
+	cur->sr_flag = atoi(column_text[idx++]);
+	cur->height_low_spt = atoi(column_text[idx++]);
+	cur->height_2ndlow_spt = atoi(column_text[idx++]);
+	cur->height_high_rst = atoi(column_text[idx++]);
+	cur->height_2ndhigh_rst = atoi(column_text[idx++]);
 
 	prices->date_cnt += 1;
 
@@ -356,7 +358,7 @@ static int get_price_history(void *cb, int column_nr, char **column_text, char *
 int db_get_symbol_price_history(const char *symbol, const char *date, int date_include, struct stock_price *price_history)
 {
 	char stmt_str[1024];
-	const char *columns = "date, open, high, low, close, volume, sr_flag, height_low_spt, height_2ndlow_spt, height_high_rst, height_2ndhigh_rst";
+	const char *columns = "date, open, high, low, close, volume, candle_color, sr_flag, height_low_spt, height_2ndlow_spt, height_high_rst, height_2ndhigh_rst";
 	int sqlite_rt;
 
 	if (date)

@@ -10,6 +10,14 @@
 		fflush(stdout); \
 	} while (0)
 
+#define anna_debug(fmt, args...) \
+	do { \
+		if (1) { \
+			fprintf(stdout, fmt, ##args); \
+			fflush(stdout); \
+		} \
+	} while (0)
+
 void strlcpy(char *dest, const char *src, int dest_sz);
 
 #endif /* __UTIL_H__ */
