@@ -607,7 +607,7 @@ void stock_check_support(const char *date, const char **symbols, int symbols_nr)
 			anna_info("\n%s: date=%s is supported by %d dates:", sspt[i].symbol, sspt[i].date2test, sspt->date_nr);
 
 			for (j = 0; j < sspt->date_nr; j++) {
-				anna_debug(" %s(%c)", sspt->date[j], is_support(sspt->sr_flag[j]) ? 's' : is_resist(sspt->sr_flag[j]) ? 'r' : '?');
+				anna_info(" %s(%c)", sspt->date[j], is_support(sspt->sr_flag[j]) ? 's' : is_resist(sspt->sr_flag[j]) ? 'r' : '?');
 			}
 
 			anna_info("\n");
