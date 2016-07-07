@@ -540,7 +540,7 @@ static int sspt_cmp(const void *v1, const void *v2)
 
 void stock_check_support(const char *date, const char **symbols, int symbols_nr)
 {
-	char *_symbols[1024];
+	char *_symbols[1024] = { };
 	int _symbols_nr = 0;
 	struct stock_support *sspt;
 	int sspt_nr = 0;

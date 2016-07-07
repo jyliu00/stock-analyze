@@ -145,7 +145,7 @@ static int insert_symbol_info_into_db(const char *symbol, const char *info_fname
 	strlcpy(country, p + 1, sizeof(country));
 	*e = saved_char;
 
-	if (db_insert_stock_info(symbol, name, exchange, sector, industry, country) < 0)
+	if (db_insert_symbol_info(symbol, name, exchange, sector, industry, country) < 0)
 		return -1;
 
 	rt = 0;
@@ -234,7 +234,7 @@ static int fetch_symbol_price_since_date(const char *symbol, int year, int month
 
 	t1 = time(NULL);
 
-	int rt = db_insert_stock_price(symbol, &price);
+	int rt = db_insert_symbol_price(symbol, &price, 0);
 
 	t2 = time(NULL);
 
@@ -243,21 +243,97 @@ static int fetch_symbol_price_since_date(const char *symbol, int year, int month
 	return rt;
 }
 
+static int stock_history_max_years(void)
+{
+	return 2;
+}
+
 static void add_symbol(const char *symbol)
 {
 	if (fetch_symbol_info(symbol) < 0)
 		return;
 
-	/* get last 3 year's price */
+	/* get last 2 year's price */
 	time_t now_t = time(NULL);
 	struct tm *now_tm = localtime(&now_t);
+	int year = 1900 + now_tm->tm_year - stock_history_max_years();
 
-	if (fetch_symbol_price_since_date(symbol, 1900 + now_tm->tm_year - 3, now_tm->tm_mon, now_tm->tm_mday) < 0)
+	if (fetch_symbol_price_since_date(symbol, year, now_tm->tm_mon, now_tm->tm_mday) < 0)
 		return;
+}
+
+static int get_date(char *date, int *year, int *month, int *mday)
+{
+	char *token;
+
+	token = strtok(date, "-");
+	if (!token) return -1;
+	*year = atoi(token);
+
+	token = strtok(NULL, "-");
+	if (!token) return -1;
+	*month = atoi(token);
+
+	token = strtok(NULL, "-");
+	if (!token) return -1;
+	*mday = atoi(token);
+
+	return 0;
 }
 
 static void update_symbol(const char *symbol)
 {
+	struct stock_price price_history = { };
+	struct date_price *latest;
+	int year, month, mday;
+	char output_fname[128];
+	struct stock_price update_price = { };
+	int i;
+
+	if (!db_symbol_exist(symbol)) {
+		add_symbol(symbol);
+		return;
+	}
+
+	if (db_get_symbol_price_history(symbol, NULL, 0, &price_history) < 0) {
+		anna_error("db_get_symbol_price_history(%s) failed\n", symbol);
+		return;
+	}
+
+	if (price_history.date_cnt == 0) {
+		anna_error("%s's price history is empty\n", symbol);
+		return;
+	}
+
+	latest = &price_history.dateprice[price_history.date_cnt - 1];
+
+	if (get_date(latest->date, &year, &month, &mday) < 0) {
+		anna_error("%s get_date(%s) failed\n", symbol, latest->date);
+		return;
+	}
+
+	snprintf(output_fname, sizeof(output_fname), "%s.update_price", symbol);
+
+	if (do_fetch_price(output_fname, symbol, 0, year, month - 1, mday) < 0)
+		goto finish;
+
+	if (get_stock_price_from_file(output_fname, 0, &update_price) < 0)
+		goto finish;
+
+	if (update_price.date_cnt < 2)
+		goto finish;
+
+	/* insert new prices starting at entry [1] */
+	if (db_insert_symbol_price(symbol, &update_price, 1))
+		goto finish;
+
+	for (i = 0; i < update_price.date_cnt - 1; i++)
+		db_delete_symbol_price_by_date(symbol, price_history.dateprice[i].date);
+
+	/* TODO: calculate support/resist */
+
+finish:
+	unlink(output_fname);
 }
 
 static int normalize_symbol(char *symbol, const char *orig_symbol, int symbol_sz)
@@ -361,6 +437,19 @@ int fetch_price(int fetch_action, int symbol_nr, const char **symbols)
 		}
 	}
 	else if (fetch_action == FETCH_ACTION_UPDATE) {
+		char *symbols[1024] = { };
+		int symbols_nr = 0;
+
+		if (db_get_all_symbols(symbols, &symbols_nr) < 0)
+			return -1;
+
+		for (i = 0; i < symbols_nr; i++)
+			update_symbol(symbols[i]);
+
+		for (i = 0; i < symbols_nr; i++) {
+			if (symbols[i])
+				free(symbols[i]);
+		}
 	}
 	else {
 		anna_error("invalid parameters: fetch_action=%d, symbol_nr=%d\n", fetch_action, symbol_nr);

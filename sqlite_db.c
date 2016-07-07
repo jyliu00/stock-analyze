@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define TABLE_STOCK_INFO "stock_info"
+#define TABLE_SYMBOL_INFO "symbol_info"
 
 #define sqlite_error(sqlite_rt, fmt, args...) \
 	fprintf(stderr, "[%s:%s:%d] sqlite_rt=%d(%s), " fmt, __FILE__, __FUNCTION__, __LINE__, sqlite_rt, sqlite3_errstr(sqlite_rt), ##args)
@@ -157,7 +157,7 @@ static int __init_db( )
 {
 	char column_def[1024];
 
-	if (table_exist(TABLE_STOCK_INFO) > 0)
+	if (table_exist(TABLE_SYMBOL_INFO) > 0)
 		return 0;
 
 	snprintf(column_def, sizeof(column_def),
@@ -169,7 +169,7 @@ static int __init_db( )
 		 ", country CHAR(32)"
 		);
 
-	if (create_table(TABLE_STOCK_INFO, column_def) < 0)
+	if (create_table(TABLE_SYMBOL_INFO, column_def) < 0)
 		return -1;
 
 	return 0;
@@ -223,20 +223,20 @@ int db_symbol_exist(const char *symbol)
 
 	snprintf(where_str, sizeof(where_str), "symbol='%s'", symbol);
 
-	return check_exist(TABLE_STOCK_INFO, where_str);
+	return check_exist(TABLE_SYMBOL_INFO, where_str);
 }
 
-int db_insert_stock_info(const char *symbol, const char *name, const char *exchange,
+int db_insert_symbol_info(const char *symbol, const char *name, const char *exchange,
 			const char *sector, const char *industry, const char *country)
 {
 	char values_str[1024];
 
 	snprintf(values_str, sizeof(values_str), "'%s', '%s', '%s', '%s', '%s', '%s'", symbol, name, exchange, sector, industry, country);
 
-	return insert_into_table(TABLE_STOCK_INFO, NULL, values_str);
+	return insert_into_table(TABLE_SYMBOL_INFO, NULL, values_str);
 }
 
-int db_insert_stock_price(const char *symbol, const struct stock_price *price)
+int db_insert_symbol_price(const char *symbol, const struct stock_price *price, int start_idx)
 {
 	char values_str[1024];
 	int i;
@@ -246,7 +246,7 @@ int db_insert_stock_price(const char *symbol, const struct stock_price *price)
 			return -1;
 	}
 
-	for (i = 0; i < price->date_cnt; i++) {
+	for (i = start_idx; i < price->date_cnt; i++) {
 		const struct date_price *p = &price->dateprice[i];
 
 		/* date, open, high, low, close, volume,
@@ -286,7 +286,7 @@ int db_delete_symbol(const char *symbol)
 
 	snprintf(where_cond, sizeof(where_cond), "symbol='%s'", symbol);
 
-	if (delete_from_table(TABLE_STOCK_INFO, where_cond) < 0)
+	if (delete_from_table(TABLE_SYMBOL_INFO, where_cond) < 0)
 		return -1;
 
 	if (drop_table(symbol) < 0)
@@ -323,7 +323,7 @@ int db_get_all_symbols(char **symbols, int *symbols_nr)
 	symbol_arr.symbols_nr = symbols_nr;
 	symbol_arr.symbols = symbols;
 
-	snprintf(stmt_str, sizeof(stmt_str), "SELECT symbol FROM %s;", TABLE_STOCK_INFO);
+	snprintf(stmt_str, sizeof(stmt_str), "SELECT symbol FROM %s;", TABLE_SYMBOL_INFO);
 
 	sqlite_rt = sqlite3_exec(sqlite_db, stmt_str, get_symbols, &symbol_arr, NULL);
 	check_sqlite_rt(sqlite_rt, "run '%s' failed\n", stmt_str);
@@ -397,6 +397,19 @@ int db_get_symbol_price_by_date(const char *symbol, const char *date, struct dat
 	snprintf(stmt_str, sizeof(stmt_str), "SELECT %s FROM %s WHERE date='%s';", columns, symbol, date);
 
 	sqlite_rt = sqlite3_exec(sqlite_db, stmt_str, get_date_price, price, NULL);
+	check_sqlite_rt(sqlite_rt, "run '%s' failed\n", stmt_str);
+
+	return 0;
+}
+
+int db_delete_symbol_price_by_date(const char *symbol, const char *date)
+{
+	char stmt_str[1024];
+	int sqlite_rt;
+
+	snprintf(stmt_str, sizeof(stmt_str), "DELETE FROM %s WHERE date='%s';", symbol, date);
+
+	sqlite_rt = sqlite3_exec(sqlite_db, stmt_str, NULL, NULL, NULL);
 	check_sqlite_rt(sqlite_rt, "run '%s' failed\n", stmt_str);
 
 	return 0;
