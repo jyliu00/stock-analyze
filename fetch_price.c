@@ -225,7 +225,7 @@ static int fetch_symbol_price_since_date(const char *symbol, int year, int month
 	if (do_fetch_price(output_fname, symbol, today_only, year, month, mday) < 0)
 		return -1;
 
-	if (get_stock_price_from_file(output_fname, today_only, &price) < 0)
+	if (stock_price_get_from_file(output_fname, today_only, &price) < 0)
 		return -1;
 
 	unlink(output_fname);
@@ -234,7 +234,7 @@ static int fetch_symbol_price_since_date(const char *symbol, int year, int month
 
 	t1 = time(NULL);
 
-	int rt = db_insert_symbol_price(symbol, &price, 0);
+	int rt = db_insert_symbol_price(symbol, &price);
 
 	t2 = time(NULL);
 
@@ -305,7 +305,7 @@ static void update_symbol(const char *symbol)
 		return;
 	}
 
-	latest = &price_history.dateprice[price_history.date_cnt - 1];
+	latest = &price_history.dateprice[0];
 
 	if (get_date(latest->date, &year, &month, &mday) < 0) {
 		anna_error("%s get_date(%s) failed\n", symbol, latest->date);
@@ -317,20 +317,22 @@ static void update_symbol(const char *symbol)
 	if (do_fetch_price(output_fname, symbol, 0, year, month - 1, mday) < 0)
 		goto finish;
 
-	if (get_stock_price_from_file(output_fname, 0, &update_price) < 0)
+	if (stock_price_get_from_file(output_fname, 0, &update_price) < 0)
 		goto finish;
 
 	if (update_price.date_cnt < 2)
 		goto finish;
 
-	/* insert new prices starting at entry [1] */
-	if (db_insert_symbol_price(symbol, &update_price, 1))
+	/* don't insert the last date which is already in db */
+	update_price.date_cnt -= 1;
+	if (db_insert_symbol_price(symbol, &update_price))
 		goto finish;
 
-	for (i = 0; i < update_price.date_cnt - 1; i++)
-		db_delete_symbol_price_by_date(symbol, price_history.dateprice[i].date);
+	for (i = 0; i < update_price.date_cnt; i++)
+		db_delete_symbol_price_by_date(symbol, price_history.dateprice[price_history.date_cnt - i - 1].date);
 
-	/* TODO: calculate support/resist */
+	/* update price with new data */
+	stock_price_update(symbol);
 
 finish:
 	unlink(output_fname);
@@ -468,7 +470,7 @@ int fetch_today_price(const char *symbol, struct date_price *today_price)
 	if (do_fetch_price(output_fname, symbol, 1, 0, 0, 0) < 0)
 		return -1;
 
-	if (get_stock_price_from_file(output_fname, 1, &price) < 0)
+	if (stock_price_get_from_file(output_fname, 1, &price) < 0)
 		return -1;
 
 	memcpy(today_price, &price.dateprice[0], sizeof(*today_price));

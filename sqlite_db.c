@@ -236,7 +236,7 @@ int db_insert_symbol_info(const char *symbol, const char *name, const char *exch
 	return insert_into_table(TABLE_SYMBOL_INFO, NULL, values_str);
 }
 
-int db_insert_symbol_price(const char *symbol, const struct stock_price *price, int start_idx)
+int db_insert_symbol_price(const char *symbol, const struct stock_price *price)
 {
 	char values_str[1024];
 	int i;
@@ -246,7 +246,7 @@ int db_insert_symbol_price(const char *symbol, const struct stock_price *price, 
 			return -1;
 	}
 
-	for (i = start_idx; i < price->date_cnt; i++) {
+	for (i = 0; i < price->date_cnt; i++) {
 		const struct date_price *p = &price->dateprice[i];
 
 		/* date, open, high, low, close, volume,
@@ -336,6 +336,7 @@ static int get_price_history(void *cb, int column_nr, char **column_text, char *
 	struct stock_price *prices = cb;
 	struct date_price *cur = &prices->dateprice[prices->date_cnt];
 	int idx = 0;
+	int i;
 
 	strlcpy(cur->date, column_text[idx++], sizeof(cur->date));
 	cur->open = atoi(column_text[idx++]);
@@ -343,7 +344,12 @@ static int get_price_history(void *cb, int column_nr, char **column_text, char *
 	cur->low = atoi(column_text[idx++]);
 	cur->close = atoi(column_text[idx++]);
 	cur->volume = atoi(column_text[idx++]);
+	for (i = 0; i < SMA_NR; i++)
+		cur->sma[i] = atoi(column_text[idx++]);
+	for (i = 0; i < VMA_NR; i++)
+		cur->vma[i] = atoi(column_text[idx++]);
 	cur->candle_color = atoi(column_text[idx++]);
+	cur->candle_trend = atoi(column_text[idx++]);
 	cur->sr_flag = atoi(column_text[idx++]);
 	cur->height_low_spt = atoi(column_text[idx++]);
 	cur->height_2ndlow_spt = atoi(column_text[idx++]);
@@ -358,13 +364,12 @@ static int get_price_history(void *cb, int column_nr, char **column_text, char *
 int db_get_symbol_price_history(const char *symbol, const char *date, int date_include, struct stock_price *price_history)
 {
 	char stmt_str[1024];
-	const char *columns = "date, open, high, low, close, volume, candle_color, sr_flag, height_low_spt, height_2ndlow_spt, height_high_rst, height_2ndhigh_rst";
 	int sqlite_rt;
 
 	if (date)
-		snprintf(stmt_str, sizeof(stmt_str), "SELECT %s FROM %s WHERE date %s '%s';", columns, symbol, date_include ? "<=" : "<", date);
+		snprintf(stmt_str, sizeof(stmt_str), "SELECT * FROM %s WHERE date %s '%s' ORDER BY date DESC;", symbol, date_include ? "<=" : "<", date);
 	else
-		snprintf(stmt_str, sizeof(stmt_str), "SELECT %s FROM %s;", columns, symbol);
+		snprintf(stmt_str, sizeof(stmt_str), "SELECT * FROM %s ORDER BY date DESC;", symbol);
 
 	price_history->date_cnt = 0;
 
@@ -411,6 +416,44 @@ int db_delete_symbol_price_by_date(const char *symbol, const char *date)
 
 	sqlite_rt = sqlite3_exec(sqlite_db, stmt_str, NULL, NULL, NULL);
 	check_sqlite_rt(sqlite_rt, "run '%s' failed\n", stmt_str);
+
+	return 0;
+}
+
+int db_update_symbol_price(const char *symbol, const struct stock_price *price)
+{
+	int i;
+
+	for (i = 0; i < price->date_cnt; i++) {
+		const struct date_price *cur = &price->dateprice[i];
+		char stmt_str[1024];
+		int sqlite_rt;
+
+		if (!cur->updated)
+			continue;
+
+		snprintf(stmt_str, sizeof(stmt_str),
+			 "UPDATE %s SET open=%zu, high=%zu, low=%zu, close=%zu, volume=%zu, "
+			 "sma_10d=%zu, sma_20d=%zu, sma_30d=%zu, sma_50d=%zu, "
+			 "sma_60d=%zu, sma_100d=%zu, sma_120d=%zu, sma_200d=%zu, "
+			 "vma_10d=%zu, vma_20d=%zu, vma_60d=%zu, "
+			 "candle_color=%d, candle_trend=%d, sr_flag=%d, "
+			 "height_low_spt=%zu, height_2ndlow_spt=%zu, height_high_rst=%zu, height_2ndhigh_rst=%zu "
+			 "WHERE date='%s';",
+			 symbol, cur->open, cur->high, cur->low, cur->close, cur->volume,
+			 cur->sma[SMA_10d], cur->sma[SMA_20d], cur->sma[SMA_30d], cur->sma[SMA_50d],
+			 cur->sma[SMA_60d], cur->sma[SMA_100d], cur->sma[SMA_120d], cur->sma[SMA_200d],
+			 cur->vma[VMA_10d], cur->vma[VMA_20d], cur->vma[VMA_60d],
+			 cur->candle_color, cur->candle_trend, cur->sr_flag,
+			 cur->height_low_spt, cur->height_2ndlow_spt, cur->height_high_rst, cur->height_2ndhigh_rst,
+			 cur->date);
+
+		sqlite_rt = sqlite3_exec(sqlite_db, stmt_str, NULL, NULL, NULL);
+		if (sqlite_rt != SQLITE_OK) {
+			sqlite_error(sqlite_rt, "run '%s' failed\n", stmt_str);
+			continue;
+		}
+	}
 
 	return 0;
 }

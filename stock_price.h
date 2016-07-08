@@ -63,6 +63,9 @@ struct date_price
 	uint8_t   candle_trend;
 	uint16_t  sr_flag; /* support/resist flag: SR_F_xxx */
 	uint64_t  height_low_spt, height_2ndlow_spt, height_high_rst, height_2ndhigh_rst;
+
+	/* the following fields are NOT stored in db */
+	int8_t    updated;
 };
 
 struct stock_price
@@ -73,8 +76,8 @@ struct stock_price
 	struct date_price dateprice[DATE_PRICE_SZ_MAX];
 };
 
-int get_stock_price_from_file(const char *fname, int today_only, struct stock_price *price);
-
-void stock_check_support(const char *date, const char **symbols, int symbols_nr);
+int stock_price_get_from_file(const char *fname, int today_only, struct stock_price *price);
+void stock_price_check_support(const char *date, const char **symbols, int symbols_nr);
+void stock_price_update(const char *symbol);
 
 #endif /* __STOCK_PRICE_H__ */

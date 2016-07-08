@@ -326,7 +326,142 @@ static void calculate_stock_price_statistics(struct stock_price *price)
 	}
 }
 
-int get_stock_price_from_file(const char *fname, int today_only, struct stock_price *price)
+static void update_moving_average(struct stock_price *price_history)
+{
+	int i, j;
+
+	for (i = 0; i < price_history->date_cnt; i++) {
+		struct date_price *cur = &price_history->dateprice[i];
+		uint64_t sma[SMA_NR] = { 0 }, vma[SMA_NR] = { 0 };
+		int cnt;
+
+		if (cur->sma[SMA_30d]) /* already updated */
+			break;
+
+		for (j = i, cnt = j - i; cnt < 200 && j < price_history->date_cnt; j++, cnt = j - i) {
+			struct date_price *dp = &price_history->dateprice[j];
+
+			if (cnt < 10) {
+				sma[SMA_10d] += dp->close;
+				vma[VMA_10d] += dp->volume;
+			}
+
+			if (cnt < 20) {
+				sma[SMA_20d] += dp->close;
+				vma[VMA_20d] += dp->volume;
+			}
+
+			if (cnt < 30)
+				sma[SMA_30d] += dp->close;
+
+			if (cnt < 50)
+				sma[SMA_50d] += dp->close;
+
+			if (cnt < 60) {
+				sma[SMA_60d] += dp->close;
+				vma[VMA_60d] += dp->volume;
+			}
+
+			if (cnt < 100)
+				sma[SMA_100d] += dp->close;
+
+			if (cnt < 120)
+				sma[SMA_120d] += dp->close;
+
+			if (cnt < 200)
+				sma[SMA_200d] += dp->close;
+		}
+
+		if (cnt >= 9) {
+			cur->sma[SMA_10d] = sma[SMA_10d] / sma_days[SMA_10d];
+			cur->vma[VMA_10d] = vma[VMA_10d] / vma_days[VMA_10d];
+		}
+
+		if (cnt >= 19) {
+			cur->sma[SMA_20d] = sma[SMA_20d] / sma_days[SMA_20d];
+			cur->vma[VMA_20d] = vma[VMA_20d] / vma_days[VMA_20d];
+		}
+
+		if (cnt >= 29)
+			cur->sma[SMA_30d] = sma[SMA_30d] / sma_days[SMA_30d];
+
+		if (cnt >= 49)
+			cur->sma[SMA_50d] = sma[SMA_50d] / sma_days[SMA_50d];
+
+		if (cnt >= 59) {
+			cur->sma[SMA_60d] = sma[SMA_60d] / sma_days[SMA_60d];
+			cur->vma[VMA_60d] = vma[VMA_60d] / vma_days[VMA_60d];
+		}
+
+		if (cnt >= 99)
+			cur->sma[SMA_100d] = sma[SMA_100d] / sma_days[SMA_100d];
+
+		if (cnt >= 119)
+			cur->sma[SMA_120d] = sma[SMA_120d] / sma_days[SMA_120d];
+
+		if (cnt >= 199)
+			cur->sma[SMA_200d] = sma[SMA_200d] / sma_days[SMA_200d];
+
+		calculate_candle_stats(cur);
+
+		cur->updated = 1;
+	}
+}
+
+static void update_support_resistance(const char *symbol, struct stock_price *price_history)
+{
+	int new_date_cnt = 0;
+	int i;
+
+	/* update support/resistance */
+	for (i = 0; i < price_history->date_cnt; i++) {
+		struct date_price *cur = &price_history->dateprice[i];
+
+		if (cur->updated)
+			new_date_cnt += 1;
+		else
+			break;
+	}
+
+	if (new_date_cnt == 0)
+		return;
+
+	for (i = max_sr_candle_nr - 2 + new_date_cnt; i >= 0; i--) {
+		struct date_price *cur = &price_history->dateprice[i];
+		uint16_t  sr_flag = cur->sr_flag;
+		uint64_t  height_low_spt = cur->height_low_spt;
+		uint64_t  height_2ndlow_spt = cur->height_2ndlow_spt;
+		uint64_t  height_high_rst = cur->height_high_rst;
+		uint64_t  height_2ndhigh_rst = cur->height_2ndhigh_rst;
+
+		calculate_support_resistance(price_history, i, cur);
+
+		if (cur->sr_flag != sr_flag
+		    || cur->height_low_spt != height_low_spt
+		    || cur->height_2ndlow_spt != height_2ndlow_spt
+		    || cur->height_high_rst != height_high_rst
+		    || cur->height_2ndhigh_rst != height_2ndhigh_rst)
+			cur->updated = 1;
+	}
+
+	db_update_symbol_price(symbol, price_history);
+}
+
+void stock_price_update(const char *symbol)
+{
+	struct stock_price price_history = { };
+
+	if (db_get_symbol_price_history(symbol, NULL, 0, &price_history) < 0)
+		return;
+
+	/* update sma/vma */
+	update_moving_average(&price_history);
+
+	/* update support/resistance */
+	update_support_resistance(symbol, &price_history);
+}
+
+int stock_price_get_from_file(const char *fname, int today_only, struct stock_price *price)
 {
 	FILE *fp;
 	char buf[1024];
@@ -401,7 +536,7 @@ int get_stock_price_from_file(const char *fname, int today_only, struct stock_pr
 
 	fclose(fp);
 
-	if (!today_only)
+	if (!today_only && price->date_cnt > 20)
 		calculate_stock_price_statistics(price);
 
 	return 0;
@@ -538,7 +673,7 @@ static int sspt_cmp(const void *v1, const void *v2)
 	return (s1->date_nr > s2->date_nr ? -1 : 1);
 }
 
-void stock_check_support(const char *date, const char **symbols, int symbols_nr)
+void stock_price_check_support(const char *date, const char **symbols, int symbols_nr)
 {
 	char *_symbols[1024] = { };
 	int _symbols_nr = 0;

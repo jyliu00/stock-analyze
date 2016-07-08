@@ -59,7 +59,7 @@ int main(int argc, const char **argv)
 			symbols_nr = argc - 2;
 		}
 
-		stock_check_support(date, symbols, symbols_nr);
+		stock_price_check_support(date, symbols, symbols_nr);
 	}
 	else
 		goto usage;
