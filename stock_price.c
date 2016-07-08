@@ -408,7 +408,7 @@ static void update_moving_average(struct stock_price *price_history)
 	}
 }
 
-static void update_support_resistance(const char *symbol, struct stock_price *price_history)
+static void update_support_resistance(struct stock_price *price_history)
 {
 	int new_date_cnt = 0;
 	int i;
@@ -443,8 +443,6 @@ static void update_support_resistance(const char *symbol, struct stock_price *pr
 		    || cur->height_2ndhigh_rst != height_2ndhigh_rst)
 			cur->updated = 1;
 	}
-
-	db_update_symbol_price(symbol, price_history);
 }
 
 void stock_price_update(const char *symbol)
@@ -458,7 +456,10 @@ void stock_price_update(const char *symbol)
 	update_moving_average(&price_history);
 
 	/* update support/resistance */
-	update_support_resistance(symbol, &price_history);
+	update_support_resistance(&price_history);
+
+	/* update price in db */
+	db_update_symbol_price(symbol, &price_history);
 }
 
 int stock_price_get_from_file(const char *fname, int today_only, struct stock_price *price)

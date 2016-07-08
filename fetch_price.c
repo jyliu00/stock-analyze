@@ -320,7 +320,7 @@ static void update_symbol(const char *symbol)
 	if (stock_price_get_from_file(output_fname, 0, &update_price) < 0)
 		goto finish;
 
-	if (update_price.date_cnt < 2)
+	if (update_price.date_cnt < 2) /* no new date's price */
 		goto finish;
 
 	/* don't insert the last date which is already in db */
