@@ -7,10 +7,20 @@
 #include <stdlib.h>
 #include <errno.h>
 
+enum
+{
+	ACTION_NONE,
+
+	ACTION_FETCH,
+	ACTION_CHECK_SUPPORT,
+
+	ACTION_NR
+};
+
 static void print_usage(void)
 {
 	printf("Usage: anna -country={usa|china|canada} [-date=yyyy-mm-dd] [-file=filename]\n");
-	printf("               [-fetch | -check-support] [symbol-1 symbol-2 ...]\n");
+	printf("               {-fetch | -check-support} [symbol-1 symbol-2 ...]\n");
 }
 
 int main(int argc, const char **argv)
@@ -58,6 +68,14 @@ int main(int argc, const char **argv)
 	if (filename[0] && access(filename, F_OK) < 0) {
 		anna_error("access(%s) failed: %d(%s)\n", filename, errno, strerror(errno));
 		goto finish;
+	}
+
+	switch (action) {
+	case ACTION_FETCH:
+		break;
+
+	case ACTION_CHECK_SUPPORT:
+		break;
 	}
 
 finish:

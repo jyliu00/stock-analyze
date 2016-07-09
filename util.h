@@ -20,16 +20,6 @@
 
 void strlcpy(char *dest, const char *src, int dest_sz);
 
-enum
-{
-	ACTION_NONE,
-
-	ACTION_FETCH,
-	ACTION_CHECK_SUPPORT,
-
-	ACTION_NR
-};
-
 #define ROOT_DIR "/dev/shm"
 
 #endif /* __UTIL_H__ */
