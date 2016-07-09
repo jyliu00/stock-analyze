@@ -10,6 +10,7 @@ static void print_usage(void)
 	printf("       anna {-add | -delete} {symbol-1 symbol-2 ...}\n");
 	printf("       anna -update [symbol-1 symbol-2 ...]\n");
 	printf("       anna -check-support [-date yyyy-mm-dd] [symbol-1 symbol-2 ...]\n");
+	printf("       anna -add-file filename eft-index-name\n");
 	printf("       anna -help\n");
 }
 
@@ -26,6 +27,12 @@ int main(int argc, const char **argv)
 			goto usage;
 
 		fetch_price(FETCH_ACTION_ADD, argc - 2, &argv[2]);
+	}
+	else if (!strcmp(argv[1], "-add-file")) {
+		if (argc < 4)
+			goto usage;
+
+		fetch_price_by_file(argv[2], argv[3]);
 	}
 	else if (!strcmp(argv[1], "-delete")) {
 		if (argc <= 2)

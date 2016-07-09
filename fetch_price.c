@@ -53,13 +53,11 @@ static int run_wget(char *output_fname, char *url)
 	return 0;
 }
 
-static int insert_symbol_info_into_db(const char *symbol, const char *info_fname)
+static int insert_symbol_info_into_db(const char *symbol, const char *etf_index, const char *info_fname)
 {
 	char buf[1024] = { 0 };
-	char name[64], exchange[16], sector[128], industry[128], country[32];
-	int  ticker_found = 0;
+	char name[64];
 	char *p, *e;
-	char saved_char;
 	int rt = -1;
 
 	FILE *fp = fopen(info_fname, "r");
@@ -68,84 +66,23 @@ static int insert_symbol_info_into_db(const char *symbol, const char *info_fname
 		return -1;
 	}
 
-	while (fgets(buf, sizeof(buf), fp)) {
-		if ((p = strstr(buf, "id=\"ticker\"")) != NULL) {
-			ticker_found = 1;
-			break;
-		}
-	}
-
-	if (!ticker_found) {
-		anna_error("ticker %s is not found in file '%s'\n", symbol, info_fname);
-		goto finish;
-	}
-
-	/* get exchange */
-	if (!(p = strstr(p, ">[")) || !(e = strstr(p, "]<"))) {
-		anna_error("exchange is not found for %s\n", symbol);
-		goto finish;
-	}
-
-	saved_char = *e;
-	*e = 0;
-	strlcpy(exchange, p + 2, sizeof(exchange));
-	*e = saved_char;
-
-	/* get name */
 	if (fgets(buf, sizeof(buf), fp) == NULL) {
-		anna_error("name line is empty for %s\n", symbol);
+		anna_error("empty file '%s'\n", info_fname);
 		goto finish;
 	}
 
-	if (!(p = strstr(buf, "<b>")) || !(e = strstr(p, "</b>"))) {
-		anna_error("name is not found for %s\n", symbol);
+	p = strchr(buf, '"');
+	e = strchr(p + 1, '"');
+	if (!p || !e) {
+		anna_error("file %s: invalid line '%s'\n", info_fname, buf);
 		goto finish;
 	}
 
-	saved_char = *e;
 	*e = 0;
-	strlcpy(name, p + 3, sizeof(name));
-	*e = saved_char;
 
-	/* get sector */
-	if (fgets(buf, sizeof(buf), fp) == NULL) {
-		anna_error("sector line is not empty for %s\n", symbol);
-		goto finish;
-	}
+	strlcpy(name, p + 1, sizeof(name));
 
-	if (!(p = strstr(buf, "f=sec_")) || !(p = strchr(p, '>')) || !(e = strchr(p, '<'))) {
-		anna_error("sector is not found for %s\n", symbol);
-		goto finish;
-	}
-
-	saved_char = *e;
-	*e = 0;
-	strlcpy(sector, p + 1, sizeof(sector));
-	*e = saved_char;
-
-	/* get industry */
-	if (!(p = strstr(p, "f=ind_")) || !(p = strchr(p, '>')) || !(e = strchr(p, '<'))) {
-		anna_error("industry is not found for %s\n", symbol);
-		goto finish;
-	}
-
-	saved_char = *e;
-	*e = 0;
-	strlcpy(industry, p + 1, sizeof(industry));
-	*e = saved_char;
-
-	/* get country */
-	if (!(p = strstr(p, "f=geo_")) || !(p = strchr(p, '>')) || !(e = strchr(p, '<'))) {
-		anna_error("country is not found for %s\n", symbol);
-		goto finish;
-	}
-
-	saved_char = *e;
-	*e = 0;
-	strlcpy(country, p + 1, sizeof(country));
-	*e = saved_char;
-
-	if (db_insert_symbol_info(symbol, name, exchange, sector, industry, country) < 0)
+	if (db_insert_symbol_info(symbol, name, etf_index ? etf_index : "N/A") < 0)
 		return -1;
 
 	rt = 0;
@@ -156,7 +93,7 @@ finish:
 	return rt;
 }
 
-static int fetch_symbol_info(const char *symbol)
+static int fetch_symbol_info(const char *symbol, const char *etf_index)
 {
 	char output_fname[64];
 	char url[256];
@@ -165,12 +102,12 @@ static int fetch_symbol_info(const char *symbol)
 	anna_info("\tFetching %s info ... ", symbol);
 
 	snprintf(output_fname, sizeof(output_fname), "%s.info", symbol);
-	snprintf(url, sizeof(url), "http://finviz.com/quote.ashx?t=%s", symbol);
+	snprintf(url, sizeof(url), "http://finance.yahoo.com/d/quotes.csv?s=%s&f=n", symbol);
 
 	if (run_wget(output_fname, url) < 0)
 		goto finish;
 
-	if (insert_symbol_info_into_db(symbol, output_fname) < 0)
+	if (insert_symbol_info_into_db(symbol, etf_index, output_fname) < 0)
 		goto finish;
 
 	rt = 0;
@@ -248,9 +185,9 @@ static int stock_history_max_years(void)
 	return 2;
 }
 
-static void add_symbol(const char *symbol)
+static void add_symbol(const char *symbol, const char *etf_index)
 {
-	if (fetch_symbol_info(symbol) < 0)
+	if (fetch_symbol_info(symbol, etf_index) < 0)
 		return;
 
 	/* get last 2 year's price */
@@ -291,7 +228,7 @@ static void update_symbol(const char *symbol)
 	int i;
 
 	if (!db_symbol_exist(symbol)) {
-		add_symbol(symbol);
+		anna_error("symbol '%s' doesn't exist in db\n", symbol);
 		return;
 	}
 
@@ -401,7 +338,7 @@ static int fetch_symbol_price(int fetch_action, const char *orig_symbol)
 	case FETCH_ACTION_ADD:
 		anna_info("[Adding symbol %s]\n", symbol);
 
-		add_symbol(symbol);
+		add_symbol(symbol, NULL);
 
 		anna_info("\n");
 
@@ -483,4 +420,32 @@ int fetch_today_price(const char *symbol, struct date_price *today_price)
 	unlink(output_fname);
 
 	return 0;
+}
+
+void fetch_price_by_file(const char *fname, const char *etf_index)
+{
+	FILE *fp;
+	char symbol[64];
+
+	if (!(fp = fopen(fname, "r"))) {
+		anna_error("fopen(%s) failed: %d(%s)\n", fname, errno, strerror(errno));
+		return;
+	}
+
+	while (fgets(symbol, sizeof(symbol), fp)) {
+		int len = strlen(symbol);
+		if (symbol[len - 1] == '\n')
+			symbol[len - 1] = 0;
+
+		if (db_symbol_exist(symbol)) {
+			anna_info("symbol '%s' exists in db, skipped\n", symbol);
+			continue;
+		}
+
+		anna_info("\n[Adding %s ...]\n", symbol);
+
+		add_symbol(symbol, etf_index);
+	}
+
+	fclose(fp);
 }

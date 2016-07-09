@@ -6,8 +6,7 @@
 int db_open(void);
 int db_close(void);
 int db_symbol_exist(const char *symbol);
-int db_insert_symbol_info(const char *symbol, const char *name, const char *exchange,
-			const char *sector, const char *industry, const char *country);
+int db_insert_symbol_info(const char *symbol, const char *name, const char *index);
 int db_insert_symbol_price(const char *symbol, const struct stock_price *price);
 int db_delete_symbol(const char *symbol);
 int db_get_all_symbols(char **symbols, int *symbols_nr);

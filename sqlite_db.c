@@ -161,12 +161,9 @@ static int __init_db( )
 		return 0;
 
 	snprintf(column_def, sizeof(column_def),
-		 "symbol CHAR(10) PRIMARY KEY"
+		 "symbol CHAR(16) PRIMARY KEY"
 		 ", name CHAR(64) NOT NULL"
-		 ", exchange CHAR(8)"
-		 ", sector TEXT"
-		 ", industry TEXT"
-		 ", country CHAR(32)"
+		 ", etf_index CHAR(32)"
 		);
 
 	if (create_table(TABLE_SYMBOL_INFO, column_def) < 0)
@@ -226,12 +223,11 @@ int db_symbol_exist(const char *symbol)
 	return check_exist(TABLE_SYMBOL_INFO, where_str);
 }
 
-int db_insert_symbol_info(const char *symbol, const char *name, const char *exchange,
-			const char *sector, const char *industry, const char *country)
+int db_insert_symbol_info(const char *symbol, const char *name, const char *index)
 {
 	char values_str[1024];
 
-	snprintf(values_str, sizeof(values_str), "'%s', '%s', '%s', '%s', '%s', '%s'", symbol, name, exchange, sector, industry, country);
+	snprintf(values_str, sizeof(values_str), "'%s', '%s', '%s'", symbol, name, index);
 
 	return insert_into_table(TABLE_SYMBOL_INFO, NULL, values_str);
 }
