@@ -1,82 +1,70 @@
-#include "sqlite_db.h"
+#include "util.h"
 #include "fetch_price.h"
 
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <errno.h>
 
 static void print_usage(void)
 {
-	printf("Usage: anna\n");
-	printf("       anna {-add | -delete} {symbol-1 symbol-2 ...}\n");
-	printf("       anna -update [symbol-1 symbol-2 ...]\n");
-	printf("       anna -check-support [-date yyyy-mm-dd] [symbol-1 symbol-2 ...]\n");
-	printf("       anna -add-file filename eft-index-name\n");
-	printf("       anna -help\n");
+	printf("Usage: anna -country={usa|china|canada} [-date=yyyy-mm-dd] [-file=filename]\n");
+	printf("               [-fetch | -check-support] [symbol-1 symbol-2 ...]\n");
 }
 
 int main(int argc, const char **argv)
 {
-	if (db_open( ) < 0)
-		return -1;
+	char country[16] = { 0 };
+	char date[12] = { 0 };
+	char filename[64] = { 0 };
+	int action = ACTION_NONE;
+	char *symbols[256] = { NULL };
+	int symbols_nr = 0;
+	char *p;
+	int i;
 
-	if (argc < 2) {
-		goto usage;
-	}
-	else if (!strcmp(argv[1], "-add")) {
-		if (argc <= 2)
-			goto usage;
-
-		fetch_price(FETCH_ACTION_ADD, argc - 2, &argv[2]);
-	}
-	else if (!strcmp(argv[1], "-add-file")) {
-		if (argc < 4)
-			goto usage;
-
-		fetch_price_by_file(argv[2], argv[3]);
-	}
-	else if (!strcmp(argv[1], "-delete")) {
-		if (argc <= 2)
-			goto usage;
-
-		fetch_price(FETCH_ACTION_DEL, argc - 2, &argv[2]);
-	}
-	else if (!strcmp(argv[1], "-update")) {
-		fetch_price(FETCH_ACTION_UPDATE, argc - 2, &argv[2]);
-	}
-	else if (!strcmp(argv[1], "-check-support")) {
-		const char *date = NULL;
-		const char **symbols = NULL;
-		int symbols_nr = 0;
-
-		if (argc < 3) {
+	for (i = 1; i < argc; i++) {
+		if (strncmp(argv[i], "-country=", strlen("-country=")) == 0) {
+			p = strchr(argv[i], '=');
+			strlcpy(country, p + 1, sizeof(country));
 		}
-		else if (!strcmp(argv[2], "-date")) {
-			if (argc < 4)
-				goto usage;
-
-			date = argv[3];
-
-			if (argc > 4) {
-				symbols = &argv[4];
-				symbols_nr = argc - 4;
-			}
+		else if (strncmp(argv[i], "-date=", strlen("-date=")) == 0) {
+			p = strchr(argv[i], '=');
+			strlcpy(date, p + 1, sizeof(date));
 		}
-		else if (argc > 2) {
-			symbols = &argv[2];
-			symbols_nr = argc - 2;
+		else if (strncmp(argv[i], "-file=", strlen("-file=")) == 0) {
+			p = strchr(argv[i], '=');
+			strlcpy(filename, p + 1, sizeof(filename));
 		}
-
-		stock_price_check_support(date, symbols, symbols_nr);
+		else if (strcmp(argv[i], "-fetch") == 0) {
+			action = ACTION_FETCH;
+		}
+		else if (strcmp(argv[i], "-check-support") == 0) {
+			action = ACTION_CHECK_SUPPORT;
+		}
+		else {
+			symbols[symbols_nr++] = strdup(argv[i]);
+		}
 	}
-	else
-		goto usage;
 
-	db_close( );
+	if (action == ACTION_NONE || country[0] == 0
+	    || (strcmp(country, "usa") && strcmp(country, "china") && strcmp(country, "canada")))
+	{
+		print_usage( );
+		goto finish;
+	}
+
+	if (filename[0] && access(filename, F_OK) < 0) {
+		anna_error("access(%s) failed: %d(%s)\n", filename, errno, strerror(errno));
+		goto finish;
+	}
+
+finish:
+	for (i = 0; i < symbols_nr; i++) {
+		if (symbols[i])
+			free(symbols[i]);
+	}
 
 	return 0;
-
-usage:
-	db_close( );
-	print_usage( );
-	return -1;
 }
