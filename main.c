@@ -1,11 +1,14 @@
 #include "util.h"
 #include "fetch_price.h"
+#include "stock_price.h"
 
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <errno.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 
 enum
 {
@@ -21,6 +24,35 @@ static void print_usage(void)
 {
 	printf("Usage: anna -country={usa|china|canada} [-date=yyyy-mm-dd] [-file=filename]\n");
 	printf("               {-fetch | -check-support} [symbol-1 symbol-2 ...]\n");
+}
+
+static int init_dirs(const char *country)
+{
+	char path[128];
+
+	if (access(ROOT_DIR, F_OK) < 0) {
+		if (mkdir(ROOT_DIR, 0777) < 0) {
+			anna_error("mkdir(%s) failed: %d(%s)\n", ROOT_DIR, errno, strerror(errno));
+			return -1;
+		}
+	}
+
+	if (access(ROOT_DIR_TMP, F_OK) < 0) {
+		if (mkdir(ROOT_DIR_TMP, 0777) < 0) {
+			anna_error("mkdir(%s) failed: %d(%s)\n", ROOT_DIR_TMP, errno, strerror(errno));
+			return -1;
+		}
+	}
+
+	snprintf(path, sizeof(path), ROOT_DIR "/%s", country);
+	if (access(path, F_OK) < 0) {
+		if (mkdir(path, 0777) < 0) {
+			anna_error("mkdir(%s) failed: %d(%s)\n", path, errno, strerror(errno));
+			return -1;
+		}
+	}
+
+	return 0;
 }
 
 int main(int argc, const char **argv)
@@ -70,11 +102,16 @@ int main(int argc, const char **argv)
 		goto finish;
 	}
 
+	if (init_dirs(country) < 0)
+		goto finish;
+
 	switch (action) {
 	case ACTION_FETCH:
+		fetch_symbols_price(country, filename, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_SUPPORT:
+		stock_price_check_support(country, date, symbols_nr, (const char **)symbols);
 		break;
 	}
 

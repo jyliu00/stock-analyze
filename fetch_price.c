@@ -1,7 +1,6 @@
 #include "fetch_price.h"
 #include "stock_price.h"
 
-#include "sqlite_db.h"
 #include "util.h"
 
 #include <stdio.h>
@@ -53,80 +52,13 @@ static int run_wget(char *output_fname, char *url)
 	return 0;
 }
 
-static int insert_symbol_info_into_db(const char *symbol, const char *etf_index, const char *info_fname)
-{
-	char buf[1024] = { 0 };
-	char name[64];
-	char *p, *e;
-	int rt = -1;
-
-	FILE *fp = fopen(info_fname, "r");
-	if (!fp) {
-		anna_error("fopen(%s) failed: %d(%s)\n", info_fname, errno, strerror(errno));
-		return -1;
-	}
-
-	if (fgets(buf, sizeof(buf), fp) == NULL) {
-		anna_error("empty file '%s'\n", info_fname);
-		goto finish;
-	}
-
-	p = strchr(buf, '"');
-	e = strchr(p + 1, '"');
-	if (!p || !e) {
-		anna_error("file %s: invalid line '%s'\n", info_fname, buf);
-		goto finish;
-	}
-
-	*e = 0;
-
-	strlcpy(name, p + 1, sizeof(name));
-
-	if (db_insert_symbol_info(symbol, name, etf_index ? etf_index : "N/A") < 0)
-		return -1;
-
-	rt = 0;
-
-finish:
-	fclose(fp);
-
-	return rt;
-}
-
-static int fetch_symbol_info(const char *symbol, const char *etf_index)
-{
-	char output_fname[64];
-	char url[256];
-	int rt = -1;
-
-	anna_info("\tFetching %s info ... ", symbol);
-
-	snprintf(output_fname, sizeof(output_fname), "%s.info", symbol);
-	snprintf(url, sizeof(url), "http://finance.yahoo.com/d/quotes.csv?s=%s&f=n", symbol);
-
-	if (run_wget(output_fname, url) < 0)
-		goto finish;
-
-	if (insert_symbol_info_into_db(symbol, etf_index, output_fname) < 0)
-		goto finish;
-
-	rt = 0;
-
-finish:
-	anna_info("%s.\n", rt == 0 ? "Done" : "Failed");
-
-	unlink(output_fname);
-
-	return rt;
-}
-
 static int do_fetch_price(char *output_fname, const char *symbol, int today_only,
 			  int year, int month, int mday)
 {
 	char url[256];
 
 	if (today_only)
-		anna_info("\tFetch %s today's price ... ", symbol);
+		anna_info("Fetch %s today's price ... ", symbol);
 	else
 		anna_info("\tFetching %s price since %d-%02d-%02d ... ", symbol, year, month + 1, mday);
 
@@ -150,55 +82,12 @@ static int do_fetch_price(char *output_fname, const char *symbol, int today_only
 	return 0;
 }
 
-static int fetch_symbol_price_since_date(const char *symbol, int year, int month, int mday)
-{
-	char output_fname[128];
-	int today_only = !year;
-	struct stock_price price = { };
-	time_t t1, t2;
-
-	snprintf(output_fname, sizeof(output_fname), "%s.price", symbol);
-
-	if (do_fetch_price(output_fname, symbol, today_only, year, month, mday) < 0)
-		return -1;
-
-	if (stock_price_get_from_file(output_fname, today_only, &price) < 0)
-		return -1;
-
-	unlink(output_fname);
-
-	anna_info("\tInsert %s price into db ... ", symbol);
-
-	t1 = time(NULL);
-
-	int rt = db_insert_symbol_price(symbol, &price);
-
-	t2 = time(NULL);
-
-	anna_info(" %s (%ld seconds).\n", rt < 0 ? "Failed" : "Done", t2 - t1);
-
-	return rt;
-}
-
 static int stock_history_max_years(void)
 {
 	return 2;
 }
 
-static void add_symbol(const char *symbol, const char *etf_index)
-{
-	if (fetch_symbol_info(symbol, etf_index) < 0)
-		return;
-
-	/* get last 2 year's price */
-	time_t now_t = time(NULL);
-	struct tm *now_tm = localtime(&now_t);
-	int year = 1900 + now_tm->tm_year - stock_history_max_years();
-
-	if (fetch_symbol_price_since_date(symbol, year, now_tm->tm_mon, now_tm->tm_mday) < 0)
-		return;
-}
-
+#if 0
 static int get_date(char *date, int *year, int *month, int *mday)
 {
 	char *token;
@@ -274,178 +163,93 @@ static void update_symbol(const char *symbol)
 finish:
 	unlink(output_fname);
 }
+#endif
 
-static int normalize_symbol(char *symbol, const char *orig_symbol, int symbol_sz)
-{
-	int i;
-
-	strlcpy(symbol, orig_symbol, symbol_sz);
-
-	for (i = 0; symbol[i]; i++) {
-		if (symbol[i] >= 'a' && symbol[i] <= 'z') {
-			symbol[i] -= 'a' - 'A';
-		}
-	}
-
-	return 0;
-}
-
-static int validate_fection_action_n_symbol(int fetch_action, const char *symbol)
-{
-	int symbol_exist = db_symbol_exist(symbol);
-
-	switch (fetch_action) {
-	case FETCH_ACTION_ADD:
-		if (symbol_exist) {
-			anna_error("can't add symbol %s, which already exists in db\n", symbol);
-			return -1;
-		}
-		break;
-
-	case FETCH_ACTION_DEL:
-		if (!symbol_exist) {
-			anna_error("can't delete symbol %s, which doesn't exist in db\n", symbol);
-			return -1;
-		}
-		break;
-
-	case FETCH_ACTION_UPDATE:
-		if (!symbol_exist) {
-			anna_error("can't update symbol %s, which doesn't exist in db\n", symbol);
-			return -1;
-		}
-		break;
-
-	default:
-		anna_error("invalid fetch_action=%d\n", fetch_action);
-		return -1;
-	}
-
-	return 0;
-}
-
-static int fetch_symbol_price(int fetch_action, const char *orig_symbol)
-{
-	char symbol[32] = { 0 };
-
-	if (normalize_symbol(symbol, orig_symbol, sizeof(symbol)) < 0)
-		return -1;
-
-	if (validate_fection_action_n_symbol(fetch_action, symbol) < 0)
-		return -1;
-
-	switch (fetch_action) {
-	case FETCH_ACTION_ADD:
-		anna_info("[Adding symbol %s]\n", symbol);
-
-		add_symbol(symbol, NULL);
-
-		anna_info("\n");
-
-		break;
-
-	case FETCH_ACTION_DEL:
-		anna_info("[Deleting symbol %s]\n", symbol);
-
-		db_delete_symbol(symbol);
-
-		anna_info("\n");
-
-		break;
-
-	case FETCH_ACTION_UPDATE:
-		anna_info("[Updating symbol %s]\n", symbol);
-
-		update_symbol(symbol);
-
-		anna_info("\n");
-
-		break;
-	}
-
-	return 0;
-}
-
-int fetch_price(int fetch_action, int symbol_nr, const char **symbols)
-{
-	int i;
-
-	if (symbol_nr) {
-		for (i = 0; i < symbol_nr; i++) {
-			fetch_symbol_price(fetch_action, symbols[i]);
-		}
-	}
-	else if (fetch_action == FETCH_ACTION_UPDATE) {
-		char *symbols[1024] = { };
-		int symbols_nr = 0;
-
-		if (db_get_all_symbols(symbols, &symbols_nr) < 0)
-			return -1;
-
-		for (i = 0; i < symbols_nr; i++)
-			update_symbol(symbols[i]);
-
-		for (i = 0; i < symbols_nr; i++) {
-			if (symbols[i])
-				free(symbols[i]);
-		}
-	}
-	else {
-		anna_error("invalid parameters: fetch_action=%d, symbol_nr=%d\n", fetch_action, symbol_nr);
-	}
-
-	return 0;
-}
-
-int fetch_today_price(const char *symbol, struct date_price *today_price)
+int fetch_realtime_price(const char *symbol, struct date_price *realtime_price)
 {
 	char output_fname[128];
-	struct stock_price price;
+	struct date_price price;
 
-	snprintf(output_fname, sizeof(output_fname), "%s_today.price", symbol);
+	snprintf(output_fname, sizeof(output_fname), ROOT_DIR "/tmp/%s_today.price", symbol);
 
 	if (do_fetch_price(output_fname, symbol, 1, 0, 0, 0) < 0)
 		return -1;
 
-	if (stock_price_get_from_file(output_fname, 1, &price) < 0)
+	if (stock_price_realtime_from_file(output_fname, &price) < 0)
 		return -1;
 
-	memcpy(today_price, &price.dateprice[0], sizeof(*today_price));
+	memcpy(realtime_price, &price, sizeof(*realtime_price));
 
 	time_t now_t = time(NULL);
 	struct tm *now_tm = localtime(&now_t);
-	snprintf(today_price->date, sizeof(today_price->date), "%d-%02d-%02d",
-		1900 + now_tm->tm_year, now_tm->tm_mon + 1, now_tm->tm_mday);
+	int year = 1900 + now_tm->tm_year;
+
+	snprintf(realtime_price->date, sizeof(realtime_price->date), "%d-%02d-%02d", year, now_tm->tm_mon + 1, now_tm->tm_mday);
 
 	unlink(output_fname);
 
 	return 0;
 }
 
-void fetch_price_by_file(const char *fname, const char *etf_index)
+static void fetch_symbol_price_since_date(const char *country, const char *symbol, int year, int month, int mday)
 {
-	FILE *fp;
-	char symbol[64];
+	char output_fname[128];
+	struct stock_price price = { };
 
-	if (!(fp = fopen(fname, "r"))) {
-		anna_error("fopen(%s) failed: %d(%s)\n", fname, errno, strerror(errno));
-		return;
+	snprintf(output_fname, sizeof(output_fname), ROOT_DIR_TMP "/%s.price", symbol);
+
+	if (do_fetch_price(output_fname, symbol, 0, year, month, mday) < 0) {
+		anna_error("do_fetch_price(%s, %d-%02d-%02d) failed\n", symbol, year, month, mday);
+		goto finish;
 	}
 
-	while (fgets(symbol, sizeof(symbol), fp)) {
-		int len = strlen(symbol);
-		if (symbol[len - 1] == '\n')
-			symbol[len - 1] = 0;
+	if (stock_price_from_file(output_fname, &price) < 0) {
+		anna_error("stock_price_from_file(%s) failed\n", output_fname);
+		goto finish;
+	}
 
-		if (db_symbol_exist(symbol)) {
-			anna_info("symbol '%s' exists in db, skipped\n", symbol);
-			continue;
+	if (stock_price_to_file(country, symbol, &price) < 0) {
+		anna_error("stock_price_to_file('%s') failed\n", country);
+		goto finish;
+	}
+
+finish:
+	unlink(output_fname);
+}
+
+void fetch_symbols_price(const char *country, const char *fname, int symbols_nr, const char **symbols)
+{
+	int i;
+
+	/* get last 2 year's price */
+	time_t now_t = time(NULL);
+	struct tm *now_tm = localtime(&now_t);
+	int year = 1900 + now_tm->tm_year - stock_history_max_years();
+
+	if (fname && fname[0]) {
+		char symbol[64];
+		FILE *fp = fopen(fname, "r");
+		if (!fp) {
+			anna_error("fopen(%s) failed: %d(%s)\n", fname, errno, strerror(errno));
+			return;
 		}
 
-		anna_info("\n[Adding %s ...]\n", symbol);
+		time_t start_t = time(NULL);
 
-		add_symbol(symbol, etf_index);
+		while (fgets(symbol, sizeof(symbol), fp)) {
+			if (symbol[0] == '#' || symbol[0] == '\n')
+				continue;
+
+			int len = strlen(symbol);
+			if (symbol[len - 1] == '\n')
+				symbol[len - 1] = 0;
+
+			fetch_symbol_price_since_date(country, symbol, year, now_tm->tm_mon, now_tm->tm_mday);
+		}
+
+		anna_info("%zu seconds used by fetching symbols' price from file %s\n", time(NULL) - start_t, fname);
 	}
 
-	fclose(fp);
+	for (i = 0; i < symbols_nr; i++)
+		fetch_symbol_price_since_date(country, symbols[i], year, now_tm->tm_mon, now_tm->tm_mday);
 }

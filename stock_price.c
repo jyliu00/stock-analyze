@@ -1,7 +1,6 @@
 #include "stock_price.h"
 
 #include "util.h"
-#include "sqlite_db.h"
 #include "fetch_price.h"
 
 #include <stdio.h>
@@ -9,8 +8,10 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <sys/types.h>
+#include <dirent.h>
 
-static void parse_price(char *price_str, uint64_t *price)
+static void parse_price(char *price_str, uint32_t *price)
 {
 	char *dot = strchr(price_str, '.');
 
@@ -37,7 +38,7 @@ static void parse_price(char *price_str, uint64_t *price)
 static int sma_days[SMA_NR] = { 10, 20, 30, 50, 60, 100, 120, 200 };
 static int vma_days[VMA_NR] = { 10, 20, 60 };
 
-static void calculate_moving_avg(int is_price, struct stock_price *price, int cur_idx, int ma_days, uint64_t *sum, uint64_t *ma)
+static void calculate_moving_avg(int is_price, struct stock_price *price, int cur_idx, int ma_days, uint64_t *sum, uint32_t *ma)
 {
 	int cnt = price->date_cnt - cur_idx;
 	struct date_price *cur = &price->dateprice[cur_idx];
@@ -292,13 +293,14 @@ static void calculate_support_resistance(struct stock_price *price, int cur_idx,
 		cur->sr_flag |= SR_F_RESIST_2ndHIGH;
 		cur->height_2ndhigh_rst = left_max_2ndhigh_diff > right_max_2ndhigh_diff ? left_max_2ndhigh_diff : right_max_2ndhigh_diff;
 	}
-
+#if 0
 	if ((cur->sr_flag & (SR_F_SUPPORT_LOW | SR_F_SUPPORT_2ndLOW))
 	    && (cur->sr_flag & (SR_F_RESIST_HIGH | SR_F_RESIST_2ndHIGH)))
 	{
 		anna_error("date=%s is set to both support and resistance, sr_flag=0x%02x\n", cur->date, cur->sr_flag);
 		cur->sr_flag = 0;
 	}
+#endif
 }
 
 static void calculate_stock_price_statistics(struct stock_price *price)
@@ -326,6 +328,7 @@ static void calculate_stock_price_statistics(struct stock_price *price)
 	}
 }
 
+#if 0
 static void update_moving_average(struct stock_price *price_history)
 {
 	int i, j;
@@ -403,8 +406,6 @@ static void update_moving_average(struct stock_price *price_history)
 			cur->sma[SMA_200d] = sma[SMA_200d] / sma_days[SMA_200d];
 
 		calculate_candle_stats(cur);
-
-		cur->updated = 1;
 	}
 }
 
@@ -444,9 +445,11 @@ static void update_support_resistance(struct stock_price *price_history)
 			cur->updated = 1;
 	}
 }
+#endif
 
 void stock_price_update(const char *symbol)
 {
+#if 0
 	struct stock_price price_history = { };
 
 	if (db_get_symbol_price_history(symbol, NULL, 0, &price_history) < 0)
@@ -460,9 +463,152 @@ void stock_price_update(const char *symbol)
 
 	/* update price in db */
 	db_update_symbol_price(symbol, &price_history);
+#endif
 }
 
-int stock_price_get_from_file(const char *fname, int today_only, struct stock_price *price)
+int stock_price_history_from_file(const char *fname, struct stock_price *price)
+{
+	FILE *fp;
+	char buf[1024];
+	int i;
+
+	if (!fname || !fname[0] || !price) {
+		anna_error("invalid input parameters\n");
+		return -1;
+	}
+
+	price->date_cnt = 0;
+
+	fp = fopen(fname, "r");
+	if (!fp) {
+		anna_error("fopen(%s) failed: %d(%s)\n", fname, errno, strerror(errno));
+		return -1;
+	}
+
+	while (fgets(buf, sizeof(buf), fp)) {
+		if (price->date_cnt >= DATE_PRICE_SZ_MAX) {
+			anna_error("fname='%s', date_cnt=%d>%d\n", fname, price->date_cnt, DATE_PRICE_SZ_MAX);
+			return -1;
+		}
+
+		struct date_price *cur = &price->dateprice[price->date_cnt];
+		char *token;
+
+		token = strtok(buf, ",");
+		if (!token) continue;
+		strlcpy(cur->date, token, sizeof(cur->date));
+
+		token = strtok(NULL, ",");
+		if (!token) continue;
+		cur->open = atoi(token);
+
+		token = strtok(NULL, ",");
+		if (!token) continue;
+		cur->high = atoi(token);
+
+		token = strtok(NULL, ",");
+		if (!token) continue;
+		cur->low = atoi(token);
+
+		token = strtok(NULL, ",");
+		if (!token) continue;
+		cur->close = atoi(token);
+
+		token = strtok(NULL, ",");
+		if (!token) continue;
+		cur->volume = atoi(token);
+
+
+		for (i = 0; i < SMA_NR; i++) {
+			token = strtok(NULL, ",");
+			if (!token) continue;
+			cur->sma[i] = atoi(token);
+		}
+
+		for (i = 0; i < VMA_NR; i++) {
+			token = strtok(NULL, ",");
+			if (!token) continue;
+			cur->vma[i] = atoi(token);
+		}
+
+		token = strtok(NULL, ",");
+		if (!token) continue;
+		cur->candle_color = atoi(token);
+
+		token = strtok(NULL, ",");
+		if (!token) continue;
+		cur->candle_trend = atoi(token);
+
+		token = strtok(NULL, ",");
+		if (!token) continue;
+		cur->sr_flag = atoi(token);
+
+		token = strtok(NULL, ",");
+		if (!token) continue;
+		cur->height_low_spt = atoi(token);
+
+		token = strtok(NULL, ",");
+		if (!token) continue;
+		cur->height_2ndlow_spt = atoi(token);
+
+		token = strtok(NULL, ",");
+		if (!token) continue;
+		cur->height_high_rst = atoi(token);
+
+		token = strtok(NULL, ",");
+		if (!token) continue;
+		cur->height_2ndhigh_rst = atoi(token);
+
+		price->date_cnt += 1;
+	}
+
+	fclose(fp);
+
+	return 0;
+}
+
+int stock_price_realtime_from_file(const char *output_fname, struct date_price *price)
+{
+	char buf[1024];
+	char *token;
+
+	FILE *fp = fopen(output_fname, "r");
+	if (!fp) {
+		anna_error("fopen(%s) failed: %d(%s)\n", output_fname, errno, strerror(errno));
+		return -1;
+	}
+
+	if (!fgets(buf, sizeof(buf), fp)) {
+		anna_error("fgets(%s) failed: %d(%s)\n", output_fname, errno, strerror(errno));
+		return -1;
+	}
+
+	token = strtok(buf, ",");
+	if (!token) return -1;
+	parse_price(token, &price->open);
+
+	token = strtok(NULL, ",");
+	if (!token) return -1;
+	parse_price(token, &price->high);
+
+	token = strtok(NULL, ",");
+	if (!token) return -1;
+	parse_price(token, &price->low);
+
+	token = strtok(NULL, ",");
+	if (!token) return -1;
+	parse_price(token, &price->close);
+
+	token = strtok(NULL, ",");
+	if (!token) return -1;
+	price->volume = atoi(token);
+
+	fclose(fp);
+
+	return 0;
+}
+
+int stock_price_from_file(const char *fname, struct stock_price *price)
 {
 	FILE *fp;
 	char buf[1024];
@@ -480,8 +626,8 @@ int stock_price_get_from_file(const char *fname, int today_only, struct stock_pr
 		return -1;
 	}
 
-	if (!today_only) /* skip the 1st line */
-		fgets(buf, sizeof(buf), fp);
+	/* skip the 1st line */
+	fgets(buf, sizeof(buf), fp);
 
 	while (fgets(buf, sizeof(buf), fp)) {
 		if (price->date_cnt >= DATE_PRICE_SZ_MAX) {
@@ -491,15 +637,13 @@ int stock_price_get_from_file(const char *fname, int today_only, struct stock_pr
 
 		struct date_price *cur = &price->dateprice[price->date_cnt];
 		char *token;
-		uint64_t  adj_close;
+		uint32_t  adj_close;
 
-		if (!today_only) {
-			token = strtok(buf, ",");
-			if (!token) continue;
-			strlcpy(cur->date, token, sizeof(cur->date));
-		}
+		token = strtok(buf, ",");
+		if (!token) continue;
+		strlcpy(cur->date, token, sizeof(cur->date));
 
-		token = strtok(!today_only ? NULL : buf, ",");
+		token = strtok(NULL, ",");
 		if (!token) continue;
 		parse_price(token, &cur->open);
 
@@ -519,15 +663,17 @@ int stock_price_get_from_file(const char *fname, int today_only, struct stock_pr
 		if (!token) continue;
 		cur->volume = atoi(token);
 
-		if (!today_only) {
-			token = strtok(NULL, ",");
-			if (!token) continue;
-			parse_price(token, &adj_close);
+		token = strtok(NULL, ",");
+		if (!token) continue;
+		parse_price(token, &adj_close);
 
-			if (cur->close != adj_close) {
-				cur->open = cur->open * adj_close / cur->close;
-				cur->high = cur->high * adj_close /cur->close;
-				cur->low = cur->low * adj_close / cur->close;
+		if (cur->close != adj_close) {
+			uint32_t diff = cur->close > adj_close ? cur->close - adj_close : adj_close - cur->close;
+
+			if (diff * 100 / cur->close > 5) {
+				cur->open = ((uint64_t)cur->open) * adj_close / cur->close;
+				cur->high = ((uint64_t)cur->high) * adj_close /cur->close;
+				cur->low = ((uint64_t)cur->low) * adj_close / cur->close;
 				cur->close = adj_close;
 			}
 		}
@@ -537,16 +683,48 @@ int stock_price_get_from_file(const char *fname, int today_only, struct stock_pr
 
 	fclose(fp);
 
-	if (!today_only && price->date_cnt > 20)
+	if (price->date_cnt > 20)
 		calculate_stock_price_statistics(price);
 
 	return 0;
 }
 
+int stock_price_to_file(const char *country, const char *symbol, const struct stock_price *price)
+{
+	char output_fname[256];
+	FILE *fp;
+	int i;
+
+	snprintf(output_fname, sizeof(output_fname), ROOT_DIR "/%s/%s.price", country, symbol);
+	fp = fopen(output_fname, "w");
+	if (!fp) {
+		anna_error("fopen(%s) failed: %d(%s)\n", output_fname, errno, strerror(errno));
+		return -1;
+	}
+
+	for (i = 0; i < price->date_cnt; i++) {
+		const struct date_price *p = &price->dateprice[i];
+
+		fprintf(fp,
+			"%s,%u,%u,%u,%u,%u," /* date, open, high, low, close, volume */
+			"%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u," /* sma_10/20/30/50/60/100/120/200d, vma_10/20/60d */
+			"%u,%u,%u,%u,%u,%u,%u\n",
+			p->date, p->open, p->high, p->low, p->close, p->volume,
+			p->sma[SMA_10d], p->sma[SMA_20d], p->sma[SMA_30d], p->sma[SMA_50d],
+			p->sma[SMA_60d], p->sma[SMA_100d], p->sma[SMA_120d], p->sma[SMA_200d],
+			p->vma[VMA_10d], p->vma[VMA_20d], p->vma[VMA_60d],
+			p->candle_color, p->candle_trend, p->sr_flag,
+			p->height_low_spt, p->height_2ndlow_spt, p->height_high_rst, p->height_2ndhigh_rst);
+	}
+
+	fclose(fp);
+
+	return 0;
+}
+
+
 struct stock_support
 {
-	char symbol[64];
-	char date2test[STOCK_DATE_SZ];
 #define STOCK_SUPPORT_MAX_DATES  48
 	char date[STOCK_SUPPORT_MAX_DATES][STOCK_DATE_SZ];
 	uint8_t sr_flag[STOCK_SUPPORT_MAX_DATES];
@@ -569,10 +747,10 @@ static int sr_height_margin_datecnt(uint64_t height, uint64_t base, int datecnt)
 	}
 }
 
-static int sr_hit(uint64_t cur_price, uint64_t base_price)
+static int sr_hit(uint64_t price2check, uint64_t base_price)
 {
-	uint64_t diff = cur_price > base_price ? cur_price - base_price : base_price - cur_price;
-	return (diff * 1000 / base_price <= 15);
+	uint64_t diff = price2check > base_price ? price2check - base_price : base_price - price2check;
+	return (diff * 1000 / base_price <= 10);
 }
 
 static void date2sspt_copy(const struct date_price *prev, struct stock_support *sspt)
@@ -582,56 +760,27 @@ static void date2sspt_copy(const struct date_price *prev, struct stock_support *
 	sspt->date_nr += 1;
 }
 
-static void check_support(const char *symbol, const struct stock_price *price_history,
-			const struct date_price *cur, struct stock_support *sspt)
+static void check_support(const struct stock_price *price_history, const struct date_price *price2check, struct stock_support *sspt)
 {
-	const struct date_price *prev;
-	int is_falling = 1;
-	uint64_t max_low_diff = 0;
-	int candle_falling_nr;
 	int i;
 
-	/* history date must be before cur->date */
-	i = price_history->date_cnt - 1;
-	prev = &price_history->dateprice[i];
-	if (strcmp(prev->date, cur->date) >= 0) {
-		anna_error("prev_date=%s is NOT older than cur_date=%s\n", prev->date, cur->date);
-		return;
-	}
+	sspt->date_nr = 0;
 
-	/* check if cur_price has been falling for some days */
-	for (candle_falling_nr = 0; candle_falling_nr < max_sr_candle_nr && i >= 0; i--, candle_falling_nr++) {
-		prev = &price_history->dateprice[i];
+	for (i = 0; i < price_history->date_cnt; i++) {
+		const struct date_price *prev = &price_history->dateprice[i];
 
-		if (prev->low < cur->low) {
-			if (candle_falling_nr < min_sr_candle_nr - 1)
-				is_falling = 0;
-			break;
-		}
-
-		if (prev->high - cur->low > max_low_diff)
-			max_low_diff = prev->high - cur->low;
-	}
-
-	if (!is_falling || (max_low_diff * 100 / get_2ndlow(cur) < diff_margin_percent))
-		return;
-
-	/* now check if cur price is hiting some support/resistance */
-	for (i = price_history->date_cnt - 1; i >= 0; i--) {
-		prev = &price_history->dateprice[i];
-
-		if (prev->sr_flag == 0)
+		if (strcmp(price2check->date, prev->date) <= 0)
 			continue;
 
-		int datecnt = price_history->date_cnt - i;
+		int datecnt = i + 1;
 		uint64_t prev_2ndhigh = get_2ndhigh(prev);
 		uint64_t prev_2ndlow = get_2ndlow(prev);
-		uint64_t cur_2ndlow = get_2ndlow(cur);
+		uint64_t price2check_2ndlow = get_2ndlow(price2check);
 
 		if ((prev->sr_flag & SR_F_SUPPORT_LOW)
 		    && sr_height_margin_datecnt(prev->height_low_spt, prev_2ndlow, datecnt))
 		{
-			if (sr_hit(cur->low, prev->low) || sr_hit(cur_2ndlow, prev->low)) {
+			if (sr_hit(price2check->low, prev->low) || sr_hit(price2check_2ndlow, prev->low)) {
 				date2sspt_copy(prev, sspt);
 				continue;
 			}
@@ -640,7 +789,7 @@ static void check_support(const char *symbol, const struct stock_price *price_hi
 		if ((prev->sr_flag & SR_F_SUPPORT_2ndLOW)
 		    && sr_height_margin_datecnt(prev->height_2ndlow_spt, prev_2ndlow, datecnt))
 		{
-			if (sr_hit(cur->low, prev_2ndlow) || sr_hit(cur_2ndlow, prev_2ndlow)) {
+			if (sr_hit(price2check->low, prev_2ndlow) || sr_hit(price2check_2ndlow, prev_2ndlow)) {
 				date2sspt_copy(prev, sspt);
 				continue;
 			}
@@ -649,7 +798,7 @@ static void check_support(const char *symbol, const struct stock_price *price_hi
 		if ((prev->sr_flag & SR_F_RESIST_HIGH)
 		    && sr_height_margin_datecnt(prev->height_high_rst, prev_2ndhigh, datecnt))
 		{
-			if (sr_hit(cur->low, prev->high) || sr_hit(cur_2ndlow, prev->high)) {
+			if (sr_hit(price2check->low, prev->high) || sr_hit(price2check_2ndlow, prev->high)) {
 				date2sspt_copy(prev, sspt);
 				continue;
 			}
@@ -658,7 +807,7 @@ static void check_support(const char *symbol, const struct stock_price *price_hi
 		if ((prev->sr_flag & SR_F_RESIST_2ndHIGH)
 		    && sr_height_margin_datecnt(prev->height_2ndhigh_rst, prev_2ndhigh, datecnt))
 		{
-			if (sr_hit(cur->low, prev_2ndhigh) || sr_hit(cur_2ndlow, prev_2ndhigh)) {
+			if (sr_hit(price2check->low, prev_2ndhigh) || sr_hit(price2check_2ndlow, prev_2ndhigh)) {
 				date2sspt_copy(prev, sspt);
 				continue;
 			}
@@ -666,94 +815,106 @@ static void check_support(const char *symbol, const struct stock_price *price_hi
 	}
 }
 
-static int sspt_cmp(const void *v1, const void *v2)
+static int get_stock_price2check(const char *symbol, const char *date,
+				const struct stock_price *price_history,
+				struct date_price *price2check)
 {
-	const struct stock_support *s1 = v1;
-	const struct stock_support *s2 = v2;
+	if (date && date[0]) {
+		int i;
+		for (i = 0; i < price_history->date_cnt; i++) {
+			const struct date_price *cur = &price_history->dateprice[i];
+			if (!strcmp(cur->date, date)) {
+				memcpy(price2check, cur, sizeof(*price2check));
+				break;
+			}
+		}
 
-	return (s1->date_nr > s2->date_nr ? -1 : 1);
+		if (i == price_history->date_cnt) {
+			anna_error("date='%s' is  not found in history price\n", date);
+			return -1;
+		}
+	}
+	else { /* get real time price */
+		if (fetch_realtime_price(symbol, price2check) < 0)
+			return -1;
+	}
+
+	return 0;
 }
 
-void stock_price_check_support(const char *date, const char **symbols, int symbols_nr)
+static void symbol_check_support(const char *symbol, const char *fname, const char *date)
 {
-	char *_symbols[1024] = { };
-	int _symbols_nr = 0;
-	struct stock_support *sspt;
-	int sspt_nr = 0;
+	struct stock_price price_history;
+	struct date_price price2check;
+	struct stock_support sspt;
 	int i;
 
-	if (symbols_nr == 0) { /* get all symbols from db */
-		if (db_get_all_symbols(_symbols, &_symbols_nr) < 0)
+	if (stock_price_history_from_file(fname, &price_history) < 0) {
+		anna_error("stock_price_history_from_file(%s) failed\n", fname);
+		return;
+	}
+
+	if (get_stock_price2check(symbol, date, &price_history, &price2check) < 0) {
+		anna_error("%s: get_stock_price2check(%s)\n", symbol, date);
+		return;
+	}
+
+	check_support(&price_history, &price2check, &sspt);
+
+	if (!sspt.date_nr) {
+		anna_info("%s: date=%s, is NOT at any support dates\n\n", symbol, price2check.date);
+		return;
+	}
+
+	anna_info("\n%s: date=%s is supported by %d dates:", symbol, date, sspt.date_nr);
+
+	for (i = 0; i < sspt.date_nr; i++)
+		anna_info(" %s(%c)", sspt.date[i], is_support(sspt.sr_flag[i]) ? 's' : is_resist(sspt.sr_flag[i]) ? 'r' : '?');
+
+	anna_info("\n");
+}
+
+void stock_price_check_support(const char *country, const char *date, int symbols_nr, const char **symbols)
+{
+	char path[128];
+	char fname[256];
+	int i;
+
+	snprintf(path, sizeof(path), "%s/%s", ROOT_DIR, country);
+
+	if (symbols_nr) {
+		for (i = 0; i < symbols_nr; i++) {
+			snprintf(fname, sizeof(fname), "%s/%s.price", path, symbols[i]);
+
+			symbol_check_support(symbols[i], fname, date);
+		}
+	}
+	else {	
+		DIR *dir = opendir(path);
+		if (!dir) {
+			anna_error("opendir(%s) failed: %d(%s)\n", path, errno, strerror(errno));
 			return;
+		}
 
-		symbols = (const char **)_symbols;
-		symbols_nr = _symbols_nr;
-	}
+		struct dirent *de;
 
-	if (symbols_nr == 0) {
-		anna_info("No symbols to check support\n");
-		return;
-	}
+		while ((de = readdir(dir))) {
+			char symbol[16];
+			char *p;
 
-	sspt = calloc(symbols_nr, sizeof(*sspt));
-	if (!sspt) {
-		anna_error("calloc(%d of stock_support) failed\n", symbols_nr);
-		return;
-	}
-
-	for (i = 0; i < symbols_nr; i++) {
-		const char *symbol = symbols[i];
-		struct date_price cur_price;
-		struct stock_price price_history;
-
-		if (!date) {
-			if (fetch_today_price(symbol, &cur_price) < 0) {
-				anna_error("Failed to fetch %s's today price\n", symbol);
+			if (de->d_name[0] == '.')
 				continue;
-			}
-		}
-		else {
-			if (db_get_symbol_price_by_date(symbol, date, &cur_price) < 0) {
-				anna_error("Failed to get %s price by date=%s\n", symbol, date);
-				continue;
-			}
-		}
 
-		if (db_get_symbol_price_history(symbol, date, 0, &price_history) < 0) {
-			continue;
+			strlcpy(symbol, de->d_name, sizeof(symbol));
+			p = strstr(symbol, ".price");
+			if (p)
+				*p = 0;
+
+			snprintf(fname, sizeof(fname), "%s/%s", path, de->d_name);
+
+			symbol_check_support(symbol, fname, date);
 		}
 
-		check_support(symbol, &price_history, &cur_price, &sspt[sspt_nr]);
-
-		if (sspt[sspt_nr].date_nr) {
-			strlcpy(sspt[sspt_nr].symbol, symbol, sizeof(sspt[sspt_nr].symbol));
-			strlcpy(sspt[sspt_nr].date2test, cur_price.date, sizeof(sspt[sspt_nr].date2test));
-			sspt_nr += 1;
-		}
-	}
-
-	if (sspt_nr == 0)
-		anna_info("No symbol hits support\n");
-	else {
-		qsort(sspt, sspt_nr, sizeof(*sspt), sspt_cmp);
-
-		for (i = 0; i < sspt_nr; i++) {
-			int j;
-
-			anna_info("\n%s: date=%s is supported by %d dates:", sspt[i].symbol, sspt[i].date2test, sspt->date_nr);
-
-			for (j = 0; j < sspt->date_nr; j++) {
-				anna_info(" %s(%c)", sspt->date[j], is_support(sspt->sr_flag[j]) ? 's' : is_resist(sspt->sr_flag[j]) ? 'r' : '?');
-			}
-
-			anna_info("\n");
-		}
-	}
-
-	free(sspt);
-
-	for (i = 0; i < _symbols_nr; i++) {
-		if (_symbols[i])
-			free(_symbols[i]);
+		closedir(dir);
 	}
 }

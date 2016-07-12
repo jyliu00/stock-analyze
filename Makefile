@@ -9,7 +9,7 @@ OBJS := $(patsubst %.c,%.o,$(wildcard *.c))
 TARGET=anna
 
 $(TARGET): $(OBJS)
-	$(CC) -o $@ $(OBJS) sqlite3.lib
+	$(CC) -o $@ $(OBJS)
 
 .PHONY: clean
 clean:

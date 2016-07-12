@@ -55,17 +55,14 @@ struct date_price
 {
 #define STOCK_DATE_SZ 12
 	char      date[STOCK_DATE_SZ];
-	uint64_t  open, high, low, close;
-	uint64_t  volume;
-	uint64_t  sma[SMA_NR];
-	uint64_t  vma[VMA_NR];
+	uint32_t  open, high, low, close;
+	uint32_t  volume;
+	uint32_t  sma[SMA_NR];
+	uint32_t  vma[VMA_NR];
 	uint8_t   candle_color;
 	uint8_t   candle_trend;
 	uint16_t  sr_flag; /* support/resist flag: SR_F_xxx */
-	uint64_t  height_low_spt, height_2ndlow_spt, height_high_rst, height_2ndhigh_rst;
-
-	/* the following fields are NOT stored in db */
-	int8_t    updated;
+	uint32_t  height_low_spt, height_2ndlow_spt, height_high_rst, height_2ndhigh_rst;
 };
 
 struct stock_price
@@ -76,8 +73,10 @@ struct stock_price
 	struct date_price dateprice[DATE_PRICE_SZ_MAX];
 };
 
-int stock_price_get_from_file(const char *fname, int today_only, struct stock_price *price);
-void stock_price_check_support(const char *date, const char **symbols, int symbols_nr);
+int stock_price_realtime_from_file(const char *output_fname, struct date_price *price);
+int stock_price_from_file(const char *fname, struct stock_price *price);
+int stock_price_to_file(const char *country, const char *symbol, const struct stock_price *price);
+void stock_price_check_support(const char *country, const char *date, int symbols_nr, const char **symbols);
 void stock_price_update(const char *symbol);
 
 #endif /* __STOCK_PRICE_H__ */

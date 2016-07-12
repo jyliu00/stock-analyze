@@ -20,6 +20,7 @@
 
 void strlcpy(char *dest, const char *src, int dest_sz);
 
-#define ROOT_DIR "/dev/shm"
+#define ROOT_DIR      "/dev/shm/anna"
+#define ROOT_DIR_TMP  ROOT_DIR "/tmp"
 
 #endif /* __UTIL_H__ */

@@ -12,8 +12,7 @@ enum
 
 struct date_price;
 
-int fetch_price(int fetch_action, int symbol_nr, const char **symbols);
-int fetch_today_price(const char *symbol, struct date_price *cur_price);
-void fetch_price_by_file(const char *fname, const char *etf_index);
+void fetch_symbols_price(const char *country, const char *fname, int symbols_nr, const char **symbols);
+int fetch_realtime_price(const char *symbol, struct date_price *realtime_price);
 
 #endif /* __FECTCH_PRICE_H__ */
