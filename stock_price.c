@@ -762,8 +762,34 @@ static void date2sspt_copy(const struct date_price *prev, struct stock_support *
 	sspt->date_nr += 1;
 }
 
+static int date_is_pullback(const struct stock_price *price_history, int idx, const struct date_price *price2check)
+{
+	int candle_falling_nr;
+	uint32_t max_low_diff = 0;
+	int is_falling = 1;
+
+	for (candle_falling_nr = 0; candle_falling_nr < max_sr_candle_nr && idx < price_history->date_cnt; idx++, candle_falling_nr++) {
+		const struct date_price *prev = &price_history->dateprice[idx];
+
+		if (prev->low < price2check->low) {
+			if (candle_falling_nr < min_sr_candle_nr - 1)
+				is_falling = 0;
+			break;
+		}
+
+		if (prev->high > price2check->low && prev->high - price2check->low > max_low_diff)
+			max_low_diff = prev->high - price2check->low;
+	}
+
+	if (!is_falling || (max_low_diff * 100 / get_2ndlow(price2check) < 15/*diff_margin_percent*/))
+		return 0;
+
+	return 1;
+}
+
 static void check_support(const struct stock_price *price_history, const struct date_price *price2check, struct stock_support *sspt)
 {
+	const struct date_price *yesterday = NULL;
 	int i;
 
 	sspt->date_nr = 0;
@@ -773,6 +799,12 @@ static void check_support(const struct stock_price *price_history, const struct 
 
 		if (strcmp(price2check->date, prev->date) <= 0)
 			continue;
+
+		if (yesterday == NULL) {
+			yesterday = prev;
+			if (!date_is_pullback(price_history, i, price2check))
+				break;
+		}
 
 		int datecnt = i + 1;
 		uint64_t prev_2ndhigh = get_2ndhigh(prev);
@@ -863,10 +895,8 @@ static void symbol_check_support(const char *symbol, const char *fname, const ch
 
 	check_support(&price_history, &price2check, &sspt);
 
-	if (!sspt.date_nr) {
-		anna_info("%s: date=%s, is NOT at any support dates\n\n", symbol, price2check.date);
+	if (!sspt.date_nr)
 		return;
-	}
 
 	anna_info("%s: date=%s is supported by %d dates:", symbol, price2check.date, sspt.date_nr);
 
