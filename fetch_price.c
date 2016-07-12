@@ -196,6 +196,12 @@ static void fetch_symbol_price_since_date(const char *country, const char *symbo
 	char output_fname[128];
 	struct stock_price price = { };
 
+	snprintf(output_fname, sizeof(output_fname), ROOT_DIR "/%s/%s.price", country, symbol);
+	if (access(output_fname, F_OK) == 0) {
+		anna_info("%s already fetched, skip\n", symbol);
+		return;
+	}
+
 	snprintf(output_fname, sizeof(output_fname), ROOT_DIR_TMP "/%s.price", symbol);
 
 	if (do_fetch_price(output_fname, symbol, 0, year, month, mday) < 0) {

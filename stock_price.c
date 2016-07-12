@@ -605,6 +605,8 @@ int stock_price_realtime_from_file(const char *output_fname, struct date_price *
 
 	fclose(fp);
 
+	calculate_candle_stats(price);
+
 	return 0;
 }
 
@@ -750,7 +752,7 @@ static int sr_height_margin_datecnt(uint64_t height, uint64_t base, int datecnt)
 static int sr_hit(uint64_t price2check, uint64_t base_price)
 {
 	uint64_t diff = price2check > base_price ? price2check - base_price : base_price - price2check;
-	return (diff * 1000 / base_price <= 10);
+	return (diff * 1000 / base_price <= 15);
 }
 
 static void date2sspt_copy(const struct date_price *prev, struct stock_support *sspt)
@@ -866,12 +868,12 @@ static void symbol_check_support(const char *symbol, const char *fname, const ch
 		return;
 	}
 
-	anna_info("\n%s: date=%s is supported by %d dates:", symbol, date, sspt.date_nr);
+	anna_info("%s: date=%s is supported by %d dates:", symbol, price2check.date, sspt.date_nr);
 
 	for (i = 0; i < sspt.date_nr; i++)
 		anna_info(" %s(%c)", sspt.date[i], is_support(sspt.sr_flag[i]) ? 's' : is_resist(sspt.sr_flag[i]) ? 'r' : '?');
 
-	anna_info("\n");
+	anna_info("\n\n");
 }
 
 void stock_price_check_support(const char *country, const char *date, int symbols_nr, const char **symbols)
