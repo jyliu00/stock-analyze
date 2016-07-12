@@ -19,6 +19,7 @@ static int run_wget(char *output_fname, char *url)
 	char *argv[] = { "wget", "-O", output_fname, url, NULL };
 	int  status;
 	pid_t wget_pid;
+	int i;
 
 	switch ((wget_pid = fork( ))) {
 	case 0: /* child */
@@ -41,12 +42,24 @@ static int run_wget(char *output_fname, char *url)
 		return -1;
 
 	default: /* parent */
-		waitpid(wget_pid, &status, 0);
-		if (!WIFEXITED(status) || WEXITSTATUS(status) != 0) {
-			anna_error("wget failed: WIFEXITED=%d, WEXITSTATUS=%d\n",
-				WIFEXITED(status), WEXITSTATUS(status));
+		for (i = 0; i < 30; i++) {
+			if (waitpid(wget_pid, &status, 0) == wget_pid)
+				break;
+			sleep(1);
+		}
+
+		if (i >= 30) {
+			anna_error("wget timeout, url='%s'\n", url);
+			kill(wget_pid, SIGKILL);
+			waitpid(wget_pid, &status, 0);
 			return -1;
 		}
+		else if (!WIFEXITED(status) || WEXITSTATUS(status) != 0) {
+			anna_error("wget failed: WIFEXITED=%d, WEXITSTATUS=%d\n",
+				   WIFEXITED(status), WEXITSTATUS(status));
+			return -1;
+		}
+		break;
 	}
 
 	return 0;
@@ -233,6 +246,7 @@ void fetch_symbols_price(const char *country, const char *fname, int symbols_nr,
 	int year = 1900 + now_tm->tm_year - stock_history_max_years();
 
 	if (fname && fname[0]) {
+		symbols_nr = 0;
 		char symbol[64];
 		FILE *fp = fopen(fname, "r");
 		if (!fp) {
@@ -250,10 +264,14 @@ void fetch_symbols_price(const char *country, const char *fname, int symbols_nr,
 			if (symbol[len - 1] == '\n')
 				symbol[len - 1] = 0;
 
+			symbols_nr += 1;
+
 			fetch_symbol_price_since_date(country, symbol, year, now_tm->tm_mon, now_tm->tm_mday);
 		}
 
-		anna_info("%zu seconds used by fetching symbols' price from file %s\n", time(NULL) - start_t, fname);
+		anna_info("%zu seconds used by fetching %d symbols' price from file %s\n", time(NULL) - start_t, symbols_nr, fname);
+
+		symbols_nr = 0;
 	}
 
 	for (i = 0; i < symbols_nr; i++)
