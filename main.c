@@ -16,6 +16,7 @@ enum
 
 	ACTION_FETCH,
 	ACTION_CHECK_SUPPORT,
+	ACTION_CHECK_LOW_VOLUME,
 
 	ACTION_NR
 };
@@ -23,7 +24,7 @@ enum
 static void print_usage(void)
 {
 	printf("Usage: anna -country={usa|china|canada} [-date=yyyy-mm-dd] [-file=filename]\n");
-	printf("               {-fetch | -check-support} [symbol-1 symbol-2 ...]\n");
+	printf("               {-fetch | -check-support | -check-low-volume} [symbol-1 symbol-2 ...]\n");
 }
 
 static int init_dirs(const char *country)
@@ -85,6 +86,9 @@ int main(int argc, const char **argv)
 		else if (strcmp(argv[i], "-check-support") == 0) {
 			action = ACTION_CHECK_SUPPORT;
 		}
+		else if (strcmp(argv[i], "-check-low-volume") == 0) {
+			action = ACTION_CHECK_LOW_VOLUME;
+		}
 		else {
 			symbols[symbols_nr++] = strdup(argv[i]);
 		}
@@ -112,6 +116,10 @@ int main(int argc, const char **argv)
 
 	case ACTION_CHECK_SUPPORT:
 		stock_price_check_support(country, date, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_LOW_VOLUME:
+		stock_price_check_low_volume(country, date, symbols_nr, (const char **)symbols);
 		break;
 	}
 

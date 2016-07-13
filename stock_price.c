@@ -328,144 +328,6 @@ static void calculate_stock_price_statistics(struct stock_price *price)
 	}
 }
 
-#if 0
-static void update_moving_average(struct stock_price *price_history)
-{
-	int i, j;
-
-	for (i = 0; i < price_history->date_cnt; i++) {
-		struct date_price *cur = &price_history->dateprice[i];
-		uint64_t sma[SMA_NR] = { 0 }, vma[SMA_NR] = { 0 };
-		int cnt;
-
-		if (cur->sma[SMA_30d]) /* already updated */
-			break;
-
-		for (j = i, cnt = j - i; cnt < 200 && j < price_history->date_cnt; j++, cnt = j - i) {
-			struct date_price *dp = &price_history->dateprice[j];
-
-			if (cnt < 10) {
-				sma[SMA_10d] += dp->close;
-				vma[VMA_10d] += dp->volume;
-			}
-
-			if (cnt < 20) {
-				sma[SMA_20d] += dp->close;
-				vma[VMA_20d] += dp->volume;
-			}
-
-			if (cnt < 30)
-				sma[SMA_30d] += dp->close;
-
-			if (cnt < 50)
-				sma[SMA_50d] += dp->close;
-
-			if (cnt < 60) {
-				sma[SMA_60d] += dp->close;
-				vma[VMA_60d] += dp->volume;
-			}
-
-			if (cnt < 100)
-				sma[SMA_100d] += dp->close;
-
-			if (cnt < 120)
-				sma[SMA_120d] += dp->close;
-
-			if (cnt < 200)
-				sma[SMA_200d] += dp->close;
-		}
-
-		if (cnt >= 9) {
-			cur->sma[SMA_10d] = sma[SMA_10d] / sma_days[SMA_10d];
-			cur->vma[VMA_10d] = vma[VMA_10d] / vma_days[VMA_10d];
-		}
-
-		if (cnt >= 19) {
-			cur->sma[SMA_20d] = sma[SMA_20d] / sma_days[SMA_20d];
-			cur->vma[VMA_20d] = vma[VMA_20d] / vma_days[VMA_20d];
-		}
-
-		if (cnt >= 29)
-			cur->sma[SMA_30d] = sma[SMA_30d] / sma_days[SMA_30d];
-
-		if (cnt >= 49)
-			cur->sma[SMA_50d] = sma[SMA_50d] / sma_days[SMA_50d];
-
-		if (cnt >= 59) {
-			cur->sma[SMA_60d] = sma[SMA_60d] / sma_days[SMA_60d];
-			cur->vma[VMA_60d] = vma[VMA_60d] / vma_days[VMA_60d];
-		}
-
-		if (cnt >= 99)
-			cur->sma[SMA_100d] = sma[SMA_100d] / sma_days[SMA_100d];
-
-		if (cnt >= 119)
-			cur->sma[SMA_120d] = sma[SMA_120d] / sma_days[SMA_120d];
-
-		if (cnt >= 199)
-			cur->sma[SMA_200d] = sma[SMA_200d] / sma_days[SMA_200d];
-
-		calculate_candle_stats(cur);
-	}
-}
-
-static void update_support_resistance(struct stock_price *price_history)
-{
-	int new_date_cnt = 0;
-	int i;
-
-	/* update support/resistance */
-	for (i = 0; i < price_history->date_cnt; i++) {
-		struct date_price *cur = &price_history->dateprice[i];
-
-		if (cur->updated)
-			new_date_cnt += 1;
-		else
-			break;
-	}
-
-	if (new_date_cnt == 0)
-		return;
-
-	for (i = max_sr_candle_nr - 2 + new_date_cnt; i >= 0; i--) {
-		struct date_price *cur = &price_history->dateprice[i];
-		uint16_t  sr_flag = cur->sr_flag;
-		uint64_t  height_low_spt = cur->height_low_spt;
-		uint64_t  height_2ndlow_spt = cur->height_2ndlow_spt;
-		uint64_t  height_high_rst = cur->height_high_rst;
-		uint64_t  height_2ndhigh_rst = cur->height_2ndhigh_rst;
-
-		calculate_support_resistance(price_history, i, cur);
-
-		if (cur->sr_flag != sr_flag
-		    || cur->height_low_spt != height_low_spt
-		    || cur->height_2ndlow_spt != height_2ndlow_spt
-		    || cur->height_high_rst != height_high_rst
-		    || cur->height_2ndhigh_rst != height_2ndhigh_rst)
-			cur->updated = 1;
-	}
-}
-#endif
-
-void stock_price_update(const char *symbol)
-{
-#if 0
-	struct stock_price price_history = { };
-
-	if (db_get_symbol_price_history(symbol, NULL, 0, &price_history) < 0)
-		return;
-
-	/* update sma/vma */
-	update_moving_average(&price_history);
-
-	/* update support/resistance */
-	update_support_resistance(&price_history);
-
-	/* update price in db */
-	db_update_symbol_price(symbol, &price_history);
-#endif
-}
-
 int stock_price_history_from_file(const char *fname, struct stock_price *price)
 {
 	FILE *fp;
@@ -876,6 +738,22 @@ static int get_stock_price2check(const char *symbol, const char *date,
 	return 0;
 }
 
+static int get_symbol_price_for_check(const char *symbol, const char *date, const char *fname,
+					struct stock_price *price_history, struct date_price *price2check)
+{
+	if (stock_price_history_from_file(fname, price_history) < 0) {
+		anna_error("stock_price_history_from_file(%s) failed\n", fname);
+		return -1;
+	}
+
+	if (get_stock_price2check(symbol, date, price_history, price2check) < 0) {
+		anna_error("%s: get_stock_price2check(%s)\n", symbol, date);
+		return -1;
+	}
+
+	return 0;
+}
+
 static void symbol_check_support(const char *symbol, const char *fname, const char *date)
 {
 	struct stock_price price_history;
@@ -883,13 +761,8 @@ static void symbol_check_support(const char *symbol, const char *fname, const ch
 	struct stock_support sspt;
 	int i;
 
-	if (stock_price_history_from_file(fname, &price_history) < 0) {
-		anna_error("stock_price_history_from_file(%s) failed\n", fname);
-		return;
-	}
-
-	if (get_stock_price2check(symbol, date, &price_history, &price2check) < 0) {
-		anna_error("%s: get_stock_price2check(%s)\n", symbol, date);
+	if (get_symbol_price_for_check(symbol, date, fname, &price_history, &price2check) < 0) {
+		anna_error("get_symbol_price_for_check(symbol=%s,date=%s,fname=%s) failed\n", symbol, date, fname);
 		return;
 	}
 
@@ -898,7 +771,7 @@ static void symbol_check_support(const char *symbol, const char *fname, const ch
 	if (!sspt.date_nr)
 		return;
 
-	anna_info("%s: date=%s is supported by %d dates:", symbol, price2check.date, sspt.date_nr);
+	anna_info("\n%s: date=%s is supported by %d dates:", symbol, price2check.date, sspt.date_nr);
 
 	for (i = 0; i < sspt.date_nr; i++)
 		anna_info(" %s(%c)", sspt.date[i], is_support(sspt.sr_flag[i]) ? 's' : is_resist(sspt.sr_flag[i]) ? 'r' : '?');
@@ -906,8 +779,39 @@ static void symbol_check_support(const char *symbol, const char *fname, const ch
 	anna_info("\n\n");
 }
 
-void stock_price_check_support(const char *country, const char *date, int symbols_nr, const char **symbols)
+static void symbol_check_low_volume(const char *symbol, const char *fname, const char *date)
 {
+	struct stock_price price_history;
+	struct date_price price2check;
+	int is_low_volume = 0;
+	int i;
+
+	if (get_symbol_price_for_check(symbol, date, fname, &price_history, &price2check) < 0) {
+		anna_error("get_symbol_price_for_check(symbol=%s,date=%s,fname=%s) failed\n", symbol, date, fname);
+		return;
+	}
+
+	for (i = 0; i < price_history.date_cnt; i++) {
+		struct date_price *prev = &price_history.dateprice[i];
+
+		if (strcmp(price2check.date, prev->date) <= 0)
+			continue;
+
+		if (price2check.low <= prev->low
+		    && price2check.volume <= prev->vma[VMA_10d])
+			is_low_volume = 1;
+
+		break;
+	}
+
+	if (is_low_volume)
+		anna_info("\n%s: date=%s has low volume\n\n", symbol, price2check.date);
+}
+
+static void stock_price_check(const char *country, const char *date, int symbols_nr, const char **symbols,
+				void (*check_func)(const char *symbol, const char *fname, const char *date))
+{
+
 	char path[128];
 	char fname[256];
 	int i;
@@ -918,7 +822,7 @@ void stock_price_check_support(const char *country, const char *date, int symbol
 		for (i = 0; i < symbols_nr; i++) {
 			snprintf(fname, sizeof(fname), "%s/%s.price", path, symbols[i]);
 
-			symbol_check_support(symbols[i], fname, date);
+			check_func(symbols[i], fname, date);
 		}
 	}
 	else {	
@@ -944,9 +848,19 @@ void stock_price_check_support(const char *country, const char *date, int symbol
 
 			snprintf(fname, sizeof(fname), "%s/%s", path, de->d_name);
 
-			symbol_check_support(symbol, fname, date);
+			check_func(symbol, fname, date);
 		}
 
 		closedir(dir);
 	}
+}
+
+void stock_price_check_support(const char *country, const char *date, int symbols_nr, const char **symbols)
+{
+	stock_price_check(country, date, symbols_nr, symbols, symbol_check_support);
+}
+
+void stock_price_check_low_volume(const char *country, const char *date, int symbols_nr, const char **symbols)
+{
+	stock_price_check(country, date, symbols_nr, symbols, symbol_check_low_volume);
 }

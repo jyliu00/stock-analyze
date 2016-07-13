@@ -77,6 +77,6 @@ int stock_price_realtime_from_file(const char *output_fname, struct date_price *
 int stock_price_from_file(const char *fname, struct stock_price *price);
 int stock_price_to_file(const char *country, const char *symbol, const struct stock_price *price);
 void stock_price_check_support(const char *country, const char *date, int symbols_nr, const char **symbols);
-void stock_price_update(const char *symbol);
+void stock_price_check_low_volume(const char *country, const char *date, int symbols_nr, const char **symbols);
 
 #endif /* __STOCK_PRICE_H__ */
