@@ -771,7 +771,7 @@ static void symbol_check_support(const char *symbol, const char *fname, const ch
 	if (!sspt.date_nr)
 		return;
 
-	anna_info("\n%s: date=%s is supported by %d dates:", symbol, price2check.date, sspt.date_nr);
+	anna_info("\n%s%s%s: date=%s is supported by %d dates:", ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check.date, sspt.date_nr);
 
 	for (i = 0; i < sspt.date_nr; i++)
 		anna_info(" %s(%c)", sspt.date[i], is_support(sspt.sr_flag[i]) ? 's' : is_resist(sspt.sr_flag[i]) ? 'r' : '?');
@@ -783,7 +783,6 @@ static void symbol_check_low_volume(const char *symbol, const char *fname, const
 {
 	struct stock_price price_history;
 	struct date_price price2check;
-	int is_low_volume = 0;
 	int i;
 
 	if (get_symbol_price_for_check(symbol, date, fname, &price_history, &price2check) < 0) {
@@ -797,15 +796,17 @@ static void symbol_check_low_volume(const char *symbol, const char *fname, const
 		if (strcmp(price2check.date, prev->date) <= 0)
 			continue;
 
-		if (price2check.low <= prev->low
-		    && price2check.volume <= prev->vma[VMA_10d])
-			is_low_volume = 1;
+		if (price2check.volume && prev->vma[VMA_10d]
+		    && (price2check.low <= prev->low || price2check.close <= prev->close || prev->low <= price2check.close)
+		    && price2check.volume * 100 / prev->vma[VMA_10d] <= 75)
+		{
+			anna_info("\n%s%s%s: date=%s has low volume, %u/%u\n\n",
+					ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check.date,
+					price2check.volume, prev->vma[VMA_10d]);
+		}
 
 		break;
 	}
-
-	if (is_low_volume)
-		anna_info("\n%s: date=%s has low volume\n\n", symbol, price2check.date);
 }
 
 static void stock_price_check(const char *country, const char *date, int symbols_nr, const char **symbols,
