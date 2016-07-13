@@ -204,15 +204,16 @@ int fetch_realtime_price(const char *symbol, struct date_price *realtime_price)
 	return 0;
 }
 
-static void fetch_symbol_price_since_date(const char *country, const char *symbol, int year, int month, int mday)
+static int fetch_symbol_price_since_date(const char *country, const char *symbol, int year, int month, int mday)
 {
 	char output_fname[128];
 	struct stock_price price = { };
+	int rt = -1;
 
 	snprintf(output_fname, sizeof(output_fname), ROOT_DIR "/%s/%s.price", country, symbol);
 	if (access(output_fname, F_OK) == 0) {
-		anna_info("%s already fetched, skip\n", symbol);
-		return;
+		//anna_info("%s already fetched, skip\n", symbol);
+		return -1;
 	}
 
 	snprintf(output_fname, sizeof(output_fname), ROOT_DIR_TMP "/%s.price", symbol);
@@ -232,12 +233,17 @@ static void fetch_symbol_price_since_date(const char *country, const char *symbo
 		goto finish;
 	}
 
+	rt = 0;
+
 finish:
 	unlink(output_fname);
+
+	return rt;
 }
 
-void fetch_symbols_price(const char *country, const char *fname, int symbols_nr, const char **symbols)
+int fetch_symbols_price(const char *country, const char *fname, int symbols_nr, const char **symbols)
 {
+	int count = 0;
 	int i;
 
 	/* get last 2 year's price */
@@ -246,12 +252,11 @@ void fetch_symbols_price(const char *country, const char *fname, int symbols_nr,
 	int year = 1900 + now_tm->tm_year - stock_history_max_years();
 
 	if (fname && fname[0]) {
-		symbols_nr = 0;
-		char symbol[64];
+		char symbol[128];
 		FILE *fp = fopen(fname, "r");
 		if (!fp) {
 			anna_error("fopen(%s) failed: %d(%s)\n", fname, errno, strerror(errno));
-			return;
+			return 0;
 		}
 
 		time_t start_t = time(NULL);
@@ -264,16 +269,20 @@ void fetch_symbols_price(const char *country, const char *fname, int symbols_nr,
 			if (symbol[len - 1] == '\n')
 				symbol[len - 1] = 0;
 
-			symbols_nr += 1;
+			if (strncmp(symbol, "-include ", strlen("-include ")) == 0) {
+				count += fetch_symbols_price(country, strchr(symbol, ' ') + 1, 0, NULL);
+				continue;
+			}
 
-			fetch_symbol_price_since_date(country, symbol, year, now_tm->tm_mon, now_tm->tm_mday);
+			if (fetch_symbol_price_since_date(country, symbol, year, now_tm->tm_mon, now_tm->tm_mday) == 0)
+				count += 1;
 		}
 
-		anna_info("%zu seconds used by fetching %d symbols' price from file %s\n", time(NULL) - start_t, symbols_nr, fname);
-
-		symbols_nr = 0;
+		anna_info("%zu seconds used by fetching total %d of symbols' price from file %s\n", time(NULL) - start_t, count, fname);
 	}
 
 	for (i = 0; i < symbols_nr; i++)
 		fetch_symbol_price_since_date(country, symbols[i], year, now_tm->tm_mon, now_tm->tm_mday);
+
+	return count + symbols_nr;
 }
