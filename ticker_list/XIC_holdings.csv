@@ -1,15 +1,4 @@
-﻿iShares Core S&P/TSX Capped Composite Index ETF
-Inception Date,"Feb 16, 2001"
-Fund Holdings as of,"30-Jun-2016"
-Total Net Assets ($000s),"$2,425,040,039"
-Shares Outstanding,"108,900,000"
-Stock,"-"
-Bond,"-"
-Cash,"-"
-Other,"-"
- 
-Ticker,Name,Weight (%),Price,Shares,Market Value,Notional Value,Sector,SEDOL,CUSIP,Exchange,Country of Risk,Currency,Market Currency,FX Rate
-"RY","ROYAL BANK OF CANADA","6.28","76.34","1,999,850","$152,668,549","152,668,549.00","Financials","2754383","780087102","Toronto Stock Exchange","Canada","CAD","CAD","1.00"
+﻿"RY","ROYAL BANK OF CANADA","6.28","76.34","1,999,850","$152,668,549","152,668,549.00","Financials","2754383","780087102","Toronto Stock Exchange","Canada","CAD","CAD","1.00"
 "TD","TORONTO DOMINION","5.68","55.48","2,491,043","$138,203,066","138,203,065.64","Financials","2897222","891160509","Toronto Stock Exchange","Canada","CAD","CAD","1.00"
 "BNS","BANK OF NOVA SCOTIA","4.21","63.31","1,616,205","$102,321,939","102,321,938.55","Financials","2076281","064149107","Toronto Stock Exchange","Canada","CAD","CAD","1.00"
 "SU","SUNCOR ENERGY INC.","3.30","35.84","2,236,408","$80,152,863","80,152,862.72","Energy","B3NB1P2","867224107","Toronto Stock Exchange","Canada","CAD","CAD","1.00"
