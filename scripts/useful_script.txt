@@ -1,2 +1,4 @@
 more nasdaq100.txt | cut -d "(" -f2 | cut -d ")" -f1  # get string betwenn ( )
 more list.txt | cut -d$'\t' -f2 | cut -d$'\t' -f1 # get string '\t'
+sed 'n; d' infile  # output ODD lines only
+sed '1d; n; d' infile  # output EVEN lines only
