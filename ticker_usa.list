@@ -1,6 +1,6 @@
 -include ticker_list/major_indices.txt
 -include ticker_list/dow30.txt
--include ticker_list/ibb.txt
+#-include ticker_list/ibb.txt
 -include ticker_list/xbi.txt
 -include ticker_list/xlb.txt
 -include ticker_list/xle.txt
@@ -12,4 +12,5 @@
 -include ticker_list/xlv.txt
 -include ticker_list/xly.txt
 -include ticker_list/xsd.txt
+-include ticker_list/sp500.txt
 -include ticker_list/my_picks.txt
