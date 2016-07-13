@@ -1,3 +1,4 @@
 -include ticker_list/china_medium_small.txt
 -include ticker_list/china_shanghai_180.txt
 -include ticker_list/china_startup_index.txt
+-include ticker_list/china_my_picks.txt
