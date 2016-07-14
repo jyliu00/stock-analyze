@@ -299,12 +299,11 @@ static void calculate_support_resistance(struct stock_price *price, int cur_idx,
 
 	/* check for big up day */
 	if (cur->candle_color == CANDLE_COLOR_GREEN /* today is an up day */
-	    && (cur->high - cur->low) * 100 / cur->low >= 5 /* up >= 5% */
+	    && (cur->high - cur->low) * 100 / cur->low >= 7 /* up >= 7% */
 	    && (cur->close - cur->open) * 100 / (cur->high - cur->low) >= 70 /* body size >= 70% */
 	    && (cur - 1)->close < cur->high)  /* next day is down day */
 	{
-		cur->sr_flag = SR_F_SUPPORT_LOW | SR_F_RESIST_HIGH | SR_F_BIGUPDAY;
-		cur->height_low_spt = cur->height_high_rst = cur->high - cur->low;
+		cur->sr_flag = SR_F_BIGUPDAY;
 	}
 }
 
@@ -632,7 +631,7 @@ static void date2sspt_copy(const struct date_price *prev, struct stock_support *
 	sspt->date_nr += 1;
 }
 
-static int date_is_pullback(const struct stock_price *price_history, int idx, const struct date_price *price2check)
+static int date_is_downtrend(const struct stock_price *price_history, int idx, const struct date_price *price2check)
 {
 	int candle_falling_nr;
 	uint32_t max_low_diff = 0;
@@ -672,14 +671,14 @@ static void check_support(const struct stock_price *price_history, const struct 
 
 		if (yesterday == NULL) {
 			yesterday = prev;
-			if (!date_is_pullback(price_history, i, price2check))
+			if (!date_is_downtrend(price_history, i, price2check))
 				break;
 		}
 
 		int datecnt = i + 1;
-		uint64_t prev_2ndhigh = get_2ndhigh(prev);
-		uint64_t prev_2ndlow = get_2ndlow(prev);
-		uint64_t price2check_2ndlow = get_2ndlow(price2check);
+		uint32_t prev_2ndhigh = get_2ndhigh(prev);
+		uint32_t prev_2ndlow = get_2ndlow(prev);
+		uint32_t price2check_2ndlow = get_2ndlow(price2check);
 
 		if ((prev->sr_flag & SR_F_SUPPORT_LOW)
 		    && sr_height_margin_datecnt(prev->height_low_spt, prev_2ndlow, datecnt))
@@ -762,24 +761,19 @@ static int get_symbol_price_for_check(const char *symbol, const char *date, cons
 	return 0;
 }
 
-static void symbol_check_support(const char *symbol, const char *fname, const char *date)
+static void symbol_check_support(const char *symbol, const struct stock_price *price_history,
+				 const struct date_price *price2check)
 {
-	struct stock_price price_history;
-	struct date_price price2check;
 	struct stock_support sspt;
 	int i;
 
-	if (get_symbol_price_for_check(symbol, date, fname, &price_history, &price2check) < 0) {
-		anna_error("get_symbol_price_for_check(symbol=%s,date=%s,fname=%s) failed\n", symbol, date, fname);
-		return;
-	}
-
-	check_support(&price_history, &price2check, &sspt);
+	check_support(price_history, price2check, &sspt);
 
 	if (!sspt.date_nr)
 		return;
 
-	anna_info("\n%s%s%s: date=%s is supported by %d dates:", ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check.date, sspt.date_nr);
+	anna_info("\n%s%s%s: date=%s is supported by %d dates:",
+		  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date, sspt.date_nr);
 
 	for (i = 0; i < sspt.date_nr; i++)
 		anna_info(" %s(%c)", sspt.date[i], is_support(sspt.sr_flag[i]) ? 's' : is_resist(sspt.sr_flag[i]) ? 'r' : '?');
@@ -787,38 +781,92 @@ static void symbol_check_support(const char *symbol, const char *fname, const ch
 	anna_info("\n\n");
 }
 
-static void symbol_check_low_volume(const char *symbol, const char *fname, const char *date)
+static void symbol_check_pullback(const char *symbol, const struct stock_price *price_history,
+				  const struct date_price *price2check)
 {
-	struct stock_price price_history;
-	struct date_price price2check;
-	int i;
+	int i, j;
 
-	if (get_symbol_price_for_check(symbol, date, fname, &price_history, &price2check) < 0) {
-		anna_error("get_symbol_price_for_check(symbol=%s,date=%s,fname=%s) failed\n", symbol, date, fname);
-		return;
+	for (i = 0; i < price_history->date_cnt; i++) {
+		const struct date_price *prev = &price_history->dateprice[i];
+
+		if (strcmp(price2check->date, prev->date) > 0)
+			break;
 	}
 
-	for (i = 0; i < price_history.date_cnt; i++) {
-		struct date_price *prev = &price_history.dateprice[i];
+	if (price_history->date_cnt - i < 5) /* need to back trace at least 5 days */
+		return;
 
-		if (strcmp(price2check.date, prev->date) <= 0)
+	for (j = 0; j < 20 && i < price_history->date_cnt; i++, j++) {
+		const struct date_price *prev = &price_history->dateprice[i];
+
+		if (!(prev->sr_flag & SR_F_BIGUPDAY))
 			continue;
 
-		if (price2check.volume && prev->vma[VMA_10d]
-		    && (price2check.low <= prev->low || price2check.close <= prev->close || prev->low <= price2check.close)
-		    && price2check.volume * 100 / prev->vma[VMA_10d] <= 75)
+		uint32_t prev_2ndhigh = get_2ndhigh(prev);
+		uint32_t prev_2ndlow = get_2ndlow(prev);
+		uint32_t price2check_2ndlow = get_2ndlow(price2check);
+
+		if (sr_hit(price2check->low, prev->low) || sr_hit(price2check_2ndlow, prev->low)
+		    || sr_hit(price2check->low, prev_2ndlow) || sr_hit(price2check_2ndlow, prev_2ndlow))
+		{
+			anna_info("%s%s%s: date=%s hit bigupdate=%s at support\n",
+				  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+				  price2check->date, prev->date);
+			break;
+		}
+		else if (sr_hit(price2check->low, prev->high) || sr_hit(price2check_2ndlow, prev->high)
+			 || sr_hit(price2check->low, prev_2ndhigh) || sr_hit(price2check_2ndlow, prev_2ndhigh))
+		{
+			anna_info("%s%s%s: date=%s hit bigupdate=%s at resist\n",
+				  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+				  price2check->date, prev->date);
+			break;
+		}
+	}
+}
+
+static void symbol_check_low_volume(const char *symbol, const struct stock_price *price_history,
+				    const struct date_price *price2check)
+{
+	int i;
+
+	for (i = 0; i < price_history->date_cnt; i++) {
+		const struct date_price *prev = &price_history->dateprice[i];
+
+		if (strcmp(price2check->date, prev->date) <= 0)
+			continue;
+
+		if (price2check->volume && prev->vma[VMA_10d]
+		    && (price2check->low <= prev->low || price2check->close <= prev->close || prev->low <= price2check->close)
+		    && price2check->volume * 100 / prev->vma[VMA_10d] <= 75)
 		{
 			anna_info("\n%s%s%s: date=%s has low volume, %u/%u\n\n",
-					ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check.date,
-					price2check.volume, prev->vma[VMA_10d]);
+					ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date,
+					price2check->volume, prev->vma[VMA_10d]);
 		}
 
 		break;
 	}
 }
 
+static int call_check_func(const char *symbol, const char *date, const char *fname,
+			    void (*check_func)(const char *, const struct stock_price *, const struct date_price *))
+{
+	struct stock_price price_history;
+	struct date_price price2check;
+
+	if (get_symbol_price_for_check(symbol, date, fname, &price_history, &price2check) < 0) {
+		anna_error("get_symbol_price_for_check(symbol=%s,date=%s,fname=%s) failed\n", symbol, date, fname);
+		return -1;
+	}
+
+	check_func(symbol, &price_history, &price2check);
+
+	return 0;
+}
+
 static void stock_price_check(const char *country, const char *date, int symbols_nr, const char **symbols,
-				void (*check_func)(const char *symbol, const char *fname, const char *date))
+				void (*check_func)(const char *symbol, const struct stock_price *price_history, const struct date_price *price2check))
 {
 
 	char path[128];
@@ -831,7 +879,7 @@ static void stock_price_check(const char *country, const char *date, int symbols
 		for (i = 0; i < symbols_nr; i++) {
 			snprintf(fname, sizeof(fname), "%s/%s.price", path, symbols[i]);
 
-			check_func(symbols[i], fname, date);
+			call_check_func(symbols[i], date, fname, check_func);
 		}
 	}
 	else {	
@@ -857,7 +905,7 @@ static void stock_price_check(const char *country, const char *date, int symbols
 
 			snprintf(fname, sizeof(fname), "%s/%s", path, de->d_name);
 
-			check_func(symbol, fname, date);
+			call_check_func(symbol, date, fname, check_func);
 		}
 
 		closedir(dir);
@@ -867,6 +915,11 @@ static void stock_price_check(const char *country, const char *date, int symbols
 void stock_price_check_support(const char *country, const char *date, int symbols_nr, const char **symbols)
 {
 	stock_price_check(country, date, symbols_nr, symbols, symbol_check_support);
+}
+
+void stock_price_check_pullback(const char *country, const char *date, int symbols_nr, const char **symbols)
+{
+	stock_price_check(country, date, symbols_nr, symbols, symbol_check_pullback);
 }
 
 void stock_price_check_low_volume(const char *country, const char *date, int symbols_nr, const char **symbols)

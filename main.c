@@ -9,6 +9,9 @@
 #include <errno.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <ctype.h>
+
+static char ticker_list_fname[128];
 
 enum
 {
@@ -16,6 +19,7 @@ enum
 
 	ACTION_FETCH,
 	ACTION_CHECK_SUPPORT,
+	ACTION_CHECK_PULLBACK,
 	ACTION_CHECK_LOW_VOLUME,
 
 	ACTION_NR
@@ -56,11 +60,57 @@ static int init_dirs(const char *country)
 	return 0;
 }
 
+static int load_config_file(const char *fname, const char *country)
+{
+	char buf[512];
+	int country_matched = 0;
+
+	if (!fname || !fname[0])
+		fname = "anna.conf";
+
+	FILE *fp = fopen(fname, "r");
+	if (!fp) {
+		anna_error("fopen(%s) failed: %d(%s)\n", fname, errno, strerror(errno));
+		return -1;
+	}
+
+	while (fgets(buf, sizeof(buf), fp)) {
+		char *p;
+
+		if (buf[0] == '#' || buf[0] == '\n')
+			continue;
+
+		buf[strlen(buf) - 1] = 0;
+
+		if (buf[0] == '[' && strncmp(buf, "[country=", strlen("[country=")) == 0) {
+			p = strchr(buf, '=');
+
+			if (strncmp(p + 1, country, strlen(country)) == 0)
+				country_matched = 1;
+			else
+				country_matched = 0;
+
+			continue;
+		}
+
+		if (country_matched) {
+			if (strncmp(buf, "ticker_list_file=", strlen("ticker_list_file=")) == 0) {
+				p = strchr(buf, '=');
+				strlcpy(ticker_list_fname, p + 1, sizeof(ticker_list_fname));
+			}
+		}
+	}
+
+	fclose(fp);
+
+	return 0;
+}
+
 int main(int argc, const char **argv)
 {
 	char country[16] = { 0 };
 	char date[12] = { 0 };
-	char filename[64] = { 0 };
+	char conf_fname[64] = { 0 };
 	int action = ACTION_NONE;
 	char *symbols[256] = { NULL };
 	int symbols_nr = 0;
@@ -68,7 +118,24 @@ int main(int argc, const char **argv)
 	int i;
 
 	for (i = 1; i < argc; i++) {
-		if (strncmp(argv[i], "-country=", strlen("-country=")) == 0) {
+		if (argv[i][0] != '-') {
+			if (isupper(argv[i][0])) {
+				symbols[symbols_nr++] = strdup(argv[i]);
+			}
+			else if (strcmp(argv[i], "fetch") == 0) {
+				action = ACTION_FETCH;
+			}
+			else if (strcmp(argv[i], "check-support") == 0) {
+				action = ACTION_CHECK_SUPPORT;
+			}
+			else if (strcmp(argv[i], "check-pullback") == 0) {
+				action = ACTION_CHECK_PULLBACK;
+			}
+			else if (strcmp(argv[i], "check-low-volume") == 0) {
+				action = ACTION_CHECK_LOW_VOLUME;
+			}
+		}
+		else if (strncmp(argv[i], "-country=", strlen("-country=")) == 0) {
 			p = strchr(argv[i], '=');
 			strlcpy(country, p + 1, sizeof(country));
 		}
@@ -76,21 +143,9 @@ int main(int argc, const char **argv)
 			p = strchr(argv[i], '=');
 			strlcpy(date, p + 1, sizeof(date));
 		}
-		else if (strncmp(argv[i], "-file=", strlen("-file=")) == 0) {
+		else if (strncmp(argv[i], "-conf=", strlen("-conf=")) == 0) {
 			p = strchr(argv[i], '=');
-			strlcpy(filename, p + 1, sizeof(filename));
-		}
-		else if (strcmp(argv[i], "-fetch") == 0) {
-			action = ACTION_FETCH;
-		}
-		else if (strcmp(argv[i], "-check-support") == 0) {
-			action = ACTION_CHECK_SUPPORT;
-		}
-		else if (strcmp(argv[i], "-check-low-volume") == 0) {
-			action = ACTION_CHECK_LOW_VOLUME;
-		}
-		else {
-			symbols[symbols_nr++] = strdup(argv[i]);
+			strlcpy(conf_fname, p + 1, sizeof(conf_fname));
 		}
 	}
 
@@ -101,21 +156,23 @@ int main(int argc, const char **argv)
 		goto finish;
 	}
 
-	if (filename[0] && access(filename, F_OK) < 0) {
-		anna_error("access(%s) failed: %d(%s)\n", filename, errno, strerror(errno));
-		goto finish;
-	}
-
 	if (init_dirs(country) < 0)
+		goto finish;
+
+	if (load_config_file(conf_fname, country) < 0)
 		goto finish;
 
 	switch (action) {
 	case ACTION_FETCH:
-		fetch_symbols_price(country, filename, symbols_nr, (const char **)symbols);
+		fetch_symbols_price(country, ticker_list_fname, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_SUPPORT:
 		stock_price_check_support(country, date, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_PULLBACK:
+		stock_price_check_pullback(country, date, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_LOW_VOLUME:
