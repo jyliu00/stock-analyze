@@ -296,17 +296,16 @@ static void calculate_support_resistance(struct stock_price *price, int cur_idx,
 
 	if (cur->sr_flag)
 		return;
-#if 0
+
 	/* check for big up day */
 	if (cur->candle_color == CANDLE_COLOR_GREEN /* today is an up day */
 	    && (cur->high - cur->low) * 100 / cur->low >= 5 /* up >= 5% */
 	    && (cur->close - cur->open) * 100 / (cur->high - cur->low) >= 70 /* body size >= 70% */
 	    && (cur - 1)->close < cur->high)  /* next day is down day */
 	{
-		cur->sr_flag = SR_F_SUPPORT_LOW | SR_F_RESIST_HIGH;
+		cur->sr_flag = SR_F_SUPPORT_LOW | SR_F_RESIST_HIGH | SR_F_BIGUPDAY;
 		cur->height_low_spt = cur->height_high_rst = cur->high - cur->low;
 	}
-#endif
 }
 
 static void calculate_stock_price_statistics(struct stock_price *price)

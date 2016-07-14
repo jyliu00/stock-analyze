@@ -48,6 +48,7 @@ enum
 #define SR_F_SUPPORT_2ndLOW	(1<<1)
 #define SR_F_RESIST_HIGH	(1<<2)
 #define SR_F_RESIST_2ndHIGH	(1<<3)
+#define SR_F_BIGUPDAY		(1<<4)
 #define is_support(sr_flag) (sr_flag & (SR_F_SUPPORT_LOW | SR_F_SUPPORT_2ndLOW))
 #define is_resist(sr_flag) (sr_flag &(SR_F_RESIST_HIGH | SR_F_RESIST_2ndHIGH))
 
