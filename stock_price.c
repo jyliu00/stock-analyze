@@ -445,6 +445,9 @@ int stock_price_realtime_from_file(const char *output_fname, struct date_price *
 		return -1;
 	}
 
+	if (!isdigit(buf[0]))
+		return -1;
+
 	token = strtok(buf, ",");
 	if (!token) return -1;
 	parse_price(token, &price->open);
