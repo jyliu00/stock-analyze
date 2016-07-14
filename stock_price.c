@@ -604,6 +604,8 @@ struct stock_support
 
 static int sr_height_margin_datecnt(uint64_t height, uint64_t base, int datecnt)
 {
+	return (height * 100 / base >= 12);
+#if 0
 	if (datecnt <= 63) { /* 0 ~ 3 month */
 		return (height * 100 / base >= 4) ? 1 : 0;
 	}
@@ -616,6 +618,7 @@ static int sr_height_margin_datecnt(uint64_t height, uint64_t base, int datecnt)
 	else { /* > 1 year */
 		return (height * 100 / base >= 8) ? 1 : 0;
 	}
+#endif
 }
 
 static int sr_hit(uint64_t price2check, uint64_t base_price)
@@ -650,7 +653,7 @@ static int date_is_downtrend(const struct stock_price *price_history, int idx, c
 			max_low_diff = prev->high - price2check->low;
 	}
 
-	if (!is_falling || (max_low_diff * 100 / get_2ndlow(price2check) < 15/*diff_margin_percent*/))
+	if (!is_falling || (max_low_diff * 1000 / get_2ndlow(price2check) < 75/*diff_margin_percent*/))
 		return 0;
 
 	return 1;
@@ -772,13 +775,13 @@ static void symbol_check_support(const char *symbol, const struct stock_price *p
 	if (!sspt.date_nr)
 		return;
 
-	anna_info("\n%s%s%s: date=%s is supported by %d dates:",
+	anna_info("%s%s%s: date=%s is supported by %d dates:",
 		  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date, sspt.date_nr);
 
 	for (i = 0; i < sspt.date_nr; i++)
 		anna_info(" %s(%c)", sspt.date[i], is_support(sspt.sr_flag[i]) ? 's' : is_resist(sspt.sr_flag[i]) ? 'r' : '?');
 
-	anna_info("\n\n");
+	anna_info("\n");
 }
 
 static void symbol_check_pullback(const char *symbol, const struct stock_price *price_history,
