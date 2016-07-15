@@ -118,33 +118,38 @@ int main(int argc, const char **argv)
 	int i;
 
 	for (i = 1; i < argc; i++) {
-		if (argv[i][0] != '-') {
-			if (isupper(argv[i][0])) {
-				symbols[symbols_nr++] = strdup(argv[i]);
+		const char *arg = argv[i];
+
+		if (arg[0] != '-') {
+			if (isupper(arg[0]) || isdigit(arg[0])) {
+				symbols[symbols_nr++] = strdup(arg);
 			}
-			else if (strcmp(argv[i], "fetch") == 0) {
+			else if (strcmp(arg, "fetch") == 0) {
 				action = ACTION_FETCH;
 			}
-			else if (strcmp(argv[i], "check-support") == 0) {
+			else if (strcmp(arg, "check-support") == 0) {
 				action = ACTION_CHECK_SUPPORT;
 			}
-			else if (strcmp(argv[i], "check-pullback") == 0) {
+			else if (strcmp(arg, "check-pullback") == 0) {
 				action = ACTION_CHECK_PULLBACK;
 			}
-			else if (strcmp(argv[i], "check-low-volume") == 0) {
+			else if (strcmp(arg, "check-low-volume") == 0) {
 				action = ACTION_CHECK_LOW_VOLUME;
 			}
 		}
-		else if (strncmp(argv[i], "-country=", strlen("-country=")) == 0) {
-			p = strchr(argv[i], '=');
+		else if (strncmp(arg, "-country=", strlen("-country=")) == 0) {
+			p = strchr(arg, '=');
 			strlcpy(country, p + 1, sizeof(country));
 		}
-		else if (strncmp(argv[i], "-date=", strlen("-date=")) == 0) {
-			p = strchr(argv[i], '=');
+		else if (strncmp(arg, "-date=", strlen("-date=")) == 0) {
+			p = strchr(arg, '=');
 			strlcpy(date, p + 1, sizeof(date));
 		}
-		else if (strncmp(argv[i], "-conf=", strlen("-conf=")) == 0) {
-			p = strchr(argv[i], '=');
+		else if (strcmp(arg, "-realtime") == 0) {
+			strlcpy(date, arg + 1,sizeof(date));
+		}
+		else if (strncmp(arg, "-conf=", strlen("-conf=")) == 0) {
+			p = strchr(arg, '=');
 			strlcpy(conf_fname, p + 1, sizeof(conf_fname));
 		}
 	}

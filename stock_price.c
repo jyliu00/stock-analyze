@@ -725,8 +725,16 @@ static int get_stock_price2check(const char *symbol, const char *date,
 				const struct stock_price *price_history,
 				struct date_price *price2check)
 {
-	if (date && date[0]) {
+	if (strcmp(date, "realtime") == 0) { /* get real time price */
+		if (fetch_realtime_price(symbol, price2check) < 0)
+			return -1;
+	}
+	else if (!date || !date[0]) {
+		memcpy(price2check, &price_history->dateprice[0], sizeof(*price2check));
+	}
+	else {
 		int i;
+
 		for (i = 0; i < price_history->date_cnt; i++) {
 			const struct date_price *cur = &price_history->dateprice[i];
 			if (!strcmp(cur->date, date)) {
@@ -739,10 +747,6 @@ static int get_stock_price2check(const char *symbol, const char *date,
 			anna_error("date='%s' is  not found in history price\n", date);
 			return -1;
 		}
-	}
-	else { /* get real time price */
-		if (fetch_realtime_price(symbol, price2check) < 0)
-			return -1;
 	}
 
 	return 0;

@@ -251,6 +251,12 @@ int fetch_symbols_price(const char *country, const char *fname, int symbols_nr, 
 	struct tm *now_tm = localtime(&now_t);
 	int year = 1900 + now_tm->tm_year - stock_history_max_years();
 
+	if (symbols_nr) {
+		for (i = 0; i < symbols_nr; i++)
+			fetch_symbol_price_since_date(country, symbols[i], year, now_tm->tm_mon, now_tm->tm_mday);
+		return 0;
+	}
+
 	if (fname && fname[0]) {
 		char symbol[128];
 		FILE *fp = fopen(fname, "r");
@@ -280,9 +286,6 @@ int fetch_symbols_price(const char *country, const char *fname, int symbols_nr, 
 
 		anna_info("%zu seconds used by fetching total %d of symbols' price from file %s\n", time(NULL) - start_t, count, fname);
 	}
-
-	for (i = 0; i < symbols_nr; i++)
-		fetch_symbol_price_since_date(country, symbols[i], year, now_tm->tm_mon, now_tm->tm_mday);
 
 	return count + symbols_nr;
 }
