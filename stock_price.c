@@ -599,6 +599,7 @@ struct stock_support
 #define STOCK_SUPPORT_MAX_DATES  48
 	char date[STOCK_SUPPORT_MAX_DATES][STOCK_DATE_SZ];
 	uint8_t sr_flag[STOCK_SUPPORT_MAX_DATES];
+	int8_t  is_doublebottom[STOCK_SUPPORT_MAX_DATES];
 	int date_nr;
 };
 
@@ -627,10 +628,11 @@ static int sr_hit(uint64_t price2check, uint64_t base_price)
 	return (diff * 1000 / base_price <= 15);
 }
 
-static void date2sspt_copy(const struct date_price *prev, struct stock_support *sspt)
+static void date2sspt_copy(const struct date_price *prev, struct stock_support *sspt, int8_t is_db)
 {
 	strlcpy(sspt->date[sspt->date_nr], prev->date, sizeof(sspt->date[0]));
 	sspt->sr_flag[sspt->date_nr] = prev->sr_flag;
+	sspt->is_doublebottom[sspt->date_nr] = is_db;
 	sspt->date_nr += 1;
 }
 
@@ -662,6 +664,7 @@ static int date_is_downtrend(const struct stock_price *price_history, int idx, c
 static void check_support(const struct stock_price *price_history, const struct date_price *price2check, struct stock_support *sspt)
 {
 	const struct date_price *yesterday = NULL;
+	const struct date_price *lowest_date = price2check;
 	int i;
 
 	sspt->date_nr = 0;
@@ -678,6 +681,9 @@ static void check_support(const struct stock_price *price_history, const struct 
 				break;
 		}
 
+		if (prev->low < lowest_date->low)
+			lowest_date = prev;
+
 		int datecnt = i + 1;
 		uint32_t prev_2ndhigh = get_2ndhigh(prev);
 		uint32_t prev_2ndlow = get_2ndlow(prev);
@@ -687,7 +693,8 @@ static void check_support(const struct stock_price *price_history, const struct 
 		    && sr_height_margin_datecnt(prev->height_low_spt, prev_2ndlow, datecnt))
 		{
 			if (sr_hit(price2check->low, prev->low) || sr_hit(price2check_2ndlow, prev->low)) {
-				date2sspt_copy(prev, sspt);
+				int8_t is_db = lowest_date == prev || lowest_date == price2check;
+				date2sspt_copy(prev, sspt, is_db);
 				continue;
 			}
 		}
@@ -696,7 +703,8 @@ static void check_support(const struct stock_price *price_history, const struct 
 		    && sr_height_margin_datecnt(prev->height_2ndlow_spt, prev_2ndlow, datecnt))
 		{
 			if (sr_hit(price2check->low, prev_2ndlow) || sr_hit(price2check_2ndlow, prev_2ndlow)) {
-				date2sspt_copy(prev, sspt);
+				int8_t is_db = lowest_date == prev || lowest_date == price2check;
+				date2sspt_copy(prev, sspt, is_db);
 				continue;
 			}
 		}
@@ -705,7 +713,7 @@ static void check_support(const struct stock_price *price_history, const struct 
 		    && sr_height_margin_datecnt(prev->height_high_rst, prev_2ndhigh, datecnt))
 		{
 			if (sr_hit(price2check->low, prev->high) || sr_hit(price2check_2ndlow, prev->high)) {
-				date2sspt_copy(prev, sspt);
+				date2sspt_copy(prev, sspt, 0);
 				continue;
 			}
 		}
@@ -714,7 +722,7 @@ static void check_support(const struct stock_price *price_history, const struct 
 		    && sr_height_margin_datecnt(prev->height_2ndhigh_rst, prev_2ndhigh, datecnt))
 		{
 			if (sr_hit(price2check->low, prev_2ndhigh) || sr_hit(price2check_2ndlow, prev_2ndhigh)) {
-				date2sspt_copy(prev, sspt);
+				date2sspt_copy(prev, sspt, 0);
 				continue;
 			}
 		}
@@ -771,7 +779,7 @@ static int get_symbol_price_for_check(const char *symbol, const char *date, cons
 static void symbol_check_support(const char *symbol, const struct stock_price *price_history,
 				 const struct date_price *price2check)
 {
-	struct stock_support sspt;
+	struct stock_support sspt = { };
 	int i;
 
 	check_support(price_history, price2check, &sspt);
@@ -786,6 +794,26 @@ static void symbol_check_support(const char *symbol, const struct stock_price *p
 		anna_info(" %s(%c)", sspt.date[i], is_support(sspt.sr_flag[i]) ? 's' : is_resist(sspt.sr_flag[i]) ? 'r' : '?');
 
 	anna_info("\n");
+}
+
+static void symbol_check_doublebottom(const char *symbol, const struct stock_price *price_history,
+					const struct date_price *price2check)
+{
+	struct stock_support sspt = { };
+	int i;
+
+	check_support(price_history, price2check, &sspt);
+
+	if (!sspt.date_nr)
+		return;
+
+	for (i = 0; i < sspt.date_nr; i++) {
+		if (sspt.is_doublebottom[i]) {
+			anna_info("%s%s%s: date=%s is double bottom with dates=%s\n",
+				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date, sspt.date[i]);
+			break;
+		}
+	}
 }
 
 static void symbol_check_pullback(const char *symbol, const struct stock_price *price_history,
@@ -922,6 +950,11 @@ static void stock_price_check(const char *country, const char *date, int symbols
 void stock_price_check_support(const char *country, const char *date, int symbols_nr, const char **symbols)
 {
 	stock_price_check(country, date, symbols_nr, symbols, symbol_check_support);
+}
+
+void stock_price_check_doublebottom(const char *country, const char *date, int symbols_nr, const char **symbols)
+{
+	stock_price_check(country, date, symbols_nr, symbols, symbol_check_doublebottom);
 }
 
 void stock_price_check_pullback(const char *country, const char *date, int symbols_nr, const char **symbols)

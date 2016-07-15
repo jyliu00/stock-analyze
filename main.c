@@ -19,6 +19,7 @@ enum
 
 	ACTION_FETCH,
 	ACTION_CHECK_SUPPORT,
+	ACTION_CHECK_DB,
 	ACTION_CHECK_PULLBACK,
 	ACTION_CHECK_LOW_VOLUME,
 
@@ -27,8 +28,8 @@ enum
 
 static void print_usage(void)
 {
-	printf("Usage: anna -country={usa|china|canada} [-date=yyyy-mm-dd] [-file=filename]\n");
-	printf("               {-fetch | -check-support | -check-low-volume} [symbol-1 symbol-2 ...]\n");
+	printf("Usage: anna -country={usa|china|canada|biotech} [-date=yyyy-mm-dd] [-conf=filename]\n");
+	printf("               {fetch | check-support | check-db | check-low-volume} [symbol-1 symbol-2 ...]\n");
 }
 
 static int init_dirs(const char *country)
@@ -130,6 +131,9 @@ int main(int argc, const char **argv)
 			else if (strcmp(arg, "check-support") == 0) {
 				action = ACTION_CHECK_SUPPORT;
 			}
+			else if (strcmp(arg, "check-db") == 0) {
+				action = ACTION_CHECK_DB;
+			}
 			else if (strcmp(arg, "check-pullback") == 0) {
 				action = ACTION_CHECK_PULLBACK;
 			}
@@ -175,6 +179,10 @@ int main(int argc, const char **argv)
 
 	case ACTION_CHECK_SUPPORT:
 		stock_price_check_support(country, date, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_DB:
+		stock_price_check_doublebottom(country, date, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_PULLBACK:
