@@ -155,7 +155,8 @@ int main(int argc, const char **argv)
 	}
 
 	if (action == ACTION_NONE || country[0] == 0
-	    || (strcmp(country, "usa") && strcmp(country, "china") && strcmp(country, "canada")))
+	    || (strcmp(country, "usa") && strcmp(country, "china")
+		&& strcmp(country, "canada") && strcmp(country, "biotech")))
 	{
 		print_usage( );
 		goto finish;
