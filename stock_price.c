@@ -605,7 +605,7 @@ struct stock_support
 
 static int sr_height_margin_datecnt(uint64_t height, uint64_t base, int datecnt)
 {
-	return (height * 100 / base >= 12);
+	return (height * 100 / base >= sr_height_margin);
 #if 0
 	if (datecnt <= 63) { /* 0 ~ 3 month */
 		return (height * 100 / base >= 4) ? 1 : 0;

@@ -99,6 +99,10 @@ static int load_config_file(const char *fname, const char *country)
 				p = strchr(buf, '=');
 				strlcpy(ticker_list_fname, p + 1, sizeof(ticker_list_fname));
 			}
+			else if (strncmp(buf, "sr_height_margin=", strlen("sr_height_margin=")) == 0) {
+				p = strchr(buf, '=');
+				sr_height_margin = atoi(p + 1);
+			}
 		}
 	}
 

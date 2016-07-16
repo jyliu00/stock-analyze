@@ -1,6 +1,8 @@
 #ifndef __UTIL_H__
 #define __UTIL_H__
 
+#include <stdint.h>
+
 #define anna_error(fmt, args...) \
 	fprintf(stderr, "[%s:%s:%d] " fmt, __FILE__, __FUNCTION__, __LINE__, ##args)
 
@@ -30,5 +32,7 @@ void strlcpy(char *dest, const char *src, int dest_sz);
 #define ANSI_COLOR_MAGENTA "\x1b[35m"
 #define ANSI_COLOR_CYAN    "\x1b[36m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
+
+extern uint32_t sr_height_margin;
 
 #endif /* __UTIL_H__ */
