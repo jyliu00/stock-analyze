@@ -28,7 +28,7 @@ enum
 
 static void print_usage(void)
 {
-	printf("Usage: anna -country={usa|china|canada|biotech} [-date=yyyy-mm-dd] [-conf=filename]\n");
+	printf("Usage: anna -country={usa|china|canada|biotech|ibd} [-date=yyyy-mm-dd] [-conf=filename]\n");
 	printf("               {fetch | check-support | check-db | check-low-volume} [symbol-1 symbol-2 ...]\n");
 }
 
@@ -160,7 +160,8 @@ int main(int argc, const char **argv)
 
 	if (action == ACTION_NONE || country[0] == 0
 	    || (strcmp(country, "usa") && strcmp(country, "china")
-		&& strcmp(country, "canada") && strcmp(country, "biotech")))
+		&& strcmp(country, "canada") && strcmp(country, "biotech")
+		&& strcmp(country, "ibd")))
 	{
 		print_usage( );
 		goto finish;

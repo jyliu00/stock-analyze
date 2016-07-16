@@ -1,0 +1,3 @@
+-include ticker_list/ibd_50.txt
+-include ticker_list/ibd_spotlight.txt
+-include ticker_list/ibd_bigcap20.txt
