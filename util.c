@@ -2,7 +2,7 @@
 
 #include <string.h>
 
-uint32_t sr_height_margin = 12;
+uint32_t sr_height_margin = 80; /* 8% height */
 
 void strlcpy(char *dest, const char *src, int dest_sz)
 {
