@@ -18,9 +18,9 @@ enum
 	ACTION_NONE,
 
 	ACTION_FETCH,
-	ACTION_CHECK_SUPPORT,
-	ACTION_CHECK_DB,
-	ACTION_CHECK_PULLBACK,
+	ACTION_CHECK_SPT, /* support */
+	ACTION_CHECK_DB, /* double bottom */
+	ACTION_CHECK_PB, /* pull back */
 	ACTION_CHECK_LOW_VOLUME,
 
 	ACTION_NR
@@ -29,7 +29,7 @@ enum
 static void print_usage(void)
 {
 	printf("Usage: anna -country={usa|china|canada|biotech|ibd} [-date=yyyy-mm-dd] [-conf=filename]\n");
-	printf("               {fetch | check-support | check-db | check-low-volume} [symbol-1 symbol-2 ...]\n");
+	printf("               {fetch | check-spt | check-db | check-pb | check-low-volume} [symbol-1 symbol-2 ...]\n");
 }
 
 static int init_dirs(const char *country)
@@ -132,14 +132,14 @@ int main(int argc, const char **argv)
 			else if (strcmp(arg, "fetch") == 0) {
 				action = ACTION_FETCH;
 			}
-			else if (strcmp(arg, "check-support") == 0) {
-				action = ACTION_CHECK_SUPPORT;
+			else if (strcmp(arg, "check-spt") == 0) {
+				action = ACTION_CHECK_SPT;
 			}
 			else if (strcmp(arg, "check-db") == 0) {
 				action = ACTION_CHECK_DB;
 			}
-			else if (strcmp(arg, "check-pullback") == 0) {
-				action = ACTION_CHECK_PULLBACK;
+			else if (strcmp(arg, "check-pb") == 0) {
+				action = ACTION_CHECK_PB;
 			}
 			else if (strcmp(arg, "check-low-volume") == 0) {
 				action = ACTION_CHECK_LOW_VOLUME;
@@ -182,7 +182,7 @@ int main(int argc, const char **argv)
 		fetch_symbols_price(country, ticker_list_fname, symbols_nr, (const char **)symbols);
 		break;
 
-	case ACTION_CHECK_SUPPORT:
+	case ACTION_CHECK_SPT:
 		stock_price_check_support(country, date, symbols_nr, (const char **)symbols);
 		break;
 
@@ -190,7 +190,7 @@ int main(int argc, const char **argv)
 		stock_price_check_doublebottom(country, date, symbols_nr, (const char **)symbols);
 		break;
 
-	case ACTION_CHECK_PULLBACK:
+	case ACTION_CHECK_PB:
 		stock_price_check_pullback(country, date, symbols_nr, (const char **)symbols);
 		break;
 
