@@ -204,13 +204,13 @@ int fetch_realtime_price(const char *symbol, struct date_price *realtime_price)
 	return 0;
 }
 
-static int fetch_symbol_price_since_date(const char *country, const char *symbol, int year, int month, int mday)
+static int fetch_symbol_price_since_date(const char *group, const char *symbol, int year, int month, int mday)
 {
 	char output_fname[128];
 	struct stock_price price = { };
 	int rt = -1;
 
-	snprintf(output_fname, sizeof(output_fname), ROOT_DIR "/%s/%s.price", country, symbol);
+	snprintf(output_fname, sizeof(output_fname), ROOT_DIR "/%s/%s.price", group, symbol);
 	if (access(output_fname, F_OK) == 0) {
 		//anna_info("%s already fetched, skip\n", symbol);
 		return -1;
@@ -228,8 +228,8 @@ static int fetch_symbol_price_since_date(const char *country, const char *symbol
 		goto finish;
 	}
 
-	if (stock_price_to_file(country, symbol, &price) < 0) {
-		anna_error("stock_price_to_file('%s') failed\n", country);
+	if (stock_price_to_file(group, symbol, &price) < 0) {
+		anna_error("stock_price_to_file('%s') failed\n", group);
 		goto finish;
 	}
 
@@ -241,7 +241,7 @@ finish:
 	return rt;
 }
 
-int fetch_symbols_price(const char *country, const char *fname, int symbols_nr, const char **symbols)
+int fetch_symbols_price(const char *group, const char *fname, int symbols_nr, const char **symbols)
 {
 	int count = 0;
 	int i;
@@ -253,7 +253,7 @@ int fetch_symbols_price(const char *country, const char *fname, int symbols_nr, 
 
 	if (symbols_nr) {
 		for (i = 0; i < symbols_nr; i++)
-			fetch_symbol_price_since_date(country, symbols[i], year, now_tm->tm_mon, now_tm->tm_mday);
+			fetch_symbol_price_since_date(group, symbols[i], year, now_tm->tm_mon, now_tm->tm_mday);
 		return 0;
 	}
 
@@ -276,11 +276,11 @@ int fetch_symbols_price(const char *country, const char *fname, int symbols_nr, 
 				symbol[len - 1] = 0;
 
 			if (strncmp(symbol, "-include ", strlen("-include ")) == 0) {
-				count += fetch_symbols_price(country, strchr(symbol, ' ') + 1, 0, NULL);
+				count += fetch_symbols_price(group, strchr(symbol, ' ') + 1, 0, NULL);
 				continue;
 			}
 
-			if (fetch_symbol_price_since_date(country, symbol, year, now_tm->tm_mon, now_tm->tm_mday) == 0)
+			if (fetch_symbol_price_since_date(group, symbol, year, now_tm->tm_mon, now_tm->tm_mday) == 0)
 				count += 1;
 		}
 

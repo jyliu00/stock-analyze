@@ -560,13 +560,13 @@ int stock_price_from_file(const char *fname, struct stock_price *price)
 	return 0;
 }
 
-int stock_price_to_file(const char *country, const char *symbol, const struct stock_price *price)
+int stock_price_to_file(const char *group, const char *symbol, const struct stock_price *price)
 {
 	char output_fname[256];
 	FILE *fp;
 	int i;
 
-	snprintf(output_fname, sizeof(output_fname), ROOT_DIR "/%s/%s.price", country, symbol);
+	snprintf(output_fname, sizeof(output_fname), ROOT_DIR "/%s/%s.price", group, symbol);
 	fp = fopen(output_fname, "w");
 	if (!fp) {
 		anna_error("fopen(%s) failed: %d(%s)\n", output_fname, errno, strerror(errno));
@@ -900,7 +900,7 @@ static int call_check_func(const char *symbol, const char *date, const char *fna
 	return 0;
 }
 
-static void stock_price_check(const char *country, const char *date, int symbols_nr, const char **symbols,
+static void stock_price_check(const char *group, const char *date, int symbols_nr, const char **symbols,
 				void (*check_func)(const char *symbol, const struct stock_price *price_history, const struct date_price *price2check))
 {
 
@@ -908,7 +908,7 @@ static void stock_price_check(const char *country, const char *date, int symbols
 	char fname[256];
 	int i;
 
-	snprintf(path, sizeof(path), "%s/%s", ROOT_DIR, country);
+	snprintf(path, sizeof(path), "%s/%s", ROOT_DIR, group);
 
 	if (symbols_nr) {
 		for (i = 0; i < symbols_nr; i++) {
@@ -947,22 +947,22 @@ static void stock_price_check(const char *country, const char *date, int symbols
 	}
 }
 
-void stock_price_check_support(const char *country, const char *date, int symbols_nr, const char **symbols)
+void stock_price_check_support(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
-	stock_price_check(country, date, symbols_nr, symbols, symbol_check_support);
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_support);
 }
 
-void stock_price_check_doublebottom(const char *country, const char *date, int symbols_nr, const char **symbols)
+void stock_price_check_doublebottom(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
-	stock_price_check(country, date, symbols_nr, symbols, symbol_check_doublebottom);
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_doublebottom);
 }
 
-void stock_price_check_pullback(const char *country, const char *date, int symbols_nr, const char **symbols)
+void stock_price_check_pullback(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
-	stock_price_check(country, date, symbols_nr, symbols, symbol_check_pullback);
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_pullback);
 }
 
-void stock_price_check_low_volume(const char *country, const char *date, int symbols_nr, const char **symbols)
+void stock_price_check_low_volume(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
-	stock_price_check(country, date, symbols_nr, symbols, symbol_check_low_volume);
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_low_volume);
 }

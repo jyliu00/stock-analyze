@@ -26,13 +26,15 @@ enum
 	ACTION_NR
 };
 
+const char *group_list[ ] = { "usa", "ibd", "biotech", "china", "canada", NULL };
+
 static void print_usage(void)
 {
-	printf("Usage: anna -country={usa|china|canada|biotech|ibd} [-date=yyyy-mm-dd] [-conf=filename]\n");
+	printf("Usage: anna -group={usa|china|canada|biotech|ibd} [-date=yyyy-mm-dd] [-conf=filename]\n");
 	printf("               {fetch | check-spt | check-db | check-pb | check-low-volume} [symbol-1 symbol-2 ...]\n");
 }
 
-static int init_dirs(const char *country)
+static int init_dirs(const char *group)
 {
 	char path[128];
 
@@ -50,7 +52,7 @@ static int init_dirs(const char *country)
 		}
 	}
 
-	snprintf(path, sizeof(path), ROOT_DIR "/%s", country);
+	snprintf(path, sizeof(path), ROOT_DIR "/%s", group);
 	if (access(path, F_OK) < 0) {
 		if (mkdir(path, 0777) < 0) {
 			anna_error("mkdir(%s) failed: %d(%s)\n", path, errno, strerror(errno));
@@ -61,10 +63,10 @@ static int init_dirs(const char *country)
 	return 0;
 }
 
-static int load_config_file(const char *fname, const char *country)
+static int load_config_file(const char *fname, const char *group)
 {
 	char buf[512];
-	int country_matched = 0;
+	int group_matched = 0;
 
 	if (!fname || !fname[0])
 		fname = "anna.conf";
@@ -83,18 +85,18 @@ static int load_config_file(const char *fname, const char *country)
 
 		buf[strlen(buf) - 1] = 0;
 
-		if (buf[0] == '[' && strncmp(buf, "[country=", strlen("[country=")) == 0) {
+		if (buf[0] == '[' && strncmp(buf, "[group=", strlen("[group=")) == 0) {
 			p = strchr(buf, '=');
 
-			if (strncmp(p + 1, country, strlen(country)) == 0)
-				country_matched = 1;
+			if (strncmp(p + 1, group, strlen(group)) == 0)
+				group_matched = 1;
 			else
-				country_matched = 0;
+				group_matched = 0;
 
 			continue;
 		}
 
-		if (country_matched) {
+		if (group_matched) {
 			if (strncmp(buf, "ticker_list_file=", strlen("ticker_list_file=")) == 0) {
 				p = strchr(buf, '=');
 				strlcpy(ticker_list_fname, p + 1, sizeof(ticker_list_fname));
@@ -113,7 +115,7 @@ static int load_config_file(const char *fname, const char *country)
 
 int main(int argc, const char **argv)
 {
-	char country[16] = { 0 };
+	char group[16] = { 0 };
 	char date[12] = { 0 };
 	char conf_fname[64] = { 0 };
 	int action = ACTION_NONE;
@@ -145,9 +147,9 @@ int main(int argc, const char **argv)
 				action = ACTION_CHECK_LOW_VOLUME;
 			}
 		}
-		else if (strncmp(arg, "-country=", strlen("-country=")) == 0) {
+		else if (strncmp(arg, "-group=", strlen("-group=")) == 0) {
 			p = strchr(arg, '=');
-			strlcpy(country, p + 1, sizeof(country));
+			strlcpy(group, p + 1, sizeof(group));
 		}
 		else if (strncmp(arg, "-date=", strlen("-date=")) == 0) {
 			p = strchr(arg, '=');
@@ -162,40 +164,49 @@ int main(int argc, const char **argv)
 		}
 	}
 
-	if (action == ACTION_NONE || country[0] == 0
-	    || (strcmp(country, "usa") && strcmp(country, "china")
-		&& strcmp(country, "canada") && strcmp(country, "biotech")
-		&& strcmp(country, "ibd")))
+	if (action == ACTION_NONE || group[0] == 0)
 	{
 		print_usage( );
 		goto finish;
 	}
 
-	if (init_dirs(country) < 0)
-		goto finish;
+	if (group[0]) {
+		for (i = 0; group_list[i]; i++) {
+			if (strcmp(group, group_list[i]) == 0)
+				break;
+		}
 
-	if (load_config_file(conf_fname, country) < 0)
+		if (group_list[i] == NULL) {
+			print_usage( );
+			goto finish;
+		}
+	}
+
+	if (init_dirs(group) < 0)
+			goto finish;
+
+	if (load_config_file(conf_fname, group) < 0)
 		goto finish;
 
 	switch (action) {
 	case ACTION_FETCH:
-		fetch_symbols_price(country, ticker_list_fname, symbols_nr, (const char **)symbols);
+		fetch_symbols_price(group, ticker_list_fname, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_SPT:
-		stock_price_check_support(country, date, symbols_nr, (const char **)symbols);
+		stock_price_check_support(group, date, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_DB:
-		stock_price_check_doublebottom(country, date, symbols_nr, (const char **)symbols);
+		stock_price_check_doublebottom(group, date, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_PB:
-		stock_price_check_pullback(country, date, symbols_nr, (const char **)symbols);
+		stock_price_check_pullback(group, date, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_LOW_VOLUME:
-		stock_price_check_low_volume(country, date, symbols_nr, (const char **)symbols);
+		stock_price_check_low_volume(group, date, symbols_nr, (const char **)symbols);
 		break;
 	}
 
