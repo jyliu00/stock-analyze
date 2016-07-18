@@ -1,3 +1,4 @@
+%sector=shanghai_180
 600000.SS
 600009.SS
 600010.SS

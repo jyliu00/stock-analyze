@@ -1,3 +1,4 @@
+%sector=xlf
 AFL
 AIG
 AIV

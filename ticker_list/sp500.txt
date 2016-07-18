@@ -1,3 +1,4 @@
+%sector=sp500
 A
 AA
 AAL

@@ -1,3 +1,4 @@
+%sector=canslim
 A
 ABX
 AFG

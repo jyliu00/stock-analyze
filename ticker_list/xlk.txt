@@ -1,3 +1,4 @@
+%sector=xlk
 ACN
 ADS
 APH

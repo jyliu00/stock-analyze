@@ -1,3 +1,4 @@
+%sector=spotlight
 ALRM
 BGS
 CSGS

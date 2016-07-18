@@ -1,3 +1,4 @@
+%sector=medium_small
 002001.SZ
 002004.SZ
 002005.SZ

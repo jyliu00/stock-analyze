@@ -1,3 +1,4 @@
+%sector=ibd50
 AHS
 ALGN
 AOS

@@ -1,3 +1,4 @@
+%sector=xic
 AAR-UN.TO
 AAV.TO
 ABX.TO

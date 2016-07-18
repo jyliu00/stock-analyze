@@ -1,3 +1,4 @@
+%sector=xli
 AAL
 ALK
 ALLE

@@ -1,3 +1,4 @@
+%sector=nasdaq100
 AAL
 AAPL
 ADBE

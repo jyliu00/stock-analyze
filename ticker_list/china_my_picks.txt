@@ -1,3 +1,4 @@
+%sector=my_picks
 002593.SZ
 002114.SZ
 002196.SZ

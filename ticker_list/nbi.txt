@@ -1,3 +1,4 @@
+%sector=nbi
 AAVL
 ACAD
 ACHN

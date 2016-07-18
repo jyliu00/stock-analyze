@@ -351,14 +351,24 @@ int stock_price_history_from_file(const char *fname, struct stock_price *price)
 		return -1;
 	}
 
+	price->sector[0] = 0;
+
 	while (fgets(buf, sizeof(buf), fp)) {
+		char *token;
+
+		if (buf[0] == '%') {
+			buf[strlen(buf) - 1] = 0;
+			if (strncmp(&buf[1], "sector=", strlen("sector=")) == 0)
+				strlcpy(price->sector, strchr(buf, '=') + 1, sizeof(price->sector));
+			continue;
+		}
+
 		if (price->date_cnt >= DATE_PRICE_SZ_MAX) {
 			anna_error("fname='%s', date_cnt=%d>%d\n", fname, price->date_cnt, DATE_PRICE_SZ_MAX);
 			return -1;
 		}
 
 		struct date_price *cur = &price->dateprice[price->date_cnt];
-		char *token;
 
 		token = strtok(buf, ",");
 		if (!token) continue;
@@ -560,7 +570,7 @@ int stock_price_from_file(const char *fname, struct stock_price *price)
 	return 0;
 }
 
-int stock_price_to_file(const char *group, const char *symbol, const struct stock_price *price)
+int stock_price_to_file(const char *group, const char *sector, const char *symbol, const struct stock_price *price)
 {
 	char output_fname[256];
 	FILE *fp;
@@ -572,6 +582,9 @@ int stock_price_to_file(const char *group, const char *symbol, const struct stoc
 		anna_error("fopen(%s) failed: %d(%s)\n", output_fname, errno, strerror(errno));
 		return -1;
 	}
+
+	if (sector && sector[0])
+		fprintf(fp, "%%sector=%s\n", sector);
 
 	for (i = 0; i < price->date_cnt; i++) {
 		const struct date_price *p = &price->dateprice[i];
@@ -793,7 +806,7 @@ static void symbol_check_support(const char *symbol, const struct stock_price *p
 	for (i = 0; i < sspt.date_nr; i++)
 		anna_info(" %s(%c)", sspt.date[i], is_support(sspt.sr_flag[i]) ? 's' : is_resist(sspt.sr_flag[i]) ? 'r' : '?');
 
-	anna_info("\n");
+	anna_info(". %s<sector=%s>%s\n", ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 }
 
 static void symbol_check_doublebottom(const char *symbol, const struct stock_price *price_history,
@@ -809,8 +822,9 @@ static void symbol_check_doublebottom(const char *symbol, const struct stock_pri
 
 	for (i = 0; i < sspt.date_nr; i++) {
 		if (sspt.is_doublebottom[i]) {
-			anna_info("%s%s%s: date=%s is double bottom with dates=%s\n",
-				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date, sspt.date[i]);
+			anna_info("%s%s%s: date=%s is double bottom with dates=%s. %s<sector=%s>%s\n",
+				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date, sspt.date[i],
+				ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 			break;
 		}
 	}
@@ -844,17 +858,19 @@ static void symbol_check_pullback(const char *symbol, const struct stock_price *
 		if (sr_hit(price2check->low, prev->low) || sr_hit(price2check_2ndlow, prev->low)
 		    || sr_hit(price2check->low, prev_2ndlow) || sr_hit(price2check_2ndlow, prev_2ndlow))
 		{
-			anna_info("%s%s%s: date=%s hit bigupdate=%s at support\n",
+			anna_info("%s%s%s: date=%s hit bigupdate=%s at support. %s<sector=%s>%s\n",
 				  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
-				  price2check->date, prev->date);
+				  price2check->date, prev->date,
+				  ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 			break;
 		}
 		else if (sr_hit(price2check->low, prev->high) || sr_hit(price2check_2ndlow, prev->high)
 			 || sr_hit(price2check->low, prev_2ndhigh) || sr_hit(price2check_2ndlow, prev_2ndhigh))
 		{
-			anna_info("%s%s%s: date=%s hit bigupdate=%s at resist\n",
+			anna_info("%s%s%s: date=%s hit bigupdate=%s at resist. %s<sector=%s>%s\n",
 				  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
-				  price2check->date, prev->date);
+				  price2check->date, prev->date,
+				  ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 			break;
 		}
 	}
@@ -875,9 +891,10 @@ static void symbol_check_low_volume(const char *symbol, const struct stock_price
 		    && (price2check->low <= prev->low || price2check->close <= prev->close || prev->low <= price2check->close)
 		    && price2check->volume * 100 / prev->vma[VMA_10d] <= 75)
 		{
-			anna_info("\n%s%s%s: date=%s has low volume, %u/%u\n\n",
-					ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date,
-					price2check->volume, prev->vma[VMA_10d]);
+			anna_info("\n%s%s%s: date=%s has low volume, %u/%u. %s<sector=%s>%s\n\n",
+				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+				price2check->date, price2check->volume, prev->vma[VMA_10d],
+				ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 		}
 
 		break;

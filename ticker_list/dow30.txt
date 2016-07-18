@@ -1,3 +1,4 @@
+%sector=dow30
 AAPL
 AXP
 BA

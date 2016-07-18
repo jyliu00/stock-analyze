@@ -1,3 +1,4 @@
+%sector=xly
 AAP
 AMZN
 AN

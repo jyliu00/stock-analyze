@@ -68,15 +68,16 @@ struct date_price
 
 struct stock_price
 {
-	int date_cnt;
+	char sector[48];
 
 #define DATE_PRICE_SZ_MAX   1024
+	int date_cnt;
 	struct date_price dateprice[DATE_PRICE_SZ_MAX];
 };
 
 int stock_price_realtime_from_file(const char *output_fname, struct date_price *price);
 int stock_price_from_file(const char *fname, struct stock_price *price);
-int stock_price_to_file(const char *group, const char *symbol, const struct stock_price *price);
+int stock_price_to_file(const char *group, const char *sector, const char *symbol, const struct stock_price *price);
 void stock_price_check_support(const char *group, const char *date, int symbols_nr, const char **symbols);
 void stock_price_check_doublebottom(const char *group, const char *date, int symbols_nr, const char **symbols);
 void stock_price_check_pullback(const char *group, const char *date, int symbols_nr, const char **symbols);

@@ -1,3 +1,4 @@
+%sector=xlb
 AA
 ALB
 APD

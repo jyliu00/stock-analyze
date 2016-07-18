@@ -1,3 +1,4 @@
+%sector=bigcap20
 AMT
 BSX
 CRM

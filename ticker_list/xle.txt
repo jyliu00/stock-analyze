@@ -1,3 +1,4 @@
+%sector=xle
 APA
 APC
 BHI

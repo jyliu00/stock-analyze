@@ -1,3 +1,4 @@
+%sector=my_picks
 CYH
 EDIT
 NVS

@@ -1,3 +1,4 @@
+%sector=startup_index
 300001.SZ
 300002.SZ
 300003.SZ

@@ -204,7 +204,7 @@ int fetch_realtime_price(const char *symbol, struct date_price *realtime_price)
 	return 0;
 }
 
-static int fetch_symbol_price_since_date(const char *group, const char *symbol, int year, int month, int mday)
+static int fetch_symbol_price_since_date(const char *group, const char *sector, const char *symbol, int year, int month, int mday)
 {
 	char output_fname[128];
 	struct stock_price price = { };
@@ -228,7 +228,7 @@ static int fetch_symbol_price_since_date(const char *group, const char *symbol, 
 		goto finish;
 	}
 
-	if (stock_price_to_file(group, symbol, &price) < 0) {
+	if (stock_price_to_file(group, sector, symbol, &price) < 0) {
 		anna_error("stock_price_to_file('%s') failed\n", group);
 		goto finish;
 	}
@@ -253,12 +253,13 @@ int fetch_symbols_price(const char *group, const char *fname, int symbols_nr, co
 
 	if (symbols_nr) {
 		for (i = 0; i < symbols_nr; i++)
-			fetch_symbol_price_since_date(group, symbols[i], year, now_tm->tm_mon, now_tm->tm_mday);
+			fetch_symbol_price_since_date(group, NULL, symbols[i], year, now_tm->tm_mon, now_tm->tm_mday);
 		return 0;
 	}
 
 	if (fname && fname[0]) {
 		char symbol[128];
+		char sector[48];
 		FILE *fp = fopen(fname, "r");
 		if (!fp) {
 			anna_error("fopen(%s) failed: %d(%s)\n", fname, errno, strerror(errno));
@@ -275,12 +276,18 @@ int fetch_symbols_price(const char *group, const char *fname, int symbols_nr, co
 			if (symbol[len - 1] == '\n')
 				symbol[len - 1] = 0;
 
-			if (strncmp(symbol, "-include ", strlen("-include ")) == 0) {
-				count += fetch_symbols_price(group, strchr(symbol, ' ') + 1, 0, NULL);
+			if (symbol[0] == '-') {
+				if (strncmp(&symbol[1], "include ", strlen("include ")) == 0)
+					count += fetch_symbols_price(group, strchr(symbol, ' ') + 1, 0, NULL);
+				continue;
+			}
+			else if (symbol[0] == '%') {
+				if (strncmp(&symbol[1], "sector=", strlen("sector=")) == 0)
+					strlcpy(sector, strchr(symbol, '=') + 1, sizeof(sector));
 				continue;
 			}
 
-			if (fetch_symbol_price_since_date(group, symbol, year, now_tm->tm_mon, now_tm->tm_mday) == 0)
+			if (fetch_symbol_price_since_date(group, sector, symbol, year, now_tm->tm_mon, now_tm->tm_mday) == 0)
 				count += 1;
 		}
 

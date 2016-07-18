@@ -1,3 +1,4 @@
+%sector=major_indices
 TLT
 SPY
 QQQ

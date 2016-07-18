@@ -11,4 +11,4 @@
 -include ticker_list/xly.txt
 -include ticker_list/xsd.txt
 -include ticker_list/sp500.txt
--include ticker_list/my_picks.txt
+-include ticker_list/usa_my_picks.txt
