@@ -2,7 +2,8 @@
 
 #include <string.h>
 
-uint32_t sr_height_margin = 80; /* 8% height */
+uint32_t sr_height_margin = 80; /* support/resist height: 8% */
+uint32_t spt_pullback_margin = 75; /* 7.5% pullback */
 
 void strlcpy(char *dest, const char *src, int dest_sz)
 {

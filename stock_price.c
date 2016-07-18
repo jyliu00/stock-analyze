@@ -668,7 +668,7 @@ static int date_is_downtrend(const struct stock_price *price_history, int idx, c
 			max_low_diff = prev->high - price2check->low;
 	}
 
-	if (!is_falling || (max_low_diff * 1000 / get_2ndlow(price2check) < 75/*diff_margin_percent*/))
+	if (!is_falling || (max_low_diff * 1000 / get_2ndlow(price2check) < spt_pullback_margin))
 		return 0;
 
 	return 1;

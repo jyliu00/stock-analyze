@@ -34,5 +34,6 @@ void strlcpy(char *dest, const char *src, int dest_sz);
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
 extern uint32_t sr_height_margin;
+extern uint32_t spt_pullback_margin;
 
 #endif /* __UTIL_H__ */

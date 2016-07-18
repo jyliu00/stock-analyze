@@ -105,6 +105,10 @@ static int load_config_file(const char *fname, const char *group)
 				p = strchr(buf, '=');
 				sr_height_margin = atoi(p + 1);
 			}
+			else if (strncmp(buf, "spt_pullback_margin=", strlen("spt_pullback_margin=")) == 0) {
+				p = strchr(buf, '=');
+				spt_pullback_margin = atoi(p + 1);
+			}
 		}
 	}
 
