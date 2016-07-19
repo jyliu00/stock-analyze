@@ -195,6 +195,33 @@ static void calculate_one_side_sr(struct date_price *cur, struct date_price *tes
 	}
 }
 
+static void calculate_support_bigupday(struct stock_price *price, int cur_idx, struct date_price *cur)
+{
+	int i;
+
+	/* 1st candle must be green and have a good body size */
+	if (cur->sr_flag
+	    || cur->candle_color != CANDLE_COLOR_GREEN
+	    || (uint64_t)(cur->close - cur->open) * 1000 / (cur->high - cur->low) < 700) /* body size >= 70% */
+		return;
+
+	uint32_t cur_2ndlow = get_2ndlow(cur);
+	uint32_t high = cur->high;
+
+	for (i = cur_idx - 1; i >= 0; i--) {
+		struct date_price *next = &price->dateprice[i];
+
+		if (next->low < cur_2ndlow || next->close <= (next + 1)->close)
+			break;
+
+		if (next->high > high)
+			high = next->high;
+	}
+
+	if ((high - cur->low) * 1000 / cur->low >= 70) /* up >= 7% */
+		cur->sr_flag = SR_F_BIGUPDAY;
+}
+
 static void calculate_support_resistance(struct stock_price *price, int cur_idx, struct date_price *cur)
 {
 	int cnt = price->date_cnt - cur_idx;
@@ -297,14 +324,7 @@ static void calculate_support_resistance(struct stock_price *price, int cur_idx,
 	if (cur->sr_flag)
 		return;
 
-	/* check for big up day */
-	if (cur->candle_color == CANDLE_COLOR_GREEN /* today is an up day */
-	    && (cur->high - cur->low) * 100 / cur->low >= 7 /* up >= 7% */
-	    && (cur->close - cur->open) * 100 / (cur->high - cur->low) >= 70 /* body size >= 70% */
-	    && (cur - 1)->close < cur->high)  /* next day is down day */
-	{
-		cur->sr_flag = SR_F_BIGUPDAY;
-	}
+	calculate_support_bigupday(price, cur_idx, cur);
 }
 
 static void calculate_stock_price_statistics(struct stock_price *price)
@@ -985,16 +1005,12 @@ static void symbol_check_pullback(const char *symbol, const struct stock_price *
 			break;
 	}
 
-	if (price_history->date_cnt - i < 5) /* need to back trace at least 5 days */
-		return;
-
 	for (j = 0; j < 20 && i < price_history->date_cnt; i++, j++) {
 		const struct date_price *prev = &price_history->dateprice[i];
 
 		if (!(prev->sr_flag & SR_F_BIGUPDAY))
 			continue;
 
-		uint32_t prev_2ndhigh = get_2ndhigh(prev);
 		uint32_t prev_2ndlow = get_2ndlow(prev);
 		uint32_t price2check_2ndlow = get_2ndlow(price2check);
 
@@ -1002,15 +1018,6 @@ static void symbol_check_pullback(const char *symbol, const struct stock_price *
 		    || sr_hit(price2check->low, prev_2ndlow) || sr_hit(price2check_2ndlow, prev_2ndlow))
 		{
 			anna_info("%s%s%s: date=%s hit bigupdate=%s at support. %s<sector=%s>%s\n",
-				  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
-				  price2check->date, prev->date,
-				  ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
-			break;
-		}
-		else if (sr_hit(price2check->low, prev->high) || sr_hit(price2check_2ndlow, prev->high)
-			 || sr_hit(price2check->low, prev_2ndhigh) || sr_hit(price2check_2ndlow, prev_2ndhigh))
-		{
-			anna_info("%s%s%s: date=%s hit bigupdate=%s at resist. %s<sector=%s>%s\n",
 				  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
 				  price2check->date, prev->date,
 				  ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
