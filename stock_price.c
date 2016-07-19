@@ -376,6 +376,10 @@ int stock_price_history_from_file(const char *fname, struct stock_price *price)
 
 		token = strtok(NULL, ",");
 		if (!token) continue;
+		cur->wday = atoi(token);
+
+		token = strtok(NULL, ",");
+		if (!token) continue;
 		cur->open = atoi(token);
 
 		token = strtok(NULL, ",");
@@ -489,6 +493,35 @@ int stock_price_realtime_from_file(const char *output_fname, struct date_price *
 	return 0;
 }
 
+static int str2date(const char *date, int *year, int *month, int *mday)
+{
+	char _date[32];
+	char *token, *saved;
+
+	strlcpy(_date, date, sizeof(_date));
+
+	token = strtok_r(_date, "-", &saved);
+	if (!token) return -1;
+	*year = atoi(token);
+
+	token = strtok_r(NULL, "-", &saved);
+	if (!token) return -1;
+	*month = atoi(token);
+
+	token = strtok_r(NULL, "-", &saved);
+	if (!token) return -1;
+	*mday = atoi(token);
+
+	return 0;
+}
+
+static int dayofweek(int year, int month, int mday)
+{
+	static int t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
+	year -= month < 3;
+	return ( year + year/4 - year/100 + year/400 + t[month-1] + mday) % 7;
+}
+
 int stock_price_from_file(const char *fname, struct stock_price *price)
 {
 	FILE *fp;
@@ -511,6 +544,8 @@ int stock_price_from_file(const char *fname, struct stock_price *price)
 	fgets(buf, sizeof(buf), fp);
 
 	while (fgets(buf, sizeof(buf), fp)) {
+		int year, month, mday;
+
 		if (price->date_cnt >= DATE_PRICE_SZ_MAX) {
 			anna_error("fname='%s', date_cnt=%d>%d\n", fname, price->date_cnt, DATE_PRICE_SZ_MAX);
 			return -1;
@@ -523,6 +558,11 @@ int stock_price_from_file(const char *fname, struct stock_price *price)
 		token = strtok(buf, ",");
 		if (!token) continue;
 		strlcpy(cur->date, token, sizeof(cur->date));
+
+		if (str2date(cur->date, &year, &month, &mday) < 0)
+			anna_error("str2date(%s) failed\n", cur->date);
+		else
+			cur->wday = dayofweek(year, month, mday);
 
 		token = strtok(NULL, ",");
 		if (!token) continue;
@@ -590,10 +630,10 @@ int stock_price_to_file(const char *group, const char *sector, const char *symbo
 		const struct date_price *p = &price->dateprice[i];
 
 		fprintf(fp,
-			"%s,%u,%u,%u,%u,%u," /* date, open, high, low, close, volume */
+			"%s,%u,%u,%u,%u,%u,%u," /* date, wday, open, high, low, close, volume */
 			"%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u," /* sma_10/20/30/50/60/100/120/200d, vma_10/20/60d */
 			"%u,%u,%u,%u,%u,%u,%u\n",
-			p->date, p->open, p->high, p->low, p->close, p->volume,
+			p->date, p->wday, p->open, p->high, p->low, p->close, p->volume,
 			p->sma[SMA_10d], p->sma[SMA_20d], p->sma[SMA_30d], p->sma[SMA_50d],
 			p->sma[SMA_60d], p->sma[SMA_100d], p->sma[SMA_120d], p->sma[SMA_200d],
 			p->vma[VMA_10d], p->vma[VMA_20d], p->vma[VMA_60d],
@@ -999,6 +1039,51 @@ static void symbol_check_breakout(const char *symbol, const struct stock_price *
 	anna_info(". %s<sector=%s>%s\n", ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 }
 
+static void get_week_price(const struct stock_price *price_history, int *idx, struct date_price *week_price)
+{
+	int j;
+
+	memset(week_price, 0, sizeof(*week_price));
+	week_price->low = (uint32_t)-1;
+
+	for (j = 0; j < 5 && *idx < price_history->date_cnt; (*idx)++, j++) {
+		const struct date_price *cur = &price_history->dateprice[*idx];
+
+		if (j == 0)
+			week_price->close = cur->close;
+
+		if (cur->high > week_price->high)
+			week_price->high = cur->high;
+
+		if (cur->low < week_price->low)
+			week_price->low = cur->low;
+
+		if (cur->wday == 1) {
+			week_price->open = cur->open;
+			(*idx) += 1;
+			break;
+		}
+	}
+}
+
+static void symbol_check_weekup(const char *symbol, const struct stock_price *price_history,
+				 const struct date_price *price2check)
+{
+	struct date_price w1_price, w2_price;
+	int idx = 0;
+
+	get_week_price(price_history, &idx, &w1_price);
+	get_week_price(price_history, &idx, &w2_price);
+
+	if (w1_price.close > w1_price.open
+	    && w2_price.close > w2_price.open
+	    && w2_price.close > w1_price.close)
+	{
+		anna_info("%s%s%s: has continuous 2 weeks uptrend. %s<sector=%s>%s\n",
+			  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+			  ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+	}
+}
 
 static void symbol_check_low_volume(const char *symbol, const struct stock_price *price_history,
 				    const struct date_price *price2check)
@@ -1106,6 +1191,11 @@ void stock_price_check_pullback(const char *group, const char *date, int symbols
 void stock_price_check_breakout(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_breakout);
+}
+
+void stock_price_check_weekup(const char *group, const char *date, int symbols_nr, const char **symbols)
+{
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_weekup);
 }
 
 void stock_price_check_low_volume(const char *group, const char *date, int symbols_nr, const char **symbols)

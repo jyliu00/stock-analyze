@@ -56,6 +56,7 @@ struct date_price
 {
 #define STOCK_DATE_SZ 12
 	char      date[STOCK_DATE_SZ];
+	uint8_t   wday;
 	uint32_t  open, high, low, close;
 	uint32_t  volume;
 	uint32_t  sma[SMA_NR];
@@ -82,6 +83,7 @@ void stock_price_check_support(const char *group, const char *date, int symbols_
 void stock_price_check_doublebottom(const char *group, const char *date, int symbols_nr, const char **symbols);
 void stock_price_check_pullback(const char *group, const char *date, int symbols_nr, const char **symbols);
 void stock_price_check_breakout(const char *group, const char *date, int symbols_nr, const char **symbols);
+void stock_price_check_weekup(const char *group, const char *date, int symbols_nr, const char **symbols);
 void stock_price_check_low_volume(const char *group, const char *date, int symbols_nr, const char **symbols);
 
 #endif /* __STOCK_PRICE_H__ */
