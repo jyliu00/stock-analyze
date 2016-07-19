@@ -21,6 +21,7 @@ enum
 	ACTION_CHECK_SPT, /* support */
 	ACTION_CHECK_DB, /* double bottom */
 	ACTION_CHECK_PB, /* pull back */
+	ACTION_CHECK_BO, /* break out */
 	ACTION_CHECK_LOW_VOLUME,
 
 	ACTION_NR
@@ -31,7 +32,7 @@ const char *group_list[ ] = { "usa", "ibd", "biotech", "3x", "china", "canada", 
 static void print_usage(void)
 {
 	printf("Usage: anna -group={usa|china|canada|biotech|ibd|3x} [-date=yyyy-mm-dd] [-conf=filename]\n");
-	printf("               {fetch | check-spt | check-db | check-pb | check-low-volume} [symbol-1 symbol-2 ...]\n");
+	printf("               {fetch | check-spt | check-db | check-pb | check-bo | check-low-volume} [symbol-1 symbol-2 ...]\n");
 }
 
 static int init_dirs(const char *group)
@@ -147,6 +148,9 @@ int main(int argc, const char **argv)
 			else if (strcmp(arg, "check-pb") == 0) {
 				action = ACTION_CHECK_PB;
 			}
+			else if (strcmp(arg, "check-bo") == 0) {
+				action = ACTION_CHECK_BO;
+			}
 			else if (strcmp(arg, "check-low-volume") == 0) {
 				action = ACTION_CHECK_LOW_VOLUME;
 			}
@@ -207,6 +211,10 @@ int main(int argc, const char **argv)
 
 	case ACTION_CHECK_PB:
 		stock_price_check_pullback(group, date, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_BO:
+		stock_price_check_breakout(group, date, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_LOW_VOLUME:

@@ -35,5 +35,6 @@ void strlcpy(char *dest, const char *src, int dest_sz);
 
 extern uint32_t sr_height_margin;
 extern uint32_t spt_pullback_margin;
+extern uint32_t bo_sr_height_margin;
 
 #endif /* __UTIL_H__ */
