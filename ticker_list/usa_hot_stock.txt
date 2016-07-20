@@ -1,0 +1,11 @@
+%hot_stock
+ABMD
+CBM
+FB
+FIT
+GOOGL
+GPRO
+LULU
+NFLX
+TSLA
+TWTR
