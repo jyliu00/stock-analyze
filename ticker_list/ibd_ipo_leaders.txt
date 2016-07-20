@@ -1,0 +1,16 @@
+%sector=ipo_leaders
+ACIA
+AM
+GKOS
+GMS
+INGN
+LGIH
+NSA
+PAYC
+PCTY
+QTS
+RMP
+RNG
+TEAM
+VEEV
+YRD

@@ -1,0 +1,11 @@
+%sector=global_leaders
+ALLE
+AVGO
+EDU
+INXN
+NTES
+SIMO
+TSE
+WB
+XRS
+YRD
