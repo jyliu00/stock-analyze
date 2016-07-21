@@ -6,6 +6,6 @@
 -include ticker_list/ibd_bigcap20.txt
 -include ticker_list/ibd_canslim.txt
 -include ticker_list/ibd_funds_buying.txt
--include ticker_list/ibd_weekly_review.txt
+#-include ticker_list/ibd_weekly_review.txt
 -include ticker_list/ibd_smallmid_cap_leaders_index.txt
 -include ticker_list/ibd_largemid_cap_leaders_index.txt
