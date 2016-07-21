@@ -1,0 +1,2 @@
+%sector=my_picks
+HZNP
