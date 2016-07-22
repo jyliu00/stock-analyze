@@ -352,11 +352,87 @@ static void calculate_stock_price_statistics(struct stock_price *price)
 	}
 }
 
+static int str_to_price(char *buf, struct date_price *price)
+{
+	char *token;
+	int i;
+
+	token = strtok(buf, ",");
+	if (!token) return -1;
+	strlcpy(price->date, token, sizeof(price->date));
+
+	token = strtok(NULL, ",");
+	if (!token) return -1;
+	price->wday = atoi(token);
+
+	token = strtok(NULL, ",");
+	if (!token) return -1;
+	price->open = atoi(token);
+
+	token = strtok(NULL, ",");
+	if (!token) return -1;
+	price->high = atoi(token);
+
+	token = strtok(NULL, ",");
+	if (!token) return -1;
+	price->low = atoi(token);
+
+	token = strtok(NULL, ",");
+	if (!token) return -1;
+	price->close = atoi(token);
+
+	token = strtok(NULL, ",");
+	if (!token) return -1;
+	price->volume = atoi(token);
+
+
+	for (i = 0; i < SMA_NR; i++) {
+		token = strtok(NULL, ",");
+		if (!token) return -1;
+		price->sma[i] = atoi(token);
+	}
+
+	for (i = 0; i < VMA_NR; i++) {
+		token = strtok(NULL, ",");
+		if (!token) return -1;
+		price->vma[i] = atoi(token);
+	}
+
+	token = strtok(NULL, ",");
+	if (!token) return -1;
+	price->candle_color = atoi(token);
+
+	token = strtok(NULL, ",");
+	if (!token) return -1;
+	price->candle_trend = atoi(token);
+
+	token = strtok(NULL, ",");
+	if (!token) return -1;
+	price->sr_flag = atoi(token);
+
+	token = strtok(NULL, ",");
+	if (!token) return -1;
+	price->height_low_spt = atoi(token);
+
+	token = strtok(NULL, ",");
+	if (!token) return -1;
+	price->height_2ndlow_spt = atoi(token);
+
+	token = strtok(NULL, ",");
+	if (!token) return -1;
+	price->height_high_rst = atoi(token);
+
+	token = strtok(NULL, ",");
+	if (!token) return -1;
+	price->height_2ndhigh_rst = atoi(token);
+
+	return 0;
+}
+
 int stock_price_history_from_file(const char *fname, struct stock_price *price)
 {
 	FILE *fp;
 	char buf[1024];
-	int i;
 
 	if (!fname || !fname[0] || !price) {
 		anna_error("invalid input parameters\n");
@@ -374,7 +450,6 @@ int stock_price_history_from_file(const char *fname, struct stock_price *price)
 	price->sector[0] = 0;
 
 	while (fgets(buf, sizeof(buf), fp)) {
-		char *token;
 
 		if (buf[0] == '%') {
 			buf[strlen(buf) - 1] = 0;
@@ -388,76 +463,8 @@ int stock_price_history_from_file(const char *fname, struct stock_price *price)
 			return -1;
 		}
 
-		struct date_price *cur = &price->dateprice[price->date_cnt];
-
-		token = strtok(buf, ",");
-		if (!token) continue;
-		strlcpy(cur->date, token, sizeof(cur->date));
-
-		token = strtok(NULL, ",");
-		if (!token) continue;
-		cur->wday = atoi(token);
-
-		token = strtok(NULL, ",");
-		if (!token) continue;
-		cur->open = atoi(token);
-
-		token = strtok(NULL, ",");
-		if (!token) continue;
-		cur->high = atoi(token);
-
-		token = strtok(NULL, ",");
-		if (!token) continue;
-		cur->low = atoi(token);
-
-		token = strtok(NULL, ",");
-		if (!token) continue;
-		cur->close = atoi(token);
-
-		token = strtok(NULL, ",");
-		if (!token) continue;
-		cur->volume = atoi(token);
-
-
-		for (i = 0; i < SMA_NR; i++) {
-			token = strtok(NULL, ",");
-			if (!token) continue;
-			cur->sma[i] = atoi(token);
-		}
-
-		for (i = 0; i < VMA_NR; i++) {
-			token = strtok(NULL, ",");
-			if (!token) continue;
-			cur->vma[i] = atoi(token);
-		}
-
-		token = strtok(NULL, ",");
-		if (!token) continue;
-		cur->candle_color = atoi(token);
-
-		token = strtok(NULL, ",");
-		if (!token) continue;
-		cur->candle_trend = atoi(token);
-
-		token = strtok(NULL, ",");
-		if (!token) continue;
-		cur->sr_flag = atoi(token);
-
-		token = strtok(NULL, ",");
-		if (!token) continue;
-		cur->height_low_spt = atoi(token);
-
-		token = strtok(NULL, ",");
-		if (!token) continue;
-		cur->height_2ndlow_spt = atoi(token);
-
-		token = strtok(NULL, ",");
-		if (!token) continue;
-		cur->height_high_rst = atoi(token);
-
-		token = strtok(NULL, ",");
-		if (!token) continue;
-		cur->height_2ndhigh_rst = atoi(token);
+		if (str_to_price(buf, &price->dateprice[price->date_cnt]) < 0)
+			continue;
 
 		price->date_cnt += 1;
 	}
@@ -630,6 +637,20 @@ int stock_price_from_file(const char *fname, struct stock_price *price)
 	return 0;
 }
 
+void fprintf_date_price(FILE *fp, const struct date_price *p)
+{
+	fprintf(fp,
+		"%s,%u,%u,%u,%u,%u,%u," /* date, wday, open, high, low, close, volume */
+		"%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u," /* sma_10/20/30/50/60/100/120/200d, vma_10/20/60d */
+		"%u,%u,%u,%u,%u,%u,%u\n",
+		p->date, p->wday, p->open, p->high, p->low, p->close, p->volume,
+		p->sma[SMA_10d], p->sma[SMA_20d], p->sma[SMA_30d], p->sma[SMA_50d],
+		p->sma[SMA_60d], p->sma[SMA_100d], p->sma[SMA_120d], p->sma[SMA_200d],
+		p->vma[VMA_10d], p->vma[VMA_20d], p->vma[VMA_60d],
+		p->candle_color, p->candle_trend, p->sr_flag,
+		p->height_low_spt, p->height_2ndlow_spt, p->height_high_rst, p->height_2ndhigh_rst);
+}
+
 int stock_price_to_file(const char *group, const char *sector, const char *symbol, const struct stock_price *price)
 {
 	char output_fname[256];
@@ -647,18 +668,7 @@ int stock_price_to_file(const char *group, const char *sector, const char *symbo
 		fprintf(fp, "%%sector=%s\n", sector);
 
 	for (i = 0; i < price->date_cnt; i++) {
-		const struct date_price *p = &price->dateprice[i];
-
-		fprintf(fp,
-			"%s,%u,%u,%u,%u,%u,%u," /* date, wday, open, high, low, close, volume */
-			"%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u," /* sma_10/20/30/50/60/100/120/200d, vma_10/20/60d */
-			"%u,%u,%u,%u,%u,%u,%u\n",
-			p->date, p->wday, p->open, p->high, p->low, p->close, p->volume,
-			p->sma[SMA_10d], p->sma[SMA_20d], p->sma[SMA_30d], p->sma[SMA_50d],
-			p->sma[SMA_60d], p->sma[SMA_100d], p->sma[SMA_120d], p->sma[SMA_200d],
-			p->vma[VMA_10d], p->vma[VMA_20d], p->vma[VMA_60d],
-			p->candle_color, p->candle_trend, p->sr_flag,
-			p->height_low_spt, p->height_2ndlow_spt, p->height_high_rst, p->height_2ndhigh_rst);
+		fprintf_date_price(fp, &price->dateprice[i]);
 	}
 
 	fclose(fp);
@@ -905,13 +915,38 @@ static void check_breakout(const struct stock_price *price_history, const struct
 	}
 }
 
+static int get_today_price(const char *symbol, struct date_price *price)
+{
+	char fname[128];
+	char buf[1024];
+	FILE *fp;
+	int rt = -1;
+
+	snprintf(fname, sizeof(fname), ROOT_DIR "/tmp/%s_today.price", symbol);
+
+	fp = fopen(fname, "r");
+	if (!fp)
+		return -1;
+
+	fgets(buf, sizeof(buf), fp);
+
+	if (str_to_price(buf, price) < 0)
+		goto finish;
+
+	rt = 0;
+
+finish:
+	fclose(fp);
+
+	return rt;
+}
+
 static int get_stock_price2check(const char *symbol, const char *date,
 				const struct stock_price *price_history,
 				struct date_price *price2check)
 {
-	if (strcmp(date, "realtime") == 0) { /* get real time price */
-		if (fetch_realtime_price(symbol, price2check) < 0)
-			return -1;
+	if (get_today_price(symbol, price2check) == 0) {
+		return 0;
 	}
 	else if (!date || !date[0]) {
 		memcpy(price2check, &price_history->dateprice[0], sizeof(*price2check));

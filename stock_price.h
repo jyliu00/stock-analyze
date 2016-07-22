@@ -2,6 +2,7 @@
 #define __STOCK_PRICE_H__
 
 #include <stdint.h>
+#include <stdio.h>
 
 enum
 {
@@ -79,6 +80,7 @@ struct stock_price
 int stock_price_realtime_from_file(const char *output_fname, struct date_price *price);
 int stock_price_from_file(const char *fname, struct stock_price *price);
 int stock_price_to_file(const char *group, const char *sector, const char *symbol, const struct stock_price *price);
+void fprintf_date_price(FILE *fp, const struct date_price *p);
 void stock_price_check_support(const char *group, const char *date, int symbols_nr, const char **symbols);
 void stock_price_check_doublebottom(const char *group, const char *date, int symbols_nr, const char **symbols);
 void stock_price_check_pullback(const char *group, const char *date, int symbols_nr, const char **symbols);

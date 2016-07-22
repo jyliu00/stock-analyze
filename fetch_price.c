@@ -100,12 +100,16 @@ static int stock_history_max_years(void)
 	return 2;
 }
 
-int fetch_realtime_price(const char *symbol, struct date_price *realtime_price)
+static int fetch_realtime_price(const char *symbol)
 {
 	char output_fname[128];
-	struct date_price price;
+	struct date_price price = { };
+	FILE *fp;
 
 	snprintf(output_fname, sizeof(output_fname), ROOT_DIR "/tmp/%s_today.price", symbol);
+
+	if (access(output_fname, F_OK) == 0)
+		return 0;
 
 	if (do_fetch_price(output_fname, symbol, 1, 0, 0, 0) < 0)
 		return -1;
@@ -113,15 +117,20 @@ int fetch_realtime_price(const char *symbol, struct date_price *realtime_price)
 	if (stock_price_realtime_from_file(output_fname, &price) < 0)
 		return -1;
 
-	memcpy(realtime_price, &price, sizeof(*realtime_price));
-
 	time_t now_t = time(NULL);
 	struct tm *now_tm = localtime(&now_t);
 	int year = 1900 + now_tm->tm_year;
 
-	snprintf(realtime_price->date, sizeof(realtime_price->date), "%d-%02d-%02d", year, now_tm->tm_mon + 1, now_tm->tm_mday);
+	snprintf(price.date, sizeof(price.date), "%d-%02d-%02d", year, now_tm->tm_mon + 1, now_tm->tm_mday);
 
-	unlink(output_fname);
+	fp = fopen(output_fname, "w");
+	if (!fp) {
+		unlink(output_fname);
+	}
+	else {
+		fprintf_date_price(fp, &price);
+		fclose(fp);
+	}
 
 	return 0;
 }
@@ -131,6 +140,10 @@ static int fetch_symbol_price_since_date(const char *group, const char *sector, 
 	char output_fname[128];
 	struct stock_price price = { };
 	int rt = -1;
+
+	if (!year) {
+		return fetch_realtime_price(symbol);
+	}
 
 	snprintf(output_fname, sizeof(output_fname), ROOT_DIR "/%s/%s.price", group, symbol);
 	if (access(output_fname, F_OK) == 0) {
@@ -163,19 +176,24 @@ finish:
 	return rt;
 }
 
-int fetch_symbols_price(const char *group, const char *fname, int symbols_nr, const char **symbols)
+int fetch_symbols_price(int realtime, const char *group, const char *fname, int symbols_nr, const char **symbols)
 {
+	int year = 0, month = 0, mday = 0;
 	int count = 0;
 	int i;
 
 	/* get last 2 year's price */
-	time_t now_t = time(NULL);
-	struct tm *now_tm = localtime(&now_t);
-	int year = 1900 + now_tm->tm_year - stock_history_max_years();
+	if (!realtime) {
+		time_t now_t = time(NULL);
+		struct tm *now_tm = localtime(&now_t);
+		year = 1900 + now_tm->tm_year - stock_history_max_years();
+		month = now_tm->tm_mon;
+		mday = now_tm->tm_mday;
+	}
 
 	if (symbols_nr) {
 		for (i = 0; i < symbols_nr; i++)
-			fetch_symbol_price_since_date(group, NULL, symbols[i], year, now_tm->tm_mon, now_tm->tm_mday);
+			fetch_symbol_price_since_date(group, NULL, symbols[i], year, month, mday);
 		return 0;
 	}
 
@@ -200,7 +218,7 @@ int fetch_symbols_price(const char *group, const char *fname, int symbols_nr, co
 
 			if (symbol[0] == '-') {
 				if (strncmp(&symbol[1], "include ", strlen("include ")) == 0)
-					count += fetch_symbols_price(group, strchr(symbol, ' ') + 1, 0, NULL);
+					count += fetch_symbols_price(realtime, group, strchr(symbol, ' ') + 1, 0, NULL);
 				continue;
 			}
 			else if (symbol[0] == '%') {
@@ -209,7 +227,7 @@ int fetch_symbols_price(const char *group, const char *fname, int symbols_nr, co
 				continue;
 			}
 
-			if (fetch_symbol_price_since_date(group, sector, symbol, year, now_tm->tm_mon, now_tm->tm_mday) == 0)
+			if (fetch_symbol_price_since_date(group, sector, symbol, year, month, mday) == 0)
 				count += 1;
 		}
 

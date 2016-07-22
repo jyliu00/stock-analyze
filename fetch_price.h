@@ -12,7 +12,6 @@ enum
 
 struct date_price;
 
-int fetch_symbols_price(const char *group, const char *fname, int symbols_nr, const char **symbols);
-int fetch_realtime_price(const char *symbol, struct date_price *realtime_price);
+int fetch_symbols_price(int realtime, const char *group, const char *fname, int symbols_nr, const char **symbols);
 
 #endif /* __FECTCH_PRICE_H__ */

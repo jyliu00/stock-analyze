@@ -18,6 +18,7 @@ enum
 	ACTION_NONE,
 
 	ACTION_FETCH,
+	ACTION_FETCH_REALTIME,
 	ACTION_CHECK_SPT, /* support */
 	ACTION_CHECK_DB, /* double bottom */
 	ACTION_CHECK_PB, /* pull back */
@@ -33,7 +34,7 @@ const char *group_list[ ] = { "usa", "ibd", "biotech", "3x", "china", "canada", 
 static void print_usage(void)
 {
 	printf("Usage: anna -group={usa|china|canada|biotech|ibd|3x} [-date=yyyy-mm-dd] [-conf=filename]\n");
-	printf("               {fetch | check-spt | check-db | check-pb | check-bo | check-wup | check-low-volume} [symbol-1 symbol-2 ...]\n");
+	printf("               {fetch | fetch-realtime | check-spt | check-db | check-pb | check-bo | check-wup | check-low-volume} [symbol-1 symbol-2 ...]\n");
 }
 
 static int init_dirs(const char *group)
@@ -140,6 +141,9 @@ int main(int argc, const char **argv)
 			else if (strcmp(arg, "fetch") == 0) {
 				action = ACTION_FETCH;
 			}
+			else if (strcmp(arg, "fetch-realtime") == 0) {
+				action = ACTION_FETCH_REALTIME;
+			}
 			else if (strcmp(arg, "check-spt") == 0) {
 				action = ACTION_CHECK_SPT;
 			}
@@ -202,7 +206,11 @@ int main(int argc, const char **argv)
 
 	switch (action) {
 	case ACTION_FETCH:
-		fetch_symbols_price(group, ticker_list_fname, symbols_nr, (const char **)symbols);
+		fetch_symbols_price(0, group, ticker_list_fname, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_FETCH_REALTIME:
+		fetch_symbols_price(1, group, ticker_list_fname, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_SPT:
