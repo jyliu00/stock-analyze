@@ -1139,10 +1139,10 @@ static void symbol_check_low_volume(const char *symbol, const struct stock_price
 			continue;
 
 		if (price2check->volume && prev->vma[VMA_10d]
-		    && (price2check->low <= prev->low || price2check->close <= prev->close || prev->low <= price2check->close)
-		    && price2check->volume * 100 / prev->vma[VMA_10d] <= 75)
+		    && (price2check->low <= prev->low || price2check->close <= prev->close || price2check->close < get_2ndlow(prev))
+		    && price2check->volume * 100 / prev->vma[VMA_10d] <= 50)
 		{
-			anna_info("\n%s%s%s: date=%s has low volume, %u/%u. %s<sector=%s>%s\n\n",
+			anna_info("%s%s%s: date=%s has low volume, %u/%u. %s<sector=%s>%s\n",
 				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
 				price2check->date, price2check->volume, prev->vma[VMA_10d],
 				ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
