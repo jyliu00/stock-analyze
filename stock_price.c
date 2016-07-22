@@ -1121,7 +1121,7 @@ static void symbol_check_weekup(const char *symbol, const struct stock_price *pr
 	    && w2_price.close > w2_price.open
 	    && w1_price.close > w2_price.close)
 	{
-		anna_info("%s%s%s: has continuous 3 weeks uptrend. %s<sector=%s>%s\n",
+		anna_info("%s%s%s: has continuous 2 weeks uptrend. %s<sector=%s>%s\n",
 			  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
 			  ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 	}
