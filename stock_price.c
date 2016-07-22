@@ -1119,9 +1119,28 @@ static void symbol_check_weekup(const char *symbol, const struct stock_price *pr
 
 	if (w1_price.close > w1_price.open
 	    && w2_price.close > w2_price.open
-	    && w2_price.close > w1_price.close)
+	    && w1_price.close > w2_price.close)
 	{
-		anna_info("%s%s%s: has continuous 2 weeks uptrend. %s<sector=%s>%s\n",
+		anna_info("%s%s%s: has continuous 3 weeks uptrend. %s<sector=%s>%s\n",
+			  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+			  ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+	}
+}
+
+static void symbol_check_week_reverse(const char *symbol, const struct stock_price *price_history,
+					 const struct date_price *price2check)
+{
+	struct date_price w1_price, w2_price;
+	int idx = 0;
+
+	get_week_price(price_history, &idx, &w1_price);
+	get_week_price(price_history, &idx, &w2_price);
+
+	if (w2_price.close < w2_price.open /* last week is down */
+	    && w1_price.close > w1_price.open /* this week is up */
+	    && w1_price.close > w2_price.open)
+	{
+		anna_info("%s%s%s: has week-reverse. %s<sector=%s>%s\n",
 			  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
 			  ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 	}
@@ -1279,6 +1298,11 @@ void stock_price_check_breakout(const char *group, const char *date, int symbols
 void stock_price_check_weekup(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_weekup);
+}
+
+void stock_price_check_week_reverse(const char *group, const char *date, int symbols_nr, const char **symbols)
+{
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_week_reverse);
 }
 
 void stock_price_check_low_volume(const char *group, const char *date, int symbols_nr, const char **symbols)
