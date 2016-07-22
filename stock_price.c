@@ -772,7 +772,7 @@ static int date_is_uptrend(const struct stock_price *price_history, int idx, con
 		}
 	}
 
-	if (!is_rising || (max_up_diff * 1000 / get_2ndlow(lowest_date) < bo_sr_height_margin))
+	if (!is_rising || !lowest_date || (max_up_diff * 1000 / get_2ndlow(lowest_date) < bo_sr_height_margin))
 		return 0;
 
 	return 1;
@@ -1138,13 +1138,54 @@ static void symbol_check_low_volume(const char *symbol, const struct stock_price
 		if (strcmp(price2check->date, prev->date) <= 0)
 			continue;
 
-		if (price2check->volume && prev->vma[VMA_10d]
-		    && (price2check->low <= prev->low || price2check->close <= prev->close || price2check->close < get_2ndlow(prev))
-		    && price2check->volume * 100 / prev->vma[VMA_10d] <= 50)
+		if (price2check->volume == 0 || prev->vma[VMA_10d] == 0)
+			break;
+
+		int lv_rate = (uint64_t)price2check->volume * 1000 / prev->vma[VMA_10d];
+
+		if (price2check->candle_trend == CANDLE_TREND_DOJI
+		    && lv_rate <= 500)
 		{
-			anna_info("%s%s%s: date=%s has low volume, %u/%u. %s<sector=%s>%s\n",
+			anna_info("%s%s%s: date=%s has low volume %u/%u=%d.%d%%. %s<sector=%s>%s\n",
 				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
-				price2check->date, price2check->volume, prev->vma[VMA_10d],
+				price2check->date, price2check->volume, prev->vma[VMA_10d], lv_rate / 10, lv_rate % 10,
+				ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+		}
+
+		break;
+	}
+}
+
+
+static void symbol_check_low_volume_up(const char *symbol, const struct stock_price *price_history,
+					const struct date_price *price2check)
+{
+	int i;
+
+	for (i = 0; i < price_history->date_cnt; i++) {
+		const struct date_price *prev = &price_history->dateprice[i];
+
+		if (strcmp(price2check->date, prev->date) <= 0)
+			continue;
+
+		if (price2check->close <= prev->close
+		    || !prev->vma[VMA_10d]
+		    || !prev->volume)
+			break;
+
+		int up_rate = (price2check->close - prev->close) * 1000 / prev->close;
+		int lv_rate = (uint64_t)prev->volume * 1000 / prev->vma[VMA_10d];
+		int body_rate = (price2check->open - price2check->close) * 100 / price2check->open;
+
+		if (price2check->candle_color == CANDLE_COLOR_GREEN /* today is up */
+		    && up_rate >= 30 /* up >= 3% from yesterday */
+		    && lv_rate <= 650 /* yesterday volume <= 65% vma_10d */
+		    && body_rate >= 70) /* today has good size body */
+		{
+			anna_info("%s%s%s: date=%s is %d.%d%% up from low-volume-date=%s, %u/%u=%d.%d%%. %s<sector=%s>%s\n",
+				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+				price2check->date, up_rate / 10, up_rate % 10,
+				prev->date, prev->volume, prev->vma[VMA_10d], lv_rate/10, lv_rate%10,
 				ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 		}
 
@@ -1243,4 +1284,8 @@ void stock_price_check_weekup(const char *group, const char *date, int symbols_n
 void stock_price_check_low_volume(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_low_volume);
+}
+void stock_price_check_low_volume_up(const char *group, const char *date, int symbols_nr, const char **symbols)
+{
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_low_volume_up);
 }
