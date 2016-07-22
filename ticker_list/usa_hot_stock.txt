@@ -1,4 +1,4 @@
-%hot_stock
+%sector=hot_stock
 ABMD
 CBM
 FB
