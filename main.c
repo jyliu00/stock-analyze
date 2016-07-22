@@ -34,7 +34,7 @@ const char *group_list[ ] = { "usa", "ibd", "biotech", "3x", "china", "canada", 
 static void print_usage(void)
 {
 	printf("Usage: anna -group={usa|china|canada|biotech|ibd|3x} [-date=yyyy-mm-dd] [-conf=filename]\n");
-	printf("               {fetch | fetch-realtime | check-spt | check-db | check-pb | check-bo | check-wup | check-lv} [symbol-1 symbol-2 ...]\n");
+	printf("               {fetch | fetch-rt | check-spt | check-db | check-pb | check-bo | check-wup | check-lv} [symbol-1 symbol-2 ...]\n");
 }
 
 static int init_dirs(const char *group)
@@ -141,7 +141,7 @@ int main(int argc, const char **argv)
 			else if (strcmp(arg, "fetch") == 0) {
 				action = ACTION_FETCH;
 			}
-			else if (strcmp(arg, "fetch-realtime") == 0) {
+			else if (strcmp(arg, "fetch-rt") == 0) {
 				action = ACTION_FETCH_REALTIME;
 			}
 			else if (strcmp(arg, "check-spt") == 0) {
