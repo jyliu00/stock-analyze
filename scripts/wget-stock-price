@@ -1,5 +1,6 @@
 get today's GOOGL price #s=symbol, n=name, x=stock exchange, d1=last trade date, o=open, h=day's high, g=day's low, l1=last trade price, v=volume
 wget -O test.price 'http://finance.yahoo.com/d/quotes.csv?s=GOOGL&f=snxd1ohgl1v'
+wget -O test.price 'http://www.google.com/finance/getprices?q=GOOGL&i=86400&p=1d&f=o,h,l,c,v'
 
 get GOOGL price on 2016-06-09
 wget -O googl.log 'http://ichart.finance.yahoo.com/table.csv?s=GOOGL&a=05&b=09&c=2016&d=05&e=09&f=2016&g=d&ignore=.csv'
