@@ -11,7 +11,8 @@
 #include <sys/types.h>
 #include <dirent.h>
 
-static int is_china = -1;
+const char *candle_color[CANDLE_COLOR_NR] = { "doji", "green", "red" };
+const char *candle_trend[CANDLE_TREND_NR] = { "doji", "bull", "bear" };
 
 static void parse_price(char *price_str, uint32_t *price)
 {
@@ -989,8 +990,7 @@ static int get_symbol_price_for_check(const char *symbol, const char *date, cons
 	return 0;
 }
 
-static const char * get_price_volume_change(const struct stock_price *price_history, const struct date_price *price2check,
-					    int *vma10d_chg, int *vma20d_chg)
+static const char * get_price_volume_change(const struct stock_price *price_history, const struct date_price *price2check)
 {
 	static char output_str[128];
 	const struct date_price *yesterday = NULL;
@@ -1013,14 +1013,10 @@ static const char * get_price_volume_change(const struct stock_price *price_hist
 	if (price2check->volume) {
 		if (yesterday->vma[VMA_10d]) {
 			vma10d_percent = (uint64_t)price2check->volume * 1000 / yesterday->vma[VMA_10d];
-			if (vma10d_chg)
-				*vma10d_chg = vma10d_percent;
 		}
 
 		if (yesterday->vma[VMA_20d]) {
 			vma20d_percent = (uint64_t)price2check->volume * 1000 / yesterday->vma[VMA_20d];
-			if (vma20d_chg)
-				*vma20d_chg = vma20d_percent;
 		}
 	}
 
@@ -1036,9 +1032,10 @@ static const char * get_price_volume_change(const struct stock_price *price_hist
 	}
 
 	snprintf(output_str, sizeof(output_str),
-		ANSI_COLOR_YELLOW "price(%c%d.%d%%), vma10d(%d.%d%%), vma20d(%d.%d%%)" ANSI_COLOR_RESET,
+		ANSI_COLOR_YELLOW "price(%c%d.%d%%), vma10d(%d.%d%%), vma20d(%d.%d%%), %s/%s" ANSI_COLOR_RESET,
 		is_up ? '+' : '-', price_change / 10, price_change % 10,
-		vma10d_percent / 10, vma10d_percent % 10, vma20d_percent / 10, vma20d_percent % 10);
+		vma10d_percent / 10, vma10d_percent % 10, vma20d_percent / 10, vma20d_percent % 10,
+		candle_color[price2check->candle_color], candle_trend[price2check->candle_trend]);
 
 	return output_str;
 }
@@ -1047,8 +1044,6 @@ static void symbol_check_support(const char *symbol, const struct stock_price *p
 				 const struct date_price *price2check)
 {
 	struct stock_support sspt = { };
-	int vma10d_chg = 0, vma20d_chg = 0;
-	const char *chg_str;
 	int i;
 
 	check_support(price_history, price2check, &sspt);
@@ -1056,25 +1051,20 @@ static void symbol_check_support(const char *symbol, const struct stock_price *p
 	if (!sspt.date_nr)
 		return;
 
-	chg_str = get_price_volume_change(price_history, price2check, &vma10d_chg, &vma20d_chg);
-	if (!is_china && (vma10d_chg < 950 || vma20d_chg < 950))
-		return;
-
-	anna_info("%s%-10s%s: date=%s is supported by %d dates:",
-		  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date, sspt.date_nr);
+	anna_info("%s%-10s%s: date=%s, %s; is supported by %d dates:",
+		  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+		  price2check->date, get_price_volume_change(price_history, price2check), sspt.date_nr);
 
 	for (i = 0; i < sspt.date_nr; i++)
 		anna_info(" %s(%c)", sspt.date[i], is_support(sspt.sr_flag[i]) ? 's' : is_resist(sspt.sr_flag[i]) ? 'r' : '?');
 
-	anna_info("; %s; %s<sector=%s>%s.\n", chg_str, ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+	anna_info("%s<sector=%s>%s.\n", ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 }
 
 static void symbol_check_doublebottom(const char *symbol, const struct stock_price *price_history,
 					const struct date_price *price2check)
 {
 	struct stock_support sspt = { };
-	int vma10d_chg = 0, vma20d_chg = 0;
-	const char *chg_str;
 	int i;
 
 	check_support(price_history, price2check, &sspt);
@@ -1082,17 +1072,12 @@ static void symbol_check_doublebottom(const char *symbol, const struct stock_pri
 	if (!sspt.date_nr)
 		return;
 
-	chg_str = get_price_volume_change(price_history, price2check, &vma10d_chg, &vma20d_chg);
-#if 0
-	if (!is_china && (vma10d_chg < 950 || vma20d_chg < 950))
-		return;
-#endif
-
 	for (i = 0; i < sspt.date_nr; i++) {
 		if (sspt.is_doublebottom[i]) {
-			anna_info("%s%-10s%s: date=%s is double bottom with dates=%s; %s; %s<sector=%s>%s.\n",
-				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date, sspt.date[i],
-				chg_str, ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+			anna_info("%s%-10s%s: date=%s, %s; is double bottom with dates=%s; %s<sector=%s>%s.\n",
+				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date,
+				get_price_volume_change(price_history, price2check), sspt.date[i],
+				ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 			break;
 		}
 	}
@@ -1123,10 +1108,9 @@ static void symbol_check_pullback(const char *symbol, const struct stock_price *
 		if (sr_hit(price2check->low, prev->low) || sr_hit(price2check_2ndlow, prev->low)
 		    || sr_hit(price2check->low, prev_2ndlow) || sr_hit(price2check_2ndlow, prev_2ndlow))
 		{
-			anna_info("%s%-10s%s: date=%s is at support bigupdate=%s; %s; %s<sector=%s>%s.\n",
+			anna_info("%s%-10s%s: date=%s, %s; is at support bigupdate=%s; %s<sector=%s>%s.\n",
 				  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
-				  price2check->date, prev->date,
-				  get_price_volume_change(price_history, price2check, NULL, NULL),
+				  price2check->date, get_price_volume_change(price_history, price2check), prev->date,
 				  ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 			break;
 		}
@@ -1144,15 +1128,14 @@ static void symbol_check_breakout(const char *symbol, const struct stock_price *
 	if (!sspt.date_nr)
 		return;
 
-	anna_info("%s%-10s%s: date=%s breakout with %d dates:",
-		  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date, sspt.date_nr);
+	anna_info("%s%-10s%s: date=%s, %s; breakout with %d dates:",
+		  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+		  price2check->date, get_price_volume_change(price_history, price2check), sspt.date_nr);
 
 	for (i = 0; i < sspt.date_nr; i++)
 		anna_info(" %s(%c)", sspt.date[i], is_support(sspt.sr_flag[i]) ? 's' : is_resist(sspt.sr_flag[i]) ? 'r' : '?');
 
-	anna_info("; %s; %s<sector=%s>%s.\n",
-		  get_price_volume_change(price_history, price2check, NULL, NULL),
-		  ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+	anna_info("%s<sector=%s>%s.\n", ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 }
 
 static void get_week_price(const struct stock_price *price_history, int *idx, struct date_price *week_price)
@@ -1239,9 +1222,9 @@ static void symbol_check_low_volume(const char *symbol, const struct stock_price
 		if (price2check->candle_trend == CANDLE_TREND_DOJI
 		    && volume_change <= 500)
 		{
-			anna_info("%s%-10s%s: date=%s has low volume; %s; %s<sector=%s>%s.\n",
+			anna_info("%s%-10s%s: date=%s, %s; has low volume; %s<sector=%s>%s.\n",
 				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
-				price2check->date, get_price_volume_change(price_history, price2check, NULL, NULL),
+				price2check->date, get_price_volume_change(price_history, price2check),
 				ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 		}
 
@@ -1290,7 +1273,7 @@ static void symbol_check_change(const char *symbol, const struct stock_price *pr
 				const struct date_price *price2check)
 {
 	anna_info("%s%-10s%s: date=%s, %s.\n", ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
-		  price2check->date, get_price_volume_change(price_history, price2check, NULL, NULL));
+		  price2check->date, get_price_volume_change(price_history, price2check));
 }
 
 static int call_check_func(const char *symbol, const char *date, const char *fname,
@@ -1316,9 +1299,6 @@ static void stock_price_check(const char *group, const char *date, int symbols_n
 	char path[128];
 	char fname[256];
 	int i;
-
-	if (is_china == -1)
-		is_china = strcmp(group, "china") ? 0 : 1;
 
 	snprintf(path, sizeof(path), "%s/%s", ROOT_DIR, group);
 
