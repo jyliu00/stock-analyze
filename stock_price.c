@@ -11,6 +11,8 @@
 #include <sys/types.h>
 #include <dirent.h>
 
+static int is_china = -1;
+
 static void parse_price(char *price_str, uint32_t *price)
 {
 	char *dot = strchr(price_str, '.');
@@ -987,7 +989,8 @@ static int get_symbol_price_for_check(const char *symbol, const char *date, cons
 	return 0;
 }
 
-static const char * get_price_volume_change(const struct stock_price *price_history, const struct date_price *price2check)
+static const char * get_price_volume_change(const struct stock_price *price_history, const struct date_price *price2check,
+					    int *vma10d_chg, int *vma20d_chg)
 {
 	static char output_str[128];
 	const struct date_price *yesterday = NULL;
@@ -1008,11 +1011,17 @@ static const char * get_price_volume_change(const struct stock_price *price_hist
 		return "N/A";
 
 	if (price2check->volume) {
-		if (yesterday->vma[VMA_10d])
+		if (yesterday->vma[VMA_10d]) {
 			vma10d_percent = (uint64_t)price2check->volume * 1000 / yesterday->vma[VMA_10d];
+			if (vma10d_chg)
+				*vma10d_chg = vma10d_percent;
+		}
 
-		if (yesterday->vma[VMA_20d])
+		if (yesterday->vma[VMA_20d]) {
 			vma20d_percent = (uint64_t)price2check->volume * 1000 / yesterday->vma[VMA_20d];
+			if (vma20d_chg)
+				*vma20d_chg = vma20d_percent;
+		}
 	}
 
 	if (price2check->close && yesterday->close) {
@@ -1038,11 +1047,17 @@ static void symbol_check_support(const char *symbol, const struct stock_price *p
 				 const struct date_price *price2check)
 {
 	struct stock_support sspt = { };
+	int vma10d_chg = 0, vma20d_chg = 0;
+	const char *chg_str;
 	int i;
 
 	check_support(price_history, price2check, &sspt);
 
 	if (!sspt.date_nr)
+		return;
+
+	chg_str = get_price_volume_change(price_history, price2check, &vma10d_chg, &vma20d_chg);
+	if (!is_china && (vma10d_chg < 950 || vma20d_chg < 950))
 		return;
 
 	anna_info("%s%-10s%s: date=%s is supported by %d dates:",
@@ -1051,15 +1066,15 @@ static void symbol_check_support(const char *symbol, const struct stock_price *p
 	for (i = 0; i < sspt.date_nr; i++)
 		anna_info(" %s(%c)", sspt.date[i], is_support(sspt.sr_flag[i]) ? 's' : is_resist(sspt.sr_flag[i]) ? 'r' : '?');
 
-	anna_info("; %s; %s<sector=%s>%s.\n",
-		  get_price_volume_change(price_history, price2check),
-		  ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+	anna_info("; %s; %s<sector=%s>%s.\n", chg_str, ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 }
 
 static void symbol_check_doublebottom(const char *symbol, const struct stock_price *price_history,
 					const struct date_price *price2check)
 {
 	struct stock_support sspt = { };
+	int vma10d_chg = 0, vma20d_chg = 0;
+	const char *chg_str;
 	int i;
 
 	check_support(price_history, price2check, &sspt);
@@ -1067,12 +1082,17 @@ static void symbol_check_doublebottom(const char *symbol, const struct stock_pri
 	if (!sspt.date_nr)
 		return;
 
+	chg_str = get_price_volume_change(price_history, price2check, &vma10d_chg, &vma20d_chg);
+#if 0
+	if (!is_china && (vma10d_chg < 950 || vma20d_chg < 950))
+		return;
+#endif
+
 	for (i = 0; i < sspt.date_nr; i++) {
 		if (sspt.is_doublebottom[i]) {
 			anna_info("%s%-10s%s: date=%s is double bottom with dates=%s; %s; %s<sector=%s>%s.\n",
 				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date, sspt.date[i],
-				get_price_volume_change(price_history, price2check),
-				ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+				chg_str, ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 			break;
 		}
 	}
@@ -1106,7 +1126,7 @@ static void symbol_check_pullback(const char *symbol, const struct stock_price *
 			anna_info("%s%-10s%s: date=%s is at support bigupdate=%s; %s; %s<sector=%s>%s.\n",
 				  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
 				  price2check->date, prev->date,
-				  get_price_volume_change(price_history, price2check),
+				  get_price_volume_change(price_history, price2check, NULL, NULL),
 				  ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 			break;
 		}
@@ -1131,7 +1151,7 @@ static void symbol_check_breakout(const char *symbol, const struct stock_price *
 		anna_info(" %s(%c)", sspt.date[i], is_support(sspt.sr_flag[i]) ? 's' : is_resist(sspt.sr_flag[i]) ? 'r' : '?');
 
 	anna_info("; %s; %s<sector=%s>%s.\n",
-		  get_price_volume_change(price_history, price2check),
+		  get_price_volume_change(price_history, price2check, NULL, NULL),
 		  ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 }
 
@@ -1221,7 +1241,7 @@ static void symbol_check_low_volume(const char *symbol, const struct stock_price
 		{
 			anna_info("%s%-10s%s: date=%s has low volume; %s; %s<sector=%s>%s.\n",
 				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
-				price2check->date, get_price_volume_change(price_history, price2check),
+				price2check->date, get_price_volume_change(price_history, price2check, NULL, NULL),
 				ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 		}
 
@@ -1266,6 +1286,13 @@ static void symbol_check_low_volume_up(const char *symbol, const struct stock_pr
 	}
 }
 
+static void symbol_check_change(const char *symbol, const struct stock_price *price_history,
+				const struct date_price *price2check)
+{
+	anna_info("%s%-10s%s: date=%s, %s.\n", ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+		  price2check->date, get_price_volume_change(price_history, price2check, NULL, NULL));
+}
+
 static int call_check_func(const char *symbol, const char *date, const char *fname,
 			    void (*check_func)(const char *, const struct stock_price *, const struct date_price *))
 {
@@ -1290,6 +1317,9 @@ static void stock_price_check(const char *group, const char *date, int symbols_n
 	char fname[256];
 	int i;
 
+	if (is_china == -1)
+		is_china = strcmp(group, "china") ? 0 : 1;
+
 	snprintf(path, sizeof(path), "%s/%s", ROOT_DIR, group);
 
 	if (symbols_nr) {
@@ -1299,7 +1329,7 @@ static void stock_price_check(const char *group, const char *date, int symbols_n
 			call_check_func(symbols[i], date, fname, check_func);
 		}
 	}
-	else {	
+	else {
 		DIR *dir = opendir(path);
 		if (!dir) {
 			anna_error("opendir(%s) failed: %d(%s)\n", path, errno, strerror(errno));
@@ -1363,7 +1393,13 @@ void stock_price_check_low_volume(const char *group, const char *date, int symbo
 {
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_low_volume);
 }
+
 void stock_price_check_low_volume_up(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_low_volume_up);
+}
+
+void stock_price_check_change(const char *group, const char *date, int symbols_nr, const char **symbols)
+{
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_change);
 }

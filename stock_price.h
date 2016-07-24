@@ -89,5 +89,6 @@ void stock_price_check_weekup(const char *group, const char *date, int symbols_n
 void stock_price_check_week_reverse(const char *group, const char *date, int symbols_nr, const char **symbols);
 void stock_price_check_low_volume(const char *group, const char *date, int symbols_nr, const char **symbols);
 void stock_price_check_low_volume_up(const char *group, const char *date, int symbols_nr, const char **symbols);
+void stock_price_check_change(const char *group, const char *date, int symbols_nr, const char **symbols);
 
 #endif /* __STOCK_PRICE_H__ */

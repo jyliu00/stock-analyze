@@ -27,6 +27,7 @@ enum
 	ACTION_CHECK_WRV, /* week reverse */
 	ACTION_CHECK_LOW_VOLUME,
 	ACTION_CHECK_LOW_VOLUME_UP,
+	ACTION_CHECK_CHANGE,
 
 	ACTION_NR
 };
@@ -36,7 +37,7 @@ const char *group_list[ ] = { "usa", "ibd", "biotech", "3x", "china", "canada", 
 static void print_usage(void)
 {
 	printf("Usage: anna -group={usa|china|canada|biotech|ibd|3x} [-date=yyyy-mm-dd] [-conf=filename]\n");
-	printf("               {fetch | fetch-rt | check-spt | check-db | check-pb | check-bo | check-wup | check-wrv | check-lv | check-lvup} [symbol-1 symbol-2 ...]\n");
+	printf("               {fetch | fetch-rt | check-spt | check-db | check-pb | check-bo | check-wup | check-wrv | check-lv | check-lvup | check-chg} [symbol-1 symbol-2 ...]\n");
 }
 
 static int init_dirs(const char *group)
@@ -170,6 +171,9 @@ int main(int argc, const char **argv)
 			else if (strcmp(arg, "check-lvup") == 0) {
 				action = ACTION_CHECK_LOW_VOLUME_UP;
 			}
+			else if (strcmp(arg, "check-chg") == 0) {
+				action = ACTION_CHECK_CHANGE;
+			}
 		}
 		else if (strncmp(arg, "-group=", strlen("-group=")) == 0) {
 			p = strchr(arg, '=');
@@ -251,6 +255,10 @@ int main(int argc, const char **argv)
 
 	case ACTION_CHECK_LOW_VOLUME_UP:
 		stock_price_check_low_volume_up(group, date, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_CHANGE:
+		stock_price_check_change(group, date, symbols_nr, (const char **)symbols);
 		break;
 	}
 
