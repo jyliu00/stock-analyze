@@ -20,6 +20,8 @@ enum
 	ACTION_FETCH,
 	ACTION_FETCH_REALTIME,
 	ACTION_CHECK_SPT, /* support */
+	ACTION_CHECK_SMA20d, /* support at sma20d */
+	ACTION_CHECK_SMA50d, /* support at sma50d */
 	ACTION_CHECK_DB, /* double bottom */
 	ACTION_CHECK_PB, /* pull back */
 	ACTION_CHECK_BO, /* break out */
@@ -37,7 +39,7 @@ const char *group_list[ ] = { "usa", "ibd", "biotech", "3x", "china", "canada", 
 static void print_usage(void)
 {
 	printf("Usage: anna -group={usa|china|canada|biotech|ibd|3x} [-date=yyyy-mm-dd] [-conf=filename]\n");
-	printf("               {fetch | fetch-rt | check-spt | check-db | check-pb | check-bo | check-wup | check-wrv | check-lv | check-lvup | check-chg} [symbol-1 symbol-2 ...]\n");
+	printf("               {fetch | fetch-rt | check-spt | check-20d | check-50d | check-db | check-pb | check-bo | check-wup | check-wrv | check-lv | check-lvup | check-chg} [symbol-1 symbol-2 ...]\n");
 }
 
 static int init_dirs(const char *group)
@@ -150,6 +152,12 @@ int main(int argc, const char **argv)
 			else if (strcmp(arg, "check-spt") == 0) {
 				action = ACTION_CHECK_SPT;
 			}
+			else if (strcmp(arg, "check-20d") == 0) {
+				action = ACTION_CHECK_SMA20d;
+			}
+			else if (strcmp(arg, "check-50d") == 0) {
+				action = ACTION_CHECK_SMA50d;
+			}
 			else if (strcmp(arg, "check-db") == 0) {
 				action = ACTION_CHECK_DB;
 			}
@@ -227,6 +235,14 @@ int main(int argc, const char **argv)
 
 	case ACTION_CHECK_SPT:
 		stock_price_check_support(group, date, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_SMA20d:
+		stock_price_check_sma(group, date, SMA_20d, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_SMA50d:
+		stock_price_check_sma(group, date, SMA_50d, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_DB:

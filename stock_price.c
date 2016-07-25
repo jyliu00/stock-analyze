@@ -11,6 +11,8 @@
 #include <sys/types.h>
 #include <dirent.h>
 
+static int sma2check = -1;
+
 const char *candle_color[CANDLE_COLOR_NR] = { "doji", "green", "red" };
 const char *candle_trend[CANDLE_TREND_NR] = { "doji", "bull", "bear" };
 
@@ -714,6 +716,12 @@ static int sr_hit(uint64_t price2check, uint64_t base_price)
 	return (diff * 1000 / base_price <= 15);
 }
 
+static int sma_hit(uint64_t price2check, uint64_t sma_price)
+{
+	uint64_t diff = price2check > sma_price ? price2check - sma_price : sma_price - price2check;
+	return (diff * 1000 / sma_price <= 10);
+}
+
 static int bo_hit(uint64_t price2check, uint64_t base_price)
 {
 	uint64_t diff = price2check > base_price ? price2check - base_price : base_price - price2check;
@@ -791,14 +799,23 @@ static void check_support(const struct stock_price *price_history, const struct 
 
 	for (i = 0; i < price_history->date_cnt; i++) {
 		const struct date_price *prev = &price_history->dateprice[i];
+		uint32_t price2check_2ndlow = get_2ndlow(price2check);
 
 		if (strcmp(price2check->date, prev->date) <= 0)
 			continue;
 
 		if (yesterday == NULL) {
 			yesterday = prev;
+
 			if (!date_is_downtrend(price_history, i, price2check))
 				break;
+
+			if (sma2check != -1 && yesterday->sma[sma2check] != 0) {
+				if (!sma_hit(price2check->low, yesterday->sma[sma2check])
+				    && !sma_hit(price2check_2ndlow, yesterday->sma[sma2check])
+				    && !(price2check->low < yesterday->sma[sma2check] && price2check->high > yesterday->sma[sma2check]))
+					break;
+			}
 		}
 
 		if (prev->low < lowest_date->low)
@@ -807,7 +824,6 @@ static void check_support(const struct stock_price *price_history, const struct 
 		int datecnt = i + 1;
 		uint32_t prev_2ndhigh = get_2ndhigh(prev);
 		uint32_t prev_2ndlow = get_2ndlow(prev);
-		uint32_t price2check_2ndlow = get_2ndlow(price2check);
 
 		if ((prev->sr_flag & SR_F_SUPPORT_LOW)
 		    && sr_height_margin_datecnt(prev->height_low_spt, prev_2ndlow, datecnt))
@@ -1342,6 +1358,13 @@ static void stock_price_check(const char *group, const char *date, int symbols_n
 void stock_price_check_support(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_support);
+}
+
+void stock_price_check_sma(const char *group, const char *date, int sma_idx, int symbols_nr, const char **symbols)
+{
+	sma2check = sma_idx;
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_support);
+	sma2check = -1;
 }
 
 void stock_price_check_doublebottom(const char *group, const char *date, int symbols_nr, const char **symbols)
