@@ -1273,10 +1273,10 @@ static void symbol_check_low_volume_up(const char *symbol, const struct stock_pr
 		    && volume_change <= 650 /* yesterday volume <= 65% vma_10d */
 		    && body_size >= 70) /* today has good size body */
 		{
-			anna_info("%s%-10s%s: date=%s is %d.%d%% up from low-volume-date=%s, %u/%u=%d.%d%%. %s<sector=%s>%s\n",
+			anna_info("%s%-10s%s: date=%s is up from low-volume-date=%s, %s; %s<sector=%s>%s.\n",
 				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
-				price2check->date, up_change / 10, up_change % 10,
-				prev->date, prev->volume, prev->vma[VMA_10d], volume_change/10, volume_change%10,
+				price2check->date, prev->date,
+				get_price_volume_change(price_history, price2check),
 				ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 		}
 
