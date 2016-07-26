@@ -964,13 +964,7 @@ static int get_stock_price2check(const char *symbol, const char *date,
 				const struct stock_price *price_history,
 				struct date_price *price2check)
 {
-	if (get_today_price(symbol, price2check) == 0) {
-		return 0;
-	}
-	else if (!date || !date[0]) {
-		memcpy(price2check, &price_history->dateprice[0], sizeof(*price2check));
-	}
-	else {
+	if (date && date[0]) {
 		int i;
 
 		for (i = 0; i < price_history->date_cnt; i++) {
@@ -985,6 +979,12 @@ static int get_stock_price2check(const char *symbol, const char *date,
 			anna_error("date='%s' is  not found in history price\n", date);
 			return -1;
 		}
+	}
+	else if (get_today_price(symbol, price2check) == 0) {
+		return 0;
+	}
+	else if (!date || !date[0]) {
+		memcpy(price2check, &price_history->dateprice[0], sizeof(*price2check));
 	}
 
 	return 0;
