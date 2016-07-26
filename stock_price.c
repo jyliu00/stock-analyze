@@ -812,8 +812,7 @@ static void check_support(const struct stock_price *price_history, const struct 
 
 			if (sma2check != -1 && yesterday->sma[sma2check] != 0) {
 				if (!sma_hit(price2check->low, yesterday->sma[sma2check])
-				    && !sma_hit(price2check_2ndlow, yesterday->sma[sma2check])
-				    && !(price2check->low < yesterday->sma[sma2check] && price2check->high > yesterday->sma[sma2check]))
+				    && !sma_hit(price2check_2ndlow, yesterday->sma[sma2check]))
 					break;
 			}
 		}
