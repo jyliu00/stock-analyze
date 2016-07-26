@@ -1284,6 +1284,42 @@ static void symbol_check_low_volume_up(const char *symbol, const struct stock_pr
 	}
 }
 
+static void symbol_check_volume_up(const char *symbol, const struct stock_price *price_history,
+				const struct date_price *price2check)
+{
+	int i;
+
+	for (i = 0; i < price_history->date_cnt; i++) {
+		const struct date_price *prev = &price_history->dateprice[i];
+
+		if (strcmp(price2check->date, prev->date) <= 0)
+			continue;
+
+		if (price2check->close <= prev->close
+		    || !price2check->volume
+		    || !prev->vma[VMA_10d])
+			break;
+
+		int up_change = (price2check->close - prev->close) * 1000 / prev->close;
+		int volume_change = (uint64_t)price2check->volume * 1000 / prev->vma[VMA_10d];
+		int body_size = (price2check->open - price2check->close) * 100 / price2check->open;
+
+		if (price2check->candle_color == CANDLE_COLOR_GREEN /* today is up */
+		    && up_change >= 25 /* up >= 2.5% from yesterday */
+		    && volume_change >= 1000 /* yesterday volume <= 65% vma_10d */
+		    && body_size >= 70) /* today has good size body */
+		{
+			anna_info("%s%-10s%s: date=%s is up with volume, %s; %s<sector=%s>%s.\n",
+				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+				price2check->date, get_price_volume_change(price_history, price2check),
+				ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+		}
+
+		break;
+	}
+}
+
+
 static void symbol_check_change(const char *symbol, const struct stock_price *price_history,
 				const struct date_price *price2check)
 {
@@ -1399,6 +1435,11 @@ void stock_price_check_low_volume(const char *group, const char *date, int symbo
 void stock_price_check_low_volume_up(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_low_volume_up);
+}
+
+void stock_price_check_volume_up(const char *group, const char *date, int symbols_nr, const char **symbols)
+{
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_volume_up);
 }
 
 void stock_price_check_change(const char *group, const char *date, int symbols_nr, const char **symbols)

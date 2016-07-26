@@ -29,6 +29,7 @@ enum
 	ACTION_CHECK_WRV, /* week reverse */
 	ACTION_CHECK_LOW_VOLUME,
 	ACTION_CHECK_LOW_VOLUME_UP,
+	ACTION_CHECK_VOLUME_UP,
 	ACTION_CHECK_CHANGE,
 
 	ACTION_NR
@@ -179,6 +180,9 @@ int main(int argc, const char **argv)
 			else if (strcmp(arg, "check-lvup") == 0) {
 				action = ACTION_CHECK_LOW_VOLUME_UP;
 			}
+			else if (strcmp(arg, "check-vup") == 0) {
+				action = ACTION_CHECK_VOLUME_UP;
+			}
 			else if (strcmp(arg, "check-chg") == 0) {
 				action = ACTION_CHECK_CHANGE;
 			}
@@ -271,6 +275,10 @@ int main(int argc, const char **argv)
 
 	case ACTION_CHECK_LOW_VOLUME_UP:
 		stock_price_check_low_volume_up(group, date, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_VOLUME_UP:
+		stock_price_check_volume_up(group, date, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_CHANGE:
