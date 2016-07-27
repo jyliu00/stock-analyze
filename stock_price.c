@@ -12,6 +12,7 @@
 #include <dirent.h>
 
 static int sma2check = -1;
+static int selected_symbol_nr = 0;
 
 const char *candle_color[CANDLE_COLOR_NR] = { "doji", "green", "red" };
 const char *candle_trend[CANDLE_TREND_NR] = { "doji", "bull", "bear" };
@@ -1074,6 +1075,8 @@ static void symbol_check_support(const char *symbol, const struct stock_price *p
 		anna_info(" %s(%c)", sspt.date[i], is_support(sspt.sr_flag[i]) ? 's' : is_resist(sspt.sr_flag[i]) ? 'r' : '?');
 
 	anna_info("%s<sector=%s>%s.\n", ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+
+	selected_symbol_nr += 1;
 }
 
 static void symbol_check_doublebottom(const char *symbol, const struct stock_price *price_history,
@@ -1093,6 +1096,9 @@ static void symbol_check_doublebottom(const char *symbol, const struct stock_pri
 				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date,
 				get_price_volume_change(price_history, price2check), sspt.date[i],
 				ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+
+			selected_symbol_nr += 1;
+
 			break;
 		}
 	}
@@ -1130,6 +1136,8 @@ static void symbol_check_pullback(const char *symbol, const struct stock_price *
 			break;
 		}
 	}
+
+	selected_symbol_nr += 1;
 }
 
 static void symbol_check_breakout(const char *symbol, const struct stock_price *price_history,
@@ -1151,6 +1159,8 @@ static void symbol_check_breakout(const char *symbol, const struct stock_price *
 		anna_info(" %s(%c)", sspt.date[i], is_support(sspt.sr_flag[i]) ? 's' : is_resist(sspt.sr_flag[i]) ? 'r' : '?');
 
 	anna_info("%s<sector=%s>%s.\n", ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+
+	selected_symbol_nr += 1;
 }
 
 static void get_week_price(const struct stock_price *price_history, int *idx, struct date_price *week_price)
@@ -1196,6 +1206,8 @@ static void symbol_check_weekup(const char *symbol, const struct stock_price *pr
 		anna_info("%s%-10s%s: has continuous 2 weeks uptrend. %s<sector=%s>%s\n",
 			  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
 			  ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+
+		selected_symbol_nr += 1;
 	}
 }
 
@@ -1215,6 +1227,8 @@ static void symbol_check_week_reverse(const char *symbol, const struct stock_pri
 		anna_info("%s%-10s%s: has week-reverse. %s<sector=%s>%s\n",
 			  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
 			  ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+
+		selected_symbol_nr += 1;
 	}
 }
 
@@ -1241,12 +1255,27 @@ static void symbol_check_low_volume(const char *symbol, const struct stock_price
 				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
 				price2check->date, get_price_volume_change(price_history, price2check),
 				ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+			selected_symbol_nr += 1;
 		}
 
 		break;
 	}
 }
 
+static int get_less_volume_days(const struct stock_price *price_history,
+				const struct date_price *price2check,
+				const struct date_price *prev)
+{
+	const struct date_price *last = &price_history->dateprice[price_history->date_cnt - 1];
+	int days;
+
+	for (days = 0; days < 20 && prev < last; prev++, days++) {
+		if (price2check->volume <= prev->volume)
+			break;
+	}
+
+	return days;
+}
 
 static void symbol_check_low_volume_up(const char *symbol, const struct stock_price *price_history,
 					const struct date_price *price2check)
@@ -1273,11 +1302,14 @@ static void symbol_check_low_volume_up(const char *symbol, const struct stock_pr
 		    && volume_change <= 650 /* yesterday volume <= 65% vma_10d */
 		    && body_size >= 70) /* today has good size body */
 		{
-			anna_info("%s%-10s%s: date=%s is up from low-volume-date=%s, %s; %s<sector=%s>%s.\n",
+			anna_info("%s%-10s%s: date=%s is up from low-volume-date=%s, %s, volume=%u is larger than previous %s%d%s days; %s<sector=%s>%s.\n",
 				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
 				price2check->date, prev->date,
-				get_price_volume_change(price_history, price2check),
+				get_price_volume_change(price_history, price2check), price2check->volume,
+				ANSI_COLOR_YELLOW, get_less_volume_days(price_history, price2check, prev), ANSI_COLOR_RESET,
 				ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+
+			selected_symbol_nr += 1;
 		}
 
 		break;
@@ -1306,13 +1338,16 @@ static void symbol_check_volume_up(const char *symbol, const struct stock_price 
 
 		if (price2check->candle_color == CANDLE_COLOR_GREEN /* today is up */
 		    && up_change >= 25 /* up >= 2.5% from yesterday */
-		    && volume_change >= 1000 /* yesterday volume <= 65% vma_10d */
+		    && volume_change >= 1000 /* >= 100% */
 		    && body_size >= 70) /* today has good size body */
 		{
-			anna_info("%s%-10s%s: date=%s is up with volume, %s; %s<sector=%s>%s.\n",
+			anna_info("%s%-10s%s: date=%s is up with large volume, %s, volume=%u is larger than previous %s%d%s days; %s<sector=%s>%s.\n",
 				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
-				price2check->date, get_price_volume_change(price_history, price2check),
+				price2check->date, get_price_volume_change(price_history, price2check), price2check->volume,
+				ANSI_COLOR_YELLOW, get_less_volume_days(price_history, price2check, prev), ANSI_COLOR_RESET,
 				ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+
+			selected_symbol_nr += 1;
 		}
 
 		break;
@@ -1353,6 +1388,8 @@ static void stock_price_check(const char *group, const char *date, int symbols_n
 
 	snprintf(path, sizeof(path), "%s/%s", ROOT_DIR, group);
 
+	selected_symbol_nr = 0;
+
 	if (symbols_nr) {
 		for (i = 0; i < symbols_nr; i++) {
 			snprintf(fname, sizeof(fname), "%s/%s.price", path, symbols[i]);
@@ -1388,6 +1425,8 @@ static void stock_price_check(const char *group, const char *date, int symbols_n
 
 		closedir(dir);
 	}
+
+	anna_info("%s%d%s symbols are selected.\n", ANSI_COLOR_YELLOW, selected_symbol_nr, ANSI_COLOR_RESET);
 }
 
 void stock_price_check_support(const char *group, const char *date, int symbols_nr, const char **symbols)
