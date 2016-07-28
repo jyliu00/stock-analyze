@@ -2,7 +2,7 @@
 
 start_time=`date +%H:%M:%S`
 
-for g in usa ibd biotech 3x china canada
+for g in usa ibd biotech 3x china #canada
 do
     anna -group=$g $1
 done
