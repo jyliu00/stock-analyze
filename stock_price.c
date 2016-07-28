@@ -1133,11 +1133,12 @@ static void symbol_check_pullback(const char *symbol, const struct stock_price *
 				  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
 				  price2check->date, get_price_volume_change(price_history, price2check), prev->date,
 				  ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+
+			selected_symbol_nr += 1;
+
 			break;
 		}
 	}
-
-	selected_symbol_nr += 1;
 }
 
 static void symbol_check_breakout(const char *symbol, const struct stock_price *price_history,
