@@ -1164,6 +1164,56 @@ static void symbol_check_breakout(const char *symbol, const struct stock_price *
 	selected_symbol_nr += 1;
 }
 
+static void symbol_check_52w_low_up(const char *symbol, const struct stock_price *price_history,
+				    const struct date_price *price2check)
+{
+	const struct date_price *yesterday = NULL;
+	uint32_t price2check_2ndlow = get_2ndlow(price2check);
+	uint32_t yesterday_2ndlow;
+	uint32_t is_52w_low = 1, is_52w_2ndlow = 1;
+	int i, j;
+
+	for (i = 0; i < price_history->date_cnt; i++) {
+		yesterday = &price_history->dateprice[i];
+
+		if (strcmp(price2check->date, yesterday->date) <= 0)
+			continue;
+
+		yesterday_2ndlow = get_2ndlow(yesterday);
+
+		if (price2check->low < yesterday->low && price2check_2ndlow < yesterday_2ndlow) {
+			is_52w_low = is_52w_2ndlow = 0;
+			break;
+		}
+
+		for (j = i + 1; j < price_history->date_cnt && (j - i) <= 250; j++) {
+			const struct date_price *prev = &price_history->dateprice[j];
+
+			if (prev->low < yesterday->low)
+				is_52w_low = 0;
+			if (get_2ndlow(prev) < yesterday_2ndlow)
+				is_52w_2ndlow = 0;
+
+			if (!is_52w_low && !is_52w_2ndlow)
+				break;
+		}
+
+		break;
+	}
+
+	if ((is_52w_low || is_52w_2ndlow)
+	    && (get_2ndhigh(price2check) > get_2ndhigh(yesterday)
+	        || (price2check->low >= yesterday->low && price2check_2ndlow >= yesterday_2ndlow))
+	   )
+	{
+		anna_info("%s%-10s%s: date=%s, %s, is up from 52w low date=%s.\n",
+			ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date,
+			get_price_volume_change(price_history, price2check), yesterday->date);
+
+		selected_symbol_nr += 1;
+	}
+}
+
 static void get_week_price(const struct stock_price *price_history, int *idx, struct date_price *week_price)
 {
 	int j;
@@ -1455,6 +1505,11 @@ void stock_price_check_pullback(const char *group, const char *date, int symbols
 void stock_price_check_breakout(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_breakout);
+}
+
+void stock_price_check_52w_low_up(const char *group, const char *date, int symbols_nr, const char **symbols)
+{
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_52w_low_up);
 }
 
 void stock_price_check_weekup(const char *group, const char *date, int symbols_nr, const char **symbols)
