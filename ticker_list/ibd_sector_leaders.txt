@@ -1,3 +1,4 @@
+%sector=sector_leaders
 MXL
 SIMO
 LGIH
