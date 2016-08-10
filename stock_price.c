@@ -673,6 +673,9 @@ int stock_price_to_file(const char *group, const char *sector, const char *symbo
 	if (sector && sector[0])
 		fprintf(fp, "%%sector=%s\n", sector);
 
+	fprintf(fp, "# date,wday, open, high, low, close, volume, sma10d,20d,30d,50d,60d,100d,120d,200d, "
+		    "vma10d,20d,60d, candle_color, candle_trend, sr_flag, height_low_spt,2ndlow_spt,high_rst,2ndhigh_rst");
+
 	for (i = 0; i < price->date_cnt; i++) {
 		fprintf_date_price(fp, &price->dateprice[i]);
 	}
