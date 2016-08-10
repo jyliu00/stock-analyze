@@ -456,6 +456,8 @@ int stock_price_history_from_file(const char *fname, struct stock_price *price)
 	price->sector[0] = 0;
 
 	while (fgets(buf, sizeof(buf), fp)) {
+		if (buf[0] == '#')
+			continue;
 
 		if (buf[0] == '%') {
 			buf[strlen(buf) - 1] = 0;
@@ -674,7 +676,7 @@ int stock_price_to_file(const char *group, const char *sector, const char *symbo
 		fprintf(fp, "%%sector=%s\n", sector);
 
 	fprintf(fp, "# date,wday, open, high, low, close, volume, sma10d,20d,30d,50d,60d,100d,120d,200d, "
-		    "vma10d,20d,60d, candle_color, candle_trend, sr_flag, height_low_spt,2ndlow_spt,high_rst,2ndhigh_rst");
+		    "vma10d,20d,60d, candle_color, candle_trend, sr_flag, height_low_spt,2ndlow_spt,high_rst,2ndhigh_rst\n");
 
 	for (i = 0; i < price->date_cnt; i++) {
 		fprintf_date_price(fp, &price->dateprice[i]);
