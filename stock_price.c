@@ -1109,6 +1109,43 @@ static void symbol_check_doublebottom(const char *symbol, const struct stock_pri
 	}
 }
 
+static void symbol_check_doublebottom_up(const char *symbol, const struct stock_price *price_history,
+					const struct date_price *price2check)
+{
+	struct stock_support sspt = { };
+	int i, j, cnt;
+
+	for (i = 0, cnt = 0; i < price_history->date_cnt; i++) {
+		const struct date_price *prev = &price_history->dateprice[i];
+
+		if (strcmp(price2check->date, prev->date) <= 0)
+			continue;
+
+		if (cnt >= 2)
+			break;
+
+		cnt += 1;
+
+		if (price2check->close < prev->close)
+			continue;
+
+		check_support(price_history, prev, &sspt);
+
+		for (j = 0; j < sspt.date_nr; j++) {
+			if (sspt.is_doublebottom[j]) {
+				anna_info("%s%-10s%s: date=%s, %s; is up from date=%s which is double bottom with dates=%s; %s<sector=%s>%s.\n",
+					ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date,
+					get_price_volume_change(price_history, price2check), prev->date, sspt.date[i],
+					ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+
+				selected_symbol_nr += 1;
+
+				return;
+			}
+		}
+	}
+}
+
 static void symbol_check_pullback(const char *symbol, const struct stock_price *price_history,
 				  const struct date_price *price2check)
 {
@@ -1500,6 +1537,11 @@ void stock_price_check_sma(const char *group, const char *date, int sma_idx, int
 void stock_price_check_doublebottom(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_doublebottom);
+}
+
+void stock_price_check_doublebottom_up(const char *group, const char *date, int symbols_nr, const char **symbols)
+{
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_doublebottom_up);
 }
 
 void stock_price_check_pullback(const char *group, const char *date, int symbols_nr, const char **symbols)

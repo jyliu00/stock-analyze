@@ -23,6 +23,7 @@ enum
 	ACTION_CHECK_SMA20d, /* support at sma20d */
 	ACTION_CHECK_SMA50d, /* support at sma50d */
 	ACTION_CHECK_DB, /* double bottom */
+	ACTION_CHECK_DBUP, /* up from double bottom */
 	ACTION_CHECK_PB, /* pull back */
 	ACTION_CHECK_BO, /* break out */
 	ACTION_CHECK_52W_LOWUP, /* up from 52w low */
@@ -41,7 +42,7 @@ const char *group_list[ ] = { "usa", "ibd", "biotech", "3x", "china", "canada", 
 static void print_usage(void)
 {
 	printf("Usage: anna -group={usa|china|canada|biotech|ibd|3x} [-date=yyyy-mm-dd] [-conf=filename]\n");
-	printf("               {fetch | fetch-rt | check-db | check-lvup | check-52wlup | check-spt | check-20d | check-50d | check-pb | check-bo | check-wup | check-wrv | check-lv | check-chg} [symbol-1 symbol-2 ...]\n");
+	printf("               {fetch | fetch-rt | check-db | check-dbup | check-lvup | check-52wlup | check-spt | check-20d | check-50d | check-pb | check-bo | check-wup | check-wrv | check-lv | check-chg} [symbol-1 symbol-2 ...]\n");
 }
 
 static int init_dirs(const char *group)
@@ -163,6 +164,9 @@ int main(int argc, const char **argv)
 			else if (strcmp(arg, "check-db") == 0) {
 				action = ACTION_CHECK_DB;
 			}
+			else if (strcmp(arg, "check-dbup") == 0) {
+				action = ACTION_CHECK_DBUP;
+			}
 			else if (strcmp(arg, "check-pb") == 0) {
 				action = ACTION_CHECK_PB;
 			}
@@ -255,6 +259,10 @@ int main(int argc, const char **argv)
 
 	case ACTION_CHECK_DB:
 		stock_price_check_doublebottom(group, date, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_DBUP:
+		stock_price_check_doublebottom_up(group, date, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_PB:
