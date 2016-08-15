@@ -43,7 +43,7 @@ static int run_wget(char *output_fname, char *url)
 
 	default: /* parent */
 		for (i = 0; i < 30; i++) {
-			if (waitpid(wget_pid, &status, 0) == wget_pid)
+			if (waitpid(wget_pid, &status, WNOHANG) == wget_pid)
 				break;
 			sleep(1);
 		}
