@@ -42,13 +42,13 @@ static int run_wget(char *output_fname, char *url)
 		return -1;
 
 	default: /* parent */
-		for (i = 0; i < 30; i++) {
+		for (i = 0; i < 30000; i++) {
 			if (waitpid(wget_pid, &status, WNOHANG) == wget_pid)
 				break;
-			sleep(1);
+			usleep(1000);
 		}
 
-		if (i >= 30) {
+		if (i >= 30000) {
 			anna_error("wget timeout, url='%s'\n", url);
 			kill(wget_pid, SIGKILL);
 			waitpid(wget_pid, &status, 0);
