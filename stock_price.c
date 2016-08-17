@@ -1447,6 +1447,99 @@ static void symbol_check_volume_up(const char *symbol, const struct stock_price 
 	}
 }
 
+static void get_52w_low(const struct stock_price *price_history, const struct date_price *price2check,
+			uint32_t *low, uint32_t *second_low)
+{
+	int i, count;
+
+	*low = *second_low = (uint32_t)-1;
+
+	for (i = 0, count = 0; i < price_history->date_cnt; i++) {
+		const struct date_price *prev = &price_history->dateprice[i];
+
+		if (strcmp(price2check->date, prev->date) <= 0)
+			continue;
+
+		if (count >= 250)
+			break;
+
+		count += 1;
+
+		if (prev->low < *low)
+			*low = prev->low;
+		if (get_2ndlow(prev) < *second_low)
+			*second_low = get_2ndlow(prev);
+	}
+}
+
+static int near_52w_low(const struct date_price *price2check, uint32_t low_52w, uint32_t second_low_52w)
+{
+	uint32_t diff;
+	uint32_t price2check_2ndlow;
+
+	if (price2check->low > low_52w)
+		diff = price2check->low - low_52w;
+	else
+		diff = low_52w - price2check->low;
+	if (diff * 1000 / low_52w <= 50)
+		return 1;
+
+	if (price2check->low > second_low_52w)
+		diff = price2check->low - second_low_52w;
+	else
+		diff = second_low_52w - price2check->low;
+	if (diff * 1000 / second_low_52w <= 50)
+		return 1;
+
+	price2check_2ndlow = get_2ndlow(price2check);
+
+	if (price2check_2ndlow > low_52w)
+		diff = price2check_2ndlow - low_52w;
+	else
+		diff = low_52w - price2check_2ndlow;
+	if (diff * 1000 / low_52w <= 50)
+		return 1;
+
+	if (price2check_2ndlow > second_low_52w)
+		diff = price2check_2ndlow - second_low_52w;
+	else
+		diff = second_low_52w - price2check_2ndlow;
+	if (diff * 1000 / second_low_52w <= 50)
+		return 1;
+
+	return 0;
+}
+
+static void symbol_check_52w_doublebottom(const char *symbol, const struct stock_price *price_history,
+					const struct date_price *price2check)
+{
+	struct stock_support sspt = { };
+	int i;
+
+	check_support(price_history, price2check, &sspt);
+
+	if (!sspt.date_nr)
+		return;
+
+	for (i = 0; i < sspt.date_nr; i++) {
+		if (sspt.is_doublebottom[i]) {
+			uint32_t low_52w, second_low_52w;
+
+			get_52w_low(price_history, price2check, &low_52w, &second_low_52w);
+
+			if (near_52w_low(price2check, low_52w, second_low_52w)) {
+				anna_info("%s%-10s%s: date=%s, %s; is double bottom with dates=%s; %s<sector=%s>%s.\n",
+					ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date,
+					get_price_volume_change(price_history, price2check), sspt.date[i],
+					ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+
+				selected_symbol_nr += 1;
+			}
+
+			break;
+		}
+	}
+}
 
 static void symbol_check_change(const char *symbol, const struct stock_price *price_history,
 				const struct date_price *price2check)
@@ -1537,6 +1630,11 @@ void stock_price_check_sma(const char *group, const char *date, int sma_idx, int
 void stock_price_check_doublebottom(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_doublebottom);
+}
+
+void stock_price_check_52w_doublebottom(const char *group, const char *date, int symbols_nr, const char **symbols)
+{
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_52w_doublebottom);
 }
 
 void stock_price_check_doublebottom_up(const char *group, const char *date, int symbols_nr, const char **symbols)
