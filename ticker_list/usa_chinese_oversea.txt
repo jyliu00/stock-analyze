@@ -1,0 +1,14 @@
+%sector=chinese_oversea
+ATHM
+BABA
+CMCM
+CTRP
+EDU
+KNDI
+SINA
+SOHU
+VIPS
+WB
+NQ
+MOMO
+
