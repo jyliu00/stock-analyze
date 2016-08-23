@@ -1544,8 +1544,17 @@ static void symbol_check_52w_doublebottom(const char *symbol, const struct stock
 static void symbol_check_change(const char *symbol, const struct stock_price *price_history,
 				const struct date_price *price2check)
 {
-	anna_info("%s%-10s%s: date=%s, %s.\n", ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
-		  price2check->date, get_price_volume_change(price_history, price2check));
+	const struct date_price *prev;
+	int i;
+
+	for (i = 0; i < price_history->date_cnt; i++) {
+		prev = &price_history->dateprice[i];
+		if (strcmp(price2check->date, prev->date) > 0)
+			break;
+	}
+
+	anna_info("%s%-10s%s: date=%s, %s. volume larger than previous %d days.\n", ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+		  price2check->date, get_price_volume_change(price_history, price2check), get_less_volume_days(price_history, price2check, prev));
 }
 
 static int call_check_func(const char *symbol, const char *date, const char *fname,
