@@ -1,4 +1,4 @@
 -include ticker_list/biotech_my_picks.txt
 -include ticker_list/xbi.txt
--include ticker_list/nbi.txt
 -include ticker_list/ibb.txt
+-include ticker_list/nbi.txt
