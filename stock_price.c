@@ -1175,11 +1175,14 @@ static void symbol_check_mfi_doublebottom(const char *symbol, const struct stock
 		return;
 
 	for (i = 0; i < sspt.date_nr; i++) {
-		if (sspt.is_doublebottom[i] && (prev->mfi > sspt.mfi[i] && ((prev->mfi - sspt.mfi[i]) * 100 / sspt.mfi[i] >= 20))) {
-			anna_info("%s%-10s%s: date=%s, %s; is double bottom/rising MFI with date=%s; %s<sector=%s>%s.\n",
+		if (sspt.is_doublebottom[i] && (prev->mfi > sspt.mfi[i] && ((prev->mfi - sspt.mfi[i]) * 100 / sspt.mfi[i] >= 15))) {
+			uint32_t diff_mfi = prev->mfi - sspt.mfi[i];
+			anna_info("%s%-10s%s: date=%s, %s; is double bottom/rising MFI(%d.%02d/%d.%02d=%d.%02d%%) with date=%s; %s<sector=%s>%s.\n",
 				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date,
-				get_price_volume_change(price_history, price2check), sspt.date[i],
-				ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+				get_price_volume_change(price_history, price2check),
+				prev->mfi / 100, prev->mfi % 100, sspt.mfi[i] / 100, sspt.mfi[i] % 100,
+				diff_mfi * 100 / sspt.mfi[i], diff_mfi * 100 % sspt.mfi[i],
+				sspt.date[i], ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 
 			selected_symbol_nr += 1;
 
