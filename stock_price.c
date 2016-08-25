@@ -80,6 +80,15 @@ static void calculate_vma(struct stock_price *price, int cur_idx,
 	calculate_moving_avg(0, price, cur_idx, vma_days[vma_type], volume_sum, &cur->vma[vma_type]);
 }
 
+static void calculate_mfi(struct stock_price *price, int cur_idx, struct date_price *cur)
+{
+	int cnt = price->date_cnt - cur_idx;
+
+	if (cnt < 14)
+		return;
+
+}
+
 static void calculate_candle_stats(struct date_price *cur)
 {
 	/* calculate candle color */

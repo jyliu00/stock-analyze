@@ -62,6 +62,7 @@ struct date_price
 	uint32_t  volume;
 	uint32_t  sma[SMA_NR];
 	uint32_t  vma[VMA_NR];
+	uint32_t  typical_price, raw_mfi, mfi; /* money flow index */
 	uint8_t   candle_color;
 	uint8_t   candle_trend;
 	uint16_t  sr_flag; /* support/resist flag: SR_F_xxx */
