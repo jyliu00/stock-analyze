@@ -80,13 +80,39 @@ static void calculate_vma(struct stock_price *price, int cur_idx,
 	calculate_moving_avg(0, price, cur_idx, vma_days[vma_type], volume_sum, &cur->vma[vma_type]);
 }
 
-static void calculate_mfi(struct stock_price *price, int cur_idx, struct date_price *cur)
+static void calculate_mfi(struct stock_price *price, int cur_idx, struct date_price *cur,
+			  uint64_t *positive_raw_mf, uint64_t *negative_raw_mf)
 {
+	struct date_price *prev;
 	int cnt = price->date_cnt - cur_idx;
+
+	cur->typical_price = (cur->high + cur->low + cur->close) / 3;
+	cur->raw_mf = (uint64_t)cur->typical_price * cur->volume;
+
+	/* add current date's raw money flow */
+	if (cnt == 1)
+		*positive_raw_mf += cur->raw_mf;
+	else {
+		prev = cur + 1;
+		if (cur->typical_price >= prev->typical_price)
+			*positive_raw_mf += cur->raw_mf;
+		else
+			*negative_raw_mf += cur->raw_mf;
+	}
 
 	if (cnt < 14)
 		return;
 
+	/* delete 15days-ago's money flow */
+	if (cnt > 14) {
+		prev = cur + 14;
+		if (cnt == 15 || prev->typical_price >= (prev+1)->typical_price)
+			*positive_raw_mf -= prev->raw_mf;
+		else
+			*negative_raw_mf -= prev->raw_mf;
+	}
+
+	cur->mfi = 10000 - 1000000 / (100 + (*positive_raw_mf * 100 / (*negative_raw_mf ? *negative_raw_mf : 100)));
 }
 
 static void calculate_candle_stats(struct date_price *cur)
@@ -346,6 +372,7 @@ static void calculate_stock_price_statistics(struct stock_price *price)
 {
 	uint64_t price_sum[SMA_NR] = { 0 };
 	uint64_t volume_sum[VMA_NR] = { 0 };
+	uint64_t positive_raw_mf = 0, negative_raw_mf = 0;
 	int i, j;
 
 	for (i = price->date_cnt - 1; i >= 0; i--) {
@@ -356,6 +383,8 @@ static void calculate_stock_price_statistics(struct stock_price *price)
 
 		for (j = 0; j < VMA_NR; j++)
 			calculate_vma(price, i, j, &volume_sum[j], cur);
+
+		calculate_mfi(price, i, cur, &positive_raw_mf, &negative_raw_mf);
 
 		calculate_candle_stats(cur);
 	}
@@ -412,6 +441,10 @@ static int str_to_price(char *buf, struct date_price *price)
 		if (!token) return -1;
 		price->vma[i] = atoi(token);
 	}
+
+	token = strtok(NULL, ",");
+	if (!token) return -1;
+	price->mfi = atoi(token);
 
 	token = strtok(NULL, ",");
 	if (!token) return -1;
@@ -658,12 +691,12 @@ void fprintf_date_price(FILE *fp, const struct date_price *p)
 {
 	fprintf(fp,
 		"%s,%u,%u,%u,%u,%u,%u," /* date, wday, open, high, low, close, volume */
-		"%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u," /* sma_10/20/30/50/60/100/120/200d, vma_10/20/60d */
+		"%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u," /* sma_10/20/30/50/60/100/120/200d, vma_10/20/60d, mfi */
 		"%u,%u,%u,%u,%u,%u,%u\n",
 		p->date, p->wday, p->open, p->high, p->low, p->close, p->volume,
 		p->sma[SMA_10d], p->sma[SMA_20d], p->sma[SMA_30d], p->sma[SMA_50d],
 		p->sma[SMA_60d], p->sma[SMA_100d], p->sma[SMA_120d], p->sma[SMA_200d],
-		p->vma[VMA_10d], p->vma[VMA_20d], p->vma[VMA_60d],
+		p->vma[VMA_10d], p->vma[VMA_20d], p->vma[VMA_60d], p->mfi,
 		p->candle_color, p->candle_trend, p->sr_flag,
 		p->height_low_spt, p->height_2ndlow_spt, p->height_high_rst, p->height_2ndhigh_rst);
 }
@@ -685,7 +718,7 @@ int stock_price_to_file(const char *group, const char *sector, const char *symbo
 		fprintf(fp, "%%sector=%s\n", sector);
 
 	fprintf(fp, "# date,wday, open, high, low, close, volume, sma10d,20d,30d,50d,60d,100d,120d,200d, "
-		    "vma10d,20d,60d, candle_color, candle_trend, sr_flag, height_low_spt,2ndlow_spt,high_rst,2ndhigh_rst\n");
+		    "vma10d,20d,60d, mfi, candle_color, candle_trend, sr_flag, height_low_spt,2ndlow_spt,high_rst,2ndhigh_rst\n");
 
 	for (i = 0; i < price->date_cnt; i++) {
 		fprintf_date_price(fp, &price->dateprice[i]);
@@ -703,6 +736,7 @@ struct stock_support
 	char date[STOCK_SUPPORT_MAX_DATES][STOCK_DATE_SZ];
 	uint8_t sr_flag[STOCK_SUPPORT_MAX_DATES];
 	int8_t  is_doublebottom[STOCK_SUPPORT_MAX_DATES];
+	uint32_t  mfi[STOCK_SUPPORT_MAX_DATES];
 	int date_nr;
 };
 
@@ -748,6 +782,7 @@ static void date2sspt_copy(const struct date_price *prev, struct stock_support *
 	strlcpy(sspt->date[sspt->date_nr], prev->date, sizeof(sspt->date[0]));
 	sspt->sr_flag[sspt->date_nr] = prev->sr_flag;
 	sspt->is_doublebottom[sspt->date_nr] = is_db;
+	sspt->mfi[sspt->date_nr] = prev->mfi;
 	sspt->date_nr += 1;
 }
 
@@ -1106,7 +1141,42 @@ static void symbol_check_doublebottom(const char *symbol, const struct stock_pri
 
 	for (i = 0; i < sspt.date_nr; i++) {
 		if (sspt.is_doublebottom[i]) {
-			anna_info("%s%-10s%s: date=%s, %s; is double bottom with dates=%s; %s<sector=%s>%s.\n",
+			anna_info("%s%-10s%s: date=%s, %s; is double bottom with date=%s; %s<sector=%s>%s.\n",
+				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date,
+				get_price_volume_change(price_history, price2check), sspt.date[i],
+				ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+
+			selected_symbol_nr += 1;
+
+			break;
+		}
+	}
+}
+
+static void symbol_check_mfi_doublebottom(const char *symbol, const struct stock_price *price_history,
+					const struct date_price *price2check)
+{
+	struct stock_support sspt = { };
+	const struct date_price *prev;
+	int i;
+
+	check_support(price_history, price2check, &sspt);
+
+	if (!sspt.date_nr)
+		return;
+
+	for (i = 0; i < price_history->date_cnt; i++) {
+		prev = &price_history->dateprice[i];
+		if (strcmp(price2check->date, prev->date) > 0)
+			break;
+	}
+
+	if (i == price_history->date_cnt)
+		return;
+
+	for (i = 0; i < sspt.date_nr; i++) {
+		if (sspt.is_doublebottom[i] && (prev->mfi > sspt.mfi[i] && ((prev->mfi - sspt.mfi[i]) * 100 / sspt.mfi[i] >= 20))) {
+			anna_info("%s%-10s%s: date=%s, %s; is double bottom/rising MFI with date=%s; %s<sector=%s>%s.\n",
 				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date,
 				get_price_volume_change(price_history, price2check), sspt.date[i],
 				ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
@@ -1648,6 +1718,11 @@ void stock_price_check_sma(const char *group, const char *date, int sma_idx, int
 void stock_price_check_doublebottom(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_doublebottom);
+}
+
+void stock_price_check_mfi_doublebottom(const char *group, const char *date, int symbols_nr, const char **symbols)
+{
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_mfi_doublebottom);
 }
 
 void stock_price_check_52w_doublebottom(const char *group, const char *date, int symbols_nr, const char **symbols)
