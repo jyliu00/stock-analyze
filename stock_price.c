@@ -1206,8 +1206,19 @@ static void symbol_check_mfi_doublebottom(const char *symbol, const struct stock
 
 	for (i = 0; i < sspt.date_nr; i++) {
 		uint32_t sspt_mfi = sspt.mfi[i] ? sspt.mfi[i] : 1;
+		uint32_t high_250d, low_250d;
+		int low_250d_percent = 0;
 
-		if (sspt.is_doublebottom[i]
+		get_250d_high_low(price_history, price2check, &high_250d, &low_250d);
+
+		if (price2check->low < low_250d)
+			printf("[%s:%s:%d] date=%s's low is larger than 250d_low: %d/%d\n",
+				__FILE__, __FUNCTION__, __LINE__, price2check->date, price2check->low, low_250d);
+		else {
+			low_250d_percent = (price2check->low - low_250d) * 100 / low_250d;
+		}
+
+		if (sspt.is_doublebottom[i] && low_250d_percent <= 15
 		    && (prev->mfi <= 5500 && sspt_mfi <= 4500
 			&& prev->mfi > sspt_mfi && ((prev->mfi - sspt_mfi) * 100 / sspt_mfi >= 15)))
 		{
