@@ -1055,11 +1055,37 @@ static int get_symbol_price_for_check(const char *symbol, const char *date, cons
 	return 0;
 }
 
+static void get_250d_high_low(const struct stock_price *price_history, const struct date_price *price2check,
+				uint32_t *high, uint32_t *low)
+{
+	int i, j;
+
+	for (i = 0; i < price_history->date_cnt; i++) {
+		const struct date_price *prev = &price_history->dateprice[i];
+		if (strcmp(price2check->date, prev->date) <= 0)
+			continue;
+
+		*high = price2check->high;
+		*low = price2check->low;
+
+		for (j = i; j < 250 && j < price_history->date_cnt; j++) {
+			prev = &price_history->dateprice[j];
+			if (prev->high > *high)
+				*high = prev->high;
+			if (prev->low < *low)
+				*low = prev->low;
+		}
+
+		break;
+	}
+}
+
 static const char * get_price_volume_change(const struct stock_price *price_history, const struct date_price *price2check)
 {
-	static char output_str[128];
+	static char output_str[256];
 	const struct date_price *yesterday = NULL;
 	int is_up = 0, price_change = 0, vma10d_percent = 0, vma20d_percent = 0;
+	uint32_t high, low;
 	int i;
 
 	output_str[0] = 0;
@@ -1096,10 +1122,14 @@ static const char * get_price_volume_change(const struct stock_price *price_hist
 		price_change = ((uint64_t)price_change) * 1000 / yesterday->close;
 	}
 
+	get_250d_high_low(price_history, price2check, &high, &low);
+
 	snprintf(output_str, sizeof(output_str),
-		ANSI_COLOR_YELLOW "price(%c%d.%d%%), vma10d(%d.%d%%), vma20d(%d.%d%%), %s/%s" ANSI_COLOR_RESET,
-		is_up ? '+' : '-', price_change / 10, price_change % 10,
-		vma10d_percent / 10, vma10d_percent % 10, vma20d_percent / 10, vma20d_percent % 10,
+		ANSI_COLOR_YELLOW "price(%d.%03d, %c%d.%d%%, 250d_high=%d.%03d/%d.%02d%%, 250d_low=%d.%03d/%d.%02d%%), volume(%d, vma10d=%d.%d%%, vma20d=%d.%d%%), %s/%s" ANSI_COLOR_RESET,
+		price2check->close / 1000, price2check->close % 1000, is_up ? '+' : '-', price_change / 10, price_change % 10,
+		high / 1000, high % 1000, (high - price2check->high) * 100 / high, (high - price2check->high) * 100 % high,
+		low / 1000, low % 1000, (price2check->low - low) * 100 / low, (price2check->low - low) * 100 % low,
+		price2check->volume, vma10d_percent / 10, vma10d_percent % 10, vma20d_percent / 10, vma20d_percent % 10,
 		candle_color[price2check->candle_color], candle_trend[price2check->candle_trend]);
 
 	return output_str;
@@ -1141,9 +1171,9 @@ static void symbol_check_doublebottom(const char *symbol, const struct stock_pri
 
 	for (i = 0; i < sspt.date_nr; i++) {
 		if (sspt.is_doublebottom[i]) {
-			anna_info("%s%-10s%s: date=%s, %s; is double bottom with date=%s; %s<sector=%s>%s.\n",
-				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date,
-				get_price_volume_change(price_history, price2check), sspt.date[i],
+			anna_info("%s%-10s%s: date=%s/%s, %s; %s<sector=%s>%s.\n",
+				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date, sspt.date[i],
+				get_price_volume_change(price_history, price2check),
 				ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 
 			selected_symbol_nr += 1;
@@ -1175,14 +1205,19 @@ static void symbol_check_mfi_doublebottom(const char *symbol, const struct stock
 		return;
 
 	for (i = 0; i < sspt.date_nr; i++) {
-		if (sspt.is_doublebottom[i] && (prev->mfi > sspt.mfi[i] && ((prev->mfi - sspt.mfi[i]) * 100 / sspt.mfi[i] >= 15))) {
+		uint32_t sspt_mfi = sspt.mfi[i] ? sspt.mfi[i] : 1;
+
+		if (sspt.is_doublebottom[i]
+		    && (prev->mfi <= 5500 && sspt_mfi <= 4500
+			&& prev->mfi > sspt_mfi && ((prev->mfi - sspt_mfi) * 100 / sspt_mfi >= 15)))
+		{
 			uint32_t diff_mfi = prev->mfi - sspt.mfi[i];
-			anna_info("%s%-10s%s: date=%s, %s; is double bottom/rising MFI(%d.%02d/%d.%02d=%d.%02d%%) with date=%s; %s<sector=%s>%s.\n",
-				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date,
+			anna_info("%s%-10s%s: date=%s/%s, %s; MFI(%d.%02d/%d.%02d=%d.%02d%%); %s<sector=%s>%s.\n",
+				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date, sspt.date[i],
 				get_price_volume_change(price_history, price2check),
 				prev->mfi / 100, prev->mfi % 100, sspt.mfi[i] / 100, sspt.mfi[i] % 100,
-				diff_mfi * 100 / sspt.mfi[i], diff_mfi * 100 % sspt.mfi[i],
-				sspt.date[i], ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+				diff_mfi * 100 / sspt_mfi, diff_mfi * 100 % sspt_mfi,
+				ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 
 			selected_symbol_nr += 1;
 
