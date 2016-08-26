@@ -1125,12 +1125,12 @@ static const char * get_price_volume_change(const struct stock_price *price_hist
 	get_250d_high_low(price_history, price2check, &high, &low);
 
 	snprintf(output_str, sizeof(output_str),
-		ANSI_COLOR_YELLOW "price(%d.%03d, %c%d.%d%%, 250d_high=%d.%03d/%d.%02d%%, 250d_low=%d.%03d/%d.%02d%%), volume(%d, vma10d=%d.%d%%, vma20d=%d.%d%%), %s/%s" ANSI_COLOR_RESET,
+		ANSI_COLOR_YELLOW "price(%d.%03d, %c%d.%d%%, 250d_high=%d.%03d/%d.%02d%%, 250d_low=%d.%03d/%d.%02d%%), volume(%d, vma10d=%d.%d%%, vma20d=%d.%d%%)" ANSI_COLOR_RESET,
 		price2check->close / 1000, price2check->close % 1000, is_up ? '+' : '-', price_change / 10, price_change % 10,
 		high / 1000, high % 1000, (high - price2check->high) * 100 / high, (high - price2check->high) * 100 % high,
 		low / 1000, low % 1000, (price2check->low - low) * 100 / low, (price2check->low - low) * 100 % low,
-		price2check->volume, vma10d_percent / 10, vma10d_percent % 10, vma20d_percent / 10, vma20d_percent % 10,
-		candle_color[price2check->candle_color], candle_trend[price2check->candle_trend]);
+		price2check->volume, vma10d_percent / 10, vma10d_percent % 10, vma20d_percent / 10, vma20d_percent % 10);
+		//candle_color[price2check->candle_color], candle_trend[price2check->candle_trend]);
 
 	return output_str;
 }
