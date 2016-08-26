@@ -1220,7 +1220,7 @@ static void symbol_check_mfi_doublebottom(const char *symbol, const struct stock
 
 		if (sspt.is_doublebottom[i] && low_250d_percent <= 15
 		    && (prev->mfi <= 5500 && sspt_mfi <= 4500
-			&& prev->mfi > sspt_mfi && ((prev->mfi - sspt_mfi) * 100 / sspt_mfi >= 15)))
+			&& prev->mfi > sspt_mfi && ((prev->mfi - sspt_mfi) * 100 / sspt_mfi >= 50)))
 		{
 			uint32_t diff_mfi = prev->mfi - sspt.mfi[i];
 			anna_info("%s%-10s%s: date=%s/%s, %s; MFI(%d.%02d/%d.%02d=%d.%02d%%); %s<sector=%s>%s.\n",
