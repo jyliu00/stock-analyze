@@ -1158,6 +1158,45 @@ static void symbol_check_support(const char *symbol, const struct stock_price *p
 	selected_symbol_nr += 1;
 }
 
+static void symbol_check_crawl_sma(const char *symbol, const struct stock_price *price_history,
+				 const struct date_price *price2check)
+{
+	int i, j;
+	int count = 0;
+
+	for (i = 0; i < price_history->date_cnt; i++) {
+		const struct date_price *prev = &price_history->dateprice[i];
+		if (strcmp(price2check->date, prev->date) < 0)
+			continue;
+
+		for (j = i; j < price_history->date_cnt; j++) {
+			prev = &price_history->dateprice[j];
+
+			if (prev->volume && prev->sma[sma2check] != 0
+			    && prev->close >= prev->sma[sma2check]
+			    && (sma_hit(prev->low, prev->sma[sma2check])
+				|| sma_hit(get_2ndlow(prev), prev->sma[sma2check])))
+			{
+				count += 1;
+			}
+			else
+				break;
+		}
+
+		if (count >= 4) {
+			anna_info("%s%-10s%s: date=%s, %s; has %d days crawl on SMA%dd; %s<sector=%s>%s.\n",
+				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+				price2check->date, get_price_volume_change(price_history, price2check),
+				count, sma2check == SMA_20d ? 20 : 50,
+				ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+
+			selected_symbol_nr += 1;
+		}
+
+		break;
+	}
+}
+
 static void symbol_check_doublebottom(const char *symbol, const struct stock_price *price_history,
 					const struct date_price *price2check)
 {
@@ -1766,6 +1805,13 @@ void stock_price_check_sma(const char *group, const char *date, int sma_idx, int
 {
 	sma2check = sma_idx;
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_support);
+	sma2check = -1;
+}
+
+void stock_price_check_crawl_sma(const char *group, const char *date, int sma_idx, int symbols_nr, const char **symbols)
+{
+	sma2check = sma_idx;
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_crawl_sma);
 	sma2check = -1;
 }
 
