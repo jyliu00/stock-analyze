@@ -1378,6 +1378,29 @@ static void symbol_check_breakout(const char *symbol, const struct stock_price *
 	selected_symbol_nr += 1;
 }
 
+static void symbol_check_early_up(const char *symbol, const struct stock_price *price_history,
+				    const struct date_price *price2check)
+{
+	int i;
+
+	for (i = 0; i < price_history->date_cnt; i++) {
+		const struct date_price *prev = &price_history->dateprice[i];
+
+		if (strcmp(price2check->date, prev->date) <= 0)
+			continue;
+
+		if ((price2check->close - prev->close) * 1000 / prev->close >= 25) {
+			anna_info("%s%-10s%s: date=%s, %s, is early up from yesterday date=%s.\n",
+				  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date,
+				  get_price_volume_change(price_history, price2check), prev->date);
+
+			selected_symbol_nr += 1;
+		}
+
+		break;
+	}
+}
+
 static void symbol_check_52w_low_up(const char *symbol, const struct stock_price *price_history,
 				    const struct date_price *price2check)
 {
@@ -1468,11 +1491,13 @@ static void symbol_check_weekup(const char *symbol, const struct stock_price *pr
 	    && w2_price.close > w2_price.open
 	    && w1_price.close > w2_price.close)
 	{
-		anna_info("%s%-10s%s: has continuous 2 weeks uptrend. %s<sector=%s>%s\n",
-			  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
-			  ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+		if ((w2_price.close - w2_price.open) * 100 / (w2_price.high - w2_price.low) >= 70) {
+			anna_info("%s%-10s%s: has continuous 2 weeks uptrend. %s<sector=%s>%s\n",
+					ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+					ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 
-		selected_symbol_nr += 1;
+			selected_symbol_nr += 1;
+		}
 	}
 }
 
@@ -1843,6 +1868,11 @@ void stock_price_check_pullback(const char *group, const char *date, int symbols
 void stock_price_check_breakout(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_breakout);
+}
+
+void stock_price_check_early_up(const char *group, const char *date, int symbols_nr, const char **symbols)
+{
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_early_up);
 }
 
 void stock_price_check_52w_low_up(const char *group, const char *date, int symbols_nr, const char **symbols)
