@@ -1197,8 +1197,58 @@ static void symbol_check_crawl_sma(const char *symbol, const struct stock_price 
 	}
 }
 
-static void symbol_check_doublebottom(const char *symbol, const struct stock_price *price_history,
-					const struct date_price *price2check)
+static int get_date_count(const struct stock_price *price_history, const char *date1, const char *date2)
+{
+	const char *date_smaller, *date_bigger;
+	int cmp = strcmp(date1, date2);
+	int i, j;
+
+	cmp = strcmp(date1, date2);
+	if (cmp == 0)
+		return 0;
+
+	if (cmp > 0) {
+		date_smaller = date2;
+		date_bigger = date1;
+	}
+	else {
+		date_smaller = date1;
+		date_bigger = date2;
+	}
+
+	for (i = 0; i < price_history->date_cnt; i++) {
+		const struct date_price *cur = &price_history->dateprice[i];
+		if (strcmp(cur->date, date_bigger) > 0)
+			continue;
+
+		for (j = i; j < price_history->date_cnt; j++) {
+			cur = &price_history->dateprice[j];
+			if (strcmp(cur->date, date_smaller) == 0)
+				break;
+		}
+
+		return j - i;
+	}
+
+	return 0;
+}
+
+static int datecnt_match_check_pullback(int check_pullback, int datecnt)
+{
+	if (check_pullback) {
+		if (datecnt > 25 || datecnt < 10)
+			return 0;
+	}
+	else {
+		if (datecnt <= 25 && datecnt >= 10)
+			return 0;
+	}
+
+	return 1;
+}
+
+static void __symbol_check_doublebottom(const char *symbol, const struct stock_price *price_history,
+					const struct date_price *price2check, int check_pullback)
 {
 	struct stock_support sspt = { };
 	int i;
@@ -1210,8 +1260,13 @@ static void symbol_check_doublebottom(const char *symbol, const struct stock_pri
 
 	for (i = 0; i < sspt.date_nr; i++) {
 		if (sspt.is_doublebottom[i]) {
-			anna_info("%s%-10s%s: date=%s/%s, %s; %s<sector=%s>%s.\n",
-				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date, sspt.date[i],
+			int datecnt = get_date_count(price_history, sspt.date[i], price2check->date);
+
+			if (!datecnt_match_check_pullback(check_pullback, datecnt))
+				return;
+
+			anna_info("%s%-10s%s: date=%s/%s(%d days), %s; %s<sector=%s>%s.\n",
+				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date, sspt.date[i], datecnt,
 				get_price_volume_change(price_history, price2check),
 				ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 
@@ -1220,6 +1275,18 @@ static void symbol_check_doublebottom(const char *symbol, const struct stock_pri
 			break;
 		}
 	}
+}
+
+static void symbol_check_doublebottom(const char *symbol, const struct stock_price *price_history,
+					const struct date_price *price2check)
+{
+	__symbol_check_doublebottom(symbol, price_history, price2check, 0);
+}
+
+static void symbol_check_pullback_doublebottom(const char *symbol, const struct stock_price *price_history,
+						const struct date_price *price2check)
+{
+	__symbol_check_doublebottom(symbol, price_history, price2check, 1);
 }
 
 static void symbol_check_mfi_doublebottom(const char *symbol, const struct stock_price *price_history,
@@ -1281,8 +1348,8 @@ static void symbol_check_mfi_doublebottom(const char *symbol, const struct stock
 	}
 }
 
-static void symbol_check_doublebottom_up(const char *symbol, const struct stock_price *price_history,
-					const struct date_price *price2check)
+static void __symbol_check_doublebottom_up(const char *symbol, const struct stock_price *price_history,
+					const struct date_price *price2check, int check_pullback)
 {
 	struct stock_support sspt = { };
 	int i, j, cnt;
@@ -1305,9 +1372,14 @@ static void symbol_check_doublebottom_up(const char *symbol, const struct stock_
 
 		for (j = 0; j < sspt.date_nr; j++) {
 			if (sspt.is_doublebottom[j]) {
-				anna_info("%s%-10s%s: date=%s up from %s/%s, %s; %s<sector=%s>%s.\n",
+				int datecnt = get_date_count(price_history, sspt.date[j], prev->date);
+
+				if (!datecnt_match_check_pullback(check_pullback, datecnt))
+					return;
+
+				anna_info("%s%-10s%s: date=%s up from %s/%s(%d days), %s; %s<sector=%s>%s.\n",
 					  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
-					  price2check->date, prev->date, sspt.date[j],
+					  price2check->date, prev->date, sspt.date[j], datecnt,
 					  get_price_volume_change(price_history, price2check),
 					  ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 
@@ -1317,6 +1389,18 @@ static void symbol_check_doublebottom_up(const char *symbol, const struct stock_
 			}
 		}
 	}
+}
+
+static void symbol_check_doublebottom_up(const char *symbol, const struct stock_price *price_history,
+					const struct date_price *price2check)
+{
+	__symbol_check_doublebottom_up(symbol, price_history, price2check, 0);
+}
+
+static void symbol_check_pullback_doublebottom_up(const char *symbol, const struct stock_price *price_history,
+						const struct date_price *price2check)
+{
+	__symbol_check_doublebottom_up(symbol, price_history, price2check, 1);
 }
 
 static void symbol_check_pullback(const char *symbol, const struct stock_price *price_history,
@@ -1851,6 +1935,11 @@ void stock_price_check_mfi_doublebottom(const char *group, const char *date, int
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_mfi_doublebottom);
 }
 
+void stock_price_check_pullback_doublebottom(const char *group, const char *date, int symbols_nr, const char **symbols)
+{
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_pullback_doublebottom);
+}
+
 void stock_price_check_52w_doublebottom(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_52w_doublebottom);
@@ -1859,6 +1948,11 @@ void stock_price_check_52w_doublebottom(const char *group, const char *date, int
 void stock_price_check_doublebottom_up(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_doublebottom_up);
+}
+
+void stock_price_check_pullback_doublebottom_up(const char *group, const char *date, int symbols_nr, const char **symbols)
+{
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_pullback_doublebottom_up);
 }
 
 void stock_price_check_pullback(const char *group, const char *date, int symbols_nr, const char **symbols)
