@@ -1305,10 +1305,11 @@ static void symbol_check_doublebottom_up(const char *symbol, const struct stock_
 
 		for (j = 0; j < sspt.date_nr; j++) {
 			if (sspt.is_doublebottom[j]) {
-				anna_info("%s%-10s%s: date=%s, %s; is up from date=%s which is double bottom with dates=%s; %s<sector=%s>%s.\n",
-					ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date,
-					get_price_volume_change(price_history, price2check), prev->date, sspt.date[i],
-					ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+				anna_info("%s%-10s%s: date=%s up from %s/%s, %s; %s<sector=%s>%s.\n",
+					  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+					  price2check->date, prev->date, sspt.date[j],
+					  get_price_volume_change(price_history, price2check),
+					  ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 
 				selected_symbol_nr += 1;
 
