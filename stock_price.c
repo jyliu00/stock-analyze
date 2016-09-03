@@ -863,7 +863,9 @@ static void check_support(const struct stock_price *price_history, const struct 
 			if (sma2check != -1 && yesterday->sma[sma2check] != 0) {
 				if (!sma_hit(price2check->low, yesterday->sma[sma2check])
 				    && !sma_hit(price2check_2ndlow, yesterday->sma[sma2check]))
+				{
 					break;
+				}
 			}
 		}
 
@@ -1140,6 +1142,11 @@ static void symbol_check_support(const char *symbol, const struct stock_price *p
 {
 	struct stock_support sspt = { };
 	int i;
+
+	if (sma2check != -1
+	    && (price2check->candle_color == CANDLE_COLOR_RED
+		|| price2check->candle_trend == CANDLE_TREND_BEAR))
+		return;
 
 	check_support(price_history, price2check, &sspt);
 
