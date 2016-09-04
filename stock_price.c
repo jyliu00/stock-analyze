@@ -1581,15 +1581,16 @@ static void symbol_check_weekup(const char *symbol, const struct stock_price *pr
 
 	if (w1_price.close > w1_price.open
 	    && w2_price.close > w2_price.open
-	    && w1_price.close > w2_price.close)
+	    && w1_price.close > w2_price.close
+	    && (w2_price.close - w2_price.open) * 100 / (w2_price.high - w2_price.low) >= 70 /* w2 body size >= 70% */
+	    && ((w2_price.close - w2_price.open) * 100 / w2_price.open >= 5
+		|| (w1_price.close - w1_price.open) * 100 / w1_price.open >= 5))
 	{
-		if ((w2_price.close - w2_price.open) * 100 / (w2_price.high - w2_price.low) >= 70) {
-			anna_info("%s%-10s%s: has continuous 2 weeks uptrend. %s<sector=%s>%s\n",
-					ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
-					ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+		anna_info("%s%-10s%s: has continuous 2 weeks uptrend. %s<sector=%s>%s\n",
+			ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+			ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 
-			selected_symbol_nr += 1;
-		}
+		selected_symbol_nr += 1;
 	}
 }
 
