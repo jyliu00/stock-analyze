@@ -1,0 +1,7 @@
+%sector=my_finviz_growth
+MANH
+LXFT
+BEAT
+IBP
+CYBR
+DLB
