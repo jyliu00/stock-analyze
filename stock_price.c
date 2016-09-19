@@ -1833,6 +1833,28 @@ static void symbol_check_52w_doublebottom(const char *symbol, const struct stock
 	}
 }
 
+static void symbol_check_52w_doublebottom_up(const char *symbol, const struct stock_price *price_history,
+                                        const struct date_price *price2check)
+{
+	int i, cnt = 0;
+
+	for (i = 0; i < price_history->date_cnt; i++) {
+		const struct date_price *prev = &price_history->dateprice[i];
+		if (strcmp(prev->date, price2check->date) >= 0)
+			continue;
+
+		if (cnt >= 2)
+			break;
+
+		cnt += 1;
+
+		if (price2check->close < prev->close)
+			continue;
+
+		symbol_check_52w_doublebottom(symbol, price_history, price2check);
+	}
+}
+
 static void symbol_check_change(const char *symbol, const struct stock_price *price_history,
 				const struct date_price *price2check)
 {
@@ -1953,6 +1975,11 @@ void stock_price_check_pullback_doublebottom(const char *group, const char *date
 void stock_price_check_52w_doublebottom(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_52w_doublebottom);
+}
+
+void stock_price_check_52w_doublebottom_up(const char *group, const char *date, int symbols_nr, const char **symbols)
+{
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_52w_doublebottom_up);
 }
 
 void stock_price_check_doublebottom_up(const char *group, const char *date, int symbols_nr, const char **symbols)

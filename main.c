@@ -29,6 +29,7 @@ enum
 	ACTION_CHECK_PULLBACK_DB, /* pullback double bottom */
 	ACTION_CHECK_MFI_DB, /* double bottom with rising money flow index */
 	ACTION_CHECK_52W_DB, /* 52w low double bottom */
+	ACTION_CHECK_52W_DBUP, /* 52w low double bottom up */
 	ACTION_CHECK_DBUP, /* up from double bottom */
 	ACTION_CHECK_PULLBACK_DBUP, /* up from pullback double bottom */
 	ACTION_CHECK_PB, /* pull back */
@@ -193,6 +194,9 @@ int main(int argc, const char **argv)
 			else if (strcmp(arg, "check-52w-db") == 0) {
 				action = ACTION_CHECK_52W_DB;
 			}
+			else if (strcmp(arg, "check-52w-dbup") == 0) {
+				action = ACTION_CHECK_52W_DBUP;
+			}
 			else if (strcmp(arg, "check-dbup") == 0) {
 				action = ACTION_CHECK_DBUP;
 			}
@@ -318,6 +322,10 @@ int main(int argc, const char **argv)
 
 	case ACTION_CHECK_52W_DB:
 		stock_price_check_52w_doublebottom(group, date, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_52W_DBUP:
+		stock_price_check_52w_doublebottom_up(group, date, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_DBUP:
