@@ -1851,7 +1851,12 @@ static void symbol_check_52w_doublebottom_up(const char *symbol, const struct st
 		if (price2check->close < prev->close)
 			continue;
 
+		int saved = selected_symbol_nr;
+
 		symbol_check_52w_doublebottom(symbol, price_history, price2check);
+
+		if (selected_symbol_nr > saved)
+			break;
 	}
 }
 
