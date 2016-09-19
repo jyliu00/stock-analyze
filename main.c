@@ -21,7 +21,9 @@ enum
 	ACTION_FETCH_REALTIME,
 	ACTION_CHECK_SPT, /* support */
 	ACTION_CHECK_SMA20d, /* support at sma20d */
+	ACTION_CHECK_SMA30d, /* support at sma30d */
 	ACTION_CHECK_SMA50d, /* support at sma50d */
+	ACTION_CHECK_SMA60d, /* support at sma60d */
 	ACTION_CHECK_CRAWL_SMA20d, /* crawl around sma20d for a few days */
 	ACTION_CHECK_DB, /* double bottom */
 	ACTION_CHECK_PULLBACK_DB, /* pullback double bottom */
@@ -49,7 +51,8 @@ static void print_usage(void)
 {
 	printf("Usage: anna -group={usa|china|canada|biotech|ibd|3x} [-date=yyyy-mm-dd] [-conf=filename]\n");
 	printf("               {fetch | fetch-rt | check-db | check-mfi-db | check-pullback-db | check-52w-db | "
-				"check-dbup | check-pullback-dbup | check-lvup | check-earlyup | check-52wlup | check-spt | check-20d | check-50d | "
+				"check-dbup | check-pullback-dbup | check-lvup | check-earlyup | check-52wlup | "
+				"check-spt | check-20d | check-30d | check-50d | check-60d | "
 				"check-crawl20d | check-pb | check-bo | check-wup | check-wrv | check-lv | check-chg} [symbol-1 symbol-2 ...]\n");
 }
 
@@ -166,8 +169,14 @@ int main(int argc, const char **argv)
 			else if (strcmp(arg, "check-20d") == 0) {
 				action = ACTION_CHECK_SMA20d;
 			}
+			else if (strcmp(arg, "check-30d") == 0) {
+				action = ACTION_CHECK_SMA30d;
+			}
 			else if (strcmp(arg, "check-50d") == 0) {
 				action = ACTION_CHECK_SMA50d;
+			}
+			else if (strcmp(arg, "check-60d") == 0) {
+				action = ACTION_CHECK_SMA60d;
 			}
 			else if (strcmp(arg, "check-crawl20d") == 0) {
 				action = ACTION_CHECK_CRAWL_SMA20d;
@@ -279,8 +288,16 @@ int main(int argc, const char **argv)
 		stock_price_check_sma(group, date, SMA_20d, symbols_nr, (const char **)symbols);
 		break;
 
+	case ACTION_CHECK_SMA30d:
+		stock_price_check_sma(group, date, SMA_30d, symbols_nr, (const char **)symbols);
+		break;
+
 	case ACTION_CHECK_SMA50d:
 		stock_price_check_sma(group, date, SMA_50d, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_SMA60d:
+		stock_price_check_sma(group, date, SMA_60d, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_CRAWL_SMA20d:
