@@ -1548,6 +1548,7 @@ static void symbol_check_52w_low_up(const char *symbol, const struct stock_price
 static void get_week_price(const struct stock_price *price_history, int *idx, struct date_price *week_price)
 {
 	int j;
+	int last_wday = 6;
 
 	memset(week_price, 0, sizeof(*week_price));
 	week_price->low = (uint32_t)-1;
@@ -1555,8 +1556,13 @@ static void get_week_price(const struct stock_price *price_history, int *idx, st
 	for (j = 0; j < 5 && *idx < price_history->date_cnt; (*idx)++, j++) {
 		const struct date_price *cur = &price_history->dateprice[*idx];
 
-		if (j == 0)
+		if (cur->wday >= last_wday)
+			break;
+
+		if (j == 0) {
 			week_price->close = cur->close;
+			last_wday = cur->wday;
+		}
 
 		if (cur->high > week_price->high)
 			week_price->high = cur->high;
@@ -1564,11 +1570,7 @@ static void get_week_price(const struct stock_price *price_history, int *idx, st
 		if (cur->low < week_price->low)
 			week_price->low = cur->low;
 
-		if (cur->wday == 1) {
-			week_price->open = cur->open;
-			(*idx) += 1;
-			break;
-		}
+		week_price->open = cur->open;
 	}
 }
 
