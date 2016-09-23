@@ -1374,7 +1374,10 @@ static void __symbol_check_doublebottom_up(const char *symbol, const struct stoc
 
 		cnt += 1;
 
-		if (price2check->close < prev->close)
+		if (price2check->close < prev->close
+		    || (price2check->close - prev->close) * 100 / prev->close < 2
+		    || (price2check->volume < prev->vma[VMA_10d] && price2check->volume < prev->vma[VMA_20d])
+		   )
 			continue;
 
 		check_support(price_history, prev, &sspt);
