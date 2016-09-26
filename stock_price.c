@@ -1087,7 +1087,7 @@ static const char * get_price_volume_change(const struct stock_price *price_hist
 {
 	static char output_str[256];
 	const struct date_price *yesterday = NULL;
-	int is_up = 0, price_change = 0, vma10d_percent = 0, vma20d_percent = 0;
+	int is_up = 0, price_change = 0, body_size = 0, vma10d_percent = 0, vma20d_percent = 0;
 	uint32_t high, low;
 	int i;
 
@@ -1125,11 +1125,20 @@ static const char * get_price_volume_change(const struct stock_price *price_hist
 		price_change = ((uint64_t)price_change) * 1000 / yesterday->close;
 	}
 
+	if (price2check->open && price2check->close) {
+		if (price2check->close >= price2check->open)
+			body_size = price2check->close - price2check->open;
+		else
+			body_size = price2check->open - price2check->close;
+		body_size = ((uint64_t)body_size) * 1000 / price2check->open;
+	}
+
 	get_250d_high_low(price_history, price2check, &high, &low);
 
 	snprintf(output_str, sizeof(output_str),
-		ANSI_COLOR_YELLOW "price(%d.%03d, %c%d.%d%%, 250d_high=%d.%03d/%d.%02d%%, 250d_low=%d.%03d/%d.%02d%%), volume(%d, vma10d=%d.%d%%, vma20d=%d.%d%%)" ANSI_COLOR_RESET,
+		ANSI_COLOR_YELLOW "price(%d.%03d, %c%d.%d%%, body_size=%c%d.%d%%, 250d_high=%d.%03d/%d.%02d%%, 250d_low=%d.%03d/%d.%02d%%), volume(%d, vma10d=%d.%d%%, vma20d=%d.%d%%)" ANSI_COLOR_RESET,
 		price2check->close / 1000, price2check->close % 1000, is_up ? '+' : '-', price_change / 10, price_change % 10,
+		price2check->close >= price2check->open ? '+' : '-', body_size / 10, body_size % 10,
 		high / 1000, high % 1000, (high - price2check->high) * 100 / high, (high - price2check->high) * 100 % high,
 		low / 1000, low % 1000, (price2check->low - low) * 100 / low, (price2check->low - low) * 100 % low,
 		price2check->volume, vma10d_percent / 10, vma10d_percent % 10, vma20d_percent / 10, vma20d_percent % 10);
