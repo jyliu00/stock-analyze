@@ -32,6 +32,7 @@ enum
 	ACTION_CHECK_52W_DBUP, /* 52w low double bottom up */
 	ACTION_CHECK_DBUP, /* up from double bottom */
 	ACTION_CHECK_PULLBACK_DBUP, /* up from pullback double bottom */
+	ACTION_CHECK_STRONG_DBUP, /* strong up from double bottom */
 	ACTION_CHECK_PB, /* pull back */
 	ACTION_CHECK_BO, /* break out */
 	ACTION_CHECK_EARLY_UP, /* early up */
@@ -52,7 +53,7 @@ static void print_usage(void)
 {
 	printf("Usage: anna -group={usa|china|canada|biotech|ibd|3x} [-date=yyyy-mm-dd] [-conf=filename]\n");
 	printf("               {fetch | fetch-rt | check-db | check-mfi-db | check-pullback-db | check-52w-db | "
-				"check-dbup | check-pullback-dbup | check-lvup | check-earlyup | check-52wlup | "
+				"check-dbup | check-pullback-dbup | check-52w-dbup | check-strong-dbup | check-lvup | check-earlyup | check-52wlup | "
 				"check-spt | check-20d | check-30d | check-50d | check-60d | "
 				"check-crawl20d | check-pb | check-bo | check-wup | check-wrv | check-lv | check-chg} [symbol-1 symbol-2 ...]\n");
 }
@@ -203,6 +204,9 @@ int main(int argc, const char **argv)
 			else if (strcmp(arg, "check-pullback-dbup") == 0) {
 				action = ACTION_CHECK_PULLBACK_DBUP;
 			}
+			else if (strcmp(arg, "check-strong-dbup") == 0) {
+				action = ACTION_CHECK_STRONG_DBUP;
+			}
 			else if (strcmp(arg, "check-pb") == 0) {
 				action = ACTION_CHECK_PB;
 			}
@@ -334,6 +338,10 @@ int main(int argc, const char **argv)
 
 	case ACTION_CHECK_PULLBACK_DBUP:
 		stock_price_check_pullback_doublebottom_up(group, date, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_STRONG_DBUP:
+		stock_price_check_strong_doublebottom_up(group, date, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_PB:

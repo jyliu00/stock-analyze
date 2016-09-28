@@ -805,7 +805,7 @@ static int date_is_downtrend(const struct stock_price *price_history, int idx, c
 			max_down_diff = prev->high - price2check->low;
 	}
 
-	if (!is_falling || (max_down_diff * 1000 / price2check->low < spt_pullback_margin))
+	if (!is_falling || (price2check->low && max_down_diff * 1000 / price2check->low < spt_pullback_margin))
 		return 0;
 
 	return 1;
@@ -1367,7 +1367,7 @@ static void symbol_check_mfi_doublebottom(const char *symbol, const struct stock
 }
 
 static void __symbol_check_doublebottom_up(const char *symbol, const struct stock_price *price_history,
-					const struct date_price *price2check, int check_pullback)
+					const struct date_price *price2check, int check_pullback, int strong)
 {
 	struct stock_support sspt = { };
 	int i, j, cnt;
@@ -1383,11 +1383,26 @@ static void __symbol_check_doublebottom_up(const char *symbol, const struct stoc
 
 		cnt += 1;
 
-		if (price2check->close < prev->close
-		    || (price2check->close - prev->close) * 100 / prev->close < 2
-		    || (price2check->volume < prev->vma[VMA_10d] && price2check->volume < prev->vma[VMA_20d])
-		   )
+		if (price2check->close < prev->close)
 			continue;
+
+		if (strong) {
+			if (price2check->close < prev->high)
+				continue;
+
+			int good_rise1 = (price2check->close - prev->close) * 100 / prev->close >= 2;
+			int good_rise2 = price2check->volume >= prev->vma[VMA_10d] || price2check->volume >= prev->vma[VMA_20d];
+
+			if (!good_rise1 && !good_rise2)
+				continue;
+		}
+		else {
+			if ((price2check->close - prev->close) * 100 / prev->close < 2
+			    && (price2check->volume < prev->vma[VMA_10d] && price2check->volume < prev->vma[VMA_20d])
+			    && price2check->close < prev->high
+			   )
+				continue;
+		}
 
 		check_support(price_history, prev, &sspt);
 
@@ -1395,7 +1410,7 @@ static void __symbol_check_doublebottom_up(const char *symbol, const struct stoc
 			if (sspt.is_doublebottom[j]) {
 				int datecnt = get_date_count(price_history, sspt.date[j], prev->date);
 
-				if (!datecnt_match_check_pullback(check_pullback, datecnt))
+				if (check_pullback && !datecnt_match_check_pullback(check_pullback, datecnt))
 					return;
 
 				anna_info("%s%-10s%s: date=%s up from %s/%s(%d days), %s; %s<sector=%s>%s.\n",
@@ -1415,13 +1430,19 @@ static void __symbol_check_doublebottom_up(const char *symbol, const struct stoc
 static void symbol_check_doublebottom_up(const char *symbol, const struct stock_price *price_history,
 					const struct date_price *price2check)
 {
-	__symbol_check_doublebottom_up(symbol, price_history, price2check, 0);
+	__symbol_check_doublebottom_up(symbol, price_history, price2check, 0, 0);
 }
 
 static void symbol_check_pullback_doublebottom_up(const char *symbol, const struct stock_price *price_history,
 						const struct date_price *price2check)
 {
-	__symbol_check_doublebottom_up(symbol, price_history, price2check, 1);
+	__symbol_check_doublebottom_up(symbol, price_history, price2check, 1, 0);
+}
+
+static void symbol_check_strong_doublebottom_up(const char *symbol, const struct stock_price *price_history,
+						const struct date_price *price2check)
+{
+	__symbol_check_doublebottom_up(symbol, price_history, price2check, 0, 1);
 }
 
 static void symbol_check_pullback(const char *symbol, const struct stock_price *price_history,
@@ -2009,6 +2030,11 @@ void stock_price_check_doublebottom_up(const char *group, const char *date, int 
 void stock_price_check_pullback_doublebottom_up(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_pullback_doublebottom_up);
+}
+
+void stock_price_check_strong_doublebottom_up(const char *group, const char *date, int symbols_nr, const char **symbols)
+{
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_strong_doublebottom_up);
 }
 
 void stock_price_check_pullback(const char *group, const char *date, int symbols_nr, const char **symbols)
