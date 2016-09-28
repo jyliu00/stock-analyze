@@ -96,6 +96,7 @@ void stock_price_check_pullback_doublebottom_up(const char *group, const char *d
 void stock_price_check_strong_doublebottom_up(const char *group, const char *date, int symbols_nr, const char **symbols);
 void stock_price_check_pullback(const char *group, const char *date, int symbols_nr, const char **symbols);
 void stock_price_check_breakout(const char *group, const char *date, int symbols_nr, const char **symbols);
+void stock_price_check_strong_breakout(const char *group, const char *date, int symbols_nr, const char **symbols);
 void stock_price_check_early_up(const char *group, const char *date, int symbols_nr, const char **symbols);
 void stock_price_check_52w_low_up(const char *group, const char *date, int symbols_nr, const char **symbols);
 void stock_price_check_weekup(const char *group, const char *date, int symbols_nr, const char **symbols);

@@ -35,6 +35,7 @@ enum
 	ACTION_CHECK_STRONG_DBUP, /* strong up from double bottom */
 	ACTION_CHECK_PB, /* pull back */
 	ACTION_CHECK_BO, /* break out */
+	ACTION_CHECK_STRONG_BO, /* strong break out */
 	ACTION_CHECK_EARLY_UP, /* early up */
 	ACTION_CHECK_52W_LOWUP, /* up from 52w low */
 	ACTION_CHECK_WUP, /* week up */
@@ -219,6 +220,9 @@ int main(int argc, const char **argv)
 			else if (strcmp(arg, "check-bo") == 0) {
 				action = ACTION_CHECK_BO;
 			}
+			else if (strcmp(arg, "check-strong-bo") == 0) {
+				action = ACTION_CHECK_BO;
+			}
 			else if (strcmp(arg, "check-wup") == 0) {
 				action = ACTION_CHECK_WUP;
 			}
@@ -350,6 +354,10 @@ int main(int argc, const char **argv)
 
 	case ACTION_CHECK_BO:
 		stock_price_check_breakout(group, date, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_STRONG_BO:
+		stock_price_check_strong_breakout(group, date, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_EARLY_UP:
