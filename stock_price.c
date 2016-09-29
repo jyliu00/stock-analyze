@@ -919,17 +919,22 @@ static void check_support(const struct stock_price *price_history, const struct 
 
 static int is_strong_up(const struct date_price *price2check, const struct date_price *prev)
 {
-	if (price2check->close >= get_2ndlow(prev)
-	    && (price2check->volume * 10 / prev->vma[VMA_10d] >= 15 || price2check->volume * 10 / prev->vma[VMA_20d] >= 15))
+	if (price2check->close < price2check->open)
+		return 0;
+
+	int body_size = price2check->close - price2check->open;
+	body_size = ((uint64_t)body_size) * 1000 / price2check->open;
+
+	if (body_size >= 12
+	    && (price2check->volume >= prev->vma[VMA_10d] && price2check->volume >= prev->vma[VMA_20d]))
 		return 1;
 
 	if (price2check->close < prev->high)
 		return 0;
 
-	int good_rise1 = (price2check->close - prev->close) * 100 / prev->close >= 2;
-	int good_rise2 = price2check->volume >= prev->vma[VMA_10d] || price2check->volume >= prev->vma[VMA_20d];
+	int volume_rise = price2check->volume >= prev->vma[VMA_10d] || price2check->volume >= prev->vma[VMA_20d];
 
-	if (!good_rise1 && !good_rise2)
+	if (body_size < 20 && !volume_rise)
 		return 0;
 
 	return 1;
