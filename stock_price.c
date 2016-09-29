@@ -919,6 +919,10 @@ static void check_support(const struct stock_price *price_history, const struct 
 
 static int is_strong_up(const struct date_price *price2check, const struct date_price *prev)
 {
+	if (price2check->close >= get_2ndlow(prev)
+	    && (price2check->volume * 10 / prev->vma[VMA_10d] >= 15 || price2check->volume * 10 / prev->vma[VMA_20d] >= 15))
+		return 1;
+
 	if (price2check->close < prev->high)
 		return 0;
 
@@ -1403,23 +1407,14 @@ static void __symbol_check_doublebottom_up(const char *symbol, const struct stoc
 		if (price2check->close < prev->close)
 			continue;
 
-		if (strong) {
-			if (price2check->close < prev->high)
-				continue;
+		if (strong && !is_strong_up(price2check, prev))
+			continue;
 
-			int good_rise1 = (price2check->close - prev->close) * 100 / prev->close >= 2;
-			int good_rise2 = price2check->volume >= prev->vma[VMA_10d] || price2check->volume >= prev->vma[VMA_20d];
-
-			if (!good_rise1 && !good_rise2)
-				continue;
-		}
-		else {
-			if ((price2check->close - prev->close) * 100 / prev->close < 2
-			    && (price2check->volume < prev->vma[VMA_10d] && price2check->volume < prev->vma[VMA_20d])
-			    && price2check->close < prev->high
-			   )
-				continue;
-		}
+		if ((price2check->close - prev->close) * 100 / prev->close < 2
+		    && (price2check->volume < prev->vma[VMA_10d] && price2check->volume < prev->vma[VMA_20d])
+		    && price2check->close < prev->high
+		   )
+			continue;
 
 		check_support(price_history, prev, &sspt);
 
