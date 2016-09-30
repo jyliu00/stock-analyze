@@ -919,13 +919,13 @@ static void check_support(const struct stock_price *price_history, const struct 
 
 static int is_strong_up(const struct date_price *price2check, const struct date_price *prev)
 {
-	if (price2check->close < price2check->open)
+	if (price2check->close < price2check->open || price2check->candle_trend == CANDLE_TREND_BEAR)
 		return 0;
 
 	int body_size = price2check->close - price2check->open;
 	body_size = ((uint64_t)body_size) * 1000 / price2check->open;
 
-	if (body_size >= 12
+	if (body_size >= 10
 	    && (price2check->volume >= prev->vma[VMA_10d] && price2check->volume >= prev->vma[VMA_20d]))
 		return 1;
 
