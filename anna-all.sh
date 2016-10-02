@@ -2,7 +2,7 @@
 
 start_time=`date +%H:%M:%S`
 
-for g in usa ibd biotech 3x canada
+for g in usa biotech 3x canada
 do
     echo "group=$g"
     anna -group=$g $1
