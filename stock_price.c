@@ -1113,7 +1113,7 @@ static const char * get_price_volume_change(const struct stock_price *price_hist
 {
 	static char output_str[256];
 	const struct date_price *yesterday = NULL;
-	int is_up = 0, price_change = 0, body_size = 0, vma10d_percent = 0, vma20d_percent = 0;
+	int is_up = 0, price_change = 0, body_size = 0, vma10d_percent = 0, vma20d_percent = 0, larger_days = 0;
 	uint32_t high, low;
 	int i;
 
@@ -1129,6 +1129,14 @@ static const char * get_price_volume_change(const struct stock_price *price_hist
 
 	if (!yesterday)
 		return "N/A";
+
+	for ( ; i < price_history->date_cnt; i++) {
+		const struct date_price *prev = &price_history->dateprice[i];
+		if (price2check->volume > prev->volume)
+			larger_days += 1;
+		else
+			break;
+	}
 
 	if (price2check->volume) {
 		if (yesterday->vma[VMA_10d]) {
@@ -1162,12 +1170,10 @@ static const char * get_price_volume_change(const struct stock_price *price_hist
 	get_250d_high_low(price_history, price2check, &high, &low);
 
 	snprintf(output_str, sizeof(output_str),
-		ANSI_COLOR_YELLOW "price(%d.%03d, %c%d.%d%%, body_size=%c%d.%d%%, 250d_high=%d.%03d/%d.%02d%%, 250d_low=%d.%03d/%d.%02d%%), volume(%d, vma10d=%d.%d%%, vma20d=%d.%d%%)" ANSI_COLOR_RESET,
+		"price(%d.%03d, %c%d.%d%%, body_size=%c%d.%d%%), volume(%d > %d days, vma10d=%d.%d%%, vma20d=%d.%d%%)",
 		price2check->close / 1000, price2check->close % 1000, is_up ? '+' : '-', price_change / 10, price_change % 10,
 		price2check->close >= price2check->open ? '+' : '-', body_size / 10, body_size % 10,
-		high / 1000, high % 1000, (high - price2check->high) * 100 / high, (high - price2check->high) * 100 % high,
-		low / 1000, low % 1000, (price2check->low - low) * 100 / low, (price2check->low - low) * 100 % low,
-		price2check->volume, vma10d_percent / 10, vma10d_percent % 10, vma20d_percent / 10, vma20d_percent % 10);
+		price2check->volume, larger_days, vma10d_percent / 10, vma10d_percent % 10, vma20d_percent / 10, vma20d_percent % 10);
 		//candle_color[price2check->candle_color], candle_trend[price2check->candle_trend]);
 
 	return output_str;
@@ -1430,11 +1436,12 @@ static void __symbol_check_doublebottom_up(const char *symbol, const struct stoc
 				if (check_pullback && !datecnt_match_check_pullback(check_pullback, datecnt))
 					return;
 
-				anna_info("%s%-10s%s: date=%s up from %s/%s(%d days), %s; %s<sector=%s>%s.\n",
+				anna_info("%s%-10s%s: date=%s up from %s/%s(%d days); %s<sector=%s>%s.\n"
+					  "%-12s%s.\n",
 					  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
 					  price2check->date, prev->date, sspt.date[j], datecnt,
-					  get_price_volume_change(price_history, price2check),
-					  ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+					  ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET,
+					  " ", get_price_volume_change(price_history, price2check));
 
 				selected_symbol_nr += 1;
 
