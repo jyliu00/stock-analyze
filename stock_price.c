@@ -1943,8 +1943,8 @@ static void symbol_check_change(const char *symbol, const struct stock_price *pr
 			break;
 	}
 
-	anna_info("%s%-10s%s: date=%s, %s. volume larger than previous %d days.\n", ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
-		  price2check->date, get_price_volume_change(price_history, price2check), get_less_volume_days(price_history, price2check, prev));
+	anna_info("%s%-10s%s: date=%s, %s.\n", ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+		  price2check->date, get_price_volume_change(price_history, price2check));
 }
 
 static int call_check_func(const char *symbol, const char *date, const char *fname,
