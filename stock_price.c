@@ -929,6 +929,9 @@ static int is_strong_up(const struct date_price *price2check, const struct date_
 	    && (price2check->volume >= prev->vma[VMA_10d] && price2check->volume >= prev->vma[VMA_20d]))
 		return 1;
 
+	if (price2check->close > get_2ndlow(prev) && price2check->volume > prev->volume)
+		return 1;
+
 	if (price2check->close < prev->high)
 		return 0;
 
