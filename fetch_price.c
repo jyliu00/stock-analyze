@@ -208,6 +208,8 @@ int fetch_symbols_price(int realtime, const char *group, const char *fname, int 
 
 		time_t start_t = time(NULL);
 
+		anna_info("\n%s%s: start fetching symbols' price%s\n", ANSI_COLOR_YELLOW, fname, ANSI_COLOR_RESET);
+
 		while (fgets(symbol, sizeof(symbol), fp)) {
 			if (symbol[0] == '#' || symbol[0] == '\n')
 				continue;
@@ -231,7 +233,8 @@ int fetch_symbols_price(int realtime, const char *group, const char *fname, int 
 				count += 1;
 		}
 
-		anna_info("%zu seconds used by fetching total %d of symbols' price from file %s\n", time(NULL) - start_t, count, fname);
+		anna_info("%s%s: %zu seconds used by fetching total %d of symbols' price%s\n",
+			  ANSI_COLOR_YELLOW, fname, time(NULL) - start_t, count, ANSI_COLOR_RESET);
 	}
 
 	return count + symbols_nr;
