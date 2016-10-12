@@ -1,0 +1,5 @@
+%sector=healthcare
+CXR.TO
+EXE.TO
+PLI.TO
+VRX.TO

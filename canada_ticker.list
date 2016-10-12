@@ -1,1 +1,11 @@
+-include ticker_list/canada_consumer_disc.txt
+-include ticker_list/canada_consumer_staples.txt
+-include ticker_list/canada_energy.txt
+-include ticker_list/canada_financial.txt
+-include ticker_list/canada_healthcare.txt
+-include ticker_list/canada_industry.txt
+-include ticker_list/canada_it.txt
+-include ticker_list/canada_material.txt
+-include ticker_list/canada_telecom.txt
+-include ticker_list/canada_utility.txt
 -include ticker_list/canada_xic.txt

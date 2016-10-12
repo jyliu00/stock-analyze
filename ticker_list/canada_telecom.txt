@@ -1,0 +1,6 @@
+%sector=telecom
+BCE.TO
+MBT.TO
+RCI-B.TO
+SJR-B.TO
+T.TO

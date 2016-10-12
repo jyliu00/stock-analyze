@@ -1,0 +1,12 @@
+%sector=consumer_staples
+ATD-B.TO
+BCB.TO
+EMP-A.TO
+L.TO
+MFI.TO
+MRU.TO
+NWC.TO
+PBH.TO
+PJC-A.TO
+SAP.TO
+WN.TO

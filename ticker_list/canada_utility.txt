@@ -1,0 +1,13 @@
+%sector=utility
+ACO-X.TO
+AQN.TO
+BEP-UN.TO
+CPX.TO
+CU.TO
+EMA.TO
+FTS.TO
+INE.TO
+JE.TO
+NPI.TO
+RNW.TO
+TA.TO
