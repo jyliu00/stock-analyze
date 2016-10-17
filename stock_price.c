@@ -138,8 +138,17 @@ static void calculate_candle_stats(struct date_price *cur)
 		diff_price = down_price - up_price;
 	}
 
-	if ((diff_price * 100 / cur->open) < 1)
-		cur->candle_trend = CANDLE_TREND_DOJI;
+	if ((diff_price * 100 / cur->open) < 1) {
+		if (cur->high - cur->low == 0)
+			cur->candle_trend = CANDLE_TREND_DOJI;
+		else if (up_price > down_price &&
+		    up_price * 100 / (cur->high - cur->low) >= 60)
+			cur->candle_trend = CANDLE_TREND_BULL;
+		else if (up_price < down_price &&
+			 down_price * 100 / (cur->high - cur->low) >= 60);
+		else
+			cur->candle_trend = CANDLE_TREND_DOJI;
+	}
 }
 
 #define get_2ndlow(dateprice) \
@@ -861,9 +870,8 @@ static void check_support(const struct stock_price *price_history, const struct 
 				break;
 
 			if (sma2check != -1 && yesterday->sma[sma2check] != 0) {
-				if (yesterday->sma[SMA_20d] < yesterday->sma[SMA_50d]
-				    || (!sma_hit(price2check->low, yesterday->sma[sma2check])
-					&& !sma_hit(price2check_2ndlow, yesterday->sma[sma2check])))
+				if (!sma_hit(price2check->low, yesterday->sma[sma2check])
+				    && !sma_hit(price2check_2ndlow, yesterday->sma[sma2check]))
 				{
 					break;
 				}
@@ -917,33 +925,43 @@ static void check_support(const struct stock_price *price_history, const struct 
 	}
 }
 
-static int is_strong_up(const struct date_price *price2check, const struct date_price *prev)
+static int is_strong_up(const struct stock_price *price_history, const struct date_price *price2check, const struct date_price *prev)
 {
-	if (price2check->close < price2check->open || price2check->candle_trend == CANDLE_TREND_BEAR)
+	if (price2check->candle_trend == CANDLE_TREND_BEAR)
 		return 0;
 
-	int body_size = price2check->close - price2check->open;
-	body_size = ((uint64_t)body_size) * 1000 / price2check->open;
+	if (!prev) {
+		int i;
+		for (i = 0; i < price_history->date_cnt; i++) {
+			prev = &price_history->dateprice[i];
 
-	if (body_size >= 10
-	    && (price2check->volume >= prev->vma[VMA_10d] && price2check->volume >= prev->vma[VMA_20d]))
+			if (strcmp(price2check->date, prev->date) <= 0)
+				continue;
+			break;
+		}
+
+		if (i == price_history->date_cnt)
+			return 0;
+	}
+
+	int body_size = price2check->close - price2check->open;
+	body_size = ((int64_t)body_size) * 1000 / price2check->open;
+	int vma10d_inc = prev->vma[VMA_10d] ? price2check->volume * 100 / prev->vma[VMA_10d] : 0;
+	int vma20d_inc = prev->vma[VMA_20d] ? price2check->volume * 100 / prev->vma[VMA_20d] : 0;
+
+	if (vma20d_inc >= 200 || vma20d_inc >= 200)
+		return 1;
+
+	if (body_size >= 20 && (vma10d_inc >= 120 || vma20d_inc >= 120))
 		return 1;
 
 	if (price2check->close > get_2ndlow(prev) && price2check->volume > prev->volume)
 		return 1;
 
-	if (price2check->close > prev->high)
+	if (price2check->close > prev->high && (vma10d_inc >= 100 || vma20d_inc >= 100))
 		return 1;
 
-	if (price2check->close < get_2ndhigh(prev))
-		return 0;
-
-	int volume_rise = price2check->volume >= prev->vma[VMA_10d] || price2check->volume >= prev->vma[VMA_20d];
-
-	if (body_size < 20 && !volume_rise)
-		return 0;
-
-	return 1;
+	return 0;
 }
 
 static void check_breakout(const struct stock_price *price_history, const struct date_price *price2check, struct stock_support *sspt, int strong)
@@ -964,7 +982,7 @@ static void check_breakout(const struct stock_price *price_history, const struct
 			if (!date_is_uptrend(price_history, i, price2check))
 				break;
 
-			if (strong && !is_strong_up(price2check, prev))
+			if (strong && !is_strong_up(NULL, price2check, prev))
 				break;
 		}
 
@@ -1424,7 +1442,7 @@ static void __symbol_check_doublebottom_up(const char *symbol, const struct stoc
 		if (price2check->close < prev->close)
 			continue;
 
-		if (strong && !is_strong_up(price2check, prev))
+		if (strong && !is_strong_up(price_history, price2check, NULL))
 			continue;
 
 		if ((price2check->close - prev->close) * 100 / prev->close < 2
