@@ -927,11 +927,13 @@ static void check_support(const struct stock_price *price_history, const struct 
 
 static int is_strong_up(const struct stock_price *price_history, const struct date_price *price2check, const struct date_price *prev)
 {
+	const struct date_price *past;
+	int i;
+
 	if (price2check->candle_trend == CANDLE_TREND_BEAR)
 		return 0;
 
 	if (!prev) {
-		int i;
 		for (i = 0; i < price_history->date_cnt; i++) {
 			prev = &price_history->dateprice[i];
 
@@ -959,6 +961,14 @@ static int is_strong_up(const struct stock_price *price_history, const struct da
 		return 1;
 
 	if (price2check->close > prev->high && (vma10d_inc >= 100 || vma20d_inc >= 100))
+		return 1;
+
+	for (i = 0, past = prev; i < 5; i++, past = past - 1) {
+		if (price2check->volume < past->volume)
+			break;
+	}
+
+	if (i == 5)
 		return 1;
 
 	return 0;
