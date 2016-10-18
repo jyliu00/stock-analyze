@@ -1147,7 +1147,9 @@ static const char * get_price_volume_change(const struct stock_price *price_hist
 {
 	static char output_str[256];
 	const struct date_price *yesterday = NULL;
-	int is_up = 0, price_change = 0, body_size = 0, vma10d_percent = 0, vma20d_percent = 0, larger_days = 0;
+	int is_up = 0, price_change = 0, body_size = 0,
+	    vma10d_percent = 0, vma20d_percent = 0, vma60d_percent = 0,
+	    larger_days = 0;
 	uint32_t high, low;
 	int i;
 
@@ -1180,6 +1182,10 @@ static const char * get_price_volume_change(const struct stock_price *price_hist
 		if (yesterday->vma[VMA_20d]) {
 			vma20d_percent = (uint64_t)price2check->volume * 1000 / yesterday->vma[VMA_20d];
 		}
+
+		if (yesterday->vma[VMA_60d]) {
+			vma60d_percent = (uint64_t)price2check->volume * 1000 / yesterday->vma[VMA_60d];
+		}
 	}
 
 	if (price2check->close && yesterday->close) {
@@ -1204,10 +1210,13 @@ static const char * get_price_volume_change(const struct stock_price *price_hist
 	get_250d_high_low(price_history, price2check, &high, &low);
 
 	snprintf(output_str, sizeof(output_str),
-		"price(%d.%03d, %c%d.%d%%, body_size=%c%d.%d%%), volume(%d > %d days, vma10d=%d.%d%%, vma20d=%d.%d%%)",
+		"price(%d.%03d, %c%d.%d%%, body_size=%c%d.%d%%), volume(%d > %s%d%s days, vma10d=%s%d.%d%%%s, vma20d=%s%d.%d%%%s, vma60d=%s%d.%d%%%s)",
 		price2check->close / 1000, price2check->close % 1000, is_up ? '+' : '-', price_change / 10, price_change % 10,
 		price2check->close >= price2check->open ? '+' : '-', body_size / 10, body_size % 10,
-		price2check->volume, larger_days, vma10d_percent / 10, vma10d_percent % 10, vma20d_percent / 10, vma20d_percent % 10);
+		price2check->volume, larger_days >= 5 ? ANSI_COLOR_YELLOW : "", larger_days, larger_days >= 5 ? ANSI_COLOR_RESET : "",
+		vma10d_percent >= 1000 ? ANSI_COLOR_YELLOW : "", vma10d_percent / 10, vma10d_percent % 10, vma10d_percent >= 1000 ? ANSI_COLOR_RESET : "",
+		vma20d_percent >= 1000 ? ANSI_COLOR_YELLOW : "", vma20d_percent / 10, vma20d_percent % 10, vma20d_percent >= 1000 ? ANSI_COLOR_RESET : "",
+		vma60d_percent >= 1000 ? ANSI_COLOR_YELLOW : "", vma60d_percent / 10, vma60d_percent % 10, vma60d_percent >= 1000 ? ANSI_COLOR_RESET : "");
 		//candle_color[price2check->candle_color], candle_trend[price2check->candle_trend]);
 
 	return output_str;
