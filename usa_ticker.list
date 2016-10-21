@@ -1,5 +1,5 @@
 -include ticker_list/major_indices.txt
-#-include ticker_list/usa_my_finviz_growth.txt
+-include ticker_list/usa_my_finviz_growth.txt
 -include ticker_list/usa_hot_stock.txt
 #-include ticker_list/zacks_bullofday.txt
 -include ticker_list/nasdaq100.txt
