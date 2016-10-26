@@ -1,4 +1,4 @@
-%sector=xlk
+%sector=technology
 ACN
 ADS
 APH

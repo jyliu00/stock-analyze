@@ -1,4 +1,4 @@
-%sector=xle
+%sector=energy
 APA
 APC
 BHI

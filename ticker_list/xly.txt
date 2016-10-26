@@ -1,4 +1,4 @@
-%sector=xly
+%sector=consumer_discretionary
 AAP
 AMZN
 AN

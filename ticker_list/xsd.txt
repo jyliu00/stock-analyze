@@ -1,4 +1,4 @@
-%sector=xsd
+%sector=semiconductor
 ADI
 AMCC
 AMD

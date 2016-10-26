@@ -1,4 +1,4 @@
-%sector=industry
+%sector=industrial
 AC.TO
 ARE.TO
 ATA.TO

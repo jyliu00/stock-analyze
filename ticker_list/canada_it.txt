@@ -1,4 +1,4 @@
-%sector=it
+%sector=information_technology
 AVO.TO
 BB.TO
 CLS.TO

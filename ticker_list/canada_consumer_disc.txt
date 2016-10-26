@@ -1,4 +1,4 @@
-%sector=consumer_disc
+%sector=consumer_discetionary
 AIM.TO
 AYA.TO
 CCA.TO

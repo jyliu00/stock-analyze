@@ -1,4 +1,4 @@
-%sector=xli
+%sector=industrial
 AAL
 ALK
 ALLE

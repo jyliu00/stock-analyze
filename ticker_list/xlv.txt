@@ -1,4 +1,4 @@
-%sector=xlv
+%sector=healthcare
 A
 ABBV
 ABC

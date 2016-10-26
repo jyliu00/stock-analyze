@@ -1,4 +1,4 @@
-%sector=xlb
+%sector=material
 AA
 ALB
 APD

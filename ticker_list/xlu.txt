@@ -1,4 +1,4 @@
-%sector=xlu
+%sector=utilities
 AEE
 AEP
 AES

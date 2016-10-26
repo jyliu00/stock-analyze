@@ -1,4 +1,4 @@
-%sector=xlf
+%sector=financial
 AFL
 AIG
 AIV

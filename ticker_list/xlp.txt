@@ -1,4 +1,4 @@
-%sector=xlp
+%sector=consumer_staples
 ADM
 CAG
 CHD
