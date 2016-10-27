@@ -1,0 +1,10 @@
+-include ticker_list/iwm_consumer_discretionary.txt
+-include ticker_list/iwm_consumer_staples.txt
+-include ticker_list/iwm_energy.txt
+-include ticker_list/iwm_financial.txt
+-include ticker_list/iwm_healthcare.txt
+-include ticker_list/iwm_industrial.txt
+-include ticker_list/iwm_it.txt
+-include ticker_list/iwm_material.txt
+-include ticker_list/iwm_realestate.txt
+-include ticker_list/iwm_utilities.txt

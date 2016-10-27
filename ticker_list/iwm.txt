@@ -1,0 +1,1979 @@
+AMD	Information Technology
+MSCC	Information Technology
+GPT	Real Estate
+AZPN	Information Technology
+CPHD	Health Care
+IDA	Utilities
+TTWO	Information Technology
+PB	Financials
+FICO	Information Technology
+HR	Real Estate
+CW	Industrials
+POR	Utilities
+CAVM	Information Technology
+WBS	Financials
+TDY	Industrials
+ISBC	Financials
+OLN	Materials
+PVTB	Financials
+HLS	Health Care
+MMS	Information Technology
+MPW	Real Estate
+PRXL	Health Care
+GRUB	Information Technology
+PDCE	Energy
+UMPQ	Financials
+NRZ	Financials
+EME	Industrials
+ELLI	Information Technology
+CRUS	Information Technology
+XPO	Industrials
+OZRK	Financials
+SWX	Utilities
+JCOM	Information Technology
+SXT	Materials
+TSRO	Health Care
+NUVA	Health Care
+DFT	Real Estate
+VSAT	Information Technology
+EPAM	Information Technology
+OGS	Utilities
+FNSR	Information Technology
+BGS	Consumer Staples
+EDR	Real Estate
+PFPT	Information Technology
+SLCA	Energy
+FR	Real Estate
+WGL	Utilities
+BKH	Utilities
+DLX	Industrials
+WWD	Industrials
+RDN	Financials
+HPP	Real Estate
+MENT	Information Technology
+MPWR	Information Technology
+TEN	Consumer Discretionary
+BLKB	Information Technology
+CC	Materials
+SNX	Information Technology
+AVP	Consumer Staples
+RSPP	Energy
+LFUS	Information Technology
+JACK	Consumer Discretionary
+ALE	Utilities
+ISIL	Information Technology
+HZNP	Health Care
+LNCE	Consumer Staples
+BFAM	Consumer Discretionary
+SAIC	Information Technology
+NHI	Real Estate
+MTG	Financials
+CLC	Industrials
+CHFC	Financials
+IBKC	Financials
+NJR	Utilities
+IDTI	Information Technology
+ENS	Industrials
+AEO	Consumer Discretionary
+SHO	Real Estate
+AKR	Real Estate
+IDCC	Information Technology
+MBFI	Financials
+WTFC	Financials
+CNO	Financials
+TECD	Information Technology
+DOC	Real Estate
+NWE	Utilities
+UMBF	Financials
+BDC	Information Technology
+JOY	Industrials
+FNB	Financials
+CIEN	Information Technology
+SR	Utilities
+TCBI	Financials
+MDSO	Health Care
+TMH	Health Care
+LHO	Real Estate
+CMN	Health Care
+NTCT	Information Technology
+CVG	Information Technology
+COR	Real Estate
+CUZ	Real Estate
+MKSI	Information Technology
+POL	Materials
+HBHC	Financials
+SLAB	Information Technology
+PRI	Financials
+DY	Industrials
+LPX	Materials
+TXRH	Consumer Discretionary
+BWLD	Consumer Discretionary
+HCSG	Industrials
+MOH	Health Care
+HOMB	Financials
+EXEL	Health Care
+COHR	Information Technology
+CBRL	Consumer Discretionary
+PNM	Utilities
+FULT	Financials
+AVA	Utilities
+RLJ	Real Estate
+LANC	Consumer Staples
+PBH	Health Care
+BECN	Industrials
+QTS	Real Estate
+WMGI	Health Care
+MDCO	Health Care
+IART	Health Care
+WAFD	Financials
+SF	Financials
+CACI	Information Technology
+HA	Industrials
+UBSI	Financials
+VLY	Financials
+CMPR	Information Technology
+WNR	Energy
+UE	Real Estate
+MASI	Health Care
+BCPC	Materials
+GNRC	Industrials
+SYNA	Information Technology
+CTLT	Health Care
+LXP	Real Estate
+MTX	Materials
+NVRO	Health Care
+CLI	Real Estate
+FLTX	Information Technology
+TIVO	Information Technology
+DNOW	Industrials
+KMT	Industrials
+FFIN	Financials
+ENTG	Information Technology
+SJI	Utilities
+PAYC	Information Technology
+HELE	Consumer Discretionary
+HL	Materials
+ROIC	Real Estate
+PODD	Health Care
+FCFS	Financials
+RARE	Health Care
+EGP	Real Estate
+LOGM	Information Technology
+VRNT	Information Technology
+CHE	Health Care
+CATY	Financials
+CAKE	Consumer Discretionary
+ACIW	Information Technology
+TTEK	Industrials
+DW	Consumer Discretionary
+FCNCA	Financials
+DAR	Consumer Staples
+CLNY	Financials
+DAN	Consumer Discretionary
+STL	Financials
+PNFP	Financials
+CATM	Information Technology
+RLI	Financials
+WRE	Real Estate
+WOR	Materials
+KRG	Real Estate
+JBT	Industrials
+CVLT	Information Technology
+PSB	Real Estate
+RHP	Real Estate
+FUL	Materials
+ESL	Industrials
+PZZA	Consumer Discretionary
+SIGI	Financials
+ABM	Industrials
+ZEN	Information Technology
+GBCI	Financials
+SANM	Information Technology
+WAGE	Industrials
+WPG	Real Estate
+CSOD	Information Technology
+EVR	Financials
+ICUI	Health Care
+HOPE	Financials
+ESNT	Financials
+CHMT	Materials
+GLNG	Energy
+EXAS	Health Care
+CPE	Energy
+LITE	Information Technology
+CRZO	Energy
+UNFI	Consumer Staples
+OMI	Health Care
+OLED	Information Technology
+LAD	Consumer Discretionary
+BXS	Financials
+ALGT	Industrials
+WWW	Consumer Discretionary
+CBU	Financials
+EFII	Information Technology
+OAS	Energy
+SHOO	Consumer Discretionary
+AMBA	Information Technology
+FIVE	Consumer Discretionary
+CBL	Real Estate
+EVER	Financials
+MGEE	Utilities
+B	Industrials
+FDP	Consumer Staples
+SRPT	Health Care
+GWB	Financials
+CTB	Consumer Discretionary
+HAWK	Information Technology
+WBMD	Information Technology
+BLMN	Consumer Discretionary
+BIG	Consumer Discretionary
+BGCP	Financials
+MTDR	Energy
+BLUE	Health Care
+JNS	Financials
+ACXM	Information Technology
+LTC	Real Estate
+VGR	Consumer Staples
+MWA	Industrials
+INCR	Health Care
+MTZ	Industrials
+MATW	Industrials
+SFR	Real Estate
+ONB	Financials
+ESGR	Financials
+NEOG	Health Care
+CHDN	Consumer Discretionary
+MEG	Consumer Discretionary
+AEIS	Information Technology
+VSH	Information Technology
+LOPE	Consumer Discretionary
+KNX	Industrials
+PEB	Real Estate
+CMC	Materials
+TRMK	Financials
+DRH	Real Estate
+AXE	Information Technology
+ASGN	Industrials
+HNI	Industrials
+COLB	Financials
+GK	Industrials
+GATX	Industrials
+ILG	Consumer Discretionary
+TSRA	Information Technology
+FCN	Industrials
+HTH	Financials
+PEN	Health Care
+GCP	Materials
+CDE	Materials
+ORA	Utilities
+MOG.A	Industrials
+NGVT	Materials
+HRG	Consumer Staples
+CFFN	Financials
+TPH	Consumer Discretionary
+PRTA	Health Care
+GEO	Real Estate
+HI	Industrials
+ITRI	Information Technology
+JJSF	Consumer Staples
+UNF	Industrials
+IMAX	Consumer Discretionary
+KLXI	Industrials
+EE	Utilities
+KITE	Health Care
+SEMG	Energy
+HMSY	Health Care
+ALEX	Real Estate
+CRS	Materials
+BID	Consumer Discretionary
+MORE	Real Estate
+LGND	Health Care
+IRWD	Health Care
+MLI	Industrials
+ODP	Consumer Discretionary
+MSA	Industrials
+UFPI	Industrials
+SSD	Industrials
+MNRO	Consumer Discretionary
+PSMT	Consumer Staples
+POWI	Information Technology
+SAFM	Consumer Staples
+MATX	Industrials
+GVA	Industrials
+NTGR	Information Technology
+PLT	Information Technology
+MDP	Consumer Discretionary
+HAE	Health Care
+DOOR	Industrials
+CEB	Industrials
+SSB	Financials
+SBGI	Consumer Discretionary
+KW	Real Estate
+DECK	Consumer Discretionary
+ABCO	Industrials
+WTS	Industrials
+IVR	Financials
+CVBF	Financials
+IBOC	Financials
+VIAV	Information Technology
+BCO	Industrials
+MLHR	Industrials
+DORM	Consumer Discretionary
+FELE	Industrials
+TVPT	Information Technology
+KS	Materials
+ARIA	Health Care
+NKTR	Health Care
+ATI	Materials
+XHR	Real Estate
+GNW	Financials
+RXN	Industrials
+DGI	Industrials
+MSTR	Information Technology
+GIMO	Information Technology
+HMHC	Consumer Discretionary
+PCH	Real Estate
+SMTC	Information Technology
+STAG	Real Estate
+SIR	Real Estate
+HYH	Health Care
+LC	Financials
+SBRA	Real Estate
+AGII	Financials
+ROLL	Industrials
+NYRT	Real Estate
+IPXL	Health Care
+CORE	Consumer Discretionary
+AIT	Industrials
+GMED	Health Care
+LTRPA	Consumer Discretionary
+AHS	Health Care
+OIS	Energy
+NWN	Utilities
+SWFT	Industrials
+CWT	Utilities
+TSE	Materials
+SWC	Materials
+CHS	Consumer Discretionary
+IPHI	Information Technology
+COLM	Consumer Discretionary
+TREX	Industrials
+EXLS	Information Technology
+FMBI	Financials
+SNCR	Information Technology
+IIVI	Information Technology
+BYD	Consumer Discretionary
+DF	Consumer Staples
+AAT	Real Estate
+BRC	Industrials
+WDFC	Consumer Staples
+PLAY	Consumer Discretionary
+HUBS	Information Technology
+NXST	Consumer Discretionary
+AAN	Consumer Discretionary
+EDE	Utilities
+EGBN	Financials
+FN	Information Technology
+STMP	Information Technology
+CCOI	Telecommunications
+RP	Information Technology
+SKYW	Industrials
+PEGI	Utilities
+NWBI	Financials
+ENV	Information Technology
+PLXS	Information Technology
+UCBI	Financials
+DDD	Information Technology
+NXTM	Health Care
+BLOX	Information Technology
+DBD	Information Technology
+HQY	Health Care
+HMN	Financials
+KMPR	Financials
+LTXB	Financials
+SFLY	Consumer Discretionary
+SWHC	Consumer Discretionary
+EGOV	Information Technology
+GNC	Consumer Discretionary
+PRAA	Financials
+EXPO	Industrials
+RDUS	Health Care
+INDB	Financials
+LOCK	Consumer Discretionary
+IOSP	Materials
+AEL	Financials
+PLCE	Consumer Discretionary
+FNGN	Financials
+SFNC	Financials
+MRC	Industrials
+DV	Consumer Discretionary
+SAM	Consumer Staples
+VAC	Consumer Discretionary
+PEI	Real Estate
+SUM	Materials
+REXR	Real Estate
+NYT	Consumer Discretionary
+ETSY	Consumer Discretionary
+NBTB	Financials
+DEPO	Health Care
+SCOR	Information Technology
+DSW	Consumer Discretionary
+AWR	Utilities
+GPRO	Consumer Discretionary
+SCL	Materials
+TOWN	Financials
+EBIX	Information Technology
+RPT	Real Estate
+YDKN	Financials
+AZZ	Industrials
+RNST	Financials
+SYRG	Energy
+CLF	Materials
+DIN	Consumer Discretionary
+TIME	Consumer Discretionary
+PRGS	Information Technology
+SEM	Health Care
+CHSP	Real Estate
+EGHT	Information Technology
+WSBC	Financials
+UBNT	Information Technology
+KWR	Materials
+RMBS	Information Technology
+KN	Information Technology
+PRAH	Health Care
+RNG	Information Technology
+NP	Materials
+BANR	Financials
+CPS	Consumer Discretionary
+BSFT	Information Technology
+WDR	Financials
+AF	Financials
+OTTR	Utilities
+FPRX	Health Care
+DYN	Utilities
+PCRX	Health Care
+HUBG	Industrials
+TWOU	Information Technology
+PFS	Financials
+FFBC	Financials
+DPLO	Health Care
+AXL	Consumer Discretionary
+GNL	Real Estate
+ALDR	Health Care
+SAGE	Health Care
+MYGN	Health Care
+CYS	Financials
+ZLTQ	Health Care
+BOFI	Financials
+BABY	Health Care
+PRK	Financials
+ATU	Industrials
+CBM	Health Care
+LMCK	Consumer Discretionary
+PRLB	Industrials
+KRNY	Financials
+MDR	Energy
+GOV	Real Estate
+OMCL	Health Care
+SCAI	Health Care
+BHE	Information Technology
+AKS	Materials
+FSP	Real Estate
+MGLN	Health Care
+CSGS	Information Technology
+ABCB	Financials
+CCMP	Information Technology
+MTH	Consumer Discretionary
+HURN	Industrials
+INFN	Information Technology
+FWRD	Industrials
+SFBS	Financials
+GPI	Consumer Discretionary
+UBSH	Financials
+FET	Energy
+AMED	Health Care
+SHEN	Telecommunications
+KBH	Consumer Discretionary
+VG	Telecommunications
+ACCO	Industrials
+HW	Materials
+NSIT	Information Technology
+UVV	Consumer Staples
+WABC	Financials
+TRNO	Real Estate
+TASR	Industrials
+GEF	Materials
+FOSL	Consumer Discretionary
+SSTK	Information Technology
+ARI	Financials
+TBPH	Health Care
+HSNI	Consumer Discretionary
+KFY	Industrials
+CNSL	Telecommunications
+GLOB	Information Technology
+AAON	Industrials
+SVU	Consumer Staples
+AIN	Industrials
+IRBT	Consumer Discretionary
+TLN	Utilities
+TGI	Industrials
+CALM	Consumer Staples
+OSIS	Information Technology
+GCI	Consumer Discretionary
+NPO	Industrials
+SCS	Industrials
+MEI	Information Technology
+CALD	Information Technology
+SRG	Real Estate
+MSGN	Consumer Discretionary
+SPSC	Information Technology
+TERP	Utilities
+BLD	Consumer Discretionary
+TMP	Financials
+INN	Real Estate
+APOG	Industrials
+KALU	Materials
+NSP	Industrials
+FRME	Financials
+GIII	Consumer Discretionary
+ESE	Industrials
+CYH	Health Care
+SWM	Materials
+WETF	Financials
+KAMN	Industrials
+LZB	Consumer Discretionary
+RH	Consumer Discretionary
+FOE	Materials
+NAV	Industrials
+RGR	Consumer Discretionary
+PLKI	Consumer Discretionary
+FCB	Financials
+GCO	Consumer Discretionary
+NCI	Industrials
+W	Consumer Discretionary
+ROCK	Industrials
+PEGA	Information Technology
+ABAX	Health Care
+ADC	Real Estate
+SXI	Industrials
+MXL	Information Technology
+RWT	Financials
+CAL	Consumer Discretionary
+ININ	Information Technology
+CNMD	Health Care
+DK	Energy
+STBA	Financials
+MBI	Financials
+WERN	Industrials
+MINI	Industrials
+PBYI	Health Care
+KNL	Industrials
+VA	Industrials
+FOLD	Health Care
+ABY	Utilities
+TNC	Industrials
+IMPV	Information Technology
+BPFH	Financials
+ASTE	Industrials
+AMSF	Financials
+AIR	Industrials
+OPHT	Health Care
+NAVG	Financials
+SYKE	Information Technology
+CEMP	Health Care
+CUB	Industrials
+PMT	Financials
+ANF	Consumer Discretionary
+BEL	Consumer Discretionary
+SONC	Consumer Discretionary
+AJRD	Industrials
+AAWW	Industrials
+BNCL	Financials
+CYNO	Health Care
+ALOG	Health Care
+WSFS	Financials
+SPTN	Consumer Staples
+NGHC	Financials
+ANDE	Consumer Staples
+AMWD	Industrials
+SCHL	Consumer Discretionary
+THRM	Consumer Discretionary
+TILE	Industrials
+SMP	Consumer Discretionary
+STC	Financials
+QLYS	Information Technology
+BNCN	Financials
+FIX	Industrials
+ABG	Consumer Discretionary
+SPNC	Health Care
+NYLD	Utilities
+PENN	Consumer Discretionary
+MMSI	Health Care
+AIRM	Health Care
+EVTC	Information Technology
+HLX	Energy
+SUPN	Health Care
+HALO	Health Care
+MANT	Information Technology
+ROG	Information Technology
+PCTY	Information Technology
+FCPT	Real Estate
+GDOT	Financials
+ONCE	Health Care
+AYR	Industrials
+ELY	Consumer Discretionary
+PTLA	Health Care
+RGEN	Health Care
+UNT	Energy
+CLVS	Health Care
+SSYS	Information Technology
+AMKR	Information Technology
+UEIC	Consumer Discretionary
+ELGX	Health Care
+HF	Real Estate
+KRA	Materials
+SAFT	Financials
+UNVR	Industrials
+ECOL	Industrials
+GTLS	Industrials
+CVGW	Consumer Staples
+OXM	Consumer Discretionary
+INGN	Health Care
+SEB	Consumer Staples
+GPRE	Energy
+CLW	Materials
+DNR	Energy
+MDC	Consumer Discretionary
+SGYP	Health Care
+EIG	Financials
+GLT	Materials
+HIBB	Consumer Discretionary
+MRCY	Industrials
+GBX	Industrials
+FLOW	Industrials
+SEAS	Consumer Discretionary
+CVT	Information Technology
+NTRI	Consumer Discretionary
+TXMD	Health Care
+ADTN	Information Technology
+SCSC	Information Technology
+PFGC	Consumer Staples
+ENSG	Health Care
+AMAG	Health Care
+OCLR	Information Technology
+TISI	Industrials
+CPK	Utilities
+CKH	Energy
+EPAY	Information Technology
+EXPR	Consumer Discretionary
+CMO	Financials
+BRKS	Information Technology
+SCSS	Consumer Discretionary
+BHLB	Financials
+MTSI	Information Technology
+EBS	Health Care
+CIR	Industrials
+HASI	Financials
+BMI	Information Technology
+CHRS	Health Care
+WSTC	Industrials
+BRKL	Financials
+BMCH	Industrials
+LKFN	Financials
+FCH	Real Estate
+FCF	Financials
+MNR	Real Estate
+UFCS	Financials
+LQ	Consumer Discretionary
+FGEN	Health Care
+ARRY	Health Care
+LABL	Industrials
+RSTI	Information Technology
+IPCC	Financials
+CSTE	Industrials
+NCMI	Consumer Discretionary
+ASNA	Consumer Discretionary
+INSM	Health Care
+PATK	Industrials
+CSFL	Financials
+MDXG	Health Care
+ISCA	Consumer Discretionary
+TYPE	Information Technology
+CRAY	Information Technology
+FINL	Consumer Discretionary
+AROC	Energy
+SMCI	Information Technology
+SDRL	Energy
+PSTG	Information Technology
+VECO	Information Technology
+MTOR	Industrials
+LMNX	Health Care
+ALX	Real Estate
+TTMI	Information Technology
+HTLD	Industrials
+ARR	Financials
+GES	Consumer Discretionary
+ACOR	Health Care
+SPXC	Industrials
+BLX	Financials
+CBB	Telecommunications
+SNR	Real Estate
+AERI	Health Care
+ICFI	Industrials
+KND	Health Care
+HTLF	Financials
+LNN	Industrials
+TLRD	Consumer Discretionary
+INVA	Health Care
+HWAY	Health Care
+SAAS	Information Technology
+CTRE	Real Estate
+SFL	Energy
+BLDR	Industrials
+MHLD	Financials
+SSP	Consumer Discretionary
+VASC	Health Care
+TNET	Industrials
+NEWR	Information Technology
+IPHS	Materials
+CFNL	Financials
+SHLM	Materials
+TPRE	Financials
+BOBE	Consumer Discretionary
+PMC	Health Care
+SBSI	Financials
+DERM	Health Care
+MTGE	Financials
+NNI	Financials
+FNFV	Financials
+HSC	Industrials
+BJRI	Consumer Discretionary
+PRIM	Industrials
+STBZ	Financials
+BGG	Industrials
+MGNX	Health Care
+NAT	Energy
+PHH	Financials
+WIN	Telecommunications
+BCC	Materials
+ACHN	Health Care
+CKEC	Consumer Discretionary
+CCC	Materials
+DIOD	Information Technology
+MTSC	Information Technology
+DENN	Consumer Discretionary
+RMAX	Real Estate
+TRS	Industrials
+CNS	Financials
+CVCO	Consumer Discretionary
+STAR	Real Estate
+LSCC	Information Technology
+CENTA	Consumer Staples
+XXIA	Information Technology
+RAVN	Industrials
+JOE	Real Estate
+MYCC	Consumer Discretionary
+WGO	Consumer Discretionary
+HT	Real Estate
+CPLA	Consumer Discretionary
+MNTA	Health Care
+CATO	Consumer Discretionary
+CPF	Financials
+PKY	Real Estate
+CHCO	Financials
+LDL	Industrials
+XLRN	Health Care
+UVE	Financials
+ETH	Consumer Discretionary
+WNC	Industrials
+PJC	Financials
+AMBC	Financials
+IRET	Real Estate
+NHC	Health Care
+EBSB	Financials
+UBNK	Financials
+AGX	Industrials
+DTSI	Information Technology
+FSS	Industrials
+USNA	Consumer Staples
+RTRX	Health Care
+TPC	Industrials
+HAFC	Financials
+BOX	Information Technology
+USPH	Health Care
+SASR	Financials
+SJW	Utilities
+QUOT	Information Technology
+SAIA	Industrials
+APOL	Consumer Discretionary
+AIMC	Industrials
+KCG	Financials
+PLOW	Industrials
+SYBT	Financials
+QUAD	Industrials
+TBI	Industrials
+CBPX	Industrials
+WEB	Information Technology
+VVI	Industrials
+FORM	Information Technology
+FRGI	Consumer Discretionary
+QTWO	Information Technology
+FMSA	Energy
+CSII	Health Care
+MGRC	Industrials
+HSTM	Health Care
+TIER	Real Estate
+USCR	Materials
+WMS	Industrials
+WAIR	Industrials
+VIVO	Health Care
+FTK	Materials
+STNG	Energy
+PACB	Health Care
+BUSE	Financials
+WIRE	Industrials
+WWE	Consumer Discretionary
+SUP	Consumer Discretionary
+BW	Industrials
+BGC	Industrials
+ATRO	Industrials
+ATNI	Telecommunications
+ESND	Industrials
+NSA	Real Estate
+CLDT	Real Estate
+COKE	Consumer Staples
+AMC	Consumer Discretionary
+ATSG	Industrials
+KOP	Materials
+NFBK	Financials
+OFIX	Health Care
+XNCR	Health Care
+WASH	Financials
+SNHY	Industrials
+RRR	Consumer Discretionary
+PNK	Consumer Discretionary
+PPBI	Financials
+LXRX	Health Care
+RUSHA	Industrials
+VSI	Consumer Discretionary
+GLOG	Energy
+SGMS	Consumer Discretionary
+IRDM	Telecommunications
+WD	Financials
+HIFR	Real Estate
+PRFT	Information Technology
+NYMT	Financials
+GHL	Financials
+AEGN	Industrials
+BKS	Consumer Discretionary
+AMPH	Health Care
+SYNT	Information Technology
+ECHO	Industrials
+PLAB	Information Technology
+TRST	Financials
+BPMC	Health Care
+UHT	Real Estate
+LMCA	Consumer Discretionary
+FBP	Financials
+ZIOP	Health Care
+IBP	Consumer Discretionary
+CBF	Financials
+HMST	Financials
+AVX	Information Technology
+ELNK	Information Technology
+BRSS	Industrials
+BANC	Financials
+FFIC	Financials
+SXC	Materials
+DEA	Real Estate
+FIBK	Financials
+SCHN	Materials
+MACK	Health Care
+FFG	Financials
+RRGB	Consumer Discretionary
+CEVA	Information Technology
+EFSC	Financials
+CUBI	Financials
+CASS	Information Technology
+BKE	Consumer Discretionary
+FRAN	Consumer Discretionary
+DEL	Materials
+ORIT	Financials
+ALG	Industrials
+GTT	Information Technology
+LCI	Health Care
+NRE	Real Estate
+GTN	Consumer Discretionary
+ANIK	Health Care
+QSII	Health Care
+BFS	Real Estate
+GLRE	Financials
+THR	Industrials
+GSM	Materials
+MSFG	Financials
+IPAR	Consumer Staples
+ATRI	Health Care
+GOGO	Information Technology
+GTY	Real Estate
+UVSP	Financials
+GKOS	Health Care
+TR	Consumer Staples
+APFH	Consumer Staples
+NBHC	Financials
+CASH	Financials
+CACQ	Consumer Discretionary
+PLUS	Information Technology
+MTRN	Materials
+FIZZ	Consumer Staples
+RYAM	Materials
+NR	Energy
+INVN	Information Technology
+ITGR	Health Care
+ORBC	Telecommunications
+IMKTA	Consumer Staples
+QDEL	Health Care
+SBY	Real Estate
+CDR	Real Estate
+VRTS	Financials
+FARO	Information Technology
+OMAM	Financials
+VRTU	Information Technology
+TRUE	Information Technology
+CROX	Consumer Discretionary
+EGRX	Health Care
+INTL	Financials
+VNDA	Health Care
+TTS	Consumer Discretionary
+TREE	Financials
+VTAE	Health Care
+NLS	Consumer Discretionary
+MSEX	Utilities
+BANF	Financials
+GHDX	Health Care
+CTBI	Financials
+NOVT	Information Technology
+KAI	Industrials
+CWEI	Energy
+NEWM	Consumer Discretionary
+CTWS	Utilities
+PRSC	Health Care
+DHIL	Financials
+JRVR	Financials
+PRO	Information Technology
+NX	Industrials
+UTL	Utilities
+CHGG	Consumer Discretionary
+FBC	Financials
+ATRC	Health Care
+GABC	Financials
+CBZ	Industrials
+OLLI	Consumer Discretionary
+TROX	Materials
+KELYA	Industrials
+RTEC	Information Technology
+RESI	Financials
+WMK	Consumer Staples
+SSNI	Information Technology
+EGL	Industrials
+SRCE	Financials
+LHCG	Health Care
+EXTN	Energy
+ACET	Health Care
+EZPW	Financials
+TCBK	Financials
+BATRK	Consumer Discretionary
+HFWA	Financials
+CTS	Information Technology
+IBTX	Financials
+IQNT	Telecommunications
+HY	Industrials
+CRY	Health Care
+CUDA	Information Technology
+DCOM	Financials
+BMTC	Financials
+PDLI	Health Care
+CERS	Health Care
+NYLDA	Utilities
+TMHC	Consumer Discretionary
+ISLE	Consumer Discretionary
+CNOB	Financials
+CORT	Health Care
+FPO	Real Estate
+SBCF	Financials
+AXDX	Health Care
+ANIP	Health Care
+PDFS	Information Technology
+MTW	Industrials
+MHO	Consumer Discretionary
+RECN	Industrials
+MOD	Consumer Discretionary
+ATW	Energy
+LBAI	Financials
+UBA	Real Estate
+TTI	Energy
+SAH	Consumer Discretionary
+SHAK	Consumer Discretionary
+GTS	Health Care
+EROS	Consumer Discretionary
+RPXC	Industrials
+HZO	Consumer Discretionary
+WCIC	Consumer Discretionary
+HRTX	Health Care
+TRTN	Industrials
+ITG	Financials
+BEAT	Health Care
+NMBL	Information Technology
+NSR	Information Technology
+STRA	Consumer Discretionary
+OME	Consumer Staples
+GFF	Industrials
+HEES	Industrials
+COBZ	Financials
+SCLN	Health Care
+CAC	Financials
+NANO	Information Technology
+CCF	Materials
+MDCA	Consumer Discretionary
+LORL	Consumer Discretionary
+RCII	Consumer Discretionary
+LADR	Financials
+AHT	Real Estate
+ARCB	Industrials
+FRO	Energy
+MTRX	Energy
+LRN	Consumer Discretionary
+LL	Consumer Discretionary
+NWLI	Financials
+UTEK	Information Technology
+SRI	Consumer Discretionary
+MPAA	Consumer Discretionary
+NSM	Financials
+EIGI	Information Technology
+CECO	Consumer Discretionary
+KTWO	Health Care
+CAMP	Information Technology
+ANH	Financials
+PJT	Financials
+XOXO	Information Technology
+FOXF	Consumer Discretionary
+ECPG	Financials
+FIVN	Information Technology
+AVAV	Industrials
+LGIH	Consumer Discretionary
+PAHC	Health Care
+BNFT	Information Technology
+SHOR	Information Technology
+MC	Financials
+NNBR	Industrials
+MGPI	Consumer Staples
+BCOR	Information Technology
+PGTI	Industrials
+BDGE	Financials
+KFRC	Industrials
+NPTN	Information Technology
+TTEC	Information Technology
+MRTN	Industrials
+KBAL	Industrials
+MCS	Consumer Discretionary
+RUTH	Consumer Discretionary
+TG	Materials
+FLIC	Financials
+OFG	Financials
+TWI	Industrials
+AHH	Real Estate
+GNMK	Health Care
+FLXN	Health Care
+REX	Energy
+IIIN	Industrials
+ACIA	Information Technology
+CSU	Health Care
+PFBC	Financials
+BH	Consumer Discretionary
+UFI	Consumer Discretionary
+TOWR	Consumer Discretionary
+INO	Health Care
+LPSN	Information Technology
+AMCC	Information Technology
+PRTY	Consumer Discretionary
+TRNC	Consumer Discretionary
+GNCMA	Telecommunications
+AEPI	Materials
+WING	Consumer Discretionary
+ANGO	Health Care
+EVC	Consumer Discretionary
+UIS	Information Technology
+ADPT	Health Care
+ITCI	Health Care
+CSWI	Industrials
+MYRG	Industrials
+BV	Information Technology
+MITT	Financials
+GSBC	Financials
+EXTR	Information Technology
+AIMT	Health Care
+VCRA	Health Care
+PARR	Energy
+VRTV	Industrials
+ERII	Industrials
+CHUY	Consumer Discretionary
+MBWM	Financials
+BETR	Consumer Staples
+MED	Consumer Staples
+YRCW	Industrials
+ACTA	Information Technology
+CWST	Industrials
+RGS	Consumer Discretionary
+WLH	Consumer Discretionary
+AVD	Materials
+ARDX	Health Care
+PSTB	Financials
+TAST	Consumer Discretionary
+WMIH	Financials
+VDSI	Information Technology
+TMST	Materials
+JBSS	Consumer Staples
+GRC	Industrials
+SP	Industrials
+SGBK	Financials
+WMC	Financials
+WSBF	Financials
+OSUR	Health Care
+ADRO	Health Care
+ARAY	Health Care
+NPK	Industrials
+CTT	Real Estate
+LDR	Health Care
+ZOES	Consumer Discretionary
+NVAX	Health Care
+COTV	Health Care
+CIE	Energy
+AMRI	Health Care
+HAYN	Materials
+SCNB	Financials
+XENT	Health Care
+REV	Consumer Staples
+YORW	Utilities
+ACLS	Information Technology
+CZR	Consumer Discretionary
+GOOD	Real Estate
+ZUMZ	Consumer Discretionary
+DHT	Energy
+IL	Information Technology
+HLIT	Information Technology
+HBNC	Financials
+WHG	Financials
+NMIH	Financials
+THFF	Financials
+FBNC	Financials
+PEBO	Financials
+ATEN	Information Technology
+PETS	Consumer Discretionary
+HWKN	Materials
+EBF	Industrials
+OCFC	Financials
+DVAX	Health Care
+AGEN	Health Care
+ARNA	Health Care
+GSAT	Telecommunications
+AOSL	Information Technology
+AFI	Industrials
+HZN	Consumer Discretionary
+NCS	Industrials
+BNED	Consumer Discretionary
+KE	Information Technology
+NILE	Consumer Discretionary
+NEO	Health Care
+REI	Energy
+LION	Financials
+RSO	Financials
+OTIC	Health Care
+ENTA	Health Care
+ARWR	Health Care
+RATE	Information Technology
+CUNB	Financials
+KEYW	Industrials
+EXAR	Information Technology
+MLAB	Information Technology
+TSC	Financials
+FOR	Real Estate
+QCRH	Financials
+RUN	Industrials
+CLNE	Energy
+CCRN	Health Care
+KERX	Health Care
+OCN	Financials
+SALE	Information Technology
+ENT	Consumer Discretionary
+BCOV	Information Technology
+TK	Energy
+PLNT	Consumer Discretionary
+SGRY	Health Care
+CENX	Materials
+PIR	Consumer Discretionary
+FTD	Consumer Discretionary
+FORR	Information Technology
+SITE	Industrials
+FCBC	Financials
+TBRA	Health Care
+STAA	Health Care
+FDEF	Financials
+LNDC	Consumer Staples
+AROW	Financials
+SPOK	Telecommunications
+IRT	Real Estate
+CIA	Financials
+WK	Information Technology
+OSG	Energy
+FISI	Financials
+BRS	Energy
+HCKT	Information Technology
+CRC	Energy
+LBY	Consumer Discretionary
+AGM	Financials
+EPZM	Health Care
+SCVL	Consumer Discretionary
+MG	Industrials
+CSV	Consumer Discretionary
+ACRE	Financials
+SONS	Information Technology
+PGNX	Health Care
+EVH	Health Care
+BLCM	Health Care
+GLBL	Utilities
+PCBK	Financials
+BHBK	Financials
+ETM	Consumer Discretionary
+WSR	Real Estate
+TESO	Energy
+ASPS	Real Estate
+STFC	Financials
+MMI	Real Estate
+WIFI	Telecommunications
+AAOI	Information Technology
+UAM	Health Care
+OKSB	Financials
+OPB	Financials
+PGC	Financials
+ERI	Consumer Discretionary
+OMN	Materials
+SRDX	Health Care
+BIOS	Health Care
+INWK	Industrials
+SN	Energy
+OMER	Health Care
+UCFC	Financials
+BZH	Consumer Discretionary
+REGI	Energy
+IBCP	Financials
+VIRT	Financials
+CRVL	Health Care
+HVT	Consumer Discretionary
+CMCO	Industrials
+LBIO	Health Care
+NVCR	Health Care
+NXRT	Real Estate
+GEF.B	Materials
+FRP	Telecommunications
+MOV	Consumer Discretionary
+AXON	Health Care
+RGNX	Health Care
+VSAR	Health Care
+AFAM	Health Care
+BCRX	Health Care
+SNC	Financials
+TDOC	Health Care
+ATRA	Health Care
+CSBK	Financials
+TRC	Real Estate
+FFWM	Financials
+SPNS	Information Technology
+GBT	Health Care
+DFRG	Consumer Discretionary
+COWN	Financials
+BKMU	Financials
+HSII	Industrials
+CORR	Real Estate
+FRED	Consumer Discretionary
+IVC	Health Care
+OLP	Real Estate
+DMRC	Information Technology
+GPX	Industrials
+CRMT	Consumer Discretionary
+BBSI	Industrials
+TACO	Consumer Discretionary
+FMI	Health Care
+ICON	Consumer Discretionary
+DX	Financials
+POWL	Industrials
+IDT	Telecommunications
+DAKT	Information Technology
+APEI	Consumer Discretionary
+AHP	Real Estate
+HRTG	Financials
+CLDX	Health Care
+PGEM	Industrials
+CCS	Consumer Discretionary
+CRIS	Health Care
+CFI	Consumer Discretionary
+ANGI	Information Technology
+GERN	Health Care
+WTBA	Financials
+CECE	Industrials
+PBPB	Consumer Discretionary
+HSKA	Health Care
+SPAR	Consumer Discretionary
+VRNS	Information Technology
+TBK	Financials
+RVNC	Health Care
+HLI	Financials
+XTLY	Information Technology
+UMH	Real Estate
+CYTK	Health Care
+CARB	Information Technology
+ALRM	Information Technology
+RBCAA	Financials
+ADXS	Health Care
+FSB	Financials
+XCRA	Information Technology
+HTBI	Financials
+ABTX	Financials
+HDP	Information Technology
+CFMS	Health Care
+MWW	Information Technology
+HOFT	Consumer Discretionary
+NSTG	Health Care
+APTS	Real Estate
+RPD	Information Technology
+EVDY	Information Technology
+BMRC	Financials
+NLNK	Health Care
+PKE	Information Technology
+CHCT	Real Estate
+MPSX	Materials
+CPSI	Health Care
+RUBI	Information Technology
+PETX	Health Care
+PRMW	Consumer Staples
+NCBS	Financials
+TLGT	Health Care
+BGFV	Consumer Discretionary
+GORO	Materials
+NGS	Energy
+TNK	Energy
+DHX	Information Technology
+AI	Financials
+SREV	Information Technology
+WRLD	Financials
+ACTG	Industrials
+AT	Utilities
+OXFD	Health Care
+OB	Financials
+SFS	Consumer Staples
+ARII	Industrials
+SQBG	Consumer Discretionary
+SCMP	Health Care
+COHU	Information Technology
+NC	Consumer Discretionary
+FF	Materials
+CTRN	Consumer Discretionary
+HTBK	Financials
+SPPI	Health Care
+FDML	Consumer Discretionary
+DGII	Information Technology
+PLUG	Industrials
+CNXN	Information Technology
+SGI	Information Technology
+INST	Information Technology
+PKOH	Industrials
+AKBA	Health Care
+CIO	Real Estate
+PHX	Energy
+RAS	Real Estate
+RMTI	Health Care
+LOB	Financials
+CCNE	Financials
+RDNT	Health Care
+LIOX	Information Technology
+LJPC	Health Care
+LOXO	Health Care
+BBG	Energy
+KTOS	Industrials
+IXYS	Information Technology
+WTW	Consumer Discretionary
+AMSWA	Information Technology
+EXAC	Health Care
+PFIS	Financials
+PKD	Energy
+SIGM	Information Technology
+SNOW	Consumer Discretionary
+NVEC	Information Technology
+GBNK	Financials
+FMNB	Financials
+CALX	Information Technology
+APIC	Information Technology
+PES	Energy
+MBUU	Consumer Discretionary
+CIVI	Health Care
+FGL	Financials
+VRA	Consumer Discretionary
+VSEC	Industrials
+PICO	Financials
+MYE	Materials
+FLXS	Consumer Discretionary
+LMOS	Telecommunications
+MB	Information Technology
+INSY	Health Care
+LMAT	Health Care
+ALJ	Energy
+TUES	Consumer Discretionary
+SFE	Financials
+STRP	Telecommunications
+ACBI	Financials
+PUB	Financials
+ECOM	Information Technology
+XBIT	Health Care
+ORC	Financials
+KMG	Materials
+FBNK	Financials
+DLTH	Consumer Discretionary
+KODK	Information Technology
+TRVN	Health Care
+FARM	Consumer Staples
+CZNC	Financials
+DXPE	Industrials
+MOFG	Financials
+TBBK	Financials
+UCTT	Information Technology
+SPWH	Consumer Discretionary
+LYTS	Industrials
+SGMO	Health Care
+CTMX	Health Care
+GBLI	Financials
+RIGL	Health Care
+MBVT	Financials
+FLWS	Consumer Discretionary
+RMR	Real Estate
+MEDP	Health Care
+BSTC	Health Care
+SNBC	Financials
+NUTR	Consumer Staples
+EBTC	Financials
+MCRI	Consumer Discretionary
+LOCO	Consumer Discretionary
+FNLC	Financials
+ONVO	Health Care
+CENT	Consumer Staples
+NTRA	Health Care
+NATL	Financials
+BTX	Health Care
+UIHC	Financials
+BRG	Real Estate
+ENVA	Financials
+ADMS	Health Care
+WINA	Consumer Discretionary
+HONE	Financials
+JONE	Energy
+MSFUT	Cash and/or Derivatives
+NKSH	Financials
+MLR	Industrials
+CARO	Financials
+FFKT	Financials
+CHEF	Consumer Staples
+ENZ	Health Care
+GEOS	Energy
+CVI	Energy
+CTRL	Information Technology
+BSET	Consumer Discretionary
+PDVW	Telecommunications
+CMTL	Information Technology
+PERY	Consumer Discretionary
+HCI	Financials
+MPG	Consumer Discretionary
+NEWS	Financials
+TRUP	Financials
+ATKR	Industrials
+TIS	Consumer Staples
+TNGO	Information Technology
+LE	Consumer Discretionary
+ATLO	Financials
+LQDT	Information Technology
+DJCO	Consumer Discretionary
+RM	Financials
+RRTS	Industrials
+ONDK	Financials
+LMNR	Consumer Staples
+OSBC	Financials
+SPA	Industrials
+SILC	Information Technology
+NERV	Health Care
+NCOM	Financials
+AVXS	Health Care
+MEET	Information Technology
+RDI	Consumer Discretionary
+ZGNX	Health Care
+QADA	Information Technology
+COLL	Health Care
+BREW	Consumer Staples
+DSPG	Information Technology
+VLGEA	Consumer Staples
+MODN	Information Technology
+JIVE	Information Technology
+BWINB	Financials
+AMNB	Financials
+IMMR	Information Technology
+GNBC	Financials
+LTS	Financials
+FNHC	Financials
+WVE	Health Care
+ASCMA	Consumer Discretionary
+ZIXI	Information Technology
+AVID	Information Technology
+TGTX	Health Care
+BELFB	Information Technology
+PFSI	Financials
+BHB	Financials
+AXAS	Energy
+GLDD	Industrials
+MCF	Energy
+ORN	Industrials
+ARTNA	Utilities
+MCRB	Health Care
+MCRN	Industrials
+PRTK	Health Care
+UTMD	Health Care
+AXGN	Health Care
+CRAI	Industrials
+WATT	Industrials
+TBNK	Financials
+PEIX	Energy
+RNET	Energy
+PTCT	Health Care
+BSRR	Financials
+MCBC	Financials
+EMCI	Financials
+CLFD	Information Technology
+ZEUS	Materials
+TRK	Consumer Discretionary
+MNOV	Health Care
+SALT	Industrials
+AJX	Financials
+ACRS	Health Care
+CSS	Consumer Discretionary
+MITK	Information Technology
+CONN	Consumer Discretionary
+CTO	Real Estate
+DTLK	Information Technology
+FMBH	Financials
+TREC	Materials
+PHIIK	Energy
+GLUU	Information Technology
+VICR	Industrials
+TVIA	Materials
+OMED	Health Care
+EHTH	Financials
+DCO	Industrials
+FRPT	Consumer Staples
+PWOD	Financials
+HEOP	Financials
+WNEB	Financials
+WFBI	Financials
+KPTI	Health Care
+AVHI	Real Estate
+FRPH	Real Estate
+STML	Health Care
+CACB	Financials
+ANCX	Financials
+ADUS	Health Care
+OSTK	Consumer Discretionary
+EXA	Information Technology
+HIFS	Financials
+CVTI	Industrials
+HOV	Consumer Discretionary
+EPM	Energy
+GCAP	Financials
+SMRT	Consumer Discretionary
+CMRE	Industrials
+HABT	Consumer Discretionary
+SENEA	Consumer Staples
+BLMT	Financials
+FC	Industrials
+TPHS	Real Estate
+CMRX	Health Care
+CSLT	Health Care
+ACAT	Consumer Discretionary
+NVEE	Industrials
+GNRT	Energy
+CRR	Energy
+KIRK	Consumer Discretionary
+GRBK	Consumer Discretionary
+ZAGG	Consumer Discretionary
+VPG	Information Technology
+CGI	Industrials
+ORM	Financials
+IMGN	Health Care
+TNAV	Information Technology
+BFIN	Financials
+IMMU	Health Care
+ASC	Energy
+MGI	Information Technology
+REIS	Information Technology
+JOUT	Consumer Discretionary
+FBIZ	Financials
+AFH	Financials
+LEAP	Telecommunications
+USAT	Information Technology
+RT	Consumer Discretionary
+COB	Financials
+MYOK	Health Care
+PCYG	Information Technology
+BBOX	Information Technology
+HLTH	Health Care
+CHFN	Financials
+CETV	Consumer Discretionary
+PIP	Health Care
+NRIM	Financials
+OVAS	Health Care
+VEC	Industrials
+KRO	Materials
+UFPT	Materials
+TUBE	Information Technology
+WLB	Energy
+TITN	Industrials
+MOBL	Information Technology
+CVLY	Financials
+EPE	Energy
+CCBG	Financials
+NVTA	Health Care
+RSYS	Information Technology
+MBTF	Financials
+PTGX	Health Care
+NHTC	Consumer Staples
+XBKS	Financials
+AMBR	Information Technology
+HURC	Industrials
+SMMF	Financials
+GHM	Industrials
+AAC	Health Care
+IDRA	Health Care
+SGA	Consumer Discretionary
+OLBK	Financials
+TGH	Industrials
+MNKD	Health Care
+RTIX	Health Care
+ODC	Consumer Staples
+HCCI	Industrials
+ECR	Energy
+ESPR	Health Care
+ICD	Energy
+ARA	Health Care
+WEYS	Consumer Discretionary
+CLSD	Health Care
+HBCP	Financials
+XCO	Energy
+EMKR	Information Technology
+SHBI	Financials
+DGAS	Utilities
+LAYN	Industrials
+EDGE	Health Care
+SNAK	Consumer Staples
+NATH	Consumer Discretionary
+IMH	Financials
+ACNB	Financials
+ERA	Energy
+CBMG	Health Care
+CARA	Health Care
+MXWL	Information Technology
+-	Health Care
+CUTR	Health Care
+BSF	Financials
+RAIL	Industrials
+LCNB	Financials
+MRLN	Financials
+TRR	Industrials
+HOS	Energy
+DXLG	Consumer Discretionary
+BATRA	Consumer Discretionary
+NIHD	Telecommunications
+LCUT	Consumer Discretionary
+ENOC	Information Technology
+ORRF	Financials
+SRNE	Health Care
+RUSHB	Industrials
+CWCO	Utilities
+AC	Financials
+RXDX	Health Care
+AGYS	Information Technology
+PFNX	Health Care
+STS	Industrials
+SGC	Consumer Discretionary
+ENTL	Health Care
+SFST	Financials
+BOOT	Consumer Discretionary
+CDXS	Materials
+BOJA	Consumer Discretionary
+GIG	Information Technology
+FNWB	Financials
+MFSF	Financials
+HCHC	Industrials
+STRS	Real Estate
+VYGR	Health Care
+QHC	Health Care
+VHC	Information Technology
+ATHX	Health Care
+SIFI	Financials
+SONA	Financials
+GMS	Industrials
+OPY	Financials
+PFBI	Financials
+SMBC	Financials
+KNSL	Financials
+PI	Information Technology
+PSG	Consumer Discretionary
+VBTX	Financials
+DWSN	Energy
+LPG	Energy
+HALL	Financials
+RETA	Health Care
+BBW	Consumer Discretionary
+CLCT	Consumer Discretionary
+ESIO	Information Technology
+BOOM	Industrials
+NVIV	Health Care
+WMAR	Consumer Discretionary
+CCXI	Health Care
+CNTY	Consumer Discretionary
+EGLT	Health Care
+DRRX	Health Care
+CNCE	Health Care
+LSBG	Financials
+RST	Information Technology
+ARC	Industrials
+APPF	Information Technology
+RELY	Materials
+BWFG	Financials
+CRD.B	Financials
+PLPM	Information Technology
+ITIC	Financials
+MBRG	Financials
+AOI	Consumer Staples
+EQBK	Financials
+CFFI	Financials
+CNBKA	Financials
+GMRE	Real Estate
+NWHM	Consumer Discretionary
+TTPH	Health Care
+VTL	Health Care
+ABTL	Information Technology
+FLDM	Health Care
+GBL	Financials
+JMBA	Consumer Discretionary
+INBK	Financials
+FFNW	Financials
+RYI	Materials
+NRCIA	Health Care
+III	Information Technology
+MDGN	Health Care
+FRBK	Financials
+DGICA	Financials
+GUID	Information Technology
+SSI	Consumer Discretionary
+TIPT	Financials
+LLNW	Information Technology
+ITEK	Health Care
+XONE	Industrials
+SPKE	Utilities
+HCOM	Telecommunications
+TTGT	Information Technology
+HIL	Industrials
+ESCA	Consumer Discretionary
+SHLD	Consumer Discretionary
+KOPN	Information Technology
+USLM	Materials
+HIVE	Information Technology
+KVHI	Information Technology
+PROV	Financials
+LIND	Consumer Discretionary
+FCFP	Financials
+CVCY	Financials
+TNDM	Health Care
+LXU	Materials
+UNB	Financials
+BPI	Consumer Discretionary
+CRCM	Information Technology
+LAWS	Industrials
+FPI	Real Estate
+GDEN	Consumer Discretionary
+AMOT	Industrials
+IHC	Financials
+VNCE	Consumer Discretionary
+CAI	Industrials
+JAX	Consumer Discretionary
+HDNG	Industrials
+LFVN	Consumer Staples
+STRT	Consumer Discretionary
+TLYS	Consumer Discretionary
+NATR	Consumer Staples
+SYN	Health Care
+PFSW	Information Technology
+MN	Financials
+PMTS	Information Technology
+RLH	Consumer Discretionary
+OCUL	Health Care
+PZN	Financials
+IESC	Industrials
+QNST	Information Technology
+TROV	Health Care
+DLA	Consumer Discretionary
+WAC	Financials
+RILY	Financials
+PLPC	Industrials
+NNA	Energy
+NGVC	Consumer Staples
+ESSA	Financials
+OFLX	Industrials
+ECYT	Health Care
+VCYT	Health Care
+NK	Health Care
+FCEL	Industrials
+ACRX	Health Care
+RNWK	Information Technology
+JAKK	Consumer Discretionary
+AVXL	Health Care
+RGLS	Health Care
+CDTX	Health Care
+WLFC	Industrials
+NOG	Energy
+TRXC	Health Care
+TPIC	Industrials
+AGTC	Health Care
+AGFS	Materials
+NMRX	Information Technology
+EDIT	Health Care
+BCRH	Financials
+RLGT	Industrials
+AMRC	Industrials
+CLMS	Financials
+PTI	Health Care
+ULH	Industrials
+NAME	Information Technology
+ANTH	Health Care
+GEN	Health Care
+NTLA	Health Care
+BPTH	Health Care
+TTOO	Health Care
+BOLD	Health Care
+MPX	Consumer Discretionary
+HOME	Consumer Discretionary
+AGRX	Health Care
+AQMS	Industrials
+MSBI	Financials
+NEFF	Industrials
+ICBK	Financials
+AP	Materials
+IRIX	Health Care
+GENC	Industrials
+HNNA	Financials
+SYX	Information Technology
+SYUT	Consumer Staples
+FBRC	Financials
+CHMG	Financials
+PMBC	Financials
+MCFT	Consumer Discretionary
+FBIO	Health Care
+ALCO	Consumer Staples
+I	Telecommunications
+TTNP	Health Care
+FNBC	Financials
+NH	Health Care
+IMDZ	Health Care
+MCHX	Information Technology
+NEOS	Health Care
+AE	Energy
+TAX	Consumer Discretionary
+KONA	Consumer Discretionary
+SELB	Health Care
+LWAY	Consumer Staples
+BLBD	Industrials
+TDW	Energy
+CDXC	Health Care
+LUB	Consumer Discretionary
+GLYC	Health Care
+AMSC	Industrials
+OSIR	Health Care
+ALJJ	Information Technology
+UFAB	Consumer Discretionary
+TCMD	Health Care
+TCS	Consumer Discretionary
+AST	Health Care
+SAMG	Financials
+WKHS	Consumer Discretionary
+DMTX	Health Care
+AXSM	Health Care
+TPB	Consumer Staples
+ZFGN	Health Care
+WG	Energy
+TSQ	Consumer Discretionary
+SENS	Health Care
+VSLR	Utilities
+AVGR	Health Care
+PN	Financials
+GNE	Utilities
+ABCD	Consumer Discretionary
+PVBC	Financials
+NCIT	Information Technology
+UCP	Consumer Discretionary
+NYNY	Consumer Discretionary
+MRTX	Health Care
+USAK	Industrials
+SCWX	Information Technology
+INFI	Health Care
+ISRL	Energy
+ADVM	Health Care
+GSOL	Information Technology
+SYRS	Health Care
+SNDX	Health Care
+HMTV	Consumer Discretionary
+ARGS	Health Care
+GALE	Health Care
+SALM	Consumer Discretionary
+BBX	Financials
+GWRS	Utilities
+ROIAK	Consumer Discretionary
+FOGO	Consumer Discretionary
+MDLY	Financials
+FLKS	Health Care
+HNH	Materials
+SHOS	Consumer Discretionary
+LPCN	Health Care
+WTI	Energy
+COGT	Industrials
+CVRS	Health Care
+GCBC	Financials
+EIGR	Health Care
+VTVT	Health Care
+VHI	Materials
+KDMN	Health Care
+EYES	Health Care
+NDLS	Consumer Discretionary
+GAIA	Consumer Discretionary
+CRVS	Health Care
+PSIX	Industrials
+CYTR	Health Care
+PTSI	Industrials
+WINS	Financials
+IRMD	Health Care
+AMPE	Health Care
+APVO	Health Care
+ERN	Energy
+CFNB	Financials
+PBNC	Financials
+NL	Industrials
+FSAM	Financials
+MJCO	Information Technology
+GRIF	Real Estate
+VALU	Financials
+ESTE	Energy
+VRAY	Health Care
+CIX	Industrials
+TKAI	Health Care
+GRB	Information Technology
