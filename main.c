@@ -48,11 +48,11 @@ enum
 	ACTION_NR
 };
 
-const char *group_list[ ] = { "usa", "iwm", "ibd", "biotech", "3x", "china", "canada", NULL };
+const char *group_list[ ] = { "usa", "iwm", "mdy", "ibd", "biotech", "3x", "china", "canada", NULL };
 
 static void print_usage(void)
 {
-	printf("Usage: anna -group={usa|china|canada|iwm|biotech|ibd|3x} [-date=yyyy-mm-dd] [-conf=filename]\n");
+	printf("Usage: anna -group={usa|china|canada|iwm|mdy|biotech|ibd|3x} [-date=yyyy-mm-dd] [-conf=filename]\n");
 	printf("               {fetch | fetch-rt | check-db | check-mfi-db | check-pullback-db | check-52w-db | "
 				"check-dbup | check-pullback-dbup | check-52w-dbup | check-strong-dbup | check-lvup | check-earlyup | check-52wlup | "
 				"check-spt | check-20d | check-30d | check-50d | check-60d | "

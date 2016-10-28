@@ -7,6 +7,7 @@
 -include ticker_list/xlb.txt
 -include ticker_list/xle.txt
 -include ticker_list/xlf.txt
+-include ticker_list/xlfs.txt
 -include ticker_list/xli.txt
 -include ticker_list/xlk.txt
 -include ticker_list/xlp.txt
@@ -17,6 +18,7 @@
 -include ticker_list/xsd.txt
 -include ticker_list/xsw.txt
 -include ticker_list/xlre.txt
+-include ticker_list/xth.txt
 -include ticker_list/xtl.txt
 -include ticker_list/xtn.txt
 -include ticker_list/kre.txt

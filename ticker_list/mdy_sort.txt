@@ -1,0 +1,400 @@
+AAN	Consumer Discretionary
+AEO	Consumer Discretionary
+AMCX	Consumer Discretionary
+ASNA	Consumer Discretionary
+BC	Consumer Discretionary
+BID	Consumer Discretionary
+BIG	Consumer Discretionary
+BWLD	Consumer Discretionary
+CAA	Consumer Discretionary
+CAB	Consumer Discretionary
+CABO	Consumer Discretionary
+CAKE	Consumer Discretionary
+CBRL	Consumer Discretionary
+CHDN	Consumer Discretionary
+CHS	Consumer Discretionary
+CNK	Consumer Discretionary
+CRI	Consumer Discretionary
+CST	Consumer Discretionary
+DAN	Consumer Discretionary
+DECK	Consumer Discretionary
+DKS	Consumer Discretionary
+DNKN	Consumer Discretionary
+DPZ	Consumer Discretionary
+DV	Consumer Discretionary
+EAT	Consumer Discretionary
+FOSL	Consumer Discretionary
+GES	Consumer Discretionary
+GHC	Consumer Discretionary
+GME	Consumer Discretionary
+GNTX	Consumer Discretionary
+HELE	Consumer Discretionary
+HSNI	Consumer Discretionary
+ISCA	Consumer Discretionary
+JACK	Consumer Discretionary
+JCP	Consumer Discretionary
+JW.A	Consumer Discretionary
+KATE	Consumer Discretionary
+KBH	Consumer Discretionary
+LYV	Consumer Discretionary
+MDP	Consumer Discretionary
+MUSA	Consumer Discretionary
+NVR	Consumer Discretionary
+NYT	Consumer Discretionary
+ODP	Consumer Discretionary
+PII	Consumer Discretionary
+PNRA	Consumer Discretionary
+POOL	Consumer Discretionary
+RH	Consumer Discretionary
+SBH	Consumer Discretionary
+SCI	Consumer Discretionary
+SKX	Consumer Discretionary
+THO	Consumer Discretionary
+TIME	Consumer Discretionary
+TOL	Consumer Discretionary
+TPH	Consumer Discretionary
+TPX	Consumer Discretionary
+TUP	Consumer Discretionary
+TXRH	Consumer Discretionary
+VSTO	Consumer Discretionary
+WEN	Consumer Discretionary
+WSM	Consumer Discretionary
+AVP	Consumer Staples
+CASY	Consumer Staples
+DF	Consumer Staples
+ENR	Consumer Staples
+EPC	Consumer Staples
+FLO	Consumer Staples
+HAIN	Consumer Staples
+INGR	Consumer Staples
+LANC	Consumer Staples
+LNCE	Consumer Staples
+POST	Consumer Staples
+SAM	Consumer Staples
+SFM	Consumer Staples
+THS	Consumer Staples
+TR	Consumer Staples
+UNFI	Consumer Staples
+WWAV	Consumer Staples
+CNX	Energy
+DNR	Energy
+DO	Energy
+DRQ	Energy
+EGN	Energy
+ESV	Energy
+GPOR	Energy
+HFC	Energy
+INT	Energy
+NBR	Energy
+NE	Energy
+OII	Energy
+OIS	Energy
+PTEN	Energy
+QEP	Energy
+RDC	Energy
+SM	Energy
+SPN	Energy
+WNR	Energy
+WPX	Energy
+AFG	Financials
+AHL	Financials
+ASB	Financials
+BOH	Financials
+BRO	Financials
+BXS	Financials
+CATY	Financials
+CBOE	Financials
+CBSH	Financials
+CFR	Financials
+CHFC	Financials
+CNO	Financials
+ENH	Financials
+EV	Financials
+EWBC	Financials
+FAF	Financials
+FDS	Financials
+FHN	Financials
+FII	Financials
+FNB	Financials
+FULT	Financials
+GNW	Financials
+HBHC	Financials
+IBOC	Financials
+JNS	Financials
+KMPR	Financials
+MBFI	Financials
+MCY	Financials
+MKTX	Financials
+MSCI	Financials
+NYCB	Financials
+ORI	Financials
+OZRK	Financials
+PACW	Financials
+PB	Financials
+PRI	Financials
+PVTB	Financials
+RE	Financials
+RGA	Financials
+RJF	Financials
+RNR	Financials
+SBNY	Financials
+SEIC	Financials
+SF	Financials
+SIVB	Financials
+SLM	Financials
+SNV	Financials
+TCB	Financials
+THG	Financials
+TRMK	Financials
+UMPQ	Financials
+VLY	Financials
+WAFD	Financials
+WBS	Financials
+WDR	Financials
+WETF	Financials
+WRB	Financials
+Y	Financials
+ABMD	Health Care
+AKRX	Health Care
+ALGN	Health Care
+AMSG	Health Care
+BIO	Health Care
+CRL	Health Care
+CTLT	Health Care
+HRC	Health Care
+HYH	Health Care
+IDXX	Health Care
+LIVN	Health Care
+LPNT	Health Care
+MD	Health Care
+MDRX	Health Care
+MOH	Health Care
+NUVA	Health Care
+OMI	Health Care
+PBH	Health Care
+PRXL	Health Care
+RMD	Health Care
+STE	Health Care
+TECH	Health Care
+TFX	Health Care
+THC	Health Care
+UTHR	Health Care
+WCG	Health Care
+WOOF	Health Care
+WST	Health Care
+ACM	Industrials
+AGCO	Industrials
+AOS	Industrials
+BEAV	Industrials
+CAR	Industrials
+CEB	Industrials
+CLC	Industrials
+CLH	Industrials
+CPRT	Industrials
+CR	Industrials
+CSL	Industrials
+CW	Industrials
+DCI	Industrials
+DLX	Industrials
+DNOW	Industrials
+DY	Industrials
+EME	Industrials
+ENS	Industrials
+ESL	Industrials
+FCN	Industrials
+GATX	Industrials
+GGG	Industrials
+GVA	Industrials
+GWR	Industrials
+HII	Industrials
+HNI	Industrials
+HUBB	Industrials
+IEX	Industrials
+ITT	Industrials
+JBLU	Industrials
+JOY	Industrials
+KBR	Industrials
+KEX	Industrials
+KLXI	Industrials
+KMT	Industrials
+LECO	Industrials
+LII	Industrials
+LSTR	Industrials
+MAN	Industrials
+MLHR	Industrials
+MSA	Industrials
+MSM	Industrials
+NDSN	Industrials
+OA	Industrials
+ODFL	Industrials
+OSK	Industrials
+RBC	Industrials
+ROL	Industrials
+TDY	Industrials
+TEX	Industrials
+TGI	Industrials
+TKR	Industrials
+TRN	Industrials
+TTC	Industrials
+VMI	Industrials
+WAB	Industrials
+WERN	Industrials
+WSO	Industrials
+WWD	Industrials
+ACIW	Information Technology
+ACXM	Information Technology
+AMD	Information Technology
+ANSS	Information Technology
+ARRS	Information Technology
+ARW	Information Technology
+AVT	Information Technology
+BDC	Information Technology
+BRCD	Information Technology
+BR	Information Technology
+CDK	Information Technology
+CDNS	Information Technology
+CGNX	Information Technology
+CIEN	Information Technology
+CLGX	Information Technology
+CREE	Information Technology
+CRUS	Information Technology
+CSC	Information Technology
+CVG	Information Technology
+CVLT	Information Technology
+CY	Information Technology
+DBD	Information Technology
+DDD	Information Technology
+DST	Information Technology
+FICO	Information Technology
+FTNT	Information Technology
+IDCC	Information Technology
+IDTI	Information Technology
+IM	Information Technology
+IPGP	Information Technology
+ISIL	Information Technology
+IT	Information Technology
+JBL	Information Technology
+JCOM	Information Technology
+JKHY	Information Technology
+KEYS	Information Technology
+KN	Information Technology
+LDOS	Information Technology
+LXK	Information Technology
+MANH	Information Technology
+MENT	Information Technology
+MMS	Information Technology
+MPWR	Information Technology
+MSCC	Information Technology
+NATI	Information Technology
+NCR	Information Technology
+NSR	Information Technology
+NTCT	Information Technology
+PAY	Information Technology
+PLT	Information Technology
+PTC	Information Technology
+RAX	Information Technology
+SAIC	Information Technology
+SCOR	Information Technology
+SLAB	Information Technology
+SNPS	Information Technology
+SNX	Information Technology
+SYNA	Information Technology
+TECD	Information Technology
+TER	Information Technology
+TRMB	Information Technology
+TYL	Information Technology
+ULTI	Information Technology
+VSAT	Information Technology
+VSH	Information Technology
+VSM	Information Technology
+WBMD	Information Technology
+WEX	Information Technology
+ZBRA	Information Technology
+ASH	Materials
+ATI	Materials
+ATR	Materials
+BMS	Materials
+CBT	Materials
+CMC	Materials
+CMP	Materials
+CRS	Materials
+EXP	Materials
+GEF	Materials
+LPX	Materials
+MTX	Materials
+NEU	Materials
+OLN	Materials
+PKG	Materials
+POL	Materials
+RGLD	Materials
+RPM	Materials
+RS	Materials
+SLGN	Materials
+SMG	Materials
+SON	Materials
+STLD	Materials
+SXT	Materials
+UFS	Materials
+VAL	Materials
+WOR	Materials
+X	Materials
+ACC	Real Estate
+ALEX	Real Estate
+ARE	Real Estate
+CCP	Real Estate
+CLI	Real Estate
+CPT	Real Estate
+CSAL	Real Estate
+CUZ	Real Estate
+CXW	Real Estate
+DCT	Real Estate
+DEI	Real Estate
+DRE	Real Estate
+EDR	Real Estate
+EPR	Real Estate
+EQY	Real Estate
+FR	Real Estate
+HIW	Real Estate
+HPT	Real Estate
+HR	Real Estate
+JLL	Real Estate
+KRC	Real Estate
+LAMR	Real Estate
+LHO	Real Estate
+LPT	Real Estate
+LSI	Real Estate
+MAA	Real Estate
+MPW	Real Estate
+NNN	Real Estate
+OFC	Real Estate
+OHI	Real Estate
+PCH	Real Estate
+PPS	Real Estate
+REG	Real Estate
+RYN	Real Estate
+SKT	Real Estate
+SNH	Real Estate
+TCO	Real Estate
+UE	Real Estate
+WPG	Real Estate
+WRI	Real Estate
+TDS	Telecommunication Services
+ATO	Utilities
+BKH	Utilities
+GXP	Utilities
+HE	Utilities
+IDA	Utilities
+MDU	Utilities
+NFG	Utilities
+NJR	Utilities
+NWE	Utilities
+OGE	Utilities
+OGS	Utilities
+PNM	Utilities
+SWX	Utilities
+TLN	Utilities
+UGI	Utilities
+VVC	Utilities
+WGL	Utilities
+WR	Utilities
+WTR	Utilities
