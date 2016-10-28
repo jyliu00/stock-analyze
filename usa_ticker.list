@@ -14,6 +14,9 @@
 -include ticker_list/xlv.txt
 -include ticker_list/xly.txt
 -include ticker_list/xsd.txt
+-include ticker_list/xlre.txt
+-include ticker_list/xtl.txt
+-include ticker_list/xtn.txt
 -include ticker_list/sp500.txt
 -include ticker_list/usa_my_picks.txt
 -inclue ticker_list/usa_chinese_oversea.txt
