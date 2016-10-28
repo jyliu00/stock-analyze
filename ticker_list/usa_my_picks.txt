@@ -1,7 +1,5 @@
 %sector=my_picks
-CYH
 FEYE
-FTNT
 PAYC
 JBLU
 EAT
