@@ -1210,9 +1210,10 @@ static const char * get_price_volume_change(const struct stock_price *price_hist
 	get_250d_high_low(price_history, price2check, &high, &low);
 
 	snprintf(output_str, sizeof(output_str),
-		"price(%d.%03d, %c%d.%d%%, body_size=%c%d.%d%%), volume(%d > %s%d%s days, vma10d=%s%d.%d%%%s, vma20d=%s%d.%d%%%s, vma60d=%s%d.%d%%%s)",
+		"price(%d.%03d, %c%d.%d%%, %sbody_size=%c%d.%d%%%s), volume(%d > %s%d%s days, vma10d=%s%d.%d%%%s, vma20d=%s%d.%d%%%s, vma60d=%s%d.%d%%%s)",
 		price2check->close / 1000, price2check->close % 1000, is_up ? '+' : '-', price_change / 10, price_change % 10,
-		price2check->close >= price2check->open ? '+' : '-', body_size / 10, body_size % 10,
+		body_size >= 20 ? ANSI_COLOR_YELLOW : "", price2check->close >= price2check->open ? '+' : '-',
+		body_size / 10, body_size % 10, body_size >= 20 ? ANSI_COLOR_RESET : "",
 		price2check->volume, larger_days >= 5 ? ANSI_COLOR_YELLOW : "", larger_days, larger_days >= 5 ? ANSI_COLOR_RESET : "",
 		vma10d_percent >= 1000 ? ANSI_COLOR_YELLOW : "", vma10d_percent / 10, vma10d_percent % 10, vma10d_percent >= 1000 ? ANSI_COLOR_RESET : "",
 		vma20d_percent >= 1000 ? ANSI_COLOR_YELLOW : "", vma20d_percent / 10, vma20d_percent % 10, vma20d_percent >= 1000 ? ANSI_COLOR_RESET : "",
