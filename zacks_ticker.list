@@ -1,1 +1,2 @@
--include ticker_list/zacks_top_rank_vgm.txt
+-include ticker_list/zacks_rank1_vgmAB.txt
+-include ticker_list/zacks_rank2_vgmAB.txt
