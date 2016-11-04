@@ -1147,7 +1147,7 @@ static const char * get_price_volume_change(const struct stock_price *price_hist
 {
 	static char output_str[256];
 	const struct date_price *yesterday = NULL;
-	int is_up = 0, price_change = 0, body_size = 0,
+	int is_up = 0, good_size_body = 0, strong_up_body = 0, price_change = 0, body_size = 0,
 	    vma10d_percent = 0, vma20d_percent = 0, vma60d_percent = 0,
 	    larger_days = 0;
 	uint32_t high, low;
@@ -1204,7 +1204,14 @@ static const char * get_price_volume_change(const struct stock_price *price_hist
 			body_size = price2check->close - price2check->open;
 		else
 			body_size = price2check->open - price2check->close;
+
+		if (body_size * 100 / (price2check->high - price2check->low) >= 70)
+			good_size_body = 1;
+
 		body_size = ((uint64_t)body_size) * 1000 / price2check->open;
+
+		if (is_up && good_size_body && body_size >= 18)
+			strong_up_body = 1;
 	}
 
 	get_250d_high_low(price_history, price2check, &high, &low);
@@ -1212,8 +1219,8 @@ static const char * get_price_volume_change(const struct stock_price *price_hist
 	snprintf(output_str, sizeof(output_str),
 		"price(%d.%03d, %c%d.%d%%, %sbody_size=%c%d.%d%%%s), volume(%d > %s%d%s days, vma10d=%s%d.%d%%%s, vma20d=%s%d.%d%%%s, vma60d=%s%d.%d%%%s)",
 		price2check->close / 1000, price2check->close % 1000, is_up ? '+' : '-', price_change / 10, price_change % 10,
-		body_size >= 20 ? ANSI_COLOR_YELLOW : "", price2check->close >= price2check->open ? '+' : '-',
-		body_size / 10, body_size % 10, body_size >= 20 ? ANSI_COLOR_RESET : "",
+		strong_up_body ? ANSI_COLOR_YELLOW : "", price2check->close >= price2check->open ? '+' : '-',
+		body_size / 10, body_size % 10, strong_up_body ? ANSI_COLOR_RESET : "",
 		price2check->volume, larger_days >= 5 ? ANSI_COLOR_YELLOW : "", larger_days, larger_days >= 5 ? ANSI_COLOR_RESET : "",
 		vma10d_percent >= 1000 ? ANSI_COLOR_YELLOW : "", vma10d_percent / 10, vma10d_percent % 10, vma10d_percent >= 1000 ? ANSI_COLOR_RESET : "",
 		vma20d_percent >= 1000 ? ANSI_COLOR_YELLOW : "", vma20d_percent / 10, vma20d_percent % 10, vma20d_percent >= 1000 ? ANSI_COLOR_RESET : "",
