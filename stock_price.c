@@ -1210,7 +1210,7 @@ static const char * get_price_volume_change(const struct stock_price *price_hist
 
 		body_size = ((uint64_t)body_size) * 1000 / price2check->open;
 
-		if (is_up && good_size_body && body_size >= 18)
+		if (price2check->close > price2check->open && good_size_body && body_size >= 18)
 			strong_up_body = 1;
 	}
 
