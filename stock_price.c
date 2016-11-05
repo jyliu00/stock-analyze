@@ -1299,6 +1299,46 @@ static void symbol_check_crawl_sma(const char *symbol, const struct stock_price 
 	}
 }
 
+static void symbol_check_26week_low_sma(const char *symbol, const struct stock_price *price_history,
+					 const struct date_price *price2check)
+{
+	int i, j;
+	uint32_t low_26week = -1;
+
+	if (price2check->close < price2check->open)
+		return;
+
+	for (i = 0; i < price_history->date_cnt; i++) {
+		const struct date_price *prev = &price_history->dateprice[i];
+		if (strcmp(price2check->date, prev->date) <= 0)
+			continue;
+
+		if (!prev->sma[sma2check])
+			return;
+
+		if (price2check->close <= prev->sma[sma2check] || prev->close > prev->sma[sma2check])
+			return;
+
+		break;
+	}
+
+	for (j = 0; i < price_history->date_cnt && j < 130; i++, j++) {
+		const struct date_price *prev = &price_history->dateprice[i];
+
+		if (prev->close < low_26week)
+			low_26week = prev->close;
+	}
+
+	if (price2check->close < low_26week
+	    || (price2check->close - low_26week) * 100 / low_26week > 10)
+		return;
+
+	anna_info("%s%-10s%s: date=%s, %s; %s<sector=%s>%s.\n",
+		ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+		price2check->date, get_price_volume_change(price_history, price2check),
+		ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+}
+
 static int get_date_count(const struct stock_price *price_history, const char *date1, const char *date2)
 {
 	const char *date_smaller, *date_bigger;
@@ -2082,6 +2122,14 @@ void stock_price_check_crawl_sma(const char *group, const char *date, int sma_id
 {
 	sma2check = sma_idx;
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_crawl_sma);
+	sma2check = -1;
+}
+
+
+void stock_price_check_26week_low_sma(const char *group, const char *date, int sma_idx, int symbols_nr, const char **symbols)
+{
+	sma2check = sma_idx;
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_26week_low_sma);
 	sma2check = -1;
 }
 

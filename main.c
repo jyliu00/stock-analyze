@@ -25,6 +25,8 @@ enum
 	ACTION_CHECK_SMA50d, /* support at sma50d */
 	ACTION_CHECK_SMA60d, /* support at sma60d */
 	ACTION_CHECK_CRAWL_SMA20d, /* crawl around sma20d for a few days */
+	ACTION_CHECK_26W_LOW_SMA20d, /* 26 week low cross above sma20 */
+	ACTION_CHECK_26W_LOW_SMA50d, /* 26 week low cross above sma50 */
 	ACTION_CHECK_DB, /* double bottom */
 	ACTION_CHECK_PULLBACK_DB, /* pullback double bottom */
 	ACTION_CHECK_MFI_DB, /* double bottom with rising money flow index */
@@ -55,8 +57,8 @@ static void print_usage(void)
 	printf("Usage: anna -group={usa|china|canada|iwm|mdy|biotech|zacks|ibd|3x} [-date=yyyy-mm-dd] [-conf=filename]\n");
 	printf("               {fetch | fetch-rt | check-db | check-mfi-db | check-pullback-db | check-52w-db | "
 				"check-dbup | check-pullback-dbup | check-52w-dbup | check-strong-dbup | check-lvup | check-earlyup | check-52wlup | "
-				"check-spt | check-20d | check-30d | check-50d | check-60d | "
-				"check-crawl20d | check-pb | check-bo | check-wup | check-wrv | check-lv | check-chg} [symbol-1 symbol-2 ...]\n");
+				"check-spt | check-20d | check-30d | check-50d | check-60d | check-crawl20d | check-26w-low-20d | check-26w-low-50d |"
+				"check-pb | check-bo | check-wup | check-wrv | check-lv | check-chg} [symbol-1 symbol-2 ...]\n");
 }
 
 static int init_dirs(const char *group)
@@ -183,6 +185,12 @@ int main(int argc, const char **argv)
 			}
 			else if (strcmp(arg, "check-crawl20d") == 0) {
 				action = ACTION_CHECK_CRAWL_SMA20d;
+			}
+			else if (strcmp(arg, "check-26w-low-20d") == 0) {
+				action = ACTION_CHECK_26W_LOW_SMA20d;
+			}
+			else if (strcmp(arg, "check-26w-low-50d") == 0) {
+				action = ACTION_CHECK_26W_LOW_SMA50d;
 			}
 			else if (strcmp(arg, "check-db") == 0) {
 				action = ACTION_CHECK_DB;
@@ -314,6 +322,14 @@ int main(int argc, const char **argv)
 
 	case ACTION_CHECK_CRAWL_SMA20d:
 		stock_price_check_crawl_sma(group, date, SMA_20d, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_26W_LOW_SMA20d:
+		stock_price_check_26week_low_sma(group, date, SMA_20d, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_26W_LOW_SMA50d:
+		stock_price_check_26week_low_sma(group, date, SMA_50d, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_DB:

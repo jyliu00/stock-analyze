@@ -86,6 +86,7 @@ void fprintf_date_price(FILE *fp, const struct date_price *p);
 void stock_price_check_support(const char *group, const char *date, int symbols_nr, const char **symbols);
 void stock_price_check_sma(const char *group, const char *date, int sma_idx, int symbols_nr, const char **symbols);
 void stock_price_check_crawl_sma(const char *group, const char *date, int sma_idx, int symbols_nr, const char **symbols);
+void stock_price_check_26week_low_sma(const char *group, const char *date, int sma_idx, int symbols_nr, const char **symbols);
 void stock_price_check_doublebottom(const char *group, const char *date, int symbols_nr, const char **symbols);
 void stock_price_check_mfi_doublebottom(const char *group, const char *date, int symbols_nr, const char **symbols);
 void stock_price_check_pullback_doublebottom(const char *group, const char *date, int symbols_nr, const char **symbols);
