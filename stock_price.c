@@ -1337,6 +1337,8 @@ static void symbol_check_26week_low_sma(const char *symbol, const struct stock_p
 		ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
 		price2check->date, get_price_volume_change(price_history, price2check),
 		ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+
+	selected_symbol_nr += 1;
 }
 
 static int get_date_count(const struct stock_price *price_history, const char *date1, const char *date2)
