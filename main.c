@@ -57,7 +57,7 @@ static void print_usage(void)
 	printf("Usage: anna -group={usa|china|canada|iwm|mdy|biotech|zacks|ibd|3x} [-date=yyyy-mm-dd] [-conf=filename]\n");
 	printf("               {fetch | fetch-rt | check-db | check-mfi-db | check-pullback-db | check-52w-db | "
 				"check-dbup | check-pullback-dbup | check-52w-dbup | check-strong-dbup | check-lvup | check-earlyup | check-52wlup | "
-				"check-spt | check-20d | check-30d | check-50d | check-60d | check-crawl20d | check-26w-low-20d | check-26w-low-50d |"
+				"check-spt | check-20d | check-30d | check-50d | check-60d | check-crawl20d | check-20dlow | check-50dlow |"
 				"check-pb | check-bo | check-wup | check-wrv | check-lv | check-chg} [symbol-1 symbol-2 ...]\n");
 }
 
@@ -186,10 +186,10 @@ int main(int argc, const char **argv)
 			else if (strcmp(arg, "check-crawl20d") == 0) {
 				action = ACTION_CHECK_CRAWL_SMA20d;
 			}
-			else if (strcmp(arg, "check-26w-low-20d") == 0) {
+			else if (strcmp(arg, "check-20dlow") == 0) {
 				action = ACTION_CHECK_26W_LOW_SMA20d;
 			}
-			else if (strcmp(arg, "check-26w-low-50d") == 0) {
+			else if (strcmp(arg, "check-50dlow") == 0) {
 				action = ACTION_CHECK_26W_LOW_SMA50d;
 			}
 			else if (strcmp(arg, "check-db") == 0) {
