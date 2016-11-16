@@ -27,6 +27,8 @@ enum
 	ACTION_CHECK_CRAWL_SMA20d, /* crawl around sma20d for a few days */
 	ACTION_CHECK_26W_LOW_SMA20d, /* 26 week low cross above sma20 */
 	ACTION_CHECK_26W_LOW_SMA50d, /* 26 week low cross above sma50 */
+	ACTION_CHECK_13W_LOW_SMA20d, /* 13 week low cross above sma20 */
+	ACTION_CHECK_13W_LOW_SMA50d, /* 13 week low cross above sma50 */
 	ACTION_CHECK_DB, /* double bottom */
 	ACTION_CHECK_PULLBACK_DB, /* pullback double bottom */
 	ACTION_CHECK_MFI_DB, /* double bottom with rising money flow index */
@@ -192,6 +194,12 @@ int main(int argc, const char **argv)
 			else if (strcmp(arg, "check-50dlow") == 0) {
 				action = ACTION_CHECK_26W_LOW_SMA50d;
 			}
+			else if (strcmp(arg, "check-13w20dlow") == 0) {
+				action = ACTION_CHECK_13W_LOW_SMA20d;
+			}
+			else if (strcmp(arg, "check-13w50dlow") == 0) {
+				action = ACTION_CHECK_13W_LOW_SMA50d;
+			}
 			else if (strcmp(arg, "check-db") == 0) {
 				action = ACTION_CHECK_DB;
 			}
@@ -325,11 +333,19 @@ int main(int argc, const char **argv)
 		break;
 
 	case ACTION_CHECK_26W_LOW_SMA20d:
-		stock_price_check_26week_low_sma(group, date, SMA_20d, symbols_nr, (const char **)symbols);
+		stock_price_check_weeks_low_sma(group, date, 26, SMA_20d, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_26W_LOW_SMA50d:
-		stock_price_check_26week_low_sma(group, date, SMA_50d, symbols_nr, (const char **)symbols);
+		stock_price_check_weeks_low_sma(group, date, 26, SMA_50d, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_13W_LOW_SMA20d:
+		stock_price_check_weeks_low_sma(group, date, 13, SMA_20d, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_13W_LOW_SMA50d:
+		stock_price_check_weeks_low_sma(group, date, 13, SMA_50d, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_DB:

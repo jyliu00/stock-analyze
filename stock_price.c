@@ -12,6 +12,7 @@
 #include <dirent.h>
 
 static int sma2check = -1;
+static int weeks2check = 0;
 static int selected_symbol_nr = 0;
 
 const char *candle_color[CANDLE_COLOR_NR] = { "doji", "green", "red" };
@@ -1299,11 +1300,12 @@ static void symbol_check_crawl_sma(const char *symbol, const struct stock_price 
 	}
 }
 
-static void symbol_check_26week_low_sma(const char *symbol, const struct stock_price *price_history,
+static void symbol_check_weeks_low_sma(const char *symbol, const struct stock_price *price_history,
 					 const struct date_price *price2check)
 {
 	int i, j;
 	uint32_t low_26week = -1;
+	int days = 250;
 
 	if (price2check->close < price2check->open)
 		return;
@@ -1322,7 +1324,12 @@ static void symbol_check_26week_low_sma(const char *symbol, const struct stock_p
 		break;
 	}
 
-	for (j = 0; i < price_history->date_cnt && j < 130; i++, j++) {
+	if (weeks2check == 26)
+		days = 130;
+	else if (weeks2check == 13)
+		days = 65;
+
+	for (j = 0; i < price_history->date_cnt && j < days; i++, j++) {
 		const struct date_price *prev = &price_history->dateprice[i];
 
 		if (prev->close < low_26week)
@@ -2128,11 +2135,13 @@ void stock_price_check_crawl_sma(const char *group, const char *date, int sma_id
 }
 
 
-void stock_price_check_26week_low_sma(const char *group, const char *date, int sma_idx, int symbols_nr, const char **symbols)
+void stock_price_check_weeks_low_sma(const char *group, const char *date, int weeks, int sma_idx, int symbols_nr, const char **symbols)
 {
+	weeks2check = weeks;
 	sma2check = sma_idx;
-	stock_price_check(group, date, symbols_nr, symbols, symbol_check_26week_low_sma);
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_weeks_low_sma);
 	sma2check = -1;
+	weeks2check = 0;
 }
 
 void stock_price_check_doublebottom(const char *group, const char *date, int symbols_nr, const char **symbols)
