@@ -1,10 +1,12 @@
 %sector=rank1_undervalue
 ACCO
 AHGP
+ANW
 ARLP
 BAK
+BBY
 CC
-FDP
+FAF
 HIIQ
 JBL
 KE
@@ -16,7 +18,8 @@ NSIT
 PKX
 SAFM
 SKM
-TCS
+SKYW
+THO
 TTMI
 TX
-WGO
+VOXX
