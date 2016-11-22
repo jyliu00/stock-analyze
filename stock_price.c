@@ -1324,7 +1324,9 @@ static void symbol_check_weeks_low_sma(const char *symbol, const struct stock_pr
 		break;
 	}
 
-	if (weeks2check == 26)
+	if (weeks2check == 0)
+		goto found;
+	else if (weeks2check == 26)
 		days = 130;
 	else if (weeks2check == 13)
 		days = 65;
@@ -1340,6 +1342,7 @@ static void symbol_check_weeks_low_sma(const char *symbol, const struct stock_pr
 	    || (price2check->close - low_26week) * 100 / low_26week > 10)
 		return;
 
+found:
 	anna_info("%s%-10s%s: date=%s, %s; %s<sector=%s>%s.\n",
 		ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
 		price2check->date, get_price_volume_change(price_history, price2check),
