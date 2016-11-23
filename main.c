@@ -43,6 +43,7 @@ enum
 	ACTION_CHECK_PB, /* pull back */
 	ACTION_CHECK_BO, /* break out */
 	ACTION_CHECK_STRONG_BO, /* strong break out */
+	ACTION_CHECK_2nd_BO, /* 2nd break out */
 	ACTION_CHECK_EARLY_UP, /* early up */
 	ACTION_CHECK_52W_LOWUP, /* up from 52w low */
 	ACTION_CHECK_WUP, /* week up */
@@ -63,7 +64,7 @@ static void print_usage(void)
 	printf("               {fetch | fetch-rt | check-db | check-mfi-db | check-pullback-db | check-52w-db | "
 				"check-dbup | check-pullback-dbup | check-52w-dbup | check-strong-dbup | check-lvup | check-earlyup | check-52wlup | "
 				"check-spt | check-20d | check-30d | check-50d | check-60d | check-crawl20d | check-20dlow | check-50dlow | check-26w20dlow | check-26w50dlow | "
-				"check-20dup | check-50dup | check-200dup | check-pb | check-bo | check-wup | check-wrv | check-lv | check-chg} [symbol-1 symbol-2 ...]\n");
+				"check-20dup | check-50dup | check-200dup | check-pb | check-bo | check-2ndbo | check-wup | check-wrv | check-lv | check-chg} [symbol-1 symbol-2 ...]\n");
 }
 
 static int init_dirs(const char *group)
@@ -249,7 +250,10 @@ int main(int argc, const char **argv)
 				action = ACTION_CHECK_BO;
 			}
 			else if (strcmp(arg, "check-strong-bo") == 0) {
-				action = ACTION_CHECK_BO;
+				action = ACTION_CHECK_STRONG_BO;
+			}
+			else if (strcmp(arg, "check-2ndbo") == 0) {
+				action = ACTION_CHECK_2nd_BO;
 			}
 			else if (strcmp(arg, "check-wup") == 0) {
 				action = ACTION_CHECK_WUP;
@@ -414,6 +418,10 @@ int main(int argc, const char **argv)
 
 	case ACTION_CHECK_STRONG_BO:
 		stock_price_check_strong_breakout(group, date, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_2nd_BO:
+		stock_price_check_2nd_breakout(group, date, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_EARLY_UP:
