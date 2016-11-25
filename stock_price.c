@@ -1327,6 +1327,9 @@ static void symbol_check_weeks_low_sma(const char *symbol, const struct stock_pr
 		if (!prev->sma[sma2check])
 			return;
 
+		if (price2check->open < prev->sma[sma2check] && price2check->close > prev->sma[sma2check])
+			break;
+
 		if (price2check->close <= prev->sma[sma2check] || prev->close > prev->sma[sma2check])
 			return;
 
