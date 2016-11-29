@@ -29,6 +29,7 @@ enum
 	ACTION_CHECK_26W_LOW_SMA50d, /* 26 week low cross above sma50 */
 	ACTION_CHECK_13W_LOW_SMA20d, /* 13 week low cross above sma20 */
 	ACTION_CHECK_13W_LOW_SMA50d, /* 13 week low cross above sma50 */
+	ACTION_CHECK_SMA10d_UP, /* cross above sma20 */
 	ACTION_CHECK_SMA20d_UP, /* cross above sma20 */
 	ACTION_CHECK_SMA50d_UP, /* cross above sma50 */
 	ACTION_CHECK_SMA200d_UP, /* cross above sma200 */
@@ -64,7 +65,7 @@ static void print_usage(void)
 	printf("               {fetch | fetch-rt | check-db | check-mfi-db | check-pullback-db | check-52w-db | "
 				"check-dbup | check-pullback-dbup | check-52w-dbup | check-strong-dbup | check-lvup | check-earlyup | check-52wlup | "
 				"check-spt | check-20d | check-30d | check-50d | check-60d | check-crawl20d | check-20dlow | check-50dlow | check-26w20dlow | check-26w50dlow | "
-				"check-20dup | check-50dup | check-200dup | check-pb | check-bo | check-2ndbo | check-wup | check-wrv | check-lv | check-chg} [symbol-1 symbol-2 ...]\n");
+				"check-10dup | check-20dup | check-50dup | check-200dup | check-pb | check-bo | check-2ndbo | check-wup | check-wrv | check-lv | check-chg} [symbol-1 symbol-2 ...]\n");
 }
 
 static int init_dirs(const char *group)
@@ -203,6 +204,9 @@ int main(int argc, const char **argv)
 			}
 			else if (strcmp(arg, "check-26w50dlow") == 0) {
 				action = ACTION_CHECK_26W_LOW_SMA50d;
+			}
+			else if (strcmp(arg, "check-10dup") == 0) {
+				action = ACTION_CHECK_SMA10d_UP;
 			}
 			else if (strcmp(arg, "check-20dup") == 0) {
 				action = ACTION_CHECK_SMA20d_UP;
@@ -362,6 +366,10 @@ int main(int argc, const char **argv)
 
 	case ACTION_CHECK_13W_LOW_SMA50d:
 		stock_price_check_weeks_low_sma(group, date, 13, SMA_50d, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_SMA10d_UP:
+		stock_price_check_weeks_low_sma(group, date, 0, SMA_10d, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_SMA20d_UP:
