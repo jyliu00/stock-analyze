@@ -16,7 +16,7 @@
 #-include ticker_list/xrt.txt
 -include ticker_list/xsd.txt
 -include ticker_list/xsw.txt
-#-include ticker_list/xlre.txt
+-include ticker_list/xlre.txt
 #-include ticker_list/xth.txt
 #-include ticker_list/xtl.txt
 #-include ticker_list/xtn.txt
