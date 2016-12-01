@@ -1,4 +1,4 @@
-%sector
+%sector=rank1_undervalue
 ACCO
 AHGP
 ANW
