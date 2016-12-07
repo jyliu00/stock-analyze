@@ -11,6 +11,8 @@
 #include <sys/types.h>
 #include <ctype.h>
 
+extern void zacks_check_momentum( );
+
 static char ticker_list_fname[128];
 
 enum
@@ -333,6 +335,7 @@ int main(int argc, const char **argv)
 		break;
 
 	case ACTION_CHECK_MOMENTUM:
+		zacks_check_momentum( );
 		break;
 
 	case ACTION_CHECK_SPT:
