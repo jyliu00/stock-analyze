@@ -53,6 +53,7 @@ enum
 	ACTION_CHECK_LOW_VOLUME_UP,
 	ACTION_CHECK_VOLUME_UP,
 	ACTION_CHECK_CHANGE,
+	ACTION_CHECK_MOMENTUM,
 
 	ACTION_NR
 };
@@ -62,7 +63,7 @@ const char *group_list[ ] = { "usa", "iwm", "mdy", "zacks", "ibd", "biotech", "3
 static void print_usage(void)
 {
 	printf("Usage: anna -group={usa|china|canada|iwm|mdy|biotech|zacks|ibd|3x} [-date=yyyy-mm-dd] [-conf=filename]\n");
-	printf("               {fetch | fetch-rt | check-db | check-mfi-db | check-pullback-db | check-52w-db | "
+	printf("               {fetch | fetch-rt | check-mmt | check-db | check-mfi-db | check-pullback-db | check-52w-db | "
 				"check-dbup | check-pullback-dbup | check-52w-dbup | check-strong-dbup | check-lvup | check-earlyup | check-52wlup | "
 				"check-spt | check-20d | check-30d | check-50d | check-60d | check-crawl20d | check-20dlow | check-50dlow | check-26w20dlow | check-26w50dlow | "
 				"check-10dup | check-20dup | check-50dup | check-200dup | check-pb | check-bo | check-2ndbo | check-wup | check-wrv | check-lv | check-chg} [symbol-1 symbol-2 ...]\n");
@@ -174,6 +175,9 @@ int main(int argc, const char **argv)
 			}
 			else if (strcmp(arg, "fetch-rt") == 0) {
 				action = ACTION_FETCH_REALTIME;
+			}
+			else if (strcmp(arg, "check-mmt") == 0) {
+				action = ACTION_CHECK_MOMENTUM;
 			}
 			else if (strcmp(arg, "check-spt") == 0) {
 				action = ACTION_CHECK_SPT;
@@ -326,6 +330,9 @@ int main(int argc, const char **argv)
 
 	case ACTION_FETCH_REALTIME:
 		fetch_symbols_price(1, group, ticker_list_fname, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_MOMENTUM:
 		break;
 
 	case ACTION_CHECK_SPT:
