@@ -97,7 +97,7 @@ static int do_fetch_price(char *output_fname, const char *symbol, int today_only
 
 static int stock_history_max_years(void)
 {
-	return 2;
+	return 1;
 }
 
 static int fetch_realtime_price(const char *symbol)

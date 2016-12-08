@@ -10,6 +10,10 @@ wget -O googl.log 'http://ichart.finance.yahoo.com/table.csv?s=GOOGL&a=05&b=01&c
 
 get GOOGL price from 2010-01-01 to today
 wget -O googl.log 'http://ichart.finance.yahoo.com/table.csv?s=GOOGL&a=00&b=01&c=2010&g=d&ignore=.csv'
+wget -O t.txt 'http://www.google.com/finance/historical?q=NASDAQ:ADBE&startdate=Jan+01%2C+2016&output=csv'
+
+get 1 year price
+http://www.google.com/finance/historical?output=csv&q=[ticker]
 
 get GOOGL all price
 wget -O googl.log 'http://ichart.finance.yahoo.com/table.csv?s=GOOGL&g=d&ignore=.csv'
