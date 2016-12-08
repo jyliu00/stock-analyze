@@ -78,7 +78,7 @@ void zacks_check_momentum( )
 		if (!o)
 			printf("%s%s%s is new rank1: value=%c, growth=%c, momentum=%c\n",
 				ANSI_COLOR_YELLOW, n->ticker, ANSI_COLOR_RESET, n->value, n->growth, n->momentum);
-		else if (n->momentum != o->momentum)
+		else if (n->momentum < o->momentum)
 			printf("%s%s%s momentum %s: %c --> %c\n", ANSI_COLOR_YELLOW, n->ticker, ANSI_COLOR_RESET,
 				o->momentum < n->momentum ? "down" : "up", o->momentum, n->momentum);
 	}
