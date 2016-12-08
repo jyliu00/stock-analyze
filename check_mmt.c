@@ -78,7 +78,17 @@ void zacks_check_momentum( )
 		if (!o)
 			printf("%s%s%s is new rank1: value=%c, growth=%c, momentum=%c\n",
 				ANSI_COLOR_YELLOW, n->ticker, ANSI_COLOR_RESET, n->value, n->growth, n->momentum);
-		else if (n->momentum < o->momentum)
-			printf("%s%s%s momentum up: %c --> %c\n", ANSI_COLOR_YELLOW, n->ticker, ANSI_COLOR_RESET, o->momentum, n->momentum);
+		else if (n->momentum != o->momentum)
+			printf("%s%s%s momentum %s: %c --> %c\n", ANSI_COLOR_YELLOW, n->ticker, ANSI_COLOR_RESET,
+				o->momentum < n->momentum ? "down" : "up", o->momentum, n->momentum);
+	}
+
+	printf("\n");
+
+	for (i = 0; i < o_vgm_cnt; i++) {
+		struct stock_vgm *o = &o_vgm[i];
+		struct stock_vgm *n = bsearch(o, n_vgm, n_vgm_cnt, sizeof(n_vgm[0]), momentum_cmp);
+		if (!n)
+			printf("%s%s%s is removed from rank1\n", ANSI_COLOR_YELLOW, o->ticker, ANSI_COLOR_RESET);
 	}
 }
