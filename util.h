@@ -37,4 +37,12 @@ extern uint32_t sr_height_margin;
 extern uint32_t spt_pullback_margin;
 extern uint32_t bo_sr_height_margin;
 
+enum
+{
+	FETCH_SOURCE_YAHOO,
+	FETCH_SOURCE_GOOGLE,
+};
+
+extern int fetch_source;
+
 #endif /* __UTIL_H__ */

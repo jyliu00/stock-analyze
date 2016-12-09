@@ -139,7 +139,7 @@ static void calculate_candle_stats(struct date_price *cur)
 		diff_price = down_price - up_price;
 	}
 
-	if ((diff_price * 100 / cur->open) < 1) {
+	if (cur->open && (diff_price * 100 / cur->open) < 1) {
 		if (cur->high - cur->low == 0)
 			cur->candle_trend = CANDLE_TREND_DOJI;
 		else if (up_price > down_price &&
@@ -402,7 +402,8 @@ static void calculate_stock_price_statistics(struct stock_price *price)
 	for (i = price->date_cnt - 1; i >= 0; i--) {
 		struct date_price *cur = &price->dateprice[i];
 
-		calculate_support_resistance(price, i, cur);
+		if (cur->open && cur->high && cur->low && cur->close)
+			calculate_support_resistance(price, i, cur);
 	}
 }
 
@@ -580,6 +581,35 @@ int stock_price_realtime_from_file(const char *output_fname, struct date_price *
 	return 0;
 }
 
+static int month_str2int(const char *str)
+{
+	if (strncmp(str, "Jan", 3) == 0)
+		return 1;
+	else if (strncmp(str, "Feb", 3) == 0)
+		return 2;
+	else if (strncmp(str, "Mar", 3) == 0)
+		return 3;
+	else if (strncmp(str, "Apr", 3) == 0)
+		return 4;
+	else if (strncmp(str, "May", 3) == 0)
+		return 5;
+	else if (strncmp(str, "Jun", 3) == 0)
+		return 6;
+	else if (strncmp(str, "Jul", 3) == 0)
+		return 7;
+	else if (strncmp(str, "Aug", 3) == 0)
+		return 8;
+	else if (strncmp(str, "Sep", 3) == 0)
+		return 9;
+	else if (strncmp(str, "Oct", 3) == 0)
+		return 10;
+	else if (strncmp(str, "Nov", 3) == 0)
+		return 11;
+	else if (strncmp(str, "Dec", 3) == 0)
+		return 12;
+	return 0;
+}
+
 static int str2date(const char *date, int *year, int *month, int *mday)
 {
 	char _date[32];
@@ -587,17 +617,40 @@ static int str2date(const char *date, int *year, int *month, int *mday)
 
 	strlcpy(_date, date, sizeof(_date));
 
-	token = strtok_r(_date, "-", &saved);
-	if (!token) return -1;
-	*year = atoi(token);
+	switch (fetch_source) {
+	case FETCH_SOURCE_GOOGLE:
+		token = strtok_r(_date, "-", &saved);
+		if (!token) return -1;
+		*mday = atoi(token);
 
-	token = strtok_r(NULL, "-", &saved);
-	if (!token) return -1;
-	*month = atoi(token);
+		token = strtok_r(NULL, "-", &saved);
+		if (!token) return -1;
+		*month = month_str2int(token);
 
-	token = strtok_r(NULL, "-", &saved);
-	if (!token) return -1;
-	*mday = atoi(token);
+		token = strtok_r(NULL, "-", &saved);
+		if (!token) return -1;
+		*year = 2000 + atoi(token);
+
+		break;
+
+	case FETCH_SOURCE_YAHOO:
+		token = strtok_r(_date, "-", &saved);
+		if (!token) return -1;
+		*year = atoi(token);
+
+		token = strtok_r(NULL, "-", &saved);
+		if (!token) return -1;
+		*month = atoi(token);
+
+		token = strtok_r(NULL, "-", &saved);
+		if (!token) return -1;
+		*mday = atoi(token);
+
+		break;
+
+	default:
+		return -1;
+	}
 
 	return 0;
 }
@@ -671,6 +724,9 @@ int stock_price_from_file(const char *fname, struct stock_price *price)
 		if (!token) continue;
 		cur->volume = atoi(token);
 
+		if (fetch_source == FETCH_SOURCE_GOOGLE)
+			goto next_date;
+
 		token = strtok(NULL, ",");
 		if (!token) continue;
 		parse_price(token, &adj_close);
@@ -685,7 +741,7 @@ int stock_price_from_file(const char *fname, struct stock_price *price)
 				cur->close = adj_close;
 			}
 		}
-
+next_date:
 		price->date_cnt += 1;
 	}
 

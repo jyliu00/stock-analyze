@@ -146,6 +146,11 @@ static int load_config_file(const char *fname, const char *group)
 				p = strchr(buf, '=');
 				spt_pullback_margin = atoi(p + 1);
 			}
+			else if (strncmp(buf, "fetch_source=", strlen("fetch_source=")) == 0) {
+				p = strchr(buf, '=');
+				if (*(p + 1) == 'g')
+					fetch_source = FETCH_SOURCE_GOOGLE;
+			}
 		}
 	}
 

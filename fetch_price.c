@@ -80,8 +80,14 @@ static int do_fetch_price(char *output_fname, const char *symbol, int today_only
 		snprintf(url, sizeof(url), "http://finance.yahoo.com/d/quotes.csv?s=%s&f=ohgl1v", symbol);
 	}
 	else {
-		snprintf(url, sizeof(url), "http://ichart.finance.yahoo.com/table.csv?s=%s&a=%d&b=%d&c=%d&g=d&ignore=.csv",
-			symbol, month, mday, year);
+		switch (fetch_source) {
+		case FETCH_SOURCE_YAHOO:
+			snprintf(url, sizeof(url), "http://ichart.finance.yahoo.com/table.csv?s=%s&a=%d&b=%d&c=%d&g=d&ignore=.csv",
+					symbol, month, mday, year);
+			break;
+		case FETCH_SOURCE_GOOGLE:
+			snprintf(url, sizeof(url), "http://www.google.com/finance/historical?output=csv&q=%s", symbol);
+		}
 	}
 
 	if (run_wget(output_fname, url) == 0) {
