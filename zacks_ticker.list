@@ -1,6 +1,6 @@
--include ticker_list/zacks_rank1.txt
--include ticker_list/zacks_rank2.txt
+#-include ticker_list/zacks_rank1.txt
+#-include ticker_list/zacks_rank2.txt
 #-include ticker_list/zacks_rank1_undervalue.txt
 #-include ticker_list/zacks_rank2_undervalue.txt
-#-include ticker_list/zacks_rank1_vgmAB.txt
-#-include ticker_list/zacks_rank2_vgmAB.txt
+-include ticker_list/zacks_rank1_vgmAB.txt
+-include ticker_list/zacks_rank2_vgmAB.txt
