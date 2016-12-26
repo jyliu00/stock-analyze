@@ -186,6 +186,7 @@ int fetch_symbols_price(int realtime, const char *group, const char *fname, int 
 {
 	int year = 0, month = 0, mday = 0;
 	int count = 0;
+	int is_zacks = !strcmp(group, "zacks");
 	int i;
 
 	/* get last 2 year's price */
@@ -233,6 +234,28 @@ int fetch_symbols_price(int realtime, const char *group, const char *fname, int 
 				if (strncmp(&symbol[1], "sector=", strlen("sector=")) == 0)
 					strlcpy(sector, strchr(symbol, '=') + 1, sizeof(sector));
 				continue;
+			}
+			else if (is_zacks && strchr(symbol, '\t')) {
+				char buf[128];
+				char *token;
+				int rank;
+				char vgm;
+
+				strlcpy(buf, symbol, sizeof(buf));
+
+				token = strtok(buf, "\t");
+				if (!token) continue;
+				strlcpy(symbol, token, sizeof(symbol));
+
+				token = strtok(NULL, "\t");
+				if (!token) continue;
+				rank = atoi(token);
+
+				token = strtok(NULL, "\t");
+				if (!token) continue;
+				vgm = token[0];
+
+				snprintf(sector, sizeof(sector), "rank%d_%c", rank, vgm);
 			}
 
 			if (fetch_symbol_price_since_date(group, sector, symbol, year, month, mday) == 0)
