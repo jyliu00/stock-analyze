@@ -1,3 +1,4 @@
+-include ticker_list/zacks_123.txt
 #-include ticker_list/zacks_1n2.txt
--include ticker_list/zacks_rank1_vgmAB.txt
--include ticker_list/zacks_rank2_vgmAB.txt
+#-include ticker_list/zacks_rank1_vgmAB.txt
+#-include ticker_list/zacks_rank2_vgmAB.txt
