@@ -1,3 +1,4 @@
+%sector=software
 MENT
 CSC
 BLOX
