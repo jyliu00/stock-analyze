@@ -829,7 +829,7 @@ static int sr_height_margin_datecnt(uint64_t height, uint64_t base, int datecnt)
 static int sr_hit(uint64_t price2check, uint64_t base_price)
 {
 	uint64_t diff = price2check > base_price ? price2check - base_price : base_price - price2check;
-	return (diff * 1000 / base_price <= 10);
+	return (diff * 1000 / base_price <= 12);
 }
 
 static int sma_hit(uint64_t price2check, uint64_t sma_price)
@@ -1611,12 +1611,10 @@ static void __symbol_check_doublebottom_up(const char *symbol, const struct stoc
 				if (check_pullback && !datecnt_match_check_pullback(check_pullback, datecnt))
 					return;
 
-				anna_info("%s%-10s%s: date=%s up from %s/%s(%d days); %s<sector=%s>%s.\n"
-					  "%-12s%s.\n",
-					  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
-					  price2check->date, prev->date, sspt.date[j], datecnt,
-					  ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET,
-					  " ", get_price_volume_change(price_history, price2check));
+				anna_info("%s%-10s%s: date=%s/%s(%d days), %s; %s<sector=%s>%s.\n",
+						ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date, sspt.date[i], datecnt,
+						get_price_volume_change(price_history, price2check),
+						ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 
 				selected_symbol_nr += 1;
 
