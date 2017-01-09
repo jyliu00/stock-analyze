@@ -829,7 +829,7 @@ static int sr_height_margin_datecnt(uint64_t height, uint64_t base, int datecnt)
 static int sr_hit(uint64_t price2check, uint64_t base_price)
 {
 	uint64_t diff = price2check > base_price ? price2check - base_price : base_price - price2check;
-	return (diff * 1000 / base_price <= 12);
+	return (diff * 1000 / base_price <= 15);
 }
 
 static int sma_hit(uint64_t price2check, uint64_t sma_price)
