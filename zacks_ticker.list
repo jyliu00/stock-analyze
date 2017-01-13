@@ -1,5 +1,7 @@
--include ticker_list/zacks_rank1AB_deep_pullback.txt
--include ticker_list/zacks_12AB.txt
+-include ticker_list/zacks_1AB.txt
+-include ticker_list/zacks_2AB.txt
+#-include ticker_list/zacks_rank1AB_deep_pullback.txt
+#-include ticker_list/zacks_12AB.txt
 #-include ticker_list/zacks_123.txt
 #-include ticker_list/zacks_1n2.txt
 #-include ticker_list/zacks_rank1_vgmAB.txt

@@ -238,8 +238,8 @@ int fetch_symbols_price(int realtime, const char *group, const char *fname, int 
 			else if (is_zacks && strchr(symbol, '\t')) {
 				char buf[128];
 				char *token;
-				int rank;
-				char vgm;
+				//int rank;
+				//char vgm;
 				int industry;
 				char v, g, m;
 
@@ -249,7 +249,7 @@ int fetch_symbols_price(int realtime, const char *group, const char *fname, int 
 				token = strtok(buf, "\t");
 				if (!token) continue;
 				strlcpy(symbol, token, sizeof(symbol));
-
+#if 0
 				/* rank */
 				token = strtok(NULL, "\t");
 				if (!token) continue;
@@ -259,7 +259,7 @@ int fetch_symbols_price(int realtime, const char *group, const char *fname, int 
 				token = strtok(NULL, "\t");
 				if (!token) continue;
 				vgm = token[0];
-
+#endif
 				/* industry rank */
 				token = strtok(NULL, "\t");
 				if (!token) continue;
@@ -277,7 +277,8 @@ int fetch_symbols_price(int realtime, const char *group, const char *fname, int 
 				if (!token) continue;
 				m = token[0];
 
-				snprintf(sector, sizeof(sector), "rank%d_%c_%d_%c%c%c", rank, vgm, industry, v, g, m);
+				//snprintf(sector, sizeof(sector), "rank%d_%c_%d_%c%c%c", rank, vgm, industry, v, g, m);
+				snprintf(sector+5, sizeof(sector) - 5, "_%d_%c%c%c", industry, v, g, m);
 			}
 
 			if (fetch_symbol_price_since_date(group, sector, symbol, year, month, mday) == 0)
