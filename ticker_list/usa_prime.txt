@@ -1,0 +1,12 @@
+%sector=prime
+AKAM
+BA
+BX
+CVU
+MOS
+KEM
+HLF
+WDAY
+WHR
+HSY
+ED

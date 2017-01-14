@@ -1,4 +1,4 @@
-%sector=my_picks
+%sector=leaders
 FEYE
 PAYC
 AAPL

@@ -1,0 +1,5 @@
+%sector=computer_technology
+EIGI
+SABR
+ZEN
+FTNT
