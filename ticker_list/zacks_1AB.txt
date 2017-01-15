@@ -1,3 +1,4 @@
+%sector=rank1
 ABB	197	B	C	C
 ACET	212	A	C	A
 AKS	20	A	A	A

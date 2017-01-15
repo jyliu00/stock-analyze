@@ -1,3 +1,4 @@
+%sector=rank2
 AAL	24	A	B	A
 ACGL	166	B	B	A
 ADM	84	A	C	A

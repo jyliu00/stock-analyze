@@ -205,8 +205,8 @@ int fetch_symbols_price(int realtime, const char *group, const char *fname, int 
 	}
 
 	if (fname && fname[0]) {
-		char symbol[128];
-		char sector[48];
+		char symbol[128] = { };
+		char sector[48] = { };
 		FILE *fp = fopen(fname, "r");
 		if (!fp) {
 			anna_error("fopen(%s) failed: %d(%s)\n", fname, errno, strerror(errno));
