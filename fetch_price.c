@@ -278,7 +278,7 @@ int fetch_symbols_price(int realtime, const char *group, const char *fname, int 
 				m = token[0];
 
 				//snprintf(sector, sizeof(sector), "rank%d_%c_%d_%c%c%c", rank, vgm, industry, v, g, m);
-				snprintf(sector+5, sizeof(sector) - 5, "_%d_%c%c%c", industry, v, g, m);
+				snprintf(sector+7, sizeof(sector) - 7, "_%d_%c%c%c", industry, v, g, m);
 			}
 
 			if (fetch_symbol_price_since_date(group, sector, symbol, year, month, mday) == 0)
