@@ -1740,6 +1740,50 @@ static void symbol_check_2nd_breakout(const char *symbol, const struct stock_pri
 	__symbol_check_breakout(symbol, price_history, price2check, 0, 1);
 }
 
+static void symbol_check_trend_breakout(const char *symbol, const struct stock_price *price_history,
+					 const struct date_price *price2check)
+{
+	const struct date_price *yesterday = NULL;
+	int i, j;
+	int trend_bo = 0;
+
+	for (i = 0; i < price_history->date_cnt; i++) {
+		yesterday = &price_history->dateprice[i];
+
+		if (strcmp(price2check->date, yesterday->date) > 0)
+			break;
+	}
+
+	if (price2check->close >= get_2ndhigh(yesterday)
+	    && get_2ndhigh(yesterday) <= get_2ndhigh(yesterday + 1) && price2check->close >= get_2ndhigh(yesterday + 1)
+	    && get_2ndhigh(yesterday + 1) <= get_2ndhigh(yesterday + 2) && price2check->close >= get_2ndhigh(yesterday + 2))
+	{
+		trend_bo = 1;
+	}
+	else {
+		for (j = 0; j < 10 && i < price_history->date_cnt; i++, j++) {
+			const struct date_price *prev = &price_history->dateprice[i];
+
+			if (price2check->close < get_2ndhigh(prev))
+				break;
+		}
+
+#if 0
+		if (j == 10)
+			trend_bo = 1;
+#endif
+	}
+
+	if (trend_bo) {
+		anna_info("%s%-10s%s: date=%s, %s; %s<sector=%s>%s.\n",
+			ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+			price2check->date, get_price_volume_change(price_history, price2check),
+			ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+
+		selected_symbol_nr += 1;
+	}
+}
+
 static void symbol_check_early_up(const char *symbol, const struct stock_price *price_history,
 				    const struct date_price *price2check)
 {
@@ -2300,6 +2344,11 @@ void stock_price_check_strong_breakout(const char *group, const char *date, int 
 void stock_price_check_2nd_breakout(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_2nd_breakout);
+}
+
+void stock_price_check_trend_breakout(const char *group, const char *date, int symbols_nr, const char **symbols)
+{
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_trend_breakout);
 }
 
 void stock_price_check_early_up(const char *group, const char *date, int symbols_nr, const char **symbols)
