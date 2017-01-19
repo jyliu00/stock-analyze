@@ -1744,34 +1744,41 @@ static void symbol_check_trend_breakout(const char *symbol, const struct stock_p
 					 const struct date_price *price2check)
 {
 	const struct date_price *yesterday = NULL;
-	int i, j;
+	const struct date_price *day1, *day2, *day3, *day4;
+	uint32_t price2check_2ndhigh = get_2ndhigh(price2check);
+	uint32_t day1_2ndhigh, day2_2ndhigh, day3_2ndhigh, day4_2ndhigh;
+	int i;
 	int trend_bo = 0;
 
 	for (i = 0; i < price_history->date_cnt; i++) {
 		yesterday = &price_history->dateprice[i];
 
-		if (strcmp(price2check->date, yesterday->date) > 0)
+		if (strcmp(price2check->date, yesterday->date) > 0) {
+			day1 = yesterday;
+			day2 = day1 + 1;
+			day3 = day2 + 1;
+			day4 = day3 + 1;
+			day1_2ndhigh = get_2ndhigh(day1);
+			day2_2ndhigh = get_2ndhigh(day2);
+			day3_2ndhigh = get_2ndhigh(day3);
+			day4_2ndhigh = get_2ndhigh(day4);
 			break;
+		}
 	}
 
-	if (price2check->close >= get_2ndhigh(yesterday)
-	    && get_2ndhigh(yesterday) <= get_2ndhigh(yesterday + 1) && price2check->close >= get_2ndhigh(yesterday + 1)
-	    && get_2ndhigh(yesterday + 1) <= get_2ndhigh(yesterday + 2) && price2check->close >= get_2ndhigh(yesterday + 2))
+	if (price2check_2ndhigh < day1_2ndhigh)
+		return;
+
+	if (day1_2ndhigh <= day2_2ndhigh && price2check_2ndhigh >= day2_2ndhigh
+	    && day2_2ndhigh <= day3_2ndhigh && price2check_2ndhigh >= day3_2ndhigh)
 	{
 		trend_bo = 1;
 	}
-	else {
-		for (j = 0; j < 10 && i < price_history->date_cnt; i++, j++) {
-			const struct date_price *prev = &price_history->dateprice[i];
-
-			if (price2check->close < get_2ndhigh(prev))
-				break;
-		}
-
-#if 0
-		if (j == 10)
-			trend_bo = 1;
-#endif
+	else if (day1_2ndhigh >= day2_2ndhigh
+		 && day2_2ndhigh <= day3_2ndhigh && price2check_2ndhigh >= day3_2ndhigh
+		 && day3_2ndhigh <= day4_2ndhigh && price2check_2ndhigh >= day4_2ndhigh)
+	{
+		trend_bo = 1;
 	}
 
 	if (trend_bo) {
