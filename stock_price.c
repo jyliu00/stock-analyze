@@ -10,6 +10,7 @@
 #include <ctype.h>
 #include <sys/types.h>
 #include <dirent.h>
+#include <time.h>
 
 static int sma2check = -1;
 static int weeks2check = 0;
@@ -1740,6 +1741,25 @@ static void symbol_check_2nd_breakout(const char *symbol, const struct stock_pri
 	__symbol_check_breakout(symbol, price_history, price2check, 0, 1);
 }
 
+static int good_volume(const struct date_price *price2check, uint32_t vma20d)
+{
+	time_t now = time(NULL);
+	struct tm *tm_now = localtime(&now);
+	char date_now[STOCK_DATE_SZ];
+	static uint32_t trading_total_seconds = 390 * 60;
+
+	snprintf(date_now, sizeof(date_now), "%04d-%02d-%02d", tm_now->tm_year + 1900, tm_now->tm_mon + 1, tm_now->tm_mday);
+
+	/* check if now has passed trading time */
+	if (strcmp(price2check->date, date_now) < 0 || tm_now->tm_hour >= 13)
+		return (price2check->volume >= vma20d);
+
+	if (tm_now->tm_hour < 6 || (tm_now->tm_hour == 6 && tm_now->tm_min < 30))
+		return 0;
+
+	return (price2check->volume * (trading_total_seconds * 100 / ((tm_now->tm_hour * 60 + tm_now->tm_min - 390) * 60 + tm_now->tm_sec)) >= vma20d * 100);
+}
+
 static void symbol_check_trend_breakout(const char *symbol, const struct stock_price *price_history,
 					 const struct date_price *price2check)
 {
@@ -1772,7 +1792,7 @@ static void symbol_check_trend_breakout(const char *symbol, const struct stock_p
 	if (price2check_2ndhigh < day1_2ndhigh)
 		return;
 
-	if (price2check->volume < day1->vma[VMA_20d])
+	if (!good_volume(price2check, day1->vma[VMA_20d]))
 		return;
 
 	if (day1_2ndhigh <= day2_2ndhigh && price2check_2ndhigh >= day2_2ndhigh
