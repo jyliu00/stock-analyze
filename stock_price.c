@@ -143,13 +143,14 @@ static void calculate_candle_stats(struct date_price *cur)
 	if (cur->open && (diff_price * 100 / cur->open) < 1) {
 		if (cur->high - cur->low == 0)
 			cur->candle_trend = CANDLE_TREND_DOJI;
-		else if (up_price > down_price &&
-		    up_price * 100 / (cur->high - cur->low) >= 60)
+		else if (up_price == 0)
+			cur->candle_trend = CANDLE_TREND_BEAR;
+		else if (down_price == 0)
 			cur->candle_trend = CANDLE_TREND_BULL;
-		else if (up_price < down_price &&
-			 down_price * 100 / (cur->high - cur->low) >= 60);
-		else
-			cur->candle_trend = CANDLE_TREND_DOJI;
+		else if (up_price > down_price && up_price * 100 / (cur->high - cur->low) >= 60)
+			cur->candle_trend = CANDLE_TREND_BULL;
+		else if (up_price < down_price && down_price * 100 / (cur->high - cur->low) >= 60)
+			cur->candle_trend = CANDLE_TREND_BEAR;
 	}
 }
 
@@ -1765,10 +1766,10 @@ static void symbol_check_trend_breakout(const char *symbol, const struct stock_p
 {
 	const struct date_price *yesterday = NULL;
 	const struct date_price *day1, *day2, *day3, *day4;
-	uint32_t price2check_2ndhigh = get_2ndhigh(price2check);
 	uint32_t day1_2ndhigh, day2_2ndhigh, day3_2ndhigh, day4_2ndhigh;
+	const struct date_price *pivot_day = NULL;
+	uint32_t high_40day;
 	int i;
-	int trend_bo = 0;
 
 	if (price2check->candle_trend == CANDLE_TREND_BEAR)
 		return;
@@ -1789,32 +1790,42 @@ static void symbol_check_trend_breakout(const char *symbol, const struct stock_p
 		}
 	}
 
-	if (price2check_2ndhigh < day1_2ndhigh)
+	if (price2check->close < day1_2ndhigh)
 		return;
 
 	if (!good_volume(price2check, day1->vma[VMA_20d]))
 		return;
 
-	if (day1_2ndhigh <= day2_2ndhigh && price2check_2ndhigh >= day2_2ndhigh
-	    && day2_2ndhigh <= day3_2ndhigh && price2check_2ndhigh >= day3_2ndhigh)
+	if (day1_2ndhigh <= day2_2ndhigh && day2_2ndhigh <= day3_2ndhigh)
 	{
-		trend_bo = 1;
+		pivot_day = day1;
+		high_40day = get_2ndhigh(day1);
 	}
-	else if (day1_2ndhigh >= day2_2ndhigh
-		 && day2_2ndhigh <= day3_2ndhigh && price2check_2ndhigh >= day3_2ndhigh
-		 && day3_2ndhigh <= day4_2ndhigh && price2check_2ndhigh >= day4_2ndhigh)
+	else if (day1_2ndhigh >= day2_2ndhigh && day2_2ndhigh <= day3_2ndhigh && day3_2ndhigh <= day4_2ndhigh)
 	{
-		trend_bo = 1;
+		pivot_day = day2;
+		high_40day = get_2ndhigh(day2);
 	}
 
-	if (trend_bo) {
-		anna_info("%s%-10s%s: date=%s, %s; %s<sector=%s>%s.\n",
-			ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
-			price2check->date, get_price_volume_change(price_history, price2check),
-			ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+	if (!pivot_day)
+		return;
 
-		selected_symbol_nr += 1;
+	for (i = 1; i < 39; i++) {
+		const struct date_price *prev = pivot_day + i;
+		if (get_2ndhigh(prev) > high_40day)
+			high_40day = get_2ndhigh(prev);
 	}
+
+	/* diff from high_40day < 3% */
+	if ((high_40day - get_2ndlow(pivot_day)) * 1000 / get_2ndlow(pivot_day) <= 40)
+		return;
+
+	anna_info("%s%-10s%s: date=%s, %s; %s<sector=%s>%s.\n",
+		ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+		price2check->date, get_price_volume_change(price_history, price2check),
+		ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+
+	selected_symbol_nr += 1;
 }
 
 static void symbol_check_early_up(const char *symbol, const struct stock_price *price_history,
