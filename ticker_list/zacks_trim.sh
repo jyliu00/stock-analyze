@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #cut -d$'\t' -f3,4,5,8,10,11,12 $1 | sed 'n; d' > $2
-echo "#sector=rank_$2" > zacks_$2.txt
+echo "%sector=rank_$2" > zacks_$2.txt
 cut -d$'\t' -f3,4,5,6,7 $1 | sed 'n; d' >> zacks_$2.txt
 rm -f $1
 

@@ -1,4 +1,4 @@
-#sector=rank_2D
+%sector=rank_2D
 AKBA	89	F	D	B
 ALLE	90	D	C	D
 APA	31	D	C	B

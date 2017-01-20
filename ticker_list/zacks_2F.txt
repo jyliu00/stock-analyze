@@ -1,4 +1,4 @@
-#sector=rank_2F
+%sector=rank_2F
 ACOR	88	C	F	F
 APO	174	C	F	D
 ARE	135	F	C	F

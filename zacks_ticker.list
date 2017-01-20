@@ -3,6 +3,11 @@
 -include ticker_list/zacks_1C.txt
 -include ticker_list/zacks_1D.txt
 -include ticker_list/zacks_1F.txt
+-include ticker_list/zacks_2A.txt
+-include ticker_list/zacks_2B.txt
+-include ticker_list/zacks_2C.txt
+-include ticker_list/zacks_2D.txt
+-include ticker_list/zacks_2F.txt
 -include ticker_list/major_indices.txt
 -include ticker_list/zacks_top10.txt
 -include ticker_list/zacks_focus_list.txt

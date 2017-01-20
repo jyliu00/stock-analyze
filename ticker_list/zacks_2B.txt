@@ -1,4 +1,4 @@
-#sector=rank_2B
+%sector=rank_2B
 AEIS	10	D	B	A
 AKAM	163	C	B	A
 AMD	73	F	A	A

@@ -1,4 +1,4 @@
-#sector=rank_2C
+%sector=rank_2C
 AAP	58	C	C	B
 AEL	20	A	F	C
 ALB	70	D	B	A

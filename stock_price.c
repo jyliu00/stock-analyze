@@ -1750,6 +1750,9 @@ static void symbol_check_trend_breakout(const char *symbol, const struct stock_p
 	int i;
 	int trend_bo = 0;
 
+	if (price2check->candle_trend == CANDLE_TREND_BEAR)
+		return;
+
 	for (i = 0; i < price_history->date_cnt; i++) {
 		yesterday = &price_history->dateprice[i];
 
@@ -1767,6 +1770,9 @@ static void symbol_check_trend_breakout(const char *symbol, const struct stock_p
 	}
 
 	if (price2check_2ndhigh < day1_2ndhigh)
+		return;
+
+	if (price2check->volume < day1->vma[VMA_20d])
 		return;
 
 	if (day1_2ndhigh <= day2_2ndhigh && price2check_2ndhigh >= day2_2ndhigh

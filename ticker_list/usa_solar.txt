@@ -1,7 +1,6 @@
 %sector=solar
 TAN
 CSIQ
-CSUN
 TSL
 FSLR
 JASO
