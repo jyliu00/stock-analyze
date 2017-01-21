@@ -1336,6 +1336,8 @@ static void symbol_check_volume_support(const char *symbol, const struct stock_p
 		if ((price2check->volume<<1) > prev->vma[VMA_20d]
 		    && (prev->vma[VMA_20d]<<1) > price2check->volume)
 			return;
+
+		break;
 	}
 
 	anna_info("%s%-10s%s: date=%s, %s; is supported by %d dates:",
