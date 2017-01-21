@@ -1302,13 +1302,6 @@ static void symbol_check_support(const char *symbol, const struct stock_price *p
 				 const struct date_price *price2check)
 {
 	struct stock_support sspt = { };
-	//int i;
-#if 0
-	if (sma2check != -1
-	    && (price2check->candle_color == CANDLE_COLOR_RED
-		|| price2check->candle_trend == CANDLE_TREND_BEAR))
-		return;
-#endif
 
 	check_support(price_history, price2check, &sspt);
 
@@ -1318,10 +1311,36 @@ static void symbol_check_support(const char *symbol, const struct stock_price *p
 	anna_info("%s%-10s%s: date=%s, %s; is supported by %d dates:",
 		  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
 		  price2check->date, get_price_volume_change(price_history, price2check), sspt.date_nr);
-#if 0
-	for (i = 0; i < sspt.date_nr; i++)
-		anna_info(" %s(%c)", sspt.date[i], is_support(sspt.sr_flag[i]) ? 's' : is_resist(sspt.sr_flag[i]) ? 'r' : '?');
-#endif
+
+	anna_info("%s<sector=%s>%s.\n", ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+
+	selected_symbol_nr += 1;
+}
+
+static void symbol_check_volume_support(const char *symbol, const struct stock_price *price_history,
+					const struct date_price *price2check)
+{
+	struct stock_support sspt = { };
+	int i;
+
+	check_support(price_history, price2check, &sspt);
+
+	if (!sspt.date_nr)
+		return;
+
+	for (i = 0; i < price_history->date_cnt; i++) {
+		const struct date_price *prev = &price_history->dateprice[i];
+		if (strcmp(price2check->date, prev->date) <= 0)
+			continue;
+
+		if (price2check->volume > (prev->vma[VMA_20d] >> 1)
+		    && prev->vma[VMA_20d] * 2 > price2check->volume)
+			return;
+	}
+
+	anna_info("%s%-10s%s: date=%s, %s; is supported by %d dates:",
+		  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+		  price2check->date, get_price_volume_change(price_history, price2check), sspt.date_nr);
 
 	anna_info("%s<sector=%s>%s.\n", ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
 
@@ -2304,6 +2323,11 @@ static void stock_price_check(const char *group, const char *date, int symbols_n
 void stock_price_check_support(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_support);
+}
+
+void stock_price_check_volume_support(const char *group, const char *date, int symbols_nr, const char **symbols)
+{
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_volume_support);
 }
 
 void stock_price_check_sma(const char *group, const char *date, int sma_idx, int symbols_nr, const char **symbols)

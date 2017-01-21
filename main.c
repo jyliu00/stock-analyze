@@ -22,6 +22,7 @@ enum
 	ACTION_FETCH,
 	ACTION_FETCH_REALTIME,
 	ACTION_CHECK_SPT, /* support */
+	ACTION_CHECK_VOLUME_SPT, /* extremely high or low volume at support */
 	ACTION_CHECK_SMA20d, /* support at sma20d */
 	ACTION_CHECK_SMA30d, /* support at sma30d */
 	ACTION_CHECK_SMA50d, /* support at sma50d */
@@ -68,7 +69,7 @@ static void print_usage(void)
 	printf("Usage: anna -group={usa|china|canada|iwm|mdy|biotech|zacks|ibd|3x} [-date=yyyy-mm-dd] [-conf=filename]\n");
 	printf("               {fetch | fetch-rt | check-mmt | check-db | check-mfi-db | check-pullback-db | check-52w-db | "
 				"check-dbup | check-pullback-dbup | check-52w-dbup | check-strong-dbup | check-lvup | check-earlyup | check-52wlup | "
-				"check-spt | check-20d | check-30d | check-50d | check-60d | check-crawl20d | check-20dlow | check-50dlow | check-26w20dlow | check-26w50dlow | "
+				"check-spt | check-volume-spt | check-20d | check-30d | check-50d | check-60d | check-crawl20d | check-20dlow | check-50dlow | check-26w20dlow | check-26w50dlow | "
 				"check-10dup | check-20dup | check-50dup | check-200dup | check-pb | check-bo | check-2ndbo | check-trend-bo | check-wup | check-wrv | check-lv | check-chg} [symbol-1 symbol-2 ...]\n");
 }
 
@@ -189,6 +190,9 @@ int main(int argc, const char **argv)
 			}
 			else if (strcmp(arg, "check-spt") == 0) {
 				action = ACTION_CHECK_SPT;
+			}
+			else if (strcmp(arg, "check-volume-spt") == 0) {
+				action = ACTION_CHECK_VOLUME_SPT;
 			}
 			else if (strcmp(arg, "check-20d") == 0) {
 				action = ACTION_CHECK_SMA20d;
@@ -349,6 +353,10 @@ int main(int argc, const char **argv)
 
 	case ACTION_CHECK_SPT:
 		stock_price_check_support(group, date, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_VOLUME_SPT:
+		stock_price_check_volume_support(group, date, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_SMA20d:
