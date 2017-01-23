@@ -1818,6 +1818,11 @@ static void symbol_check_trend_breakout(const char *symbol, const struct stock_p
 	if (!good_volume(price2check, day1->vma[VMA_20d]))
 		return;
 
+	/* sma20d's slope should be shallow: < 1.2% */
+	if (yesterday->sma[SMA_20d] <= (yesterday+5)->sma[SMA_20d]
+	    && ((yesterday+5)->sma[VMA_20d] - yesterday->sma[SMA_20d]) * 120 >= yesterday->sma[SMA_20d])
+		return;
+
 	if (day1_2ndhigh <= day2_2ndhigh && day2_2ndhigh <= day3_2ndhigh)
 	{
 		pivot_day = day1;
