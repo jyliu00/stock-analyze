@@ -1407,6 +1407,11 @@ static void symbol_check_weeks_low_sma(const char *symbol, const struct stock_pr
 		if (!prev->sma[sma2check])
 			return;
 
+		/* sma slope needs be shalow: < 1.2% */
+		if (prev->sma[sma2check] < (prev+5)->sma[sma2check]
+		    && ((prev+5)->sma[sma2check] - prev->sma[sma2check]) * 120 > prev->sma[sma2check])
+			return;
+
 		if (price2check->open < prev->sma[sma2check] && price2check->close > prev->sma[sma2check])
 			break;
 
