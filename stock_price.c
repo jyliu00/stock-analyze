@@ -1817,7 +1817,7 @@ static void symbol_check_trend_breakout(const char *symbol, const struct stock_p
 		}
 	}
 
-	if (price2check->close < day1_2ndhigh)
+	if (price2check->close < day1->high)
 		return;
 
 	if (!good_volume(price2check, day1->vma[VMA_20d]))
