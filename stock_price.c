@@ -1415,8 +1415,9 @@ static void symbol_check_weeks_low_sma(const char *symbol, const struct stock_pr
 	uint32_t low_26week = -1;
 	int days = 250;
 
-	if (price2check->close < price2check->open)
+	if (price2check->close < price2check->open || price2check->high == price2check->low)
 		return;
+
 
 	for (i = 0; i < price_history->date_cnt; i++) {
 		const struct date_price *prev = &price_history->dateprice[i];
@@ -1426,12 +1427,20 @@ static void symbol_check_weeks_low_sma(const char *symbol, const struct stock_pr
 		if (!prev->sma[sma2check])
 			return;
 
+		if (!(price2check->high >= prev->high && price2check->high >= (prev+1)->high && price2check->high >= (prev+2)->high
+		      && (price2check->close - price2check->open) * 100 / (price2check->high - price2check->low) >= 70)) /* body_size >= 70% */
+			return;
+
 		if (!good_volume(price2check, prev->vma[VMA_20d]))
 			return;
 
 		/* sma slope needs be shalow: < 1.5% */
 		if (prev->sma[sma2check] < (prev+5)->sma[sma2check]
 		    && ((prev+5)->sma[sma2check] - prev->sma[sma2check]) * 150 > prev->sma[sma2check])
+			return;
+
+		if (prev->sma[SMA_20d] >= (prev+5)->sma[SMA_20d]
+		    && (prev->sma[SMA_20d] - (prev+5)->sma[VMA_20d]) * 150 >= (prev+5)->sma[VMA_20d])
 			return;
 
 		if (price2check->open < prev->sma[sma2check] && price2check->close > prev->sma[sma2check])
@@ -1795,13 +1804,12 @@ static void symbol_check_trend_breakout(const char *symbol, const struct stock_p
 					 const struct date_price *price2check)
 {
 	const struct date_price *yesterday = NULL;
-	const struct date_price *day1, *day2, *day3, *day4;
-	uint32_t day1_2ndhigh, day2_2ndhigh, day3_2ndhigh, day4_2ndhigh;
-	const struct date_price *pivot_day = NULL;
+	const struct date_price *day1, *day2, *day3;
+	uint32_t day1_2ndhigh;
 	uint32_t high_40day;
 	int i;
 
-	if (price2check->candle_trend == CANDLE_TREND_BEAR)
+	if (price2check->candle_trend == CANDLE_TREND_BEAR || price2check->high == price2check->low)
 		return;
 
 	for (i = 0; i < price_history->date_cnt; i++) {
@@ -1811,11 +1819,7 @@ static void symbol_check_trend_breakout(const char *symbol, const struct stock_p
 			day1 = yesterday;
 			day2 = day1 + 1;
 			day3 = day2 + 1;
-			day4 = day3 + 1;
 			day1_2ndhigh = get_2ndhigh(day1);
-			day2_2ndhigh = get_2ndhigh(day2);
-			day3_2ndhigh = get_2ndhigh(day3);
-			day4_2ndhigh = get_2ndhigh(day4);
 			break;
 		}
 	}
@@ -1840,28 +1844,16 @@ static void symbol_check_trend_breakout(const char *symbol, const struct stock_p
 	    && (yesterday->sma[SMA_20d] - (yesterday+5)->sma[VMA_20d]) * 150 >= (yesterday+5)->sma[VMA_20d])
 		return;
 
-	if (day1_2ndhigh <= day2_2ndhigh && day2_2ndhigh <= day3_2ndhigh)
-	{
-		pivot_day = day1;
-		high_40day = get_2ndhigh(day1);
-	}
-	else if (day1_2ndhigh >= day2_2ndhigh && day2_2ndhigh <= day3_2ndhigh && day3_2ndhigh <= day4_2ndhigh)
-	{
-		pivot_day = day2;
-		high_40day = get_2ndhigh(day2);
-	}
-
-	if (!pivot_day)
-		return;
+	high_40day = get_2ndhigh(yesterday);
 
 	for (i = 1; i < 39; i++) {
-		const struct date_price *prev = pivot_day + i;
+		const struct date_price *prev = yesterday + i;
 		if (get_2ndhigh(prev) > high_40day)
 			high_40day = get_2ndhigh(prev);
 	}
 
 	/* diff from high_40day < 3% */
-	if ((high_40day - get_2ndlow(pivot_day)) * 1000 / get_2ndlow(pivot_day) <= 40)
+	if ((high_40day - get_2ndlow(yesterday)) * 1000 / get_2ndlow(yesterday) <= 40)
 		return;
 
 	anna_info("%s%-10s%s: date=%s, %s; %s<sector=%s>%s.\n",
