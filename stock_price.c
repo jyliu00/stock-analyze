@@ -1391,6 +1391,9 @@ static void symbol_check_crawl_sma(const char *symbol, const struct stock_price 
 
 static int good_volume(const struct date_price *price2check, uint32_t vma20d)
 {
+	return (price2check->volume * 133 >= vma20d * 100);
+
+#if 0
 	time_t now = time(NULL);
 	struct tm *tm_now = localtime(&now);
 	char date_now[STOCK_DATE_SZ];
@@ -1406,6 +1409,7 @@ static int good_volume(const struct date_price *price2check, uint32_t vma20d)
 		return 0;
 
 	return (price2check->volume * (trading_total_seconds * 133 / ((tm_now->tm_hour * 60 + tm_now->tm_min - 390) * 60 + tm_now->tm_sec)) >= vma20d * 100);
+#endif
 }
 
 static int good_up_day(const struct date_price *price2check, const struct date_price *yesterday)
