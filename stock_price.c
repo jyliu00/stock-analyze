@@ -1389,6 +1389,25 @@ static void symbol_check_crawl_sma(const char *symbol, const struct stock_price 
 	}
 }
 
+static int good_volume(const struct date_price *price2check, uint32_t vma20d)
+{
+	time_t now = time(NULL);
+	struct tm *tm_now = localtime(&now);
+	char date_now[STOCK_DATE_SZ];
+	static uint32_t trading_total_seconds = 390 * 60;
+
+	snprintf(date_now, sizeof(date_now), "%04d-%02d-%02d", tm_now->tm_year + 1900, tm_now->tm_mon + 1, tm_now->tm_mday);
+
+	/* check if now has passed trading time */
+	if (strcmp(price2check->date, date_now) < 0 || tm_now->tm_hour >= 13)
+		return (price2check->volume >= vma20d);
+
+	if (tm_now->tm_hour < 6 || (tm_now->tm_hour == 6 && tm_now->tm_min < 30))
+		return 0;
+
+	return (price2check->volume * (trading_total_seconds * 100 / ((tm_now->tm_hour * 60 + tm_now->tm_min - 390) * 60 + tm_now->tm_sec)) >= vma20d * 100);
+}
+
 static void symbol_check_weeks_low_sma(const char *symbol, const struct stock_price *price_history,
 					 const struct date_price *price2check)
 {
@@ -1407,9 +1426,12 @@ static void symbol_check_weeks_low_sma(const char *symbol, const struct stock_pr
 		if (!prev->sma[sma2check])
 			return;
 
-		/* sma slope needs be shalow: < 1.2% */
+		if (!good_volume(price2check, prev->vma[VMA_20d]))
+			return;
+
+		/* sma slope needs be shalow: < 1.5% */
 		if (prev->sma[sma2check] < (prev+5)->sma[sma2check]
-		    && ((prev+5)->sma[sma2check] - prev->sma[sma2check]) * 120 > prev->sma[sma2check])
+		    && ((prev+5)->sma[sma2check] - prev->sma[sma2check]) * 150 > prev->sma[sma2check])
 			return;
 
 		if (price2check->open < prev->sma[sma2check] && price2check->close > prev->sma[sma2check])
@@ -1769,25 +1791,6 @@ static void symbol_check_2nd_breakout(const char *symbol, const struct stock_pri
 	__symbol_check_breakout(symbol, price_history, price2check, 0, 1);
 }
 
-static int good_volume(const struct date_price *price2check, uint32_t vma20d)
-{
-	time_t now = time(NULL);
-	struct tm *tm_now = localtime(&now);
-	char date_now[STOCK_DATE_SZ];
-	static uint32_t trading_total_seconds = 390 * 60;
-
-	snprintf(date_now, sizeof(date_now), "%04d-%02d-%02d", tm_now->tm_year + 1900, tm_now->tm_mon + 1, tm_now->tm_mday);
-
-	/* check if now has passed trading time */
-	if (strcmp(price2check->date, date_now) < 0 || tm_now->tm_hour >= 13)
-		return (price2check->volume >= vma20d);
-
-	if (tm_now->tm_hour < 6 || (tm_now->tm_hour == 6 && tm_now->tm_min < 30))
-		return 0;
-
-	return (price2check->volume * (trading_total_seconds * 100 / ((tm_now->tm_hour * 60 + tm_now->tm_min - 390) * 60 + tm_now->tm_sec)) >= vma20d * 100);
-}
-
 static void symbol_check_trend_breakout(const char *symbol, const struct stock_price *price_history,
 					 const struct date_price *price2check)
 {
@@ -1817,15 +1820,15 @@ static void symbol_check_trend_breakout(const char *symbol, const struct stock_p
 		}
 	}
 
-	if (price2check->close < day1->high)
+	if (price2check->close < day1_2ndhigh)
 		return;
 
 	if (!good_volume(price2check, day1->vma[VMA_20d]))
 		return;
 
-	/* sma20d's slope should be shallow: < 1.2% */
+	/* sma20d's slope should be shallow: < 1.5% */
 	if (yesterday->sma[SMA_20d] <= (yesterday+5)->sma[SMA_20d]
-	    && ((yesterday+5)->sma[VMA_20d] - yesterday->sma[SMA_20d]) * 120 >= yesterday->sma[SMA_20d])
+	    && ((yesterday+5)->sma[VMA_20d] - yesterday->sma[SMA_20d]) * 150 >= yesterday->sma[SMA_20d])
 		return;
 
 	if (day1_2ndhigh <= day2_2ndhigh && day2_2ndhigh <= day3_2ndhigh)
