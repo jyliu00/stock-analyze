@@ -1823,7 +1823,7 @@ static void symbol_check_trend_breakout(const char *symbol, const struct stock_p
 	if (price2check->close < day1_2ndhigh)
 		return;
 
-	if (!(price2check->close >= day1->high && price2check->close >= day2->high && price2check->close >= day3->high
+	if (!(price2check->high >= day1->high && price2check->high >= day2->high && price2check->high >= day3->high
 	      && price2check->close >= price2check->open
 	      && (price2check->close - price2check->open) * 100 / (price2check->high - price2check->low) >= 70)) /* body_size >= 70% */
 		return;
@@ -1835,7 +1835,11 @@ static void symbol_check_trend_breakout(const char *symbol, const struct stock_p
 	if (yesterday->sma[SMA_20d] <= (yesterday+5)->sma[SMA_20d]
 	    && ((yesterday+5)->sma[VMA_20d] - yesterday->sma[SMA_20d]) * 150 >= yesterday->sma[SMA_20d])
 		return;
-if (1) {
+
+	if (yesterday->sma[SMA_20d] >= (yesterday+5)->sma[SMA_20d]
+	    && (yesterday->sma[SMA_20d] - (yesterday+5)->sma[VMA_20d]) * 150 >= (yesterday+5)->sma[VMA_20d])
+		return;
+
 	if (day1_2ndhigh <= day2_2ndhigh && day2_2ndhigh <= day3_2ndhigh)
 	{
 		pivot_day = day1;
@@ -1859,7 +1863,6 @@ if (1) {
 	/* diff from high_40day < 3% */
 	if ((high_40day - get_2ndlow(pivot_day)) * 1000 / get_2ndlow(pivot_day) <= 40)
 		return;
-}
 
 	anna_info("%s%-10s%s: date=%s, %s; %s<sector=%s>%s.\n",
 		ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
