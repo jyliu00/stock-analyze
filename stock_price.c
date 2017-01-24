@@ -1400,12 +1400,12 @@ static int good_volume(const struct date_price *price2check, uint32_t vma20d)
 
 	/* check if now has passed trading time */
 	if (strcmp(price2check->date, date_now) < 0 || tm_now->tm_hour >= 13)
-		return (price2check->volume >= vma20d);
+		return (price2check->volume * 133 >= vma20d);
 
 	if (tm_now->tm_hour < 6 || (tm_now->tm_hour == 6 && tm_now->tm_min < 30))
 		return 0;
 
-	return (price2check->volume * (trading_total_seconds * 100 / ((tm_now->tm_hour * 60 + tm_now->tm_min - 390) * 60 + tm_now->tm_sec)) >= vma20d * 100);
+	return (price2check->volume * (trading_total_seconds * 133 / ((tm_now->tm_hour * 60 + tm_now->tm_min - 390) * 60 + tm_now->tm_sec)) >= vma20d * 100);
 }
 
 static void symbol_check_weeks_low_sma(const char *symbol, const struct stock_price *price_history,
@@ -1823,6 +1823,11 @@ static void symbol_check_trend_breakout(const char *symbol, const struct stock_p
 	if (price2check->close < day1_2ndhigh)
 		return;
 
+	if (!(price2check->close >= day1->high && price2check->close >= day2->high && price2check->close >= day3->high
+	      && price2check->close >= price2check->open
+	      && (price2check->close - price2check->open) * 100 / (price2check->high - price2check->low) >= 70)) /* body_size >= 70% */
+		return;
+
 	if (!good_volume(price2check, day1->vma[VMA_20d]))
 		return;
 
@@ -1830,7 +1835,7 @@ static void symbol_check_trend_breakout(const char *symbol, const struct stock_p
 	if (yesterday->sma[SMA_20d] <= (yesterday+5)->sma[SMA_20d]
 	    && ((yesterday+5)->sma[VMA_20d] - yesterday->sma[SMA_20d]) * 150 >= yesterday->sma[SMA_20d])
 		return;
-
+if (1) {
 	if (day1_2ndhigh <= day2_2ndhigh && day2_2ndhigh <= day3_2ndhigh)
 	{
 		pivot_day = day1;
@@ -1854,6 +1859,7 @@ static void symbol_check_trend_breakout(const char *symbol, const struct stock_p
 	/* diff from high_40day < 3% */
 	if ((high_40day - get_2ndlow(pivot_day)) * 1000 / get_2ndlow(pivot_day) <= 40)
 		return;
+}
 
 	anna_info("%s%-10s%s: date=%s, %s; %s<sector=%s>%s.\n",
 		ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
