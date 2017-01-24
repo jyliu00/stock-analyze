@@ -1400,12 +1400,45 @@ static int good_volume(const struct date_price *price2check, uint32_t vma20d)
 
 	/* check if now has passed trading time */
 	if (strcmp(price2check->date, date_now) < 0 || tm_now->tm_hour >= 13)
-		return (price2check->volume * 133 >= vma20d);
+		return (price2check->volume * 133 >= vma20d * 100);
 
 	if (tm_now->tm_hour < 6 || (tm_now->tm_hour == 6 && tm_now->tm_min < 30))
 		return 0;
 
 	return (price2check->volume * (trading_total_seconds * 133 / ((tm_now->tm_hour * 60 + tm_now->tm_min - 390) * 60 + tm_now->tm_sec)) >= vma20d * 100);
+}
+
+static int good_up_day(const struct date_price *price2check, const struct date_price *yesterday)
+{
+	if (price2check->candle_trend == CANDLE_TREND_BEAR)
+		return 0;
+
+	if (price2check->high < yesterday->high
+	    || price2check->high < (yesterday + 1)->high
+	    || price2check->high < (yesterday + 2)->high)
+		return 0;
+
+	/* up tail should be <= %30 */
+	if ((price2check->high - get_2ndhigh(price2check)) * 100 / (price2check->high - price2check->low) > 30)
+		return 0;
+
+	return 1;
+}
+
+static int sma20_slope_is_shallow(const struct date_price *day1)
+{
+	const struct date_price *day5 = day1 + 5;
+
+	/* sma20 slope needs be shalow: < 1.5% */
+	if (day1->sma[SMA_20d] < day5->sma[SMA_20d]
+	    && (day5->sma[SMA_20d] - day1->sma[SMA_20d]) * 150 > day1->sma[SMA_20d])
+		return 0;
+
+	if (day1->sma[SMA_20d] >= day5->sma[SMA_20d]
+	    && (day1->sma[SMA_20d] - day5->sma[VMA_20d]) * 150 >= day5->sma[VMA_20d])
+		return 0;
+
+	return 1;
 }
 
 static void symbol_check_weeks_low_sma(const char *symbol, const struct stock_price *price_history,
@@ -1427,20 +1460,13 @@ static void symbol_check_weeks_low_sma(const char *symbol, const struct stock_pr
 		if (!prev->sma[sma2check])
 			return;
 
-		if (!(price2check->high >= prev->high && price2check->high >= (prev+1)->high && price2check->high >= (prev+2)->high
-		      && (price2check->close - price2check->open) * 100 / (price2check->high - price2check->low) >= 70)) /* body_size >= 70% */
+		if (!good_up_day(price2check, prev))
 			return;
 
 		if (!good_volume(price2check, prev->vma[VMA_20d]))
 			return;
 
-		/* sma slope needs be shalow: < 1.5% */
-		if (prev->sma[sma2check] < (prev+5)->sma[sma2check]
-		    && ((prev+5)->sma[sma2check] - prev->sma[sma2check]) * 150 > prev->sma[sma2check])
-			return;
-
-		if (prev->sma[SMA_20d] >= (prev+5)->sma[SMA_20d]
-		    && (prev->sma[SMA_20d] - (prev+5)->sma[VMA_20d]) * 150 >= (prev+5)->sma[VMA_20d])
+		if (!sma20_slope_is_shallow(prev))
 			return;
 
 		if (price2check->open < prev->sma[sma2check] && price2check->close > prev->sma[sma2check])
@@ -1804,8 +1830,6 @@ static void symbol_check_trend_breakout(const char *symbol, const struct stock_p
 					 const struct date_price *price2check)
 {
 	const struct date_price *yesterday = NULL;
-	const struct date_price *day1, *day2, *day3;
-	uint32_t day1_2ndhigh;
 	uint32_t high_40day;
 	int i;
 
@@ -1815,33 +1839,20 @@ static void symbol_check_trend_breakout(const char *symbol, const struct stock_p
 	for (i = 0; i < price_history->date_cnt; i++) {
 		yesterday = &price_history->dateprice[i];
 
-		if (strcmp(price2check->date, yesterday->date) > 0) {
-			day1 = yesterday;
-			day2 = day1 + 1;
-			day3 = day2 + 1;
-			day1_2ndhigh = get_2ndhigh(day1);
+		if (strcmp(price2check->date, yesterday->date) > 0)
 			break;
-		}
 	}
 
-	if (price2check->close < day1_2ndhigh)
+	if (i == price_history->date_cnt)
 		return;
 
-	if (!(price2check->high >= day1->high && price2check->high >= day2->high && price2check->high >= day3->high
-	      && price2check->close >= price2check->open
-	      && (price2check->close - price2check->open) * 100 / (price2check->high - price2check->low) >= 70)) /* body_size >= 70% */
+	if (!good_up_day(price2check, yesterday))
 		return;
 
-	if (!good_volume(price2check, day1->vma[VMA_20d]))
+	if (!good_volume(price2check, yesterday->vma[VMA_20d]))
 		return;
 
-	/* sma20d's slope should be shallow: < 1.5% */
-	if (yesterday->sma[SMA_20d] <= (yesterday+5)->sma[SMA_20d]
-	    && ((yesterday+5)->sma[VMA_20d] - yesterday->sma[SMA_20d]) * 150 >= yesterday->sma[SMA_20d])
-		return;
-
-	if (yesterday->sma[SMA_20d] >= (yesterday+5)->sma[SMA_20d]
-	    && (yesterday->sma[SMA_20d] - (yesterday+5)->sma[VMA_20d]) * 150 >= (yesterday+5)->sma[VMA_20d])
+	if (!sma20_slope_is_shallow(yesterday))
 		return;
 
 	high_40day = get_2ndhigh(yesterday);
@@ -1852,7 +1863,7 @@ static void symbol_check_trend_breakout(const char *symbol, const struct stock_p
 			high_40day = get_2ndhigh(prev);
 	}
 
-	/* diff from high_40day < 3% */
+	/* diff from high_40day < 4% */
 	if ((high_40day - get_2ndlow(yesterday)) * 1000 / get_2ndlow(yesterday) <= 40)
 		return;
 

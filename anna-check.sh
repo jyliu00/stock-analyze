@@ -12,8 +12,4 @@ printf "\n\x1b[33mCross SMA50 above\x1b[0m:\n\n"
 
 anna -group=$1 check-50dup
 
-printf "\n\x1b[33mExtreme Volume at Support\x1b[0m:\n\n"
-
-anna -group=$1 check-volume-spt
-
 echo ""
