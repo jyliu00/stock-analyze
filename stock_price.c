@@ -1422,8 +1422,8 @@ static int good_up_day(const struct date_price *price2check, const struct date_p
 	    || price2check->high < (yesterday + 2)->high)
 		return 0;
 
-	/* up tail should be <= %30 */
-	if ((price2check->high - get_2ndhigh(price2check)) * 100 / (price2check->high - price2check->low) > 30)
+	/* up tail should be <= %10 */
+	if ((price2check->high - get_2ndhigh(price2check)) * 100 / (price2check->high - price2check->low) > 10)
 		return 0;
 
 	return 1;
