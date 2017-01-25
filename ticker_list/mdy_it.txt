@@ -1,3 +1,4 @@
+%sector=information_technology
 ACIW
 ACXM
 AMD
