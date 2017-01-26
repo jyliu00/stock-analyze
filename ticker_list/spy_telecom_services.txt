@@ -1,0 +1,6 @@
+%sector=telecom_services
+T
+CTL
+FTR
+LVLT
+VZ

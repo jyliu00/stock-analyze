@@ -1,4 +1,4 @@
-%sector=industrial
+%sector=industrials
 MMM
 AYI
 ALK
