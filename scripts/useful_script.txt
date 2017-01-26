@@ -4,3 +4,4 @@ sed 'n; d' infile  # output ODD lines only
 sed '1d; n; d' infile  # output EVEN lines only
 awk '{print $0 " done"}' inFile # put suffix " done" on each line
 sed -e '/^[0-9]/d' filename # delete line starting with digit
+sed -i 's/[[:blank:]]\{1,\}$//' $filename  # remove ending spaces
