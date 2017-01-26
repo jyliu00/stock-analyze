@@ -1436,11 +1436,11 @@ static int sma20_slope_is_shallow(const struct date_price *day1)
 
 	/* sma20 slope needs be shalow: < 1.5% */
 	if (day1->sma[SMA_20d] < day5->sma[SMA_20d]
-	    && (day5->sma[SMA_20d] - day1->sma[SMA_20d]) * 150 > day1->sma[SMA_20d])
+	    && (day5->sma[SMA_20d] - day1->sma[SMA_20d]) * 1000 > day1->sma[SMA_20d] * 15)
 		return 0;
 
 	if (day1->sma[SMA_20d] >= day5->sma[SMA_20d]
-	    && (day1->sma[SMA_20d] - day5->sma[VMA_20d]) * 150 >= day5->sma[VMA_20d])
+	    && (day1->sma[SMA_20d] - day5->sma[VMA_20d]) * 1000 >= day5->sma[VMA_20d] * 15)
 		return 0;
 
 	return 1;
