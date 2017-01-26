@@ -1,101 +1,101 @@
 %sector=rank_1
-AAOI	65	C	D	B	Electronics - Semiconductors
-ABB	171	B	C	D	Manufacturing - Electronics
-ACET	199	A	C	B	Medical - Dental Supplies
-ADTN	194	C	F	A	Communication - Infrastructure
-AHL	67	A	F	C	Insurance - Property and Casualty
-AKS	17	A	A	A	Steel - Producers
-APOG	2	C	C	D	Glass Products
-ARCH	48	C	A	D	Coal
-ARIA	73	F	D	C	Medical - Drugs
-ARLP	48	A	A	A	Coal
-ASB	10	C	C	A	Banks - Midwest
-ATU	24	D	C	C	Manufacturing - Tools & Related Products
-AVGO	65	D	A	F	Electronics - Semiconductors
-BAK	194	A	A	F	Oil and Gas - Integrated - International
-BBY	24	A	B	B	Retail - Consumer Electronics
-BCS	82	B	F	F	Banks - Foreign
-BGFV	151	A	A	A	Retail - Miscellaneous
-BHP	29	C	C	A	Mining - Miscellaneous
-BOBE	173	C	D	D	Retail - Restaurants
-BPL	56	C	B	C	Oil and Gas - Production Pipeline - MLB
-BPOP	13	A	F	B	Banks - Southeast
-BRS	32	C	D	D	Transportation - Airline
-BUFF	237	F	A	A	Consumer Products - Staples
-CAJ	52	A	D	F	Office Automation and Equipment
-CBOE	2	F	B	C	Securities and Exchanges
-CCI	134	F	D	C	REIT and Equity Trust - Other
-CCRN	57	B	A	B	Staffing Firms
-CFG	39	C	F	A	Financial - Savings and Loan
-CHKP	147	F	D	A	Computer - Software
-CINF	67	C	D	D	Insurance - Property and Casualty
-CPA	32	D	B	C	Transportation - Airline
-CPG	32	C	F	C	Oil and Gas - Exploration and Production - Canadian
-CPRT	19	D	A	D	Auction and Valuation Services
-CXW	134	B	C	B	REIT and Equity Trust - Other
 CZZ	83	A	B	A	Agriculture - Products
-DB	82	A	C	C	Banks - Foreign
-EGOV	80	D	A	B	Internet - Software
-EXAS	83	F	D	A	Medical - Biomedical and Genetics
-FBP	13	B	F	F	Banks - Southeast
-FBR	51	C	C	B	Paper and Related Products
-FCH	134	A	B	D	REIT and Equity Trust - Other
-FGEN	73	F	D	C	Medical - Drugs
-FMBI	10	D	F	B	Banks - Midwest
-FMSA	1	F	F	A	Metal Products - Fasteners
-FNSR	2	C	A	C	Fiber Optics
+CPRT	19	D	A	D	Auction and Valuation Services
 FOXF	59	D	B	B	Automotive - Domestic
-FRAN	142	B	C	C	Shoes and Retail Apparel
-FRTA	49	D	C	A	Building Products - Concrete and Aggregates
-GKOS	147	F	B	D	Medical - Instruments
-GLOG	206	C	B	F	Transportation - Shipping
-GS	15	D	F	A	Financial - Investment Bank
-GTN	83	A	B	F	Broadcast Radio and Television
-HBHC	13	C	C	B	Banks - Southeast
-HBM	29	B	A	B	Mining - Miscellaneous
 HMC	23	A	C	F	Automotive - Foreign
-HOLX	147	B	B	D	Medical - Instruments
-HOPE	2	D	F	D	Banks - West
-IIVI	171	C	B	C	Manufacturing - Electronics
-IRM	134	D	D	F	REIT and Equity Trust - Other
-JBL	59	A	A	F	Electronics - Manufacturing Services
-KRO	73	D	A	C	Chemical - Diversified
-L	83	A	D	F	Insurance - Multi line
-LPL	67	A	C	A	Computer - Peripheral Equipment
-LUK	73	B	A	F	Diversified Operations
-LZB	83	B	B	F	Furniture
-MBT	189	A	D	B	Wireless Non-US
-MDR	52	B	B	F	Oil and Gas - Mechanical and and Equitment
-MDU	41	C	C	D	Utility - Gas Distribution
-MEOH	73	C	B	B	Chemical - Diversified
-MKTX	2	F	D	B	Securities and Exchanges
 MOD	153	B	C	C	Automotive - Original Equipment
-MPEL	157	F	D	A	Gaming
-MS	15	D	F	A	Financial - Investment Bank
-MTZ	59	C	A	D	Building Products - Heavy Construction
-MX	70	F	F	B	Semiconductor - Analog and Mixed
-NCS	162	A	B	B	Building Products - Miscellaneous
-OLLI	237	F	F	A	Consumer Products - Staples
-OMAM	147	B	D	B	Financial - Investment Management
-OZRK	13	D	D	B	Banks - Southeast
-PINC	138	A	C	A	Medical Services
-PKX	17	A	B	F	Steel - Producers
-PLAY	173	C	A	D	Retail - Restaurants
-PLCE	230	B	A	D	Retail - Apparel and Shoes
-PNC	2	D	F	A	Banks - Major Regional
-PRI	21	B	D	F	Insurance - Life Insurance
-PVTB	10	D	D	B	Banks - Midwest
-RE	67	A	D	B	Insurance - Property and Casualty
-RIO	29	A	B	A	Mining - Miscellaneous
-ROCK	162	C	A	D	Building Products - Miscellaneous
 RUSHA	83	A	B	C	Automotive - Retail and Whole Sales
-SCMP	73	A	A	C	Medical - Drugs
-SEMG	142	D	C	D	Oil and Gas - Production and Pipelines
-SF	15	C	C	C	Financial - Investment Bank
-SNI	83	B	C	B	Broadcast Radio and Television
-SNV	13	C	D	B	Banks - Southeast
-STAY	77	A	B	C	Hotels and Motels
+BCS	82	B	F	F	Banks - Foreign
+DB	82	A	C	C	Banks - Foreign
+PNC	2	D	F	A	Banks - Major Regional
 STI	2	D	F	D	Banks - Major Regional
-STM	11	D	F	A	Semiconductor - General
-STWD	83	D	F	F	REIT and Equity Trust
+ASB	10	C	C	A	Banks - Midwest
+FMBI	10	D	F	B	Banks - Midwest
+PVTB	10	D	D	B	Banks - Midwest
+BPOP	13	A	F	B	Banks - Southeast
+FBP	13	B	F	F	Banks - Southeast
+HBHC	13	C	C	B	Banks - Southeast
+OZRK	13	D	D	B	Banks - Southeast
+SNV	13	C	D	B	Banks - Southeast
+HOPE	2	D	F	D	Banks - West
+GTN	83	A	B	F	Broadcast Radio and Television
+SNI	83	B	C	B	Broadcast Radio and Television
+FRTA	49	D	C	A	Building Products - Concrete and Aggregates
+MTZ	59	C	A	D	Building Products - Heavy Construction
+NCS	162	A	B	B	Building Products - Miscellaneous
+ROCK	162	C	A	D	Building Products - Miscellaneous
+KRO	73	D	A	C	Chemical - Diversified
+MEOH	73	C	B	B	Chemical - Diversified
+ARCH	48	C	A	D	Coal
+ARLP	48	A	A	A	Coal
+ADTN	194	C	F	A	Communication - Infrastructure
+LPL	67	A	C	A	Computer - Peripheral Equipment
+CHKP	147	F	D	A	Computer - Software
+BUFF	237	F	A	A	Consumer Products - Staples
+OLLI	237	F	F	A	Consumer Products - Staples
+LUK	73	B	A	F	Diversified Operations
+JBL	59	A	A	F	Electronics - Manufacturing Services
+AAOI	65	C	D	B	Electronics - Semiconductors
+AVGO	65	D	A	F	Electronics - Semiconductors
+FNSR	2	C	A	C	Fiber Optics
+GS	15	D	F	A	Financial - Investment Bank
+MS	15	D	F	A	Financial - Investment Bank
+SF	15	C	C	C	Financial - Investment Bank
+OMAM	147	B	D	B	Financial - Investment Management
+CFG	39	C	F	A	Financial - Savings and Loan
+LZB	83	B	B	F	Furniture
+MPEL	157	F	D	A	Gaming
+APOG	2	C	C	D	Glass Products
+STAY	77	A	B	C	Hotels and Motels
+PRI	21	B	D	F	Insurance - Life Insurance
+L	83	A	D	F	Insurance - Multi line
+AHL	67	A	F	C	Insurance - Property and Casualty
+CINF	67	C	D	D	Insurance - Property and Casualty
+RE	67	A	D	B	Insurance - Property and Casualty
+EGOV	80	D	A	B	Internet - Software
+ABB	171	B	C	D	Manufacturing - Electronics
+IIVI	171	C	B	C	Manufacturing - Electronics
+ATU	24	D	C	C	Manufacturing - Tools & Related Products
+EXAS	83	F	D	A	Medical - Biomedical and Genetics
+ACET	199	A	C	B	Medical - Dental Supplies
+ARIA	73	F	D	C	Medical - Drugs
+FGEN	73	F	D	C	Medical - Drugs
+SCMP	73	A	A	C	Medical - Drugs
+GKOS	147	F	B	D	Medical - Instruments
+HOLX	147	B	B	D	Medical - Instruments
+PINC	138	A	C	A	Medical Services
+FMSA	1	F	F	A	Metal Products - Fasteners
+BHP	29	C	C	A	Mining - Miscellaneous
+HBM	29	B	A	B	Mining - Miscellaneous
+RIO	29	A	B	A	Mining - Miscellaneous
+CAJ	52	A	D	F	Office Automation and Equipment
+CPG	32	C	F	C	Oil and Gas - Exploration and Production - Canadian
 SU	12	C	D	C	Oil and Gas - Integrated - Canadian
+BAK	194	A	A	F	Oil and Gas - Integrated - International
+MDR	52	B	B	F	Oil and Gas - Mechanical and and Equitment
+SEMG	142	D	C	D	Oil and Gas - Production and Pipelines
+BPL	56	C	B	C	Oil and Gas - Production Pipeline - MLB
+FBR	51	C	C	B	Paper and Related Products
+STWD	83	D	F	F	REIT and Equity Trust
+CCI	134	F	D	C	REIT and Equity Trust - Other
+CXW	134	B	C	B	REIT and Equity Trust - Other
+FCH	134	A	B	D	REIT and Equity Trust - Other
+IRM	134	D	D	F	REIT and Equity Trust - Other
+PLCE	230	B	A	D	Retail - Apparel and Shoes
+BBY	24	A	B	B	Retail - Consumer Electronics
+BGFV	151	A	A	A	Retail - Miscellaneous
+BOBE	173	C	D	D	Retail - Restaurants
+PLAY	173	C	A	D	Retail - Restaurants
+CBOE	2	F	B	C	Securities and Exchanges
+MKTX	2	F	D	B	Securities and Exchanges
+MX	70	F	F	B	Semiconductor - Analog and Mixed
+STM	11	D	F	A	Semiconductor - General
+FRAN	142	B	C	C	Shoes and Retail Apparel
+CCRN	57	B	A	B	Staffing Firms
+AKS	17	A	A	A	Steel - Producers
+PKX	17	A	B	F	Steel - Producers
+BRS	32	C	D	D	Transportation - Airline
+CPA	32	D	B	C	Transportation - Airline
+GLOG	206	C	B	F	Transportation - Shipping
+MDU	41	C	C	D	Utility - Gas Distribution
+MBT	189	A	D	B	Wireless Non-US
