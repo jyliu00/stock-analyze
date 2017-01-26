@@ -1422,8 +1422,8 @@ static int good_up_day(const struct date_price *price2check, const struct date_p
 	    || price2check->high < (yesterday + 2)->high)
 		return 0;
 
-	/* up tail should be <= %20 */
-	if ((price2check->high - get_2ndhigh(price2check)) * 100 / (price2check->high - price2check->low) > 20
+	/* up tail should be <= %30 */
+	if ((price2check->high - get_2ndhigh(price2check)) * 100 / (price2check->high - price2check->low) > 30
 	    && (price2check->low < yesterday->high || price2check->low < (yesterday+1)->high || price2check->low < (yesterday+2)->high))
 		return 0;
 
@@ -1831,11 +1831,54 @@ static void symbol_check_2nd_breakout(const char *symbol, const struct stock_pri
 	__symbol_check_breakout(symbol, price_history, price2check, 0, 1);
 }
 
+static int date_is_trend_breakout(const char *symbol, const struct stock_price *price_history,
+				const struct date_price *price2check)
+{
+	const struct date_price *yesterday = NULL;
+	uint32_t recent_high;
+	int i;
+
+	if (price2check->candle_trend == CANDLE_TREND_BEAR || price2check->high == price2check->low)
+		return 0;
+
+	for (i = 0; i < price_history->date_cnt; i++) {
+		yesterday = &price_history->dateprice[i];
+
+		if (strcmp(price2check->date, yesterday->date) > 0)
+			break;
+	}
+
+	if (i == price_history->date_cnt)
+		return 0;
+
+	if (!good_up_day(price2check, yesterday))
+		return 0;
+
+	if (!good_volume(price2check, yesterday->vma[VMA_20d]))
+		return 0;
+
+	if (!sma20_slope_is_shallow(yesterday))
+		return 0;
+
+	recent_high = get_2ndhigh(price2check);
+
+	for (i = 0; i < 60; i++) {
+		const struct date_price *prev = yesterday + i;
+		if (get_2ndhigh(prev) > recent_high)
+			recent_high = get_2ndhigh(prev);
+	}
+
+	/* diff from recent_high < 5% */
+	if ((recent_high - get_2ndhigh(price2check)) * 1000 / get_2ndhigh(price2check) <= 50)
+		return 0;
+
+	return 1;
+}
+
 static void symbol_check_trend_breakout(const char *symbol, const struct stock_price *price_history,
 					 const struct date_price *price2check)
 {
 	const struct date_price *yesterday = NULL;
-	uint32_t high_40day;
 	int i;
 
 	if (price2check->candle_trend == CANDLE_TREND_BEAR || price2check->high == price2check->low)
@@ -1851,25 +1894,10 @@ static void symbol_check_trend_breakout(const char *symbol, const struct stock_p
 	if (i == price_history->date_cnt)
 		return;
 
-	if (!good_up_day(price2check, yesterday))
+	if (date_is_trend_breakout(symbol, price_history, yesterday))
 		return;
 
-	if (!good_volume(price2check, yesterday->vma[VMA_20d]))
-		return;
-
-	if (!sma20_slope_is_shallow(yesterday))
-		return;
-
-	high_40day = get_2ndhigh(yesterday);
-
-	for (i = 1; i < 39; i++) {
-		const struct date_price *prev = yesterday + i;
-		if (get_2ndhigh(prev) > high_40day)
-			high_40day = get_2ndhigh(prev);
-	}
-
-	/* diff from high_40day < 4% */
-	if ((high_40day - get_2ndlow(yesterday)) * 1000 / get_2ndlow(yesterday) <= 40)
+	if (!date_is_trend_breakout(symbol, price_history, price2check))
 		return;
 
 	anna_info("%s%-10s%s: date=%s, %s; %s<sector=%s>%s.\n",
