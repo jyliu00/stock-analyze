@@ -1,0 +1,35 @@
+%sector=rank_canadian
+MDCA	176	B	F	D	Advertising and Marketing
+RBA	19	D	A	F	Auction and Valuation Services
+MGA	153	A	C	F	Automotive - Original Equipment
+BMO	82	F	F	D	Banks - Foreign
+BNS	82	F	F	F	Banks - Foreign
+CM	82	C	F	D	Banks - Foreign
+RY	82	C	F	B	Banks - Foreign
+TD	82	B	D	D	Banks - Foreign
+COT	226	A	B	D	Beverages - Soft drinks
+SJR	203	C	D	B	Cable Television
+MEOH	73	C	B	B	Chemical - Diversified
+CLS	59	A	C	B	Electronics - Manufacturing Services
+AGU	30	C	F	A	Fertilizers
+POT	30	D	F	C	Fertilizers
+IMAX	67	D	F	F	Film and Television Production and Distribution
+LGF.A	67	B	D	C	Film and Television Production and Distribution
+MFC	21	A	D	F	Insurance - Life Insurance
+AEM	174	D	A	B	Mining - Gold
+CCJ	29	D	F	F	Mining - Miscellaneous
+TECK	29	B	B	D	Mining - Miscellaneous
+MAG	237	F	B	F	Mining - Silver
+PAAS	237	D	A	A	Mining - Silver
+PDS	43	C	F	A	Oil and Gas - Drilling
+CPG	32	C	F	C	Oil and Gas - Exploration and Production - Canadian
+ECA	32	F	C	A	Oil and Gas - Exploration and Production - Canadian
+IOC	12	F	F	D	Oil and Gas - Integrated - Canadian
+SU	12	C	D	C	Oil and Gas - Integrated - Canadian
+ENB	142	C	D	B	Oil and Gas - Production and Pipelines
+TRP	142	D	C	A	Oil and Gas - Production and Pipelines
+UFS	51	A	C	F	Paper and Related Products
+CSIQ	203	A	B	F	Solar
+LULU	229	F	F	B	Textile - Apparel
+CNI	83	C	C	A	Transportation - Rail
+CP	83	C	D	F	Transportation - Rail
