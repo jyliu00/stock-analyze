@@ -240,8 +240,9 @@ int fetch_symbols_price(int realtime, const char *group, const char *fname, int 
 				char *token;
 				//int rank;
 				//char vgm;
-				int industry;
+				int industry_rank;
 				char v, g, m;
+				char industry[64];
 
 				strlcpy(buf, symbol, sizeof(buf));
 
@@ -263,7 +264,7 @@ int fetch_symbols_price(int realtime, const char *group, const char *fname, int 
 				/* industry rank */
 				token = strtok(NULL, "\t");
 				if (!token) continue;
-				industry = atoi(token);
+				industry_rank = atoi(token);
 
 				token = strtok(NULL, "\t");
 				if (!token) continue;
@@ -277,8 +278,12 @@ int fetch_symbols_price(int realtime, const char *group, const char *fname, int 
 				if (!token) continue;
 				m = token[0];
 
+				token = strtok(NULL, "\t");
+				if (!token) continue;
+				strlcpy(industry, token, sizeof(industry));
+
 				//snprintf(sector, sizeof(sector), "rank%d_%c_%d_%c%c%c", rank, vgm, industry, v, g, m);
-				snprintf(sector+7, sizeof(sector) - 7, "_%d_%c%c%c", industry, v, g, m);
+				snprintf(sector+6, sizeof(sector) - 6, "_%d_%c%c%c(%s)", industry_rank, v, g, m, industry);
 			}
 
 			if (fetch_symbol_price_since_date(group, sector, symbol, year, month, mday) == 0)

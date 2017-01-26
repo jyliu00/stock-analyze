@@ -1,366 +1,364 @@
 %sector=rank_2
-AAL	32	A	B	A
-AAP	52	C	C	B
-ABC	199	A	A	C
-ACM	146	A	A	D
-AEE	77	B	B	D
-AEIS	24	D	B	C
-AEL	21	A	F	D
-AKBA	73	F	D	C
-ALB	73	D	B	A
-ALK	32	A	B	B
-ALLE	141	D	C	B
-AMD	65	F	A	D
-AMTD	15	D	D	B
-APC	30	F	D	A
-APLE	134	C	C	F
-APO	147	C	F	A
-ARNC	22	A	C	B
-ARRY	83	F	B	B
-ARW	176	A	F	A
-AU	174	A	A	F
-AXP	139	A	A	A
-AZO	52	A	A	B
-BABY	147	B	A	D
-BAC	2	C	B	A
-BAH	36	B	A	C
-BATS	2	F	C	B
-BBG	30	D	C	D
-BBT	2	D	D	F
-BDN	134	D	F	D
-BECN	83	B	A	F
-BEL	77	D	A	B
-BGS	162	C	B	C
-BIG	83	A	F	C
-BIIB	83	B	C	A
-BITA	83	B	F	F
-BKH	77	D	F	B
-BKS	151	A	A	D
-BKU	2	D	C	A
-BLUE	83	F	F	F
-BMO	82	F	F	D
-BNS	82	F	F	F
-BOFI	2	A	C	C
-BOH	2	D	F	C
-BOX	80	F	B	D
-BPFH	18	C	C	A
-BPMC	83	F	F	F
-BTI	83	D	B	D
-BW	206	A	D	F
-BX	147	B	F	C
-BXS	13	D	D	C
-C	2	B	C	F
-CAA	62	B	A	F
-CAB	151	B	F	B
-CAFD	203	B	D	C
-CAG	162	C	C	F
-CATY	2	C	C	C
-CBG	83	B	F	D
-CBI	59	A	B	D
-CCJ	29	D	F	F
-CDEV	30	F	B	D
-CDR	218	B	F	C
-CE	73	B	B	D
-CFFN	39	F	F	D
-CFR	40	B	B	C
-CHFC	10	F	F	B
-CHH	77	D	C	B
-CHSP	134	B	C	F
-CLB	83	F	C	B
-CLF	13	A	A	A
-CM	82	C	F	D
-CMA	2	D	D	F
-CME	2	F	C	F
-CNHI	23	B	D	C
-CNP	77	C	B	C
-CNX	48	B	B	B
-COLB	2	C	D	B
-COLL	73	F	D	C
-CORE	192	C	B	B
-COUP	80	F	D	F
-CPB	162	D	A	A
-CRZO	30	D	B	B
-CS	82	B	F	D
-CSFL	13	D	B	D
-CSIQ	203	A	B	F
-CTAS	176	D	B	D
-CTRE	134	D	A	D
-CTSH	70	B	B	C
-CUDA	134	D	A	B
-CVRR	77	A	A	C
-CW	189	B	A	A
-DCI	70	C	A	F
-DCT	134	F	D	A
-DGX	194	B	C	B
-DHI	62	A	A	A
-DLTR	83	B	C	B
-DNOW	52	B	A	D
-DRH	134	B	C	F
-ELS	224	F	C	F
-ENB	142	C	D	B
-EPR	218	D	D	C
-EQT	30	C	C	A
-ETFC	15	C	F	B
-EV	147	C	D	C
-EWBC	2	B	D	C
-EXC	77	A	B	D
-FAST	83	D	C	A
-FB	83	D	A	C
-FCF	18	D	C	F
-FCPT	134	F	F	C
-FCX	22	A	A	C
-FDS	83	F	B	F
-FET	52	F	D	A
-FFBC	10	D	F	B
-FFIN	40	F	D	F
-FHB	2	F	F	C
-FHN	13	D	F	F
-FISV	80	D	B	B
-FITB	2	C	F	B
-FL	230	A	D	C
-FMC	73	D	C	F
-FNGN	139	F	B	D
-FOSL	230	A	F	F
-FOXA	67	B	B	C
-FRC	2	D	C	A
-FRGI	173	A	A	C
-FULT	18	D	D	A
-GBCI	2	D	F	D
-GEO	134	C	F	B
-GGG	35	D	B	C
-GLW	83	A	F	A
-GM	59	A	B	B
-GOGL	206	F	B	B
-GOOGL	83	C	A	C
-GPS	230	A	D	B
-GSK	220	A	C	B
-GWB	18	C	D	D
-H	77	C	B	B
-HAL	83	F	F	A
-HBAN	10	C	F	C
-HCLP	29	F	F	A
-HE	77	B	B	C
-HEES	62	A	C	C
-HELE	218	B	B	B
-HIG	83	A	C	A
-HII	49	A	B	B
-HK	30	B	F	C
-HMHC	192	C	C	F
-HOMB	13	F	F	C
-HP	43	D	F	A
-HPE	83	A	C	B
-HRC	203	A	A	D
-HRS	174	B	C	C
-HSBC	82	F	F	B
-HTGC	134	C	D	A
-HTH	13	C	F	F
-INCR	138	C	B	C
-INFO	83	F	A	D
-INGR	162	B	A	B
-INN	134	B	D	F
-IP	51	A	C	F
-IPGP	43	C	B	D
-IPHI	70	F	A	B
-IPXL	155	A	A	F
-ISBC	39	C	C	D
-ISIL	11	F	B	B
-IT	83	D	A	C
-ITW	35	D	B	B
-JEC	146	B	A	D
-JPM	2	F	F	C
-KEY	2	D	F	B
-KEYS	153	B	C	C
-KMT	24	D	B	C
-KND	194	A	B	D
-KORS	229	A	D	C
-KOS	83	D	F	A
-KRA	134	A	A	B
-KRNT	43	F	D	B
-LBTYA	203	B	D	F
-LCI	73	A	C	B
-LFL	32	B	C	B
-LGF.A	67	B	D	C
-LHO	134	B	C	F
-LII	24	C	A	C
-LL	83	F	A	F
-LLTC	11	F	B	C
-LLY	220	B	C	C
-LNC	21	A	D	D
-LOCO	173	A	B	B
-LPI	30	F	A	A
-LPLA	15	B	D	C
-LPX	83	B	A	D
-LRCX	24	B	A	A
-LSTR	226	B	A	B
-LULU	229	F	F	B
-LUV	32	A	A	A
-LYB	73	A	B	B
-MAIN	134	F	F	B
-MAR	77	D	C	D
-MB	80	F	A	F
-MBFI	18	C	F	B
-MC	15	B	B	B
-MDC	62	B	C	B
-MDP	83	C	A	B
-MEET	83	B	D	B
-MFC	21	A	D	F
-MGM	157	C	B	C
-MKSI	32	C	A	A
-MMP	56	D	D	D
-MNTA	83	F	A	F
-MOH	176	A	A	A
-MON	83	C	A	A
-MRC	83	C	A	D
-MSFT	147	C	A	A
-MSM	142	C	A	B
-MTB	2	D	C	A
-MTDR	30	D	A	A
-NCMI	176	C	B	B
-NDSN	35	D	A	D
-NEE	77	C	C	A
-NGG	77	B	C	D
-NGVT	134	D	A	B
-NLNK	83	F	D	C
-NOC	49	C	D	B
-NR	83	C	D	A
-NSA	134	D	C	F
-NUE	17	B	A	A
-NVDA	11	F	A	F
-NYRT	134	F	C	D
-OCLR	2	D	D	A
-ONB	10	D	F	F
-OSK	153	B	A	F
-OSUR	203	C	A	D
-PAA	56	A	A	A
-PAG	83	A	A	F
-PAM	77	A	D	B
-PB	40	C	D	A
-PCBK	2	D	F	C
-PDCE	30	D	C	A
-PDM	134	D	F	A
-PDS	43	C	F	A
-PES	43	D	F	B
-PF	162	D	D	D
-PGR	67	A	A	A
-PIR	176	A	A	A
-PLNT	83	F	C	D
-PMT	83	A	B	D
-PNFP	13	D	F	A
-PNW	77	C	C	B
-POR	77	B	C	F
-PPBI	39	D	C	F
-PPC	43	A	B	A
-PRAH	138	C	B	A
-PRGS	147	C	A	D
-PRU	83	A	B	D
-PRXL	138	B	A	A
-PSTG	24	F	C	A
-PTEN	43	C	F	A
-PVG	174	F	C	C
-PYPL	80	C	C	B
-PZZA	173	D	A	C
-RDN	83	B	B	D
-REN	30	C	B	B
-RES	83	F	C	A
-RF	13	B	D	B
-RHI	57	B	B	D
-RJF	15	D	F	D
-ROP	35	D	C	C
-RP	70	C	A	D
-RS	16	A	B	A
-SAIC	134	B	A	B
-SAVE	32	B	B	C
-SBCF	13	D	B	D
-SCCO	22	D	C	A
-SCHN	17	A	A	A
-SCHW	15	F	F	D
-SE	142	F	D	A
-SEAS	83	A	B	B
-SEIC	147	D	B	A
-SFLY	41	C	D	C
-SGMS	83	A	B	F
-SHLM	206	A	A	F
-SIVB	2	D	F	A
-SJR	203	C	D	B
-SKM	189	A	C	A
-SKYW	32	A	A	B
-SLM	239	D	F	F
-SMG	30	B	A	C
-SN	30	D	B	D
-SNX	70	A	A	B
-SO	77	C	C	A
-SPLS	151	A	A	C
-SQM	30	F	B	C
-SSNC	139	D	D	F
-STLD	17	B	A	A
-STT	2	D	D	A
-STX	24	A	A	A
-STZ	166	C	B	B
-SWKS	36	A	A	A
-SWX	41	B	B	C
-SXCP	48	A	D	A
-SYRG	30	D	B	B
-TCB	10	A	D	C
-TCBI	40	F	F	B
-TD	82	B	D	D
-TEL	147	B	C	D
-TJX	83	B	B	B
-TKR	157	C	B	C
-TLLP	56	C	B	B
-TMHC	62	A	A	C
-TMK	21	B	C	C
-TMST	17	C	C	F
-TNAV	57	F	A	B
-TOT	194	A	D	A
-TREX	83	D	A	B
-TRN	142	A	B	C
-TS	83	F	B	A
-TSCO	151	C	D	C
-TTC	206	C	A	D
-TTEK	70	B	B	F
-TTMI	147	A	A	C
-TV	83	D	F	D
-UBSI	13	F	D	F
-UCBI	13	D	C	D
-UE	218	F	C	D
-UHS	206	A	A	B
-UL	224	B	B	B
-ULTA	151	F	B	D
-UMPQ	2	A	F	B
-UNH	176	A	B	A
-UNM	167	A	F	C
-UNP	83	C	D	A
-URI	162	A	B	C
-USB	2	C	F	A
-USFD	162	B	C	B
-VEEV	80	F	A	D
-VIAV	83	B	B	F
-VNTV	80	D	C	A
-VOD	189	A	D	D
-VRSK	83	F	D	C
-VVC	41	B	B	C
-VVV	134	C	F	D
-WAB	142	C	D	C
-WAFD	18	C	D	C
-WAL	2	D	C	C
-WBA	230	B	B	A
-WBS	18	D	D	A
-WCG	176	A	A	F
-WEC	77	C	B	B
-WES	142	D	C	F
-WETF	15	D	C	A
-WFC	2	B	F	A
-WGL	41	C	D	F
-WHR	43	A	F	F
-WIN	57	A	D	F
-WM	66	C	B	C
-WNC	153	A	A	A
-WOR	157	A	A	C
-WPX	30	D	D	A
-WRB	67	B	D	A
-WTFC	10	C	D	A
-XEL	77	B	B	B
-XLNX	2	D	D	B
-YHOO	83	F	C	F
-ZION	2	B	C	A
-ZUMZ	230	B	D	D
+AAL	32	A	B	A	Transportation - Airline
+AAP	52	C	C	B	Automotive - Retail and Wholesale - Parts
+ABC	199	A	A	C	Medical - Dental Supplies
+ACM	146	A	A	D	Engineering - R and D Services
+AEE	77	B	B	D	Utility - Electric Power
+AEIS	24	D	B	C	Semiconductor Equipment - Wafer Fabrication
+AEL	21	A	F	D	Insurance - Life Insurance
+AKBA	73	F	D	C	Medical - Drugs
+ALB	73	D	B	A	Chemical - Diversified
+ALK	32	A	B	B	Transportation - Airline
+ALLE	141	D	C	B	Security and Safety Services
+AMD	65	F	A	D	Electronics - Semiconductors
+AMTD	15	D	D	B	Financial - Investment Bank
+APC	30	F	D	A	Oil and Gas - Exploration and Production - United States
+APLE	134	C	C	F	REIT and Equity Trust - Other
+APO	147	C	F	A	Financial - Investment Management
+ARNC	22	A	C	B	Mining - Non Ferrous
+ARRY	83	F	B	B	Medical - Biomedical and Genetics
+ARW	176	A	F	A	Electronics - Parts Distribution
+AU	174	A	A	F	Mining - Gold
+AXP	139	A	A	A	Financial - Miscellaneous Services
+AZO	52	A	A	B	Automotive - Retail and Wholesale - Parts
+BABY	147	B	A	D	Medical - Instruments
+BAC	2	C	B	A	Banks - Major Regional
+BAH	36	B	A	C	Government Services
+BATS	2	F	C	B	Securities and Exchanges
+BBG	30	D	C	D	Oil and Gas - Exploration and Production - United States
+BBT	2	D	D	F	Banks - Major Regional
+BDN	134	D	F	D	REIT and Equity Trust - Other
+BECN	83	B	A	F	Building Products - Retail
+BEL	77	D	A	B	Hotels and Motels
+BGS	162	C	B	C	Food - Miscellaneous
+BIG	83	A	F	C	Retail - Discount Stores
+BIIB	83	B	C	A	Medical - Biomedical and Genetics
+BITA	83	B	F	F	Internet - Delivery Services
+BKH	77	D	F	B	Utility - Electric Power
+BKS	151	A	A	D	Retail - Miscellaneous
+BKU	2	D	C	A	Banks - Major Regional
+BLUE	83	F	F	F	Medical - Biomedical and Genetics
+BMO	82	F	F	D	Banks - Foreign
+BNS	82	F	F	F	Banks - Foreign
+BOFI	2	A	C	C	Banks - West
+BOH	2	D	F	C	Banks - West
+BOX	80	F	B	D	Internet - Software
+BPFH	18	C	C	A	Banks - Northeast
+BPMC	83	F	F	F	Medical - Biomedical and Genetics
+BTI	83	D	B	D	Tobacco
+BW	206	A	D	F	Electronics - Power Generation
+BX	147	B	F	C	Financial - Investment Management
+BXS	13	D	D	C	Banks - Southeast
+C	2	B	C	F	Banks - Major Regional
+CAA	62	B	A	F	Building Products - Home Builders
+CAB	151	B	F	B	Retail - Miscellaneous
+CAG	162	C	C	F	Food - Miscellaneous
+CATY	2	C	C	C	Banks - West
+CBG	83	B	F	D	Real Estate - Operations
+CBI	59	A	B	D	Building Products - Heavy Construction
+CCJ	29	D	F	F	Mining - Miscellaneous
+CDEV	30	F	B	D	Oil and Gas - Exploration and Production - United States
+CDR	218	B	F	C	REIT and Equity Trust - Retail
+CE	73	B	B	D	Chemical - Diversified
+CFFN	39	F	F	D	Financial - Savings and Loan
+CFR	40	B	B	C	Banks - Southwest
+CHFC	10	F	F	B	Banks - Midwest
+CHH	77	D	C	B	Hotels and Motels
+CHSP	134	B	C	F	REIT and Equity Trust - Other
+CLB	83	F	C	B	Oil and Gas - Field Services
+CLF	13	A	A	A	Mining - Iron
+CM	82	C	F	D	Banks - Foreign
+CMA	2	D	D	F	Banks - Major Regional
+CME	2	F	C	F	Securities and Exchanges
+CNHI	23	B	D	C	Automotive - Foreign
+CNP	77	C	B	C	Utility - Electric Power
+CNX	48	B	B	B	Coal
+COLB	2	C	D	B	Banks - West
+COLL	73	F	D	C	Medical - Drugs
+CORE	192	C	B	B	Business - Services
+COUP	80	F	D	F	Internet - Software
+CPB	162	D	A	A	Food - Miscellaneous
+CRZO	30	D	B	B	Oil and Gas - Exploration and Production - United States
+CS	82	B	F	D	Banks - Foreign
+CSFL	13	D	B	D	Banks - Southeast
+CTAS	176	D	B	D	Uniform and Related
+CTRE	134	D	A	D	REIT and Equity Trust - Other
+CTSH	70	B	B	C	Business - Software Services
+CUDA	134	D	A	B	Computers - IT Services
+CVRR	77	A	A	C	Oil and Gas - Refining and Marketing - Master Limited Partnerships
+CW	189	B	A	A	Aerospace - Defense Equipment
+DCI	70	C	A	F	Pollution Control
+DCT	134	F	D	A	REIT and Equity Trust - Other
+DGX	194	B	C	B	Medical - Outpatient and Home Healthcare
+DHI	62	A	A	A	Building Products - Home Builders
+DLTR	83	B	C	B	Retail - Discount Stores
+DNOW	52	B	A	D	Oil and Gas - Mechanical and and Equitment
+DRH	134	B	C	F	REIT and Equity Trust - Other
+ELS	224	F	C	F	REIT and Equity Trust - Residential
+ENB	142	C	D	B	Oil and Gas - Production and Pipelines
+EPR	218	D	D	C	REIT and Equity Trust - Retail
+EQT	30	C	C	A	Oil and Gas - Exploration and Production - United States
+ETFC	15	C	F	B	Financial - Investment Bank
+EV	147	C	D	C	Financial - Investment Management
+EWBC	2	B	D	C	Banks - West
+EXC	77	A	B	D	Utility - Electric Power
+FAST	83	D	C	A	Building Products - Retail
+FB	83	D	A	C	Internet - Services
+FCF	18	D	C	F	Banks - Northeast
+FCPT	134	F	F	C	REIT and Equity Trust - Other
+FCX	22	A	A	C	Mining - Non Ferrous
+FDS	83	F	B	F	Business - Information Services
+FET	52	F	D	A	Oil and Gas - Mechanical and and Equitment
+FFBC	10	D	F	B	Banks - Midwest
+FFIN	40	F	D	F	Banks - Southwest
+FHB	2	F	F	C	Banks - West
+FHN	13	D	F	F	Banks - Southeast
+FISV	80	D	B	B	Financial Transaction Services
+FITB	2	C	F	B	Banks - Major Regional
+FL	230	A	D	C	Retail - Apparel and Shoes
+FMC	73	D	C	F	Chemical - Diversified
+FNGN	139	F	B	D	Financial - Miscellaneous Services
+FOSL	230	A	F	F	Retail - Apparel and Shoes
+FOXA	67	B	B	C	Film and Television Production and Distribution
+FRC	2	D	C	A	Banks - West
+FRGI	173	A	A	C	Retail - Restaurants
+FULT	18	D	D	A	Banks - Northeast
+GBCI	2	D	F	D	Banks - West
+GEO	134	C	F	B	REIT and Equity Trust - Other
+GGG	35	D	B	C	Manufacturing - General Industrial
+GLW	83	A	F	A	Communication - Components
+GM	59	A	B	B	Automotive - Domestic
+GOGL	206	F	B	B	Transportation - Shipping
+GOOGL	83	C	A	C	Internet - Services
+GPS	230	A	D	B	Retail - Apparel and Shoes
+GSK	220	A	C	B	Large Cap Pharmaceuticals
+GWB	18	C	D	D	Banks - Northeast
+H	77	C	B	B	Hotels and Motels
+HAL	83	F	F	A	Oil and Gas - Field Services
+HBAN	10	C	F	C	Banks - Midwest
+HCLP	29	F	F	A	Mining - Miscellaneous
+HE	77	B	B	C	Utility - Electric Power
+HEES	62	A	C	C	Manufacturing - Construction and Mining
+HELE	218	B	B	B	Cosmetics
+HIG	83	A	C	A	Insurance - Multi line
+HII	49	A	B	B	Aerospace - Defense
+HK	30	B	F	C	Oil and Gas - Exploration and Production - United States
+HMHC	192	C	C	F	Business - Services
+HOMB	13	F	F	C	Banks - Southeast
+HP	43	D	F	A	Oil and Gas - Drilling
+HPE	83	A	C	B	Computer - Integrated Systems
+HRC	203	A	A	D	Medical - Products
+HRS	174	B	C	C	Wireless Equipment
+HSBC	82	F	F	B	Banks - Foreign
+HTGC	134	C	D	A	Financial - SBIC & Commercial Industry
+HTH	13	C	F	F	Banks - Southeast
+INCR	138	C	B	C	Medical Services
+INFO	83	F	A	D	Business - Information Services
+INGR	162	B	A	B	Food - Miscellaneous
+INN	134	B	D	F	REIT and Equity Trust - Other
+IP	51	A	C	F	Paper and Related Products
+IPGP	43	C	B	D	Lasers Systems and Components
+IPHI	70	F	A	B	Semiconductor - Analog and Mixed
+IPXL	155	A	A	F	Medical - Generic Drugs
+ISBC	39	C	C	D	Financial - Savings and Loan
+ISIL	11	F	B	B	Semiconductor - General
+IT	83	D	A	C	Consulting Services
+ITW	35	D	B	B	Manufacturing - General Industrial
+JEC	146	B	A	D	Engineering - R and D Services
+JPM	2	F	F	C	Banks - Major Regional
+KEY	2	D	F	B	Banks - Major Regional
+KEYS	153	B	C	C	Electronics - Measuring Instruments
+KMT	24	D	B	C	Manufacturing - Tools & Related Products
+KND	194	A	B	D	Medical - Nursing Homes
+KORS	229	A	D	C	Textile - Apparel
+KOS	83	D	F	A	Oil and Gas - Exploration and Production - International
+KRA	134	A	A	B	Chemical - Specialty
+KRNT	43	F	D	B	Commercial Printing
+LBTYA	203	B	D	F	Cable Television
+LCI	73	A	C	B	Medical - Drugs
+LFL	32	B	C	B	Transportation - Airline
+LGF.A	67	B	D	C	Film and Television Production and Distribution
+LHO	134	B	C	F	REIT and Equity Trust - Other
+LII	24	C	A	C	Building Products - Air Conditioner and Heating
+LL	83	F	A	F	Building Products - Retail
+LLTC	11	F	B	C	Semiconductor - General
+LLY	220	B	C	C	Large Cap Pharmaceuticals
+LNC	21	A	D	D	Insurance - Life Insurance
+LOCO	173	A	B	B	Retail - Restaurants
+LPI	30	F	A	A	Oil and Gas - Exploration and Production - United States
+LPLA	15	B	D	C	Financial - Investment Bank
+LPX	83	B	A	D	Building Products - Wood
+LRCX	24	B	A	A	Semiconductor Equipment - Wafer Fabrication
+LSTR	226	B	A	B	Transportation - Truck
+LULU	229	F	F	B	Textile - Apparel
+LUV	32	A	A	A	Transportation - Airline
+LYB	73	A	B	B	Chemical - Diversified
+MAIN	134	F	F	B	Financial - SBIC & Commercial Industry
+MAR	77	D	C	D	Hotels and Motels
+MB	80	F	A	F	Internet - Software
+MBFI	18	C	F	B	Banks - Northeast
+MC	15	B	B	B	Financial - Investment Bank
+MDC	62	B	C	B	Building Products - Home Builders
+MDP	83	C	A	B	Publishing - Periodicals
+MEET	83	B	D	B	Internet - Services
+MFC	21	A	D	F	Insurance - Life Insurance
+MGM	157	C	B	C	Gaming
+MKSI	32	C	A	A	Electronics - Manufacturing Machinery
+MMP	56	D	D	D	Oil and Gas - Production Pipeline - MLB
+MNTA	83	F	A	F	Medical - Biomedical and Genetics
+MOH	176	A	A	A	Medical - HMOs
+MON	83	C	A	A	Agriculture - Products
+MRC	83	C	A	D	Steel - Pipe and Tube
+MSFT	147	C	A	A	Computer - Software
+MSM	142	C	A	B	Industrial Services
+MTB	2	D	C	A	Banks - Major Regional
+MTDR	30	D	A	A	Oil and Gas - Exploration and Production - United States
+NCMI	176	C	B	B	Advertising and Marketing
+NDSN	35	D	A	D	Manufacturing - General Industrial
+NEE	77	C	C	A	Utility - Electric Power
+NGG	77	B	C	D	Utility - Electric Power
+NGVT	134	D	A	B	Chemical - Specialty
+NLNK	83	F	D	C	Medical - Biomedical and Genetics
+NOC	49	C	D	B	Aerospace - Defense
+NR	83	C	D	A	Oil and Gas - Field Services
+NSA	134	D	C	F	REIT and Equity Trust - Other
+NUE	17	B	A	A	Steel - Producers
+NVDA	11	F	A	F	Semiconductor - General
+NYRT	134	F	C	D	REIT and Equity Trust - Other
+OCLR	2	D	D	A	Fiber Optics
+ONB	10	D	F	F	Banks - Midwest
+OSK	153	B	A	F	Automotive - Original Equipment
+OSUR	203	C	A	D	Medical - Products
+PAA	56	A	A	A	Oil and Gas - Production Pipeline - MLB
+PAG	83	A	A	F	Automotive - Retail and Whole Sales
+PAM	77	A	D	B	Utility - Electric Power
+PB	40	C	D	A	Banks - Southwest
+PCBK	2	D	F	C	Banks - West
+PDCE	30	D	C	A	Oil and Gas - Exploration and Production - United States
+PDM	134	D	F	A	REIT and Equity Trust - Other
+PDS	43	C	F	A	Oil and Gas - Drilling
+PES	43	D	F	B	Oil and Gas - Drilling
+PF	162	D	D	D	Food - Miscellaneous
+PGR	67	A	A	A	Insurance - Property and Casualty
+PIR	176	A	A	A	Retail - Home Furnishings
+PLNT	83	F	C	D	Leisure and Recreation Services
+PMT	83	A	B	D	Real Estate - Operations
+PNFP	13	D	F	A	Banks - Southeast
+PNW	77	C	C	B	Utility - Electric Power
+POR	77	B	C	F	Utility - Electric Power
+PPBI	39	D	C	F	Financial - Savings and Loan
+PPC	43	A	B	A	Food - Meat Products
+PRAH	138	C	B	A	Medical Services
+PRGS	147	C	A	D	Computer - Software
+PRU	83	A	B	D	Insurance - Multi line
+PRXL	138	B	A	A	Medical Services
+PSTG	24	F	C	A	Computer- Storage Devices
+PTEN	43	C	F	A	Oil and Gas - Drilling
+PVG	174	F	C	C	Mining - Gold
+PYPL	80	C	C	B	Internet - Software
+PZZA	173	D	A	C	Retail - Restaurants
+RDN	83	B	B	D	Insurance - Multi line
+REN	30	C	B	B	Oil and Gas - Exploration and Production - United States
+RES	83	F	C	A	Oil and Gas - Field Services
+RF	13	B	D	B	Banks - Southeast
+RHI	57	B	B	D	Staffing Firms
+RJF	15	D	F	D	Financial - Investment Bank
+ROP	35	D	C	C	Manufacturing - General Industrial
+RP	70	C	A	D	Business - Software Services
+RS	16	A	B	A	Metal Products - Distribution
+SAIC	134	B	A	B	Computers - IT Services
+SAVE	32	B	B	C	Transportation - Airline
+SBCF	13	D	B	D	Banks - Southeast
+SCCO	22	D	C	A	Mining - Non Ferrous
+SCHN	17	A	A	A	Steel - Producers
+SCHW	15	F	F	D	Financial - Investment Bank
+SE	142	F	D	A	Oil and Gas - Production and Pipelines
+SEAS	83	A	B	B	Leisure and Recreation Services
+SEIC	147	D	B	A	Financial - Investment Management
+SFLY	41	C	D	C	Internet - Content
+SGMS	83	A	B	F	Computer - Services
+SHLM	206	A	A	F	Chemical - Plastic
+SIVB	2	D	F	A	Banks - West
+SJR	203	C	D	B	Cable Television
+SKM	189	A	C	A	Wireless Non-US
+SKYW	32	A	A	B	Transportation - Airline
+SLM	239	D	F	F	Financial - Consumer Loans
+SMG	30	B	A	C	Fertilizers
+SN	30	D	B	D	Oil and Gas - Exploration and Production - United States
+SNX	70	A	A	B	Business - Software Services
+SO	77	C	C	A	Utility - Electric Power
+SPLS	151	A	A	C	Retail - Miscellaneous
+SQM	30	F	B	C	Fertilizers
+SSNC	139	D	D	F	Financial - Miscellaneous Services
+STLD	17	B	A	A	Steel - Producers
+STT	2	D	D	A	Banks - Major Regional
+STX	24	A	A	A	Computer- Storage Devices
+STZ	166	C	B	B	Beverages - Alcohol
+SWKS	36	A	A	A	Semiconductors - Radio Frequency
+SWX	41	B	B	C	Utility - Gas Distribution
+SXCP	48	A	D	A	Coal
+SYRG	30	D	B	B	Oil and Gas - Exploration and Production - United States
+TCB	10	A	D	C	Banks - Midwest
+TCBI	40	F	F	B	Banks - Southwest
+TD	82	B	D	D	Banks - Foreign
+TEL	147	B	C	D	Electronics - Miscellaneous Components
+TJX	83	B	B	B	Retail - Discount Stores
+TKR	157	C	B	C	Metal Products - Procurement and Fabrication
+TLLP	56	C	B	B	Oil and Gas - Production Pipeline - MLB
+TMHC	62	A	A	C	Building Products - Home Builders
+TMK	21	B	C	C	Insurance - Life Insurance
+TMST	17	C	C	F	Steel - Producers
+TNAV	57	F	A	B	Wireless National
+TOT	194	A	D	A	Oil and Gas - Integrated - International
+TREX	83	D	A	B	Building Products - Wood
+TRN	142	A	B	C	Transportation - Equipment and Leasing
+TS	83	F	B	A	Steel - Pipe and Tube
+TSCO	151	C	D	C	Retail - Miscellaneous
+TTC	206	C	A	D	Tools - Handheld
+TTEK	70	B	B	F	Pollution Control
+TTMI	147	A	A	C	Electronics - Miscellaneous Components
+TV	83	D	F	D	Broadcast Radio and Television
+UBSI	13	F	D	F	Banks - Southeast
+UCBI	13	D	C	D	Banks - Southeast
+UE	218	F	C	D	REIT and Equity Trust - Retail
+UHS	206	A	A	B	Medical - Hospital
+UL	224	B	B	B	Soap and Cleaning Materials
+ULTA	151	F	B	D	Retail - Miscellaneous
+UMPQ	2	A	F	B	Banks - West
+UNH	176	A	B	A	Medical - HMOs
+UNM	167	A	F	C	Insurance - Accident and Health
+UNP	83	C	D	A	Transportation - Rail
+URI	162	A	B	C	Building Products - Miscellaneous
+USB	2	C	F	A	Banks - Major Regional
+USFD	162	B	C	B	Food - Miscellaneous
+VEEV	80	F	A	D	Internet - Software
+VIAV	83	B	B	F	Communication - Components
+VNTV	80	D	C	A	Financial Transaction Services
+VOD	189	A	D	D	Wireless Non-US
+VRSK	83	F	D	C	Business - Information Services
+VVC	41	B	B	C	Utility - Gas Distribution
+VVV	134	C	F	D	Chemical - Specialty
+WAB	142	C	D	C	Transportation - Equipment and Leasing
+WAFD	18	C	D	C	Banks - Northeast
+WAL	2	D	C	C	Banks - West
+WBA	230	B	B	A	Retail - Pharmacies and Drug Stores
+WBS	18	D	D	A	Banks - Northeast
+WCG	176	A	A	F	Medical - HMOs
+WEC	77	C	B	B	Utility - Electric Power
+WES	142	D	C	F	Oil and Gas - Production and Pipelines
+WETF	15	D	C	A	Financial - Investment Bank
+WFC	2	B	F	A	Banks - Major Regional
+WGL	41	C	D	F	Utility - Gas Distribution
+WHR	43	A	F	F	Household Appliances
+WIN	57	A	D	F	Wireless National
+WM	66	C	B	C	Waste Removal Services
+WNC	153	A	A	A	Automotive - Original Equipment
+WOR	157	A	A	C	Metal Products - Procurement and Fabrication
+WPX	30	D	D	A	Oil and Gas - Exploration and Production - United States
+WRB	67	B	D	A	Insurance - Property and Casualty
+WTFC	10	C	D	A	Banks - Midwest
+XEL	77	B	B	B	Utility - Electric Power
+XLNX	2	D	D	B	Semiconductors - Programmable Logic
+YHOO	83	F	C	F	Internet - Services
+ZION	2	B	C	A	Banks - West
+ZUMZ	230	B	D	D	Retail - Apparel and Shoes

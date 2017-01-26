@@ -1,117 +1,101 @@
 %sector=rank_1
-AAOI	65	C	D	B
-ABB	171	B	C	D
-ACET	199	A	C	B
-ADTN	194	C	F	A
-AHL	67	A	F	C
-AKS	17	A	A	A
-APOG	2	C	C	D
-ARCH	48	C	A	D
-ARIA	73	F	D	C
-ARLP	48	A	A	A
-ASB	10	C	C	A
-ATU	24	D	C	C
-AVGO	65	D	A	F
-BAK	194	A	A	F
-BBY	24	A	B	B
-BCS	82	B	F	F
-BGFV	151	A	A	A
-BHP	29	C	C	A
-BOBE	173	C	D	D
-BPL	56	C	B	C
-BPOP	13	A	F	B
-BRS	32	C	D	D
-BUFF	237	F	A	A
-CAJ	52	A	D	F
-CBOE	2	F	B	C
-CCI	134	F	D	C
-CCRN	57	B	A	B
-CFG	39	C	F	A
-CHKP	147	F	D	A
-CINF	67	C	D	D
-CPA	32	D	B	C
-CPG	32	C	F	C
-CPRT	19	D	A	D
-CXW	134	B	C	B
-CZZ	83	A	B	A
-DB	82	A	C	C
-EGOV	80	D	A	B
-EXAS	83	F	D	A
-FBP	13	B	F	F
-FBR	51	C	C	B
-FCH	134	A	B	D
-FGEN	73	F	D	C
-FMBI	10	D	F	B
-FMSA	1	F	F	A
-FNSR	2	C	A	C
-FOXF	59	D	B	B
-FRAN	142	B	C	C
-FRTA	49	D	C	A
-GKOS	147	F	B	D
-GLOG	206	C	B	F
-GS	15	D	F	A
-GTN	83	A	B	F
-HBHC	13	C	C	B
-HBM	29	B	A	B
-HMC	23	A	C	F
-HOLX	147	B	B	D
-HOPE	2	D	F	D
-IIVI	171	C	B	C
-IRM	134	D	D	F
-JBL	59	A	A	F
-KRO	73	D	A	C
-L	83	A	D	F
-LPL	67	A	C	A
-LUK	73	B	A	F
-LZB	83	B	B	F
-MBT	189	A	D	B
-MDR	52	B	B	F
-MDU	41	C	C	D
-MEOH	73	C	B	B
-MKTX	2	F	D	B
-MOD	153	B	C	C
-MPEL	157	F	D	A
-MS	15	D	F	A
-MTZ	59	C	A	D
-MX	70	F	F	B
-NCS	162	A	B	B
-OLLI	237	F	F	A
-OMAM	147	B	D	B
-OZRK	13	D	D	B
-PINC	138	A	C	A
-PKX	17	A	B	F
-PLAY	173	C	A	D
-PLCE	230	B	A	D
-PNC	2	D	F	A
-PRI	21	B	D	F
-PVTB	10	D	D	B
-RE	67	A	D	B
-RIO	29	A	B	A
-ROCK	162	C	A	D
-RUSHA	83	A	B	C
-SCMP	73	A	A	C
-SEMG	142	D	C	D
-SF	15	C	C	C
-SNI	83	B	C	B
-SNV	13	C	D	B
-STAY	77	A	B	C
-STI	2	D	F	D
-STM	11	D	F	A
-STWD	83	D	F	F
-SU	12	C	D	C
-TECK	29	B	B	D
-THO	2	B	B	C
-TLRD	229	A	A	C
-TXN	11	D	B	A
-UAL	32	A	B	B
-UBS	82	F	F	B
-UCTT	32	B	B	B
-UMBF	10	C	D	F
-VR	52	B	B	B
-VSM	134	D	C	D
-WDC	24	B	A	A
-WING	173	F	C	B
-X	17	C	A	A
-YELP	41	F	A	F
-YY	41	A	A	B
-ZEN	80	F	C	F
+AAOI	65	C	D	B	Electronics - Semiconductors
+ABB	171	B	C	D	Manufacturing - Electronics
+ACET	199	A	C	B	Medical - Dental Supplies
+ADTN	194	C	F	A	Communication - Infrastructure
+AHL	67	A	F	C	Insurance - Property and Casualty
+AKS	17	A	A	A	Steel - Producers
+APOG	2	C	C	D	Glass Products
+ARCH	48	C	A	D	Coal
+ARIA	73	F	D	C	Medical - Drugs
+ARLP	48	A	A	A	Coal
+ASB	10	C	C	A	Banks - Midwest
+ATU	24	D	C	C	Manufacturing - Tools & Related Products
+AVGO	65	D	A	F	Electronics - Semiconductors
+BAK	194	A	A	F	Oil and Gas - Integrated - International
+BBY	24	A	B	B	Retail - Consumer Electronics
+BCS	82	B	F	F	Banks - Foreign
+BGFV	151	A	A	A	Retail - Miscellaneous
+BHP	29	C	C	A	Mining - Miscellaneous
+BOBE	173	C	D	D	Retail - Restaurants
+BPL	56	C	B	C	Oil and Gas - Production Pipeline - MLB
+BPOP	13	A	F	B	Banks - Southeast
+BRS	32	C	D	D	Transportation - Airline
+BUFF	237	F	A	A	Consumer Products - Staples
+CAJ	52	A	D	F	Office Automation and Equipment
+CBOE	2	F	B	C	Securities and Exchanges
+CCI	134	F	D	C	REIT and Equity Trust - Other
+CCRN	57	B	A	B	Staffing Firms
+CFG	39	C	F	A	Financial - Savings and Loan
+CHKP	147	F	D	A	Computer - Software
+CINF	67	C	D	D	Insurance - Property and Casualty
+CPA	32	D	B	C	Transportation - Airline
+CPG	32	C	F	C	Oil and Gas - Exploration and Production - Canadian
+CPRT	19	D	A	D	Auction and Valuation Services
+CXW	134	B	C	B	REIT and Equity Trust - Other
+CZZ	83	A	B	A	Agriculture - Products
+DB	82	A	C	C	Banks - Foreign
+EGOV	80	D	A	B	Internet - Software
+EXAS	83	F	D	A	Medical - Biomedical and Genetics
+FBP	13	B	F	F	Banks - Southeast
+FBR	51	C	C	B	Paper and Related Products
+FCH	134	A	B	D	REIT and Equity Trust - Other
+FGEN	73	F	D	C	Medical - Drugs
+FMBI	10	D	F	B	Banks - Midwest
+FMSA	1	F	F	A	Metal Products - Fasteners
+FNSR	2	C	A	C	Fiber Optics
+FOXF	59	D	B	B	Automotive - Domestic
+FRAN	142	B	C	C	Shoes and Retail Apparel
+FRTA	49	D	C	A	Building Products - Concrete and Aggregates
+GKOS	147	F	B	D	Medical - Instruments
+GLOG	206	C	B	F	Transportation - Shipping
+GS	15	D	F	A	Financial - Investment Bank
+GTN	83	A	B	F	Broadcast Radio and Television
+HBHC	13	C	C	B	Banks - Southeast
+HBM	29	B	A	B	Mining - Miscellaneous
+HMC	23	A	C	F	Automotive - Foreign
+HOLX	147	B	B	D	Medical - Instruments
+HOPE	2	D	F	D	Banks - West
+IIVI	171	C	B	C	Manufacturing - Electronics
+IRM	134	D	D	F	REIT and Equity Trust - Other
+JBL	59	A	A	F	Electronics - Manufacturing Services
+KRO	73	D	A	C	Chemical - Diversified
+L	83	A	D	F	Insurance - Multi line
+LPL	67	A	C	A	Computer - Peripheral Equipment
+LUK	73	B	A	F	Diversified Operations
+LZB	83	B	B	F	Furniture
+MBT	189	A	D	B	Wireless Non-US
+MDR	52	B	B	F	Oil and Gas - Mechanical and and Equitment
+MDU	41	C	C	D	Utility - Gas Distribution
+MEOH	73	C	B	B	Chemical - Diversified
+MKTX	2	F	D	B	Securities and Exchanges
+MOD	153	B	C	C	Automotive - Original Equipment
+MPEL	157	F	D	A	Gaming
+MS	15	D	F	A	Financial - Investment Bank
+MTZ	59	C	A	D	Building Products - Heavy Construction
+MX	70	F	F	B	Semiconductor - Analog and Mixed
+NCS	162	A	B	B	Building Products - Miscellaneous
+OLLI	237	F	F	A	Consumer Products - Staples
+OMAM	147	B	D	B	Financial - Investment Management
+OZRK	13	D	D	B	Banks - Southeast
+PINC	138	A	C	A	Medical Services
+PKX	17	A	B	F	Steel - Producers
+PLAY	173	C	A	D	Retail - Restaurants
+PLCE	230	B	A	D	Retail - Apparel and Shoes
+PNC	2	D	F	A	Banks - Major Regional
+PRI	21	B	D	F	Insurance - Life Insurance
+PVTB	10	D	D	B	Banks - Midwest
+RE	67	A	D	B	Insurance - Property and Casualty
+RIO	29	A	B	A	Mining - Miscellaneous
+ROCK	162	C	A	D	Building Products - Miscellaneous
+RUSHA	83	A	B	C	Automotive - Retail and Whole Sales
+SCMP	73	A	A	C	Medical - Drugs
+SEMG	142	D	C	D	Oil and Gas - Production and Pipelines
+SF	15	C	C	C	Financial - Investment Bank
+SNI	83	B	C	B	Broadcast Radio and Television
+SNV	13	C	D	B	Banks - Southeast
+STAY	77	A	B	C	Hotels and Motels
+STI	2	D	F	D	Banks - Major Regional
+STM	11	D	F	A	Semiconductor - General
+STWD	83	D	F	F	REIT and Equity Trust
+SU	12	C	D	C	Oil and Gas - Integrated - Canadian
