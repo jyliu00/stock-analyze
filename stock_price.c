@@ -1864,7 +1864,7 @@ static int date_is_trend_breakout(const char *symbol, const struct stock_price *
 
 	recent_high = get_2ndhigh(price2check);
 
-	for (i = 0; i < 60; i++) {
+	for (i = 0; i < 40; i++) {
 		const struct date_price *prev = yesterday + i;
 		if (get_2ndhigh(prev) > recent_high)
 			recent_high = get_2ndhigh(prev);
