@@ -1689,9 +1689,10 @@ static void __symbol_check_doublebottom_up(const char *symbol, const struct stoc
 
 	if (strong && !is_strong_up(price_history, price2check, NULL))
 		return;
-
+#if 0
 	if (!sma20_slope_is_shallow(prev))
 		return;
+#endif
 
 	if (!good_volume(price2check, prev->vma[VMA_20d]))
 		return;
