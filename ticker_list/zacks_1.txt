@@ -1,101 +1,114 @@
 %sector=rank_1
-CZZ	83	A	B	A	Agriculture - Products
-CPRT	19	D	A	D	Auction and Valuation Services
-FOXF	59	D	B	B	Automotive - Domestic
-HMC	23	A	C	F	Automotive - Foreign
-MOD	153	B	C	C	Automotive - Original Equipment
-RUSHA	83	A	B	C	Automotive - Retail and Whole Sales
-BCS	82	B	F	F	Banks - Foreign
-DB	82	A	C	C	Banks - Foreign
-PNC	2	D	F	A	Banks - Major Regional
-STI	2	D	F	D	Banks - Major Regional
-ASB	10	C	C	A	Banks - Midwest
-FMBI	10	D	F	B	Banks - Midwest
-PVTB	10	D	D	B	Banks - Midwest
-BPOP	13	A	F	B	Banks - Southeast
-FBP	13	B	F	F	Banks - Southeast
-HBHC	13	C	C	B	Banks - Southeast
-OZRK	13	D	D	B	Banks - Southeast
-SNV	13	C	D	B	Banks - Southeast
-HOPE	2	D	F	D	Banks - West
-GTN	83	A	B	F	Broadcast Radio and Television
-SNI	83	B	C	B	Broadcast Radio and Television
+HII	49	B	C	C	Aerospace - Defense
+CPRT	18	D	B	D	Auction and Valuation Services
+DLB	86	D	B	F	Audio Video Production
+FOXF	34	D	B	B	Automotive - Domestic
+HMC	23	A	C	D	Automotive - Foreign
+MOD	139	B	C	C	Automotive - Original Equipment
+MTOR	139	A	F	F	Automotive - Original Equipment
+RUSHA	86	A	B	D	Automotive - Retail and Whole Sales
+BCS	74	B	F	D	Banks - Foreign
+DB	74	A	C	C	Banks - Foreign
+HSBC	74	F	F	B	Banks - Foreign
+UBS	74	F	F	A	Banks - Foreign
+PNC	8	D	F	B	Banks - Major Regional
+STI	8	D	F	D	Banks - Major Regional
+ASB	8	C	C	A	Banks - Midwest
+FMBI	8	D	F	A	Banks - Midwest
+PVTB	8	D	D	A	Banks - Midwest
+UMBF	8	C	D	B	Banks - Midwest
+FBP	12	B	F	F	Banks - Southeast
+FCB	12	D	C	B	Banks - Southeast
+HBHC	12	C	C	B	Banks - Southeast
+OZRK	12	F	D	B	Banks - Southeast
+PNFP	12	F	F	A	Banks - Southeast
+SNV	12	C	D	B	Banks - Southeast
+HOPE	8	D	F	B	Banks - West
+PCBK	8	D	D	D	Banks - West
+WAL	8	D	C	D	Banks - West
+GTN	130	A	B	F	Broadcast Radio and Television
+SNI	130	B	C	C	Broadcast Radio and Television
 FRTA	49	D	C	A	Building Products - Concrete and Aggregates
-MTZ	59	C	A	D	Building Products - Heavy Construction
+TMHC	39	A	A	D	Building Products - Home Builders
 NCS	162	A	B	B	Building Products - Miscellaneous
-ROCK	162	C	A	D	Building Products - Miscellaneous
-KRO	73	D	A	C	Chemical - Diversified
-MEOH	73	C	B	B	Chemical - Diversified
-ARCH	48	C	A	D	Coal
-ARLP	48	A	A	A	Coal
-ADTN	194	C	F	A	Communication - Infrastructure
-LPL	67	A	C	A	Computer - Peripheral Equipment
-CHKP	147	F	D	A	Computer - Software
-BUFF	237	F	A	A	Consumer Products - Staples
-OLLI	237	F	F	A	Consumer Products - Staples
-LUK	73	B	A	F	Diversified Operations
-JBL	59	A	A	F	Electronics - Manufacturing Services
-AAOI	65	C	D	B	Electronics - Semiconductors
-AVGO	65	D	A	F	Electronics - Semiconductors
-FNSR	2	C	A	C	Fiber Optics
-GS	15	D	F	A	Financial - Investment Bank
-MS	15	D	F	A	Financial - Investment Bank
-SF	15	C	C	C	Financial - Investment Bank
-OMAM	147	B	D	B	Financial - Investment Management
-CFG	39	C	F	A	Financial - Savings and Loan
-LZB	83	B	B	F	Furniture
-MPEL	157	F	D	A	Gaming
-APOG	2	C	C	D	Glass Products
-STAY	77	A	B	C	Hotels and Motels
+ROCK	162	B	A	D	Building Products - Miscellaneous
+THO	2	B	B	C	Building Products - Mobile Homes and RV Builders
+KRO	74	D	A	D	Chemical - Diversified
+MEOH	74	C	B	C	Chemical - Diversified
+VSM	129	D	C	F	Chemical - Specialty
+ARLP	56	A	A	A	Coal
+LPL	68	A	C	A	Computer - Peripheral Equipment
+CHKP	141	F	D	A	Computer - Software
+STX	18	A	A	A	Computer- Storage Devices
+WDC	18	B	A	A	Computer- Storage Devices
+OLLI	228	F	F	A	Consumer Products - Staples
+LUK	74	B	A	F	Diversified Operations
+UCTT	30	B	B	B	Electronics - Manufacturing Machinery
+JBL	58	A	A	F	Electronics - Manufacturing Services
+AAOI	58	C	D	B	Electronics - Semiconductors
+AVGO	58	D	A	F	Electronics - Semiconductors
+FNSR	2	C	A	B	Fiber Optics
+GS	16	D	F	A	Financial - Investment Bank
+MS	16	D	F	B	Financial - Investment Bank
+RJF	16	D	F	B	Financial - Investment Bank
+SF	16	C	C	D	Financial - Investment Bank
+OMAM	175	B	D	A	Financial - Investment Management
+CFG	40	C	F	A	Financial - Savings and Loan
+LZB	86	B	B	D	Furniture
+MPEL	157	F	D	C	Gaming
+APOG	2	C	C	F	Glass Products
+STAY	78	B	B	C	Hotels and Motels
+VR	52	B	B	B	Insurance - Brokerage
 PRI	21	B	D	F	Insurance - Life Insurance
-L	83	A	D	F	Insurance - Multi line
-AHL	67	A	F	C	Insurance - Property and Casualty
-CINF	67	C	D	D	Insurance - Property and Casualty
-RE	67	A	D	B	Insurance - Property and Casualty
-EGOV	80	D	A	B	Internet - Software
-ABB	171	B	C	D	Manufacturing - Electronics
-IIVI	171	C	B	C	Manufacturing - Electronics
-ATU	24	D	C	C	Manufacturing - Tools & Related Products
-EXAS	83	F	D	A	Medical - Biomedical and Genetics
-ACET	199	A	C	B	Medical - Dental Supplies
-ARIA	73	F	D	C	Medical - Drugs
-FGEN	73	F	D	C	Medical - Drugs
-SCMP	73	A	A	C	Medical - Drugs
-GKOS	147	F	B	D	Medical - Instruments
-HOLX	147	B	B	D	Medical - Instruments
-PINC	138	A	C	A	Medical Services
+CINF	65	C	D	D	Insurance - Property and Casualty
+RE	65	A	D	C	Insurance - Property and Casualty
+YY	51	A	A	B	Internet - Content
+EGOV	85	D	A	C	Internet - Software
+ABB	173	B	C	C	Manufacturing - Electronics
+IIVI	173	C	B	A	Manufacturing - Electronics
+ATU	25	D	C	C	Manufacturing - Tools & Related Products
+EXAS	127	F	D	A	Medical - Biomedical and Genetics
+ACET	201	A	C	B	Medical - Dental Supplies
+SCMP	81	A	A	C	Medical - Drugs
+GKOS	150	F	B	F	Medical - Instruments
+CSII	193	F	A	C	Medical - Products
+OSUR	193	C	A	F	Medical - Products
+PINC	130	A	C	A	Medical Services
 FMSA	1	F	F	A	Metal Products - Fasteners
-BHP	29	C	C	A	Mining - Miscellaneous
-HBM	29	B	A	B	Mining - Miscellaneous
-RIO	29	A	B	A	Mining - Miscellaneous
+BHP	30	B	C	B	Mining - Miscellaneous
+HBM	30	B	A	B	Mining - Miscellaneous
+TECK	30	A	B	D	Mining - Miscellaneous
 CAJ	52	A	D	F	Office Automation and Equipment
-CPG	32	C	F	C	Oil and Gas - Exploration and Production - Canadian
-SU	12	C	D	C	Oil and Gas - Integrated - Canadian
-BAK	194	A	A	F	Oil and Gas - Integrated - International
-MDR	52	B	B	F	Oil and Gas - Mechanical and and Equitment
-SEMG	142	D	C	D	Oil and Gas - Production and Pipelines
-BPL	56	C	B	C	Oil and Gas - Production Pipeline - MLB
-FBR	51	C	C	B	Paper and Related Products
-STWD	83	D	F	F	REIT and Equity Trust
-CCI	134	F	D	C	REIT and Equity Trust - Other
-CXW	134	B	C	B	REIT and Equity Trust - Other
-FCH	134	A	B	D	REIT and Equity Trust - Other
-IRM	134	D	D	F	REIT and Equity Trust - Other
-PLCE	230	B	A	D	Retail - Apparel and Shoes
-BBY	24	A	B	B	Retail - Consumer Electronics
-BGFV	151	A	A	A	Retail - Miscellaneous
-BOBE	173	C	D	D	Retail - Restaurants
-PLAY	173	C	A	D	Retail - Restaurants
+CPG	42	C	F	C	Oil and Gas - Exploration and Production - Canadian
+RMP	34	D	C	F	Oil and Gas - Exploration and Production - United States
+SU	13	C	D	B	Oil and Gas - Integrated - Canadian
+BAK	196	A	A	D	Oil and Gas - Integrated - International
+DNOW	42	C	A	D	Oil and Gas - Mechanical and and Equitment
+MDR	42	B	B	F	Oil and Gas - Mechanical and and Equitment
+SEMG	149	D	C	D	Oil and Gas - Production and Pipelines
+FBR	40	C	C	C	Paper and Related Products
+STWD	84	D	F	F	REIT and Equity Trust
+CCI	128	F	D	D	REIT and Equity Trust - Other
+CXW	128	B	C	C	REIT and Equity Trust - Other
+GEO	128	D	F	C	REIT and Equity Trust - Other
+IRM	128	D	D	F	REIT and Equity Trust - Other
+PLCE	231	A	A	D	Retail - Apparel and Shoes
+BBY	25	A	B	D	Retail - Consumer Electronics
+BGFV	86	A	A	B	Retail - Miscellaneous
+BOBE	179	C	D	D	Retail - Restaurants
+PLAY	179	C	A	D	Retail - Restaurants
 CBOE	2	F	B	C	Securities and Exchanges
-MKTX	2	F	D	B	Securities and Exchanges
-MX	70	F	F	B	Semiconductor - Analog and Mixed
+MKTX	2	F	C	B	Securities and Exchanges
+MX	71	F	D	A	Semiconductor - Analog and Mixed
 STM	11	D	F	A	Semiconductor - General
-FRAN	142	B	C	C	Shoes and Retail Apparel
-CCRN	57	B	A	B	Staffing Firms
-AKS	17	A	A	A	Steel - Producers
-PKX	17	A	B	F	Steel - Producers
-BRS	32	C	D	D	Transportation - Airline
-CPA	32	D	B	C	Transportation - Airline
-GLOG	206	C	B	F	Transportation - Shipping
-MDU	41	C	C	D	Utility - Gas Distribution
-MBT	189	A	D	B	Wireless Non-US
+TXN	11	D	B	A	Semiconductor - General
+FRAN	141	A	C	C	Shoes and Retail Apparel
+CCRN	56	B	A	B	Staffing Firms
+X	24	C	A	A	Steel - Producers
+TLRD	230	A	A	C	Textile - Apparel
+BRS	30	C	D	D	Transportation - Airline
+CPA	30	C	B	C	Transportation - Airline
+UAL	30	A	B	D	Transportation - Airline
+GLOG	217	C	B	F	Transportation - Shipping
+MDU	45	C	B	D	Utility - Gas Distribution
+MBT	191	A	C	A	Wireless Non-US
