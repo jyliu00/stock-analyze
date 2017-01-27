@@ -1667,53 +1667,46 @@ static void symbol_check_mfi_doublebottom(const char *symbol, const struct stock
 static void __symbol_check_doublebottom_up(const char *symbol, const struct stock_price *price_history,
 					const struct date_price *price2check, int check_pullback, int strong)
 {
+	const struct date_price *prev;
 	struct stock_support sspt = { };
-	int i, j, cnt;
+	int i, j;
 
-	for (i = 0, cnt = 0; i < price_history->date_cnt; i++) {
-		const struct date_price *prev = &price_history->dateprice[i];
+	for (i = 0; i < price_history->date_cnt; i++) {
+		prev = &price_history->dateprice[i];
 
-		if (strcmp(price2check->date, prev->date) <= 0)
-			continue;
-
-		if (cnt >= 2)
+		if (strcmp(price2check->date, prev->date) > 0)
 			break;
+	}
 
-		cnt += 1;
+	if (i == price_history->date_cnt)
+		return;
 
-		if (price2check->close < prev->close)
-			continue;
+	if (price2check->close < prev->close)
+		return;
 
-		if (strong && !is_strong_up(price_history, price2check, NULL))
-			continue;
+	if (strong && !is_strong_up(price_history, price2check, NULL))
+		return;
 
-		if (!sma20_slope_is_shallow(prev))
-			continue;
+	if (!sma20_slope_is_shallow(prev))
+		return;
 
-		if ((price2check->close - prev->close) * 100 / prev->close < 2
-		    && (price2check->volume < prev->vma[VMA_10d] && price2check->volume < prev->vma[VMA_20d])
-		    && price2check->close < prev->high
-		   )
-			continue;
+	check_support(price_history, prev, &sspt);
 
-		check_support(price_history, prev, &sspt);
+	for (j = 0; j < sspt.date_nr; j++) {
+		if (sspt.is_doublebottom[j]) {
+			int datecnt = get_date_count(price_history, sspt.date[j], prev->date);
 
-		for (j = 0; j < sspt.date_nr; j++) {
-			if (sspt.is_doublebottom[j]) {
-				int datecnt = get_date_count(price_history, sspt.date[j], prev->date);
-
-				if (check_pullback && !datecnt_match_check_pullback(check_pullback, datecnt))
-					return;
-
-				anna_info("%s%-10s%s: date=%s/%s(%d days), %s; %s<sector=%s>%s.\n",
-						ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date, sspt.date[i], datecnt,
-						get_price_volume_change(price_history, price2check),
-						ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
-
-				selected_symbol_nr += 1;
-
+			if (check_pullback && !datecnt_match_check_pullback(check_pullback, datecnt))
 				return;
-			}
+
+			anna_info("%s%-10s%s: date=%s/%s(%d days), %s; %s<sector=%s>%s.\n",
+					ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date, sspt.date[i], datecnt,
+					get_price_volume_change(price_history, price2check),
+					ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+
+			selected_symbol_nr += 1;
+
+			break;
 		}
 	}
 }
