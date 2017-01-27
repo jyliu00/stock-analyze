@@ -1684,7 +1684,7 @@ static void __symbol_check_doublebottom_up(const char *symbol, const struct stoc
 	if (i == price_history->date_cnt)
 		return;
 
-	if (price2check->close < prev->close)
+	if (price2check->close < prev->close && price2check->candle_trend == CANDLE_TREND_BEAR)
 		return;
 
 	if (strong && !is_strong_up(price_history, price2check, NULL))
