@@ -1626,6 +1626,9 @@ static void symbol_check_mfi_doublebottom(const char *symbol, const struct stock
 	if (i == price_history->date_cnt)
 		return;
 
+	if (!sma20_slope_is_shallow(prev))
+		return;
+
 	for (i = 0; i < sspt.date_nr; i++) {
 		uint32_t sspt_mfi = sspt.mfi[i] ? sspt.mfi[i] : 1;
 		uint32_t high_250d, low_250d;
@@ -1688,6 +1691,9 @@ static void __symbol_check_doublebottom_up(const char *symbol, const struct stoc
 		return;
 
 	if (!sma20_slope_is_shallow(prev))
+		return;
+
+	if (!good_volume(price2check, prev->vma[VMA_20d]))
 		return;
 
 	check_support(price_history, prev, &sspt);
