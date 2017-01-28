@@ -3,7 +3,7 @@
 #include <string.h>
 
 uint32_t sr_height_margin = 80; /* support/resist height: 8% */
-uint32_t spt_pullback_margin = 60; /* 7.5% pullback */
+uint32_t spt_pullback_margin = 55; /* 7.5% pullback */
 uint32_t bo_sr_height_margin = 50;
 int fetch_source = FETCH_SOURCE_YAHOO;
 
