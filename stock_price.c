@@ -1923,12 +1923,9 @@ static void symbol_check_strong_uptrend(const char *symbol, const struct stock_p
 	for (i = 0, j = 0; i < price_history->date_cnt && j < 25; i++) {
 		const struct date_price *prev = &price_history->dateprice[i];
 		if (strcmp(price2check->date, prev->date) >0) {
-			if (yesterday == NULL) {
+			if (yesterday == NULL)
 				yesterday = prev;
-				if (!(price2check->close >= yesterday->sma[SMA_20d]
-				      && (yesterday->close < yesterday->sma[SMA_20d] || price2check->low < yesterday->sma[SMA_20d])))
-					return;
-			}
+
 			if (prev->close < prev->sma[SMA_20d]) {
 				if (days_below_sma20 < 0)
 					days_below_sma20 = 0;
@@ -1938,7 +1935,13 @@ static void symbol_check_strong_uptrend(const char *symbol, const struct stock_p
 		}
 	}
 
-	if (days_below_sma20 >= 0 && days_below_sma20 <= 3) {
+	if (!(price2check->close >= yesterday->sma[SMA_20d]
+	    && (yesterday->close < yesterday->sma[SMA_20d] || price2check->low < yesterday->sma[SMA_20d])))
+		return;
+
+	if (days_below_sma20 >= 0 && days_below_sma20 <= 5
+	    && (price2check->close < yesterday->sma[SMA_20d] || price2check->low < yesterday->sma[SMA_20d] || yesterday->close < yesterday->sma[SMA_20d]))
+	{
 		anna_info("%s%-10s%s: date=%s, days_below_sma20=%d, %s; %s<sector=%s>%s.\n",
 			ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
 			price2check->date, days_below_sma20, get_price_volume_change(price_history, price2check),
