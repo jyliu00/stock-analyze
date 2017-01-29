@@ -1913,6 +1913,40 @@ static void symbol_check_trend_breakout(const char *symbol, const struct stock_p
 	selected_symbol_nr += 1;
 }
 
+static void symbol_check_strong_uptrend(const char *symbol, const struct stock_price *price_history,
+					 const struct date_price *price2check)
+{
+	const struct date_price *yesterday = NULL;
+	int days_below_sma20 = -1;
+	int i, j;
+
+	for (i = 0, j = 0; i < price_history->date_cnt && j < 25; i++) {
+		const struct date_price *prev = &price_history->dateprice[i];
+		if (strcmp(price2check->date, prev->date) >0) {
+			if (yesterday == NULL) {
+				yesterday = prev;
+				if (!(price2check->close >= yesterday->sma[SMA_20d]
+				      && (yesterday->close < yesterday->sma[SMA_20d] || price2check->low < yesterday->sma[SMA_20d])))
+					return;
+			}
+			if (prev->close < prev->sma[SMA_20d]) {
+				if (days_below_sma20 < 0)
+					days_below_sma20 = 0;
+				days_below_sma20 += 1;
+			}
+			j += 1;
+		}
+	}
+
+	if (days_below_sma20 >= 0 && days_below_sma20 <= 3) {
+		anna_info("%s%-10s%s: date=%s, days_below_sma20=%d, %s; %s<sector=%s>%s.\n",
+			ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+			price2check->date, days_below_sma20, get_price_volume_change(price_history, price2check),
+			ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+		selected_symbol_nr += 1;
+	}
+}
+
 static void symbol_check_early_up(const char *symbol, const struct stock_price *price_history,
 				    const struct date_price *price2check)
 {
@@ -2483,6 +2517,11 @@ void stock_price_check_2nd_breakout(const char *group, const char *date, int sym
 void stock_price_check_trend_breakout(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_trend_breakout);
+}
+
+void stock_price_check_strong_uptrend(const char *group, const char *date, int symbols_nr, const char **symbols)
+{
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_strong_uptrend);
 }
 
 void stock_price_check_early_up(const char *group, const char *date, int symbols_nr, const char **symbols)
