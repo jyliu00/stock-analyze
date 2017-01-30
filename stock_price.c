@@ -703,8 +703,10 @@ int stock_price_from_file(const char *fname, struct stock_price *price)
 
 		if (str2date(cur->date, &year, &month, &mday) < 0)
 			anna_error("str2date(%s) failed\n", cur->date);
-		else
+		else {
+			snprintf(cur->date, sizeof(cur->date), "%04d-%02d-%02d", year, month, mday);
 			cur->wday = dayofweek(year, month, mday);
+		}
 
 		token = strtok(NULL, ",");
 		if (!token) continue;
@@ -1935,8 +1937,8 @@ static void symbol_check_strong_uptrend(const char *symbol, const struct stock_p
 		}
 	}
 
-	if (days_below_sma20 >= 0 && days_below_sma20 <= 5
-	    && (price2check->close < yesterday->sma[SMA_20d] || price2check->low < yesterday->sma[SMA_20d] || yesterday->close < yesterday->sma[SMA_20d]))
+	if (days_below_sma20 >= 0 && days_below_sma20 <= 4
+	    && (price2check->close > yesterday->sma[SMA_20d] && (price2check->low < yesterday->sma[SMA_20d] || yesterday->close < yesterday->sma[SMA_20d])))
 	{
 		anna_info("%s%-10s%s: date=%s, days_below_sma20=%d, %s; %s<sector=%s>%s.\n",
 			ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
