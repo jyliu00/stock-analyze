@@ -1935,10 +1935,6 @@ static void symbol_check_strong_uptrend(const char *symbol, const struct stock_p
 		}
 	}
 
-	if (!(price2check->close >= yesterday->sma[SMA_20d]
-	    && (yesterday->close < yesterday->sma[SMA_20d] || price2check->low < yesterday->sma[SMA_20d])))
-		return;
-
 	if (days_below_sma20 >= 0 && days_below_sma20 <= 5
 	    && (price2check->close < yesterday->sma[SMA_20d] || price2check->low < yesterday->sma[SMA_20d] || yesterday->close < yesterday->sma[SMA_20d]))
 	{
