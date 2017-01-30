@@ -1335,9 +1335,8 @@ static void symbol_check_volume_support(const char *symbol, const struct stock_p
 		if (strcmp(price2check->date, prev->date) <= 0)
 			continue;
 
-		/* volume > 1.6 times or < 1/1.6 times */
-		if (price2check->volume*17 > prev->vma[VMA_20d]*10
-		    && prev->vma[VMA_20d]*17 > price2check->volume*10)
+		/* volume > 1.7 times */
+		if (price2check->volume*17 > prev->vma[VMA_20d]*10)
 			return;
 
 		break;
