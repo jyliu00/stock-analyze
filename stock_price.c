@@ -866,7 +866,7 @@ static int date_is_downtrend(const struct stock_price *price_history, int idx, c
 	for (candle_falling_nr = 0; candle_falling_nr < max_sr_candle_nr && idx < price_history->date_cnt; idx++, candle_falling_nr++) {
 		const struct date_price *prev = &price_history->dateprice[idx];
 
-		if (prev->low < price2check->low) {
+		if (get_2ndhigh(prev) < get_2ndhigh(price2check)) {
 			if (candle_falling_nr < min_sr_candle_nr - 1)
 				is_falling = 0;
 			break;
@@ -1325,6 +1325,9 @@ static void symbol_check_volume_support(const char *symbol, const struct stock_p
 	struct stock_support sspt = { };
 	int i;
 
+	if (price2check->candle_trend == CANDLE_TREND_BEAR)
+		return;
+
 	check_support(price_history, price2check, &sspt);
 
 	if (!sspt.date_nr)
@@ -1335,11 +1338,12 @@ static void symbol_check_volume_support(const char *symbol, const struct stock_p
 		if (strcmp(price2check->date, prev->date) <= 0)
 			continue;
 
-		/* volume > 1.7 times */
-		if (price2check->volume*17 > prev->vma[VMA_20d]*10)
-			return;
+		/* volume >= 1.7 times */
+		if (price2check->volume*10 >= prev->vma[VMA_20d]*17
+		    || (prev->candle_trend == CANDLE_TREND_BEAR && prev->volume*100 > prev->vma[VMA_20d]*140 && price2check->volume*100 > prev->vma[VMA_20d]*140))
+			break;
 
-		break;
+		return;
 	}
 
 	anna_info("%s%-10s%s: date=%s, %s; is supported by %d dates:",
