@@ -859,24 +859,21 @@ static void date2sspt_copy(const struct date_price *prev, struct stock_support *
 
 static int date_is_downtrend(const struct stock_price *price_history, int idx, const struct date_price *price2check)
 {
-	int candle_falling_nr;
+	int i, low_days;
 	uint32_t max_down_diff = 0;
-	int is_falling = 1;
 
-	for (candle_falling_nr = 0; candle_falling_nr < max_sr_candle_nr && idx < price_history->date_cnt; idx++, candle_falling_nr++) {
+	for (i = low_days = 0; i < max_sr_candle_nr && idx < price_history->date_cnt; idx++, i++) {
 		const struct date_price *prev = &price_history->dateprice[idx];
 
-		if (get_2ndhigh(prev) < get_2ndhigh(price2check)) {
-			if (candle_falling_nr < min_sr_candle_nr - 1)
-				is_falling = 0;
-			break;
+		if (get_2ndhigh(prev) > get_2ndhigh(price2check)) {
+			low_days += 1;
 		}
 
 		if (prev->high > price2check->low && prev->high - price2check->low > max_down_diff)
 			max_down_diff = prev->high - price2check->low;
 	}
 
-	if (!is_falling || (price2check->low && max_down_diff * 1000 / price2check->low < spt_pullback_margin))
+	if (low_days < max_sr_candle_nr - min_sr_candle_nr || (price2check->low && max_down_diff * 1000 / price2check->low < spt_pullback_margin))
 		return 0;
 
 	return 1;
@@ -884,19 +881,15 @@ static int date_is_downtrend(const struct stock_price *price_history, int idx, c
 
 static int date_is_uptrend(const struct stock_price *price_history, int idx, const struct date_price *price2check)
 {
-	int candle_rising_nr;
+	int i, low_days;
 	uint32_t max_up_diff = 0;
-	int is_rising = 1;
 	const struct date_price *lowest_date = NULL;
 
-	for (candle_rising_nr = 0; candle_rising_nr < max_sr_candle_nr && idx < price_history->date_cnt; idx++, candle_rising_nr++) {
+	for (i = low_days = 0; i < max_sr_candle_nr && idx < price_history->date_cnt; idx++, i++) {
 		const struct date_price *prev = &price_history->dateprice[idx];
 
-		if (prev->close > price2check->close) {
-			if (candle_rising_nr < min_sr_candle_nr - 1)
-				is_rising = 0;
-			break;
-		}
+		if (get_2ndhigh(prev) > get_2ndhigh(price2check))
+			low_days += 1;
 
 		if (prev->low < price2check->high && price2check->high - prev->low > max_up_diff) {
 			max_up_diff = price2check->high - prev->low;
@@ -904,7 +897,7 @@ static int date_is_uptrend(const struct stock_price *price_history, int idx, con
 		}
 	}
 
-	if (!is_rising || !lowest_date || (max_up_diff * 1000 / get_2ndlow(lowest_date) < bo_sr_height_margin))
+	if (low_days > min_sr_candle_nr || !lowest_date || (max_up_diff * 1000 / get_2ndlow(lowest_date) < bo_sr_height_margin))
 		return 0;
 
 	return 1;
@@ -1325,7 +1318,8 @@ static void symbol_check_volume_support(const char *symbol, const struct stock_p
 	struct stock_support sspt = { };
 	int i;
 
-	if (price2check->candle_trend == CANDLE_TREND_BEAR)
+	if (price2check->high == price2check->low
+	    || (price2check->high - price2check->close) * 100 / (price2check->high - price2check->low) >= 25)
 		return;
 
 	check_support(price_history, price2check, &sspt);
@@ -1339,8 +1333,11 @@ static void symbol_check_volume_support(const char *symbol, const struct stock_p
 			continue;
 
 		/* volume >= 1.7 times */
-		if (price2check->volume*10 >= prev->vma[VMA_20d]*17
-		    || (prev->candle_trend == CANDLE_TREND_BEAR && prev->volume*100 > prev->vma[VMA_20d]*140 && price2check->volume*100 > prev->vma[VMA_20d]*140))
+		uint64_t today_volume = price2check->volume;
+		uint64_t prev_volume = prev->volume;
+		uint64_t vma20 = prev->vma[VMA_20d];
+		if (today_volume * 10 >= vma20 * 17
+		    || (prev->candle_trend == CANDLE_TREND_BEAR && prev_volume*10 > vma20*14 && today_volume*10 > vma20*14))
 			break;
 
 		return;
@@ -1427,8 +1424,7 @@ static int good_up_day(const struct date_price *price2check, const struct date_p
 	    || price2check->high < (yesterday + 2)->high)
 		return 0;
 
-	/* up tail should be <= %30 */
-	if ((price2check->high - get_2ndhigh(price2check)) * 100 / (price2check->high - price2check->low) > 30
+	if ((price2check->high - price2check->close) * 100 / (price2check->high - price2check->low) > 25
 	    && (price2check->low < yesterday->high || price2check->low < (yesterday+1)->high || price2check->low < (yesterday+2)->high))
 		return 0;
 
@@ -1479,16 +1475,13 @@ static void symbol_check_weeks_low_sma(const char *symbol, const struct stock_pr
 		if (!sma20_slope_is_shallow(prev))
 			return;
 
-		if (price2check->open < prev->sma[sma2check] && price2check->close > prev->sma[sma2check])
-			break;
-
 		if (price2check->low < prev->sma[sma2check] && price2check->close > prev->sma[sma2check])
 			break;
 
-		if (price2check->close <= prev->sma[sma2check] || prev->close > prev->sma[sma2check])
-			return;
+		if (price2check->close > prev->sma[sma2check] && prev->close < prev->sma[sma2check])
+			break;
 
-		break;
+		return;
 	}
 
 	if (weeks2check == 0)
@@ -1689,7 +1682,8 @@ static void __symbol_check_doublebottom_up(const char *symbol, const struct stoc
 	if (i == price_history->date_cnt)
 		return;
 
-	if (price2check->close < prev->close && price2check->candle_trend == CANDLE_TREND_BEAR)
+	if (price2check->high == price2check->low
+	    || ((price2check->high - price2check->close) * 100 / (price2check->high - price2check->low) >= 25))
 		return;
 
 	if (strong && !is_strong_up(price_history, price2check, NULL))
