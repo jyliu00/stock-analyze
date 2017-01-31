@@ -1,71 +1,114 @@
 %sector=rank_1
+CPRT	20	D	B	D	Auction and Valuation Services
 HMC	24	A	C	F	Automotive - Foreign
+MOD	141	B	C	D	Automotive - Original Equipment
 MTOR	141	A	F	D	Automotive - Original Equipment
 WNC	141	A	A	B	Automotive - Original Equipment
+RUSHA	69	A	B	B	Automotive - Retail and Whole Sales
 BCS	87	B	F	C	Banks - Foreign
 DB	87	A	C	C	Banks - Foreign
 ASB	2	C	C	B	Banks - Midwest
+FMBI	2	C	F	A	Banks - Midwest
 PVTB	2	D	D	C	Banks - Midwest
+UMBF	2	C	D	B	Banks - Midwest
+FCB	11	D	C	B	Banks - Southeast
 HBHC	11	C	C	A	Banks - Southeast
+PNFP	11	F	F	A	Banks - Southeast
 SNV	11	C	D	C	Banks - Southeast
+TCBI	43	F	F	D	Banks - Southwest
 EWBC	12	B	D	A	Banks - West
 STZ	173	D	C	B	Beverages - Alcohol
 GTN	78	A	B	D	Broadcast Radio and Television
+FRTA	54	C	C	C	Building Products - Concrete and Aggregates
 PHM	35	B	C	D	Building Products - Home Builders
+TMHC	35	A	A	D	Building Products - Home Builders
+NCS	173	A	B	C	Building Products - Miscellaneous
+THO	3	B	B	D	Building Products - Mobile Homes and RV Builders
+SNX	78	A	B	D	Business - Software Services
+KRO	71	D	A	D	Chemical - Diversified
 MEOH	71	D	D	A	Chemical - Diversified
+ARLP	64	A	A	C	Coal
 LOGI	34	D	C	A	Computer - Peripheral Equipment
+LPL	34	A	C	A	Computer - Peripheral Equipment
 CHKP	145	F	D	B	Computer - Software
+OTEX	145	D	D	B	Computer - Software
 STX	41	A	B	A	Computer- Storage Devices
 WDC	41	B	A	A	Computer- Storage Devices
 OLLI	94	F	F	B	Consumer Products - Staples
 LUK	69	B	A	F	Diversified Operations
+MKSI	25	C	B	F	Electronics - Manufacturing Machinery
+UCTT	25	B	B	D	Electronics - Manufacturing Machinery
 JBL	61	A	A	F	Electronics - Manufacturing Services
+OSIS	153	C	A	D	Electronics - Miscellaneous Components
 AAOI	74	C	D	A	Electronics - Semiconductors
 AVGO	74	D	A	F	Electronics - Semiconductors
 TER	94	B	A	A	Electronics - Testing Equipment
 FNSR	3	B	A	D	Fiber Optics
 GS	15	D	F	B	Financial - Investment Bank
 RJF	15	D	F	B	Financial - Investment Bank
+SF	15	C	C	D	Financial - Investment Bank
+OMAM	200	B	D	B	Financial - Investment Management
 LW	150	C	B	D	Food - Miscellaneous
 MPEL	186	F	D	C	Gaming
+APOG	3	C	C	D	Glass Products
+BEL	48	D	B	B	Hotels and Motels
 STAY	48	A	B	B	Hotels and Motels
 ROK	48	F	B	A	Industrial Automation and Robotics
+VR	57	B	B	C	Insurance - Brokerage
+PRI	35	B	D	F	Insurance - Life Insurance
 L	88	A	D	D	Insurance - Multi line
 ORI	88	C	B	F	Insurance - Multi line
 CINF	74	C	D	D	Insurance - Property and Casualty
 BABA	165	D	A	A	Internet - Commerce
+EGOV	94	F	A	D	Internet - Software
 ABB	181	B	C	C	Manufacturing - Electronics
+IIVI	181	C	A	A	Manufacturing - Electronics
+ACET	183	A	C	A	Medical - Dental Supplies
 SCMP	91	A	A	C	Medical - Drugs
+GKOS	157	F	B	D	Medical - Instruments
 PINC	88	A	C	A	Medical Services
 BHP	32	B	C	B	Mining - Miscellaneous
 HBM	32	B	A	B	Mining - Miscellaneous
 TECK	32	A	C	B	Mining - Miscellaneous
+CAJ	28	A	D	F	Office Automation and Equipment
 CPG	43	C	F	C	Oil and Gas - Exploration and Production - Canadian
+RMP	27	D	C	F	Oil and Gas - Exploration and Production - United States
 SU	12	C	D	F	Oil and Gas - Integrated - Canadian
+BAK	194	A	A	D	Oil and Gas - Integrated - International
 MDR	57	B	B	F	Oil and Gas - Mechanical and and Equitment
+DM	91	B	D	B	Oil and Gas - Production and Pipelines
 SE	91	F	D	C	Oil and Gas - Production and Pipelines
 SEMG	91	D	C	D	Oil and Gas - Production and Pipelines
 FBR	55	C	C	F	Paper and Related Products
+PMT	94	A	C	F	Real Estate - Operations
 NLY	91	B	F	F	REIT and Equity Trust
 STWD	91	D	F	F	REIT and Equity Trust
 CXW	138	B	C	D	REIT and Equity Trust - Other
 IRM	138	D	D	F	REIT and Equity Trust - Other
+PLCE	230	A	A	B	Retail - Apparel and Shoes
 BBY	94	A	B	D	Retail - Consumer Electronics
 BGFV	138	A	A	D	Retail - Miscellaneous
+BOBE	181	C	D	D	Retail - Restaurants
 PLAY	181	C	A	F	Retail - Restaurants
 CBOE	3	F	B	C	Securities and Exchanges
+MKTX	3	F	D	B	Securities and Exchanges
 MX	94	F	D	C	Semiconductor - Analog and Mixed
 CREE	17	D	C	A	Semiconductor - Discretes
+COHR	1	D	A	D	Semiconductor Equipment - Wafer Components
 NVDA	10	F	B	F	Semiconductor - General
 STM	10	D	F	A	Semiconductor - General
 TXN	10	D	A	A	Semiconductor - General
 FRAN	145	A	C	C	Shoes and Retail Apparel
+CCRN	64	B	A	B	Staffing Firms
 STLD	26	A	A	C	Steel - Producers
 X	26	C	A	A	Steel - Producers
 TLRD	228	A	A	D	Textile - Apparel
 BRS	39	C	D	C	Transportation - Airline
+CPA	39	C	B	C	Transportation - Airline
 UAL	39	A	B	A	Transportation - Airline
+GLOG	226	C	B	D	Transportation - Shipping
 AEE	88	B	B	F	Utility - Electric Power
 MDU	47	C	C	F	Utility - Gas Distribution
+ATKR	48	C	A	B	Wire and Cable Products
 MBT	159	A	C	C	Wireless Non-US
 TSU	159	C	F	A	Wireless Non-US
