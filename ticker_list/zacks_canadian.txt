@@ -1,4 +1,4 @@
-%sector=rank_canadian
+%sector=canada
 MDCA	176	B	F	D	Advertising and Marketing
 RBA	19	D	A	F	Auction and Valuation Services
 MGA	153	A	C	F	Automotive - Original Equipment
