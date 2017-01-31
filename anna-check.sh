@@ -20,4 +20,8 @@ printf "\n\x1b[33mDouble Bottom Up\x1b[0m:\n\n"
 
 anna -group=$1 check-dbup
 
+printf "\n\x1b[33mBreak Out\x1b[0m:\n\n"
+
+anna -group=$1 check-bo
+
 echo ""
