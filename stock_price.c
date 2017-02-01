@@ -862,10 +862,10 @@ static int date_is_downtrend(const struct stock_price *price_history, int idx, c
 	int i, low_days;
 	uint32_t max_down_diff = 0;
 
-	for (i = low_days = 0; i < max_sr_candle_nr && idx < price_history->date_cnt; idx++, i++) {
+	for (i = low_days = 0; i < 15 && idx < price_history->date_cnt; idx++, i++) {
 		const struct date_price *prev = &price_history->dateprice[idx];
 
-		if (get_2ndhigh(prev) > get_2ndlow(price2check)) {
+		if (get_2ndlow(prev) < get_2ndlow(price2check)) {
 			low_days += 1;
 		}
 
@@ -873,7 +873,7 @@ static int date_is_downtrend(const struct stock_price *price_history, int idx, c
 			max_down_diff = prev->high - price2check->low;
 	}
 
-	if (low_days < min_sr_candle_nr || (price2check->low && max_down_diff * 1000 / price2check->low < spt_pullback_margin))
+	if (low_days > min_sr_candle_nr || (price2check->low && max_down_diff * 1000 / price2check->low < spt_pullback_margin))
 		return 0;
 
 	return 1;
@@ -885,7 +885,7 @@ static int date_is_uptrend(const struct stock_price *price_history, int idx, con
 	uint32_t max_up_diff = 0;
 	const struct date_price *lowest_date = NULL;
 
-	for (i = low_days = 0; i < max_sr_candle_nr && idx < price_history->date_cnt; idx++, i++) {
+	for (i = low_days = 0; i < 15 && idx < price_history->date_cnt; idx++, i++) {
 		const struct date_price *prev = &price_history->dateprice[idx];
 
 		if (get_2ndhigh(prev) > get_2ndhigh(price2check))
