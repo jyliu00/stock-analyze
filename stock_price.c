@@ -865,7 +865,7 @@ static int date_is_downtrend(const struct stock_price *price_history, int idx, c
 	for (i = low_days = 0; i < max_sr_candle_nr && idx < price_history->date_cnt; idx++, i++) {
 		const struct date_price *prev = &price_history->dateprice[idx];
 
-		if (get_2ndhigh(prev) > get_2ndhigh(price2check)) {
+		if (get_2ndhigh(prev) > get_2ndlow(price2check)) {
 			low_days += 1;
 		}
 
@@ -873,7 +873,7 @@ static int date_is_downtrend(const struct stock_price *price_history, int idx, c
 			max_down_diff = prev->high - price2check->low;
 	}
 
-	if (low_days < max_sr_candle_nr - min_sr_candle_nr || (price2check->low && max_down_diff * 1000 / price2check->low < spt_pullback_margin))
+	if (low_days < min_sr_candle_nr || (price2check->low && max_down_diff * 1000 / price2check->low < spt_pullback_margin))
 		return 0;
 
 	return 1;
@@ -1316,11 +1316,8 @@ static void symbol_check_volume_support(const char *symbol, const struct stock_p
 					const struct date_price *price2check)
 {
 	struct stock_support sspt = { };
+	const struct date_price *yesterday = NULL;
 	int i;
-
-	if (price2check->high == price2check->low
-	    || (price2check->high - price2check->close) * 100 / (price2check->high - price2check->low) >= 25)
-		return;
 
 	check_support(price_history, price2check, &sspt);
 
@@ -1332,16 +1329,14 @@ static void symbol_check_volume_support(const char *symbol, const struct stock_p
 		if (strcmp(price2check->date, prev->date) <= 0)
 			continue;
 
-		/* volume >= 1.7 times */
-		uint64_t today_volume = price2check->volume;
-		uint64_t prev_volume = prev->volume;
-		uint64_t vma20 = prev->vma[VMA_20d];
-		if (today_volume * 10 >= vma20 * 17
-		    || (prev->candle_trend == CANDLE_TREND_BEAR && prev_volume*10 > vma20*14 && today_volume*10 > vma20*14))
-			break;
+		yesterday = prev;
 
-		return;
+		break;
 	}
+
+	/* volume > 1.6 times */
+	if (!yesterday || price2check->volume*10 < yesterday->vma[VMA_20d]*16)
+		return;
 
 	anna_info("%s%-10s%s: date=%s, %s; is supported by %d dates:",
 		  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
