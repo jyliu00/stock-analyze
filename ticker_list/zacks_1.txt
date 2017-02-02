@@ -1,114 +1,113 @@
 %sector=rank_1
-FOXF	34	D	B	D	Automotive - Domestic
+FOXF	32	D	B	F	Automotive - Domestic
 HMC	20	A	C	F	Automotive - Foreign
-MOD	88	B	C	D	Automotive - Original Equipment
-WNC	88	A	B	B	Automotive - Original Equipment
-RUSHA	72	A	B	B	Automotive - Retail and Whole Sales
-BCS	83	B	F	C	Banks - Foreign
-DB	83	A	C	B	Banks - Foreign
+MOD	139	B	C	D	Automotive - Original Equipment
+WNC	139	A	B	B	Automotive - Original Equipment
+RUSHA	75	A	B	C	Automotive - Retail and Whole Sales
+BCS	79	B	F	C	Banks - Foreign
+DB	79	A	C	B	Banks - Foreign
 ASB	3	C	C	B	Banks - Midwest
 FMBI	3	C	F	A	Banks - Midwest
-PVTB	3	D	D	C	Banks - Midwest
-UMBF	3	C	D	B	Banks - Midwest
-FBP	13	B	F	B	Banks - Southeast
-FCB	13	D	C	A	Banks - Southeast
-HBHC	13	C	C	A	Banks - Southeast
-PNFP	13	F	F	A	Banks - Southeast
-SNV	13	C	D	C	Banks - Southeast
-TCBI	60	F	F	D	Banks - Southwest
+PVTB	3	D	F	D	Banks - Midwest
+UMBF	3	C	D	A	Banks - Midwest
+FCB	15	D	D	A	Banks - Southeast
+HBHC	15	C	C	B	Banks - Southeast
+PNFP	15	F	F	A	Banks - Southeast
+SNV	15	C	D	B	Banks - Southeast
+TCBI	57	F	F	D	Banks - Southwest
 EWBC	14	B	D	A	Banks - West
-GTN	139	A	B	D	Broadcast Radio and Television
-FRTA	53	C	C	B	Building Products - Concrete and Aggregates
-MTZ	61	B	A	B	Building Products - Heavy Construction
-PHM	42	B	C	D	Building Products - Home Builders
-NCS	174	A	B	C	Building Products - Miscellaneous
-ROCK	174	B	A	F	Building Products - Miscellaneous
-PCH	72	D	A	D	Building Products - Wood
-KRO	75	D	A	C	Chemical - Diversified
-MEOH	75	D	D	A	Chemical - Diversified
-ARLP	85	A	A	A	Coal
-SHOR	139	C	B	B	Communication - Components
-LOGI	30	D	C	A	Computer - Peripheral Equipment
-LPL	30	A	C	A	Computer - Peripheral Equipment
-AZPN	143	F	F	A	Computer - Software
-CHKP	143	F	D	B	Computer - Software
-OTEX	143	D	D	B	Computer - Software
-STX	41	A	B	B	Computer- Storage Devices
-WDC	41	B	A	A	Computer- Storage Devices
-OLLI	90	F	F	C	Consumer Products - Staples
-LUK	72	B	A	F	Diversified Operations
-MKSI	30	C	B	D	Electronics - Manufacturing Machinery
-UCTT	30	B	B	C	Electronics - Manufacturing Machinery
-JBL	34	A	A	F	Electronics - Manufacturing Services
-AAOI	67	C	D	A	Electronics - Semiconductors
-AVGO	67	D	A	F	Electronics - Semiconductors
-TER	90	B	A	A	Electronics - Testing Equipment
-FNSR	3	B	A	C	Fiber Optics
-MSGN	30	B	B	F	Film and Television Production and Distribution
-GS	17	D	F	A	Financial - Investment Bank
-RJF	17	D	F	A	Financial - Investment Bank
-OMAM	203	B	D	B	Financial - Investment Management
-LW	148	C	B	D	Food - Miscellaneous
-DOOR	182	C	B	B	Furniture
-MPEL	174	F	D	B	Gaming
-APOG	3	C	C	F	Glass Products
-H	58	D	C	D	Hotels and Motels
-NANO	64	F	B	F	Instruments - Control
-VR	55	B	B	C	Insurance - Brokerage
-PRI	42	B	D	F	Insurance - Life Insurance
-CINF	78	C	D	D	Insurance - Property and Casualty
-RE	78	A	D	D	Insurance - Property and Casualty
-BABA	171	D	A	A	Internet - Commerce
-EGOV	136	D	A	D	Internet - Software
-ABB	181	B	C	C	Manufacturing - Electronics
-IIVI	181	C	A	A	Manufacturing - Electronics
-GTLS	40	D	A	F	Manufacturing - General Industrial
-EXAS	90	F	D	C	Medical - Biomedical and Genetics
-ACET	195	A	C	A	Medical - Dental Supplies
+GTN	94	A	B	D	Broadcast Radio and Television
+FRTA	50	C	C	C	Building Products - Concrete and Aggregates
+MTZ	63	B	A	B	Building Products - Heavy Construction
+PHM	57	B	C	D	Building Products - Home Builders
+NCS	206	A	B	A	Building Products - Miscellaneous
+PCH	75	D	A	D	Building Products - Wood
+SNX	83	A	B	C	Business - Software Services
+KRO	68	D	A	D	Chemical - Diversified
+MEOH	68	D	D	A	Chemical - Diversified
+VVV	77	C	F	A	Chemical - Specialty
+ARLP	57	A	A	A	Coal
+SHOR	94	C	B	B	Communication - Components
+ADTN	167	C	F	C	Communication - Infrastructure
+LOGI	29	D	D	A	Computer - Peripheral Equipment
+LPL	29	A	C	B	Computer - Peripheral Equipment
+CHKP	147	F	D	C	Computer - Software
+OTEX	147	D	F	A	Computer - Software
+STX	40	A	A	B	Computer- Storage Devices
+WDC	40	B	A	A	Computer- Storage Devices
+BUFF	94	F	A	D	Consumer Products - Staples
+LUK	66	B	A	F	Diversified Operations
+MKSI	29	C	B	D	Electronics - Manufacturing Machinery
+UCTT	29	B	B	C	Electronics - Manufacturing Machinery
+JBL	32	A	A	F	Electronics - Manufacturing Services
+AAOI	79	C	D	B	Electronics - Semiconductors
+AVGO	79	D	A	F	Electronics - Semiconductors
+TER	94	B	A	A	Electronics - Testing Equipment
+SQM	46	F	C	B	Fertilizers
+FNSR	4	B	A	F	Fiber Optics
+GS	18	D	F	A	Financial - Investment Bank
+RJF	18	D	F	A	Financial - Investment Bank
+OMAM	197	B	F	B	Financial - Investment Management
+LW	146	C	B	F	Food - Miscellaneous
+MPEL	189	F	D	B	Gaming
+APOG	4	C	C	D	Glass Products
+VR	52	B	B	C	Insurance - Brokerage
+L	91	A	D	C	Insurance - Multi line
+ORI	91	C	B	F	Insurance - Multi line
+CINF	87	C	D	D	Insurance - Property and Casualty
+MCY	87	D	B	D	Insurance - Property and Casualty
+BABA	172	F	A	B	Internet - Commerce
+EGOV	139	D	A	D	Internet - Software
+ABB	184	B	C	C	Manufacturing - Electronics
+IIVI	184	C	A	A	Manufacturing - Electronics
+GTLS	32	D	A	F	Manufacturing - General Industrial
+ACET	185	A	C	A	Medical - Dental Supplies
+AKAO	87	F	D	D	Medical - Drugs
+AKBA	87	F	D	F	Medical - Drugs
 LCI	87	A	C	D	Medical - Drugs
-SCMP	87	A	A	D	Medical - Drugs
-WCG	171	A	A	F	Medical - HMOs
-GKOS	153	F	B	F	Medical - Instruments
-PINC	90	A	C	C	Medical Services
-FMSA	2	F	F	B	Metal Products - Fasteners
-BHP	28	B	C	A	Mining - Miscellaneous
-HBM	28	B	A	D	Mining - Miscellaneous
-TECK	28	A	B	A	Mining - Miscellaneous
+SCMP	87	A	A	F	Medical - Drugs
+GKOS	154	F	B	D	Medical - Instruments
+PINC	91	A	C	C	Medical Services
+BHP	29	B	C	A	Mining - Miscellaneous
+HBM	29	B	A	B	Mining - Miscellaneous
+TECK	29	A	B	A	Mining - Miscellaneous
+CAJ	25	A	D	F	Office Automation and Equipment
+CPG	57	B	F	C	Oil and Gas - Exploration and Production - Canadian
 RMP	24	D	C	F	Oil and Gas - Exploration and Production - United States
-SU	10	B	D	D	Oil and Gas - Integrated - Canadian
-BAK	197	A	A	D	Oil and Gas - Integrated - International
-DNOW	46	C	A	C	Oil and Gas - Mechanical and and Equitment
-MDR	46	B	B	F	Oil and Gas - Mechanical and and Equitment
-DM	75	B	D	C	Oil and Gas - Production and Pipelines
-SEMG	75	D	C	D	Oil and Gas - Production and Pipelines
-FBR	45	B	C	D	Paper and Related Products
-CXW	139	B	C	D	REIT and Equity Trust - Other
-FCH	139	A	B	D	REIT and Equity Trust - Other
-IRM	139	D	D	F	REIT and Equity Trust - Other
-PLCE	228	A	A	C	Retail - Apparel and Shoes
-TLYS	228	B	B	B	Retail - Apparel and Shoes
-BBY	90	A	B	F	Retail - Consumer Electronics
-NSIT	224	A	F	C	Retail - Mail Order
-BGFV	143	A	A	C	Retail - Miscellaneous
-BOBE	186	C	D	F	Retail - Restaurants
-PLAY	186	C	A	F	Retail - Restaurants
-CBOE	3	F	B	C	Securities and Exchanges
-MKTX	3	F	D	B	Securities and Exchanges
-IPHI	62	F	B	D	Semiconductor - Analog and Mixed
-MX	62	F	D	D	Semiconductor - Analog and Mixed
+RES	94	F	C	A	Oil and Gas - Field Services
+SU	10	C	D	D	Oil and Gas - Integrated - Canadian
+BAK	201	A	A	D	Oil and Gas - Integrated - International
+MDR	52	B	B	F	Oil and Gas - Mechanical and and Equitment
+DM	77	B	C	C	Oil and Gas - Production and Pipelines
+SEMG	77	D	C	D	Oil and Gas - Production and Pipelines
+FBR	44	B	C	C	Paper and Related Products
+PMT	94	A	B	F	Real Estate - Operations
+CXW	141	B	C	F	REIT and Equity Trust - Other
+IRM	141	D	D	F	REIT and Equity Trust - Other
+PLCE	224	A	A	C	Retail - Apparel and Shoes
+TLYS	224	B	B	F	Retail - Apparel and Shoes
+NSIT	176	B	F	D	Retail - Mail Order
+BGFV	150	A	A	D	Retail - Miscellaneous
+BOBE	190	C	D	D	Retail - Restaurants
+PLAY	190	C	A	B	Retail - Restaurants
+WING	190	F	C	F	Retail - Restaurants
+CBOE	4	F	B	C	Securities and Exchanges
+MKTX	4	F	D	B	Securities and Exchanges
+MX	83	F	F	D	Semiconductor - Analog and Mixed
 COHR	1	D	A	D	Semiconductor Equipment - Wafer Components
-KLAC	10	C	C	A	Semiconductor Equipment - Wafer Fabrication
-TXN	9	D	A	A	Semiconductor - General
-FRAN	150	B	C	D	Shoes and Retail Apparel
-CCRN	67	B	A	D	Staffing Firms
-STLD	25	A	A	C	Steel - Producers
-X	25	C	A	A	Steel - Producers
-TLRD	219	A	A	F	Textile - Apparel
+AEIS	10	D	C	A	Semiconductor Equipment - Wafer Fabrication
+TXN	4	D	A	A	Semiconductor - General
+FRAN	161	A	C	F	Shoes and Retail Apparel
+CCRN	57	B	A	F	Staffing Firms
+STLD	21	A	A	D	Steel - Producers
+X	21	A	A	A	Steel - Producers
+TLRD	226	A	A	B	Textile - Apparel
 BRS	39	C	D	B	Transportation - Airline
-CPA	39	C	B	D	Transportation - Airline
+CPA	39	C	B	C	Transportation - Airline
 UAL	39	A	B	A	Transportation - Airline
-WAB	64	C	D	F	Transportation - Equipment and Leasing
-GLOG	220	C	B	F	Transportation - Shipping
-MDU	48	C	C	D	Utility - Gas Distribution
-ATKR	49	C	A	B	Wire and Cable Products
-MBT	168	A	C	C	Wireless Non-US
+WAB	67	C	D	F	Transportation - Equipment and Leasing
+MDU	40	C	B	C	Utility - Gas Distribution
+VVC	40	B	C	C	Utility - Gas Distribution
+ATKR	46	C	A	C	Wire and Cable Products
+BBRY	154	F	C	F	Wireless Non-US
+MBT	154	A	D	C	Wireless Non-US
