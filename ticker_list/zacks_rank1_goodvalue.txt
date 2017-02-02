@@ -1,0 +1,18 @@
+BAK	Oil and Gas - Integrated - International
+BGFV	Retail - Miscellaneous
+CCRN	Staffing Firms
+CXW	REIT and Equity Trust - Other
+FNSR	Fiber Optics
+FRAN	Shoes and Retail Apparel
+GTN	Broadcast Radio and Television
+HMC	Automotive - Foreign
+JBL	Electronics - Manufacturing Services
+LCI	Medical - Drugs
+LUK	Diversified Operations
+MDR	Oil and Gas - Mechanical and and Equitment
+MOD	Automotive - Original Equipment
+PHM	Building Products - Home Builders
+PMT	Real Estate - Operations
+SCMP	Medical - Drugs
+STLD	Steel - Producers
+TLYS	Retail - Apparel and Shoes
