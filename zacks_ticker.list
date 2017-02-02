@@ -1,7 +1,7 @@
 -include ticker_list/zacks_1.txt
-#-include ticker_list/zacks_2.txt
+-include ticker_list/zacks_2.txt
 -include ticker_list/zacks_canadian.txt
-#-include ticker_list/zacks_3.txt
+-include ticker_list/zacks_3.txt
 -include ticker_list/major_indices.txt
 -include ticker_list/zacks_top10.txt
 #-include ticker_list/zacks_focus_list.txt
