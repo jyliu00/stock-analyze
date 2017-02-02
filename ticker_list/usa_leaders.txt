@@ -1,6 +1,4 @@
 %sector=leaders
-FEYE
-PAYC
 AAPL
 GOOGL
 AMZN
