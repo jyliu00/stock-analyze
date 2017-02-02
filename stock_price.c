@@ -1818,12 +1818,6 @@ static void symbol_check_breakout(const char *symbol, const struct stock_price *
 	__symbol_check_breakout(symbol, price_history, price2check, 0, 0);
 }
 
-static void symbol_check_strong_breakout(const char *symbol, const struct stock_price *price_history,
-				 const struct date_price *price2check)
-{
-	__symbol_check_breakout(symbol, price_history, price2check, 1, 0);
-}
-
 static void symbol_check_2nd_breakout(const char *symbol, const struct stock_price *price_history,
 				 const struct date_price *price2check)
 {
@@ -1939,6 +1933,40 @@ static void symbol_check_strong_uptrend(const char *symbol, const struct stock_p
 		selected_symbol_nr += 1;
 	}
 }
+
+static void symbol_check_strong_breakout(const char *symbol, const struct stock_price *price_history,
+					 const struct date_price *price2check)
+{
+	int i, j;
+
+	/* must be bull bar */
+	if (price2check->close <= price2check->open)
+		return;
+
+	/* up tail <= 25% */
+	if ((price2check->high - price2check->close) * 100 / (price2check->high - price2check->low) > 25)
+		return;
+
+	for (i = j = 0; i < price_history->date_cnt && j < 10; i++) {
+		const struct date_price *prev = &price_history->dateprice[i];
+		if (strcmp(price2check->date, prev->date) > 0) {
+			if (get_2ndhigh(prev) > get_2ndlow(price2check))
+				break;
+			j += 1;
+		}
+	}
+
+	if (j < 10)
+		return;
+
+	anna_info("%s%-10s%s: date=%s, %s; %s<sector=%s>%s.\n",
+		ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+		price2check->date, get_price_volume_change(price_history, price2check),
+		ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+
+	selected_symbol_nr += 1;
+}
+
 
 static void symbol_check_early_up(const char *symbol, const struct stock_price *price_history,
 				    const struct date_price *price2check)
@@ -2497,11 +2525,6 @@ void stock_price_check_breakout(const char *group, const char *date, int symbols
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_breakout);
 }
 
-void stock_price_check_strong_breakout(const char *group, const char *date, int symbols_nr, const char **symbols)
-{
-	stock_price_check(group, date, symbols_nr, symbols, symbol_check_strong_breakout);
-}
-
 void stock_price_check_2nd_breakout(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_2nd_breakout);
@@ -2515,6 +2538,11 @@ void stock_price_check_trend_breakout(const char *group, const char *date, int s
 void stock_price_check_strong_uptrend(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_strong_uptrend);
+}
+
+void stock_price_check_strong_breakout(const char *group, const char *date, int symbols_nr, const char **symbols)
+{
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_strong_breakout);
 }
 
 void stock_price_check_early_up(const char *group, const char *date, int symbols_nr, const char **symbols)

@@ -46,7 +46,6 @@ enum
 	ACTION_CHECK_STRONG_DBUP, /* strong up from double bottom */
 	ACTION_CHECK_PB, /* pull back */
 	ACTION_CHECK_BO, /* break out */
-	ACTION_CHECK_STRONG_BO, /* strong break out */
 	ACTION_CHECK_2nd_BO, /* 2nd break out */
 	ACTION_CHECK_EARLY_UP, /* early up */
 	ACTION_CHECK_52W_LOWUP, /* up from 52w low */
@@ -59,6 +58,7 @@ enum
 	ACTION_CHECK_MOMENTUM,
 	ACTION_CHECK_TREND_BO, /* trendline breakout */
 	ACTION_CHECK_STRONG_UPTREND,
+	ACTION_CHECK_STRONG_BO,
 
 	ACTION_NR
 };
@@ -71,7 +71,7 @@ static void print_usage(void)
 	printf("               {fetch | fetch-rt | check-mmt | check-db | check-mfi-db | check-pullback-db | check-52w-db | "
 				"check-dbup | check-pullback-dbup | check-52w-dbup | check-strong-dbup | check-lvup | check-earlyup | check-52wlup | "
 				"check-spt | check-volume-spt | check-20d | check-30d | check-50d | check-60d | check-crawl20d | check-20dlow | check-50dlow | check-26w20dlow | check-26w50dlow | "
-				"check-10dup | check-20dup | check-50dup | check-200dup | check-pb | check-bo | check-2ndbo | check-trend-bo | check-strong-uptrend | check-wup | check-wrv | check-lv | check-chg} [symbol-1 symbol-2 ...]\n");
+				"check-10dup | check-20dup | check-50dup | check-200dup | check-pb | check-bo | check-2ndbo | check-trend-bo | check-strong-uptrend | check-strong-bo | check-wup | check-wrv | check-lv | check-chg} [symbol-1 symbol-2 ...]\n");
 }
 
 static int init_dirs(const char *group)
@@ -270,9 +270,6 @@ int main(int argc, const char **argv)
 			else if (strcmp(arg, "check-bo") == 0) {
 				action = ACTION_CHECK_BO;
 			}
-			else if (strcmp(arg, "check-strong-bo") == 0) {
-				action = ACTION_CHECK_STRONG_BO;
-			}
 			else if (strcmp(arg, "check-2ndbo") == 0) {
 				action = ACTION_CHECK_2nd_BO;
 			}
@@ -281,6 +278,9 @@ int main(int argc, const char **argv)
 			}
 			else if (strcmp(arg, "check-strong-uptrend") == 0) {
 				action = ACTION_CHECK_STRONG_UPTREND;
+			}
+			else if (strcmp(arg, "check-strong-bo") == 0) {
+				action = ACTION_CHECK_STRONG_BO;
 			}
 			else if (strcmp(arg, "check-wup") == 0) {
 				action = ACTION_CHECK_WUP;
@@ -455,10 +455,6 @@ int main(int argc, const char **argv)
 		stock_price_check_breakout(group, date, symbols_nr, (const char **)symbols);
 		break;
 
-	case ACTION_CHECK_STRONG_BO:
-		stock_price_check_strong_breakout(group, date, symbols_nr, (const char **)symbols);
-		break;
-
 	case ACTION_CHECK_2nd_BO:
 		stock_price_check_2nd_breakout(group, date, symbols_nr, (const char **)symbols);
 		break;
@@ -500,6 +496,10 @@ int main(int argc, const char **argv)
 		break;
 	case ACTION_CHECK_STRONG_UPTREND:
 		stock_price_check_strong_uptrend(group, date, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_STRONG_BO:
+		stock_price_check_strong_breakout(group, date, symbols_nr, (const char **)symbols);
 		break;
 	}
 
