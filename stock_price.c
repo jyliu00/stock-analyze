@@ -1937,6 +1937,7 @@ static void symbol_check_strong_uptrend(const char *symbol, const struct stock_p
 static void symbol_check_strong_breakout(const char *symbol, const struct stock_price *price_history,
 					 const struct date_price *price2check)
 {
+#define STRONG_BO_MAX_DAYS   9
 	int i, j;
 
 	/* must be bull bar */
@@ -1947,7 +1948,7 @@ static void symbol_check_strong_breakout(const char *symbol, const struct stock_
 	if ((price2check->high - price2check->close) * 100 / (price2check->high - price2check->low) > 25)
 		return;
 
-	for (i = j = 0; i < price_history->date_cnt && j < 10; i++) {
+	for (i = j = 0; i < price_history->date_cnt && j < STRONG_BO_MAX_DAYS; i++) {
 		const struct date_price *prev = &price_history->dateprice[i];
 		if (strcmp(price2check->date, prev->date) > 0) {
 			if (get_2ndhigh(prev) > get_2ndlow(price2check))
@@ -1956,7 +1957,7 @@ static void symbol_check_strong_breakout(const char *symbol, const struct stock_
 		}
 	}
 
-	if (j < 10)
+	if (j < STRONG_BO_MAX_DAYS)
 		return;
 
 	anna_info("%s%-10s%s: date=%s, %s; %s<sector=%s>%s.\n",
