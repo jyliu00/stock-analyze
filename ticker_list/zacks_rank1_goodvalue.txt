@@ -1,8 +1,7 @@
-BAK	Oil and Gas - Integrated - International
+ATKR	Wire and Cable Products
 BGFV	Retail - Miscellaneous
 CCRN	Staffing Firms
 CXW	REIT and Equity Trust - Other
-ESNT	Financial - Mortgage & Related Services
 FNSR	Fiber Optics
 FRAN	Shoes and Retail Apparel
 GTN	Broadcast Radio and Television
@@ -10,9 +9,9 @@ HMC	Automotive - Foreign
 JBL	Electronics - Manufacturing Services
 LUK	Diversified Operations
 MDR	Oil and Gas - Mechanical and and Equitment
-PHM	Building Products - Home Builders
+NCS	Building Products - Miscellaneous
 PLCE	Retail - Apparel and Shoes
-PMT	Real Estate - Operations
+ROCK	Building Products - Miscellaneous
 SCMP	Medical - Drugs
-STAY	Hotels and Motels
-VR	Insurance - Brokerage
+TLRD	Textile - Apparel
+WNC	Automotive - Original Equipment
