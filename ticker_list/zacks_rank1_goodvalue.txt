@@ -1,3 +1,4 @@
+%sector=rank1_goodvalue
 ATKR	Wire and Cable Products
 BGFV	Retail - Miscellaneous
 CCRN	Staffing Firms
