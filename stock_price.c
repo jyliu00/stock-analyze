@@ -1229,7 +1229,7 @@ static const char * get_price_volume_change(const struct stock_price *price_hist
 	if (!yesterday)
 		return "N/A";
 
-	for ( ; i < price_history->date_cnt && i < 250 && count_volume && count_price; i++) {
+	for ( ; i < price_history->date_cnt && i < 250 && (count_volume || count_price); i++) {
 		const struct date_price *prev = &price_history->dateprice[i];
 		if (count_volume) {
 			if (price2check->volume > prev->volume)
