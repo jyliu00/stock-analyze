@@ -1930,15 +1930,15 @@ static void symbol_check_strong_breakout(const char *symbol, const struct stock_
 					 const struct date_price *price2check)
 {
 #define STRONG_BO_MAX_DAYS   5
+	uint32_t price2check_2ndhigh = get_2ndhigh(price2check);
 	int i, j;
-	//int price_larger_days = 0;
 
 	/* must be bull bar */
 	if (price2check->close <= price2check->open)
 		return;
 
 	/* up tail <= 25% */
-	if ((price2check->high - price2check->close) * 100 / (price2check->high - price2check->low) > 25)
+	if ((price2check->high - price2check_2ndhigh) * 100 / (price2check->high - price2check->low) > 25)
 		return;
 
 	for (i = j = 0; i < price_history->date_cnt && j < STRONG_BO_MAX_DAYS; i++) {
@@ -1946,7 +1946,7 @@ static void symbol_check_strong_breakout(const char *symbol, const struct stock_
 		if (strcmp(price2check->date, prev->date) > 0) {
 			uint64_t prev_2ndhigh = get_2ndhigh(prev);
 			uint64_t price2check_2ndlow = get_2ndlow(price2check);
-			if (get_2ndhigh(price2check) < prev->high
+			if (price2check_2ndhigh < prev->high
 			    || (prev_2ndhigh > price2check_2ndlow
 				&& (prev_2ndhigh - price2check_2ndlow) * 10000 / price2check_2ndlow >= 50))
 			{
@@ -1958,20 +1958,7 @@ static void symbol_check_strong_breakout(const char *symbol, const struct stock_
 
 	if (j < STRONG_BO_MAX_DAYS)
 		return;
-#if 0
-	for (i = 0; i < price_history->date_cnt && i < 250; i++) {
-		const struct date_price *prev = &price_history->dateprice[i];
-		if (strcmp(price2check->date, prev->date) > 0) {
-			if (get_2ndhigh(price2check) >= get_2ndhigh(prev))
-				price_larger_days += 1;
-			else
-				break;
-		}
-	}
 
-	if (price_larger_days > 248)
-		return;
-#endif
 	anna_info("%s%-10s%s: date=%s, %s; %s<sector=%s>%s.\n",
 		ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
 		price2check->date, get_price_volume_change(price_history, price2check),
