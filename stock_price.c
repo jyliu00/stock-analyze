@@ -1962,7 +1962,7 @@ static void symbol_check_strong_breakout(const char *symbol, const struct stock_
 			uint64_t price2check_2ndlow = get_2ndlow(price2check);
 			if (price2check_2ndhigh < prev->high
 			    || (prev_2ndhigh > price2check_2ndlow
-				&& (prev_2ndhigh - price2check_2ndlow) * 10000 / price2check_2ndlow >= 70))
+				&& (prev_2ndhigh - price2check_2ndlow) * 10000 / prev_2ndhigh >= 70))
 			{
 				break;
 			}
