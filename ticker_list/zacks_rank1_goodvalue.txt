@@ -1,18 +1,18 @@
 %sector=rank1_goodvalue
-ATKR	Wire and Cable Products
 BGFV	Retail - Miscellaneous
 CCRN	Staffing Firms
+COT	Beverages - Soft drinks
 CXW	REIT and Equity Trust - Other
 FNSR	Fiber Optics
-FRAN	Shoes and Retail Apparel
 GTN	Broadcast Radio and Television
-HMC	Automotive - Foreign
 JBL	Electronics - Manufacturing Services
 LUK	Diversified Operations
 MDR	Oil and Gas - Mechanical and and Equitment
+MTZ	Building Products - Heavy Construction
 NCS	Building Products - Miscellaneous
+ORI	Insurance - Multi line
 PLCE	Retail - Apparel and Shoes
-ROCK	Building Products - Miscellaneous
+RUSHA	Automotive - Retail and Whole Sales
 SCMP	Medical - Drugs
-TLRD	Textile - Apparel
+WCG	Medical - HMOs
 WNC	Automotive - Original Equipment
