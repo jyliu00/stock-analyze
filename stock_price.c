@@ -1231,6 +1231,9 @@ static const char * get_price_volume_change(const struct stock_price *price_hist
 
 	for ( ; i < price_history->date_cnt && i < 250 && (count_volume || count_price); i++) {
 		const struct date_price *prev = &price_history->dateprice[i];
+		if (prev->volume == 0)
+			continue;
+
 		if (count_volume) {
 			if (price2check->volume > prev->volume)
 				volume_larger_days += 1;
@@ -1943,6 +1946,9 @@ static void symbol_check_strong_breakout(const char *symbol, const struct stock_
 
 	for (i = j = 0; i < price_history->date_cnt && j < STRONG_BO_MAX_DAYS; i++) {
 		const struct date_price *prev = &price_history->dateprice[i];
+		if (prev->volume == 0)
+			continue;
+
 		if (strcmp(price2check->date, prev->date) > 0) {
 			uint64_t prev_2ndhigh = get_2ndhigh(prev);
 			uint64_t price2check_2ndlow = get_2ndlow(price2check);
