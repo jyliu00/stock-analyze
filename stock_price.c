@@ -1213,7 +1213,7 @@ static const char * get_price_volume_change(const struct stock_price *price_hist
 	int is_up = 0, price_change = 0, vma20d_percent = 0;
 	int price_larger_days = 0, count_price = 1;
 	int volume_larger_days = 0, count_volume = 1;
-	int up_tail_percent = 0, body_percent = 0, down_tail_percent = 0;
+	int up_tail_percent = 0, body_percent = 0, down_tail_percent = 0, body_size = 0;
 	int i;
 
 	output_str[0] = 0;
@@ -1266,7 +1266,7 @@ static const char * get_price_volume_change(const struct stock_price *price_hist
 		price_change = ((uint64_t)price_change) * 1000 / yesterday->close;
 	}
 
-	if (price2check->low != price2check->high && price2check->open) {
+	if (price2check->low != price2check->high && price2check->open && price2check->close) {
 		int price_range = price2check->high - price2check->low;
 		int up_tail_range = price2check->high - get_2ndhigh(price2check);
 		int body_range = get_2ndhigh(price2check) - get_2ndlow(price2check);
@@ -1274,14 +1274,22 @@ static const char * get_price_volume_change(const struct stock_price *price_hist
 		up_tail_percent = up_tail_range * 1000 / price_range;
 		body_percent = body_range * 1000 / price_range;
 		down_tail_percent = down_tail_range * 1000 / price_range;
+
+                if (price2check->close >= price2check->open)
+                        body_size = price2check->close - price2check->open;
+                else
+                        body_size = price2check->open - price2check->close;
+
+                body_size = ((uint64_t)body_size) * 1000 / price2check->open;
 	}
 
 	snprintf(output_str, sizeof(output_str),
-		"price(%d.%03d > %d days, %c%d.%d%%, color=%s/trend=%s(%d.%d/%d.%d/%d.%d), volume(%d > %s%d%s days, vma20d=%s%d.%d%%%s)",
+		"price(%d.%03d > %d days, %c%d.%d%%, color=%s/trend=%s(%d.%d/%d.%d/%d.%d), body_size=%d.%d%%, volume(%d > %s%d%s days, vma20d=%s%d.%d%%%s)",
 		price2check->close / 1000, price2check->close % 1000, price_larger_days,
 		is_up ? '+' : '-', price_change / 10, price_change % 10,
 		candle_color[price2check->candle_color], candle_trend[price2check->candle_trend],
 		up_tail_percent / 10, up_tail_percent % 10, body_percent / 10, body_percent % 10, down_tail_percent / 10, down_tail_percent % 10,
+		body_size / 10, body_size % 10,
 		price2check->volume, volume_larger_days >= 5 ? ANSI_COLOR_YELLOW : "", volume_larger_days, volume_larger_days >= 5 ? ANSI_COLOR_RESET : "",
 		vma20d_percent >= 1000 ? ANSI_COLOR_YELLOW : "", vma20d_percent / 10, vma20d_percent % 10, vma20d_percent >= 1000 ? ANSI_COLOR_RESET : "");
 
@@ -1954,7 +1962,7 @@ static void symbol_check_strong_breakout(const char *symbol, const struct stock_
 			uint64_t price2check_2ndlow = get_2ndlow(price2check);
 			if (price2check_2ndhigh < prev->high
 			    || (prev_2ndhigh > price2check_2ndlow
-				&& (prev_2ndhigh - price2check_2ndlow) * 10000 / price2check_2ndlow >= 50))
+				&& (prev_2ndhigh - price2check_2ndlow) * 10000 / price2check_2ndlow >= 70))
 			{
 				break;
 			}
