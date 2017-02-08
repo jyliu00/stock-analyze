@@ -1,255 +1,258 @@
 %sector=rank_2
-ERJ	151	B	F	B	Aerospace - Defense
-CZZ	39	A	A	A	Agriculture - Products
-MON	39	C	A	D	Agriculture - Products
-NEP	161	A	C	A	Alternative Energy - Other
-HAR	179	A	A	B	Audio Video Production
-GM	96	A	B	F	Automotive - Domestic
-FCAU	19	A	C	A	Automotive - Foreign
-CMI	96	B	C	D	Automotive - Internal Combustion Engines
-LEA	166	A	A	A	Automotive - Original Equipment
-MTOR	166	A	F	B	Automotive - Original Equipment
+ERJ	149	B	F	B	Aerospace - Defense
+CZZ	36	A	A	A	Agriculture - Products
+MON	36	C	A	D	Agriculture - Products
+NEP	168	A	C	A	Alternative Energy - Other
+HAR	36	A	A	C	Audio Video Production
+GM	95	A	C	B	Automotive - Domestic
+FCAU	20	A	C	A	Automotive - Foreign
+ALSN	153	D	D	B	Automotive - Original Equipment
+LEA	153	A	A	B	Automotive - Original Equipment
+MTOR	153	A	F	C	Automotive - Original Equipment
 AAP	31	B	C	B	Automotive - Retail and Wholesale - Parts
-BBD	90	D	F	A	Banks - Foreign
-BCS	90	B	F	C	Banks - Foreign
-BSBR	90	D	F	C	Banks - Foreign
-CS	90	B	F	A	Banks - Foreign
-HSBC	90	F	F	A	Banks - Foreign
-TD	90	C	F	D	Banks - Foreign
-UBS	90	F	C	A	Banks - Foreign
-BAC	21	C	B	A	Banks - Major Regional
-BBT	21	D	D	F	Banks - Major Regional
-CMA	21	D	D	F	Banks - Major Regional
-FITB	21	C	F	D	Banks - Major Regional
-JPM	21	F	F	D	Banks - Major Regional
-MTB	21	D	B	B	Banks - Major Regional
-PNC	21	D	F	B	Banks - Major Regional
-STI	21	C	F	D	Banks - Major Regional
-USB	21	D	F	D	Banks - Major Regional
-ASB	13	B	B	B	Banks - Midwest
-FULT	16	D	D	B	Banks - Northeast
+BSBR	79	D	F	C	Banks - Foreign
+CS	79	B	F	A	Banks - Foreign
+HSBC	79	F	F	B	Banks - Foreign
+TD	79	C	F	D	Banks - Foreign
+UBS	79	F	C	A	Banks - Foreign
+BAC	19	C	B	B	Banks - Major Regional
+BBT	19	D	D	F	Banks - Major Regional
+CMA	19	D	D	F	Banks - Major Regional
+FITB	19	C	F	D	Banks - Major Regional
+JPM	19	F	F	F	Banks - Major Regional
+MTB	19	D	C	B	Banks - Major Regional
+PNC	19	D	F	B	Banks - Major Regional
+STI	19	C	F	D	Banks - Major Regional
+USB	19	D	F	D	Banks - Major Regional
+ASB	12	C	B	C	Banks - Midwest
+HBAN	12	C	F	B	Banks - Midwest
+FULT	16	D	F	B	Banks - Northeast
 STL	16	F	F	C	Banks - Northeast
 VLY	16	D	D	B	Banks - Northeast
 WBS	16	D	D	B	Banks - Northeast
-FBP	14	B	F	A	Banks - Southeast
-FHN	14	D	F	D	Banks - Southeast
-HOMB	14	F	F	C	Banks - Southeast
-OZRK	14	D	D	B	Banks - Southeast
-RF	14	B	D	B	Banks - Southeast
-UBSI	14	F	D	A	Banks - Southeast
-CFR	30	B	B	B	Banks - Southwest
-COLB	20	C	D	A	Banks - West
-FHB	20	F	F	A	Banks - West
-FRC	20	D	C	D	Banks - West
-SIVB	20	D	F	C	Banks - West
-WAL	20	D	C	B	Banks - West
-ZION	20	B	C	B	Banks - West
-STZ	184	C	B	F	Beverages - Alcohol
-SNI	151	B	B	D	Broadcast Radio and Television
-TV	151	D	F	D	Broadcast Radio and Television
-CBI	67	A	B	D	Building Products - Heavy Construction
+FBP	13	B	F	A	Banks - Southeast
+FHN	13	D	F	D	Banks - Southeast
+OZRK	13	D	D	C	Banks - Southeast
+RF	13	A	D	B	Banks - Southeast
+UBSI	13	D	D	A	Banks - Southeast
+CFR	30	B	B	D	Banks - Southwest
+FHB	17	F	F	A	Banks - West
+FRC	17	D	C	F	Banks - West
+SIVB	17	D	F	D	Banks - West
+WAL	17	D	C	C	Banks - West
+ZION	17	B	C	B	Banks - West
+STZ	168	C	B	F	Beverages - Alcohol
+SNI	166	B	B	D	Broadcast Radio and Television
+TV	166	D	F	F	Broadcast Radio and Television
+CBI	69	A	B	C	Building Products - Heavy Construction
 CAA	70	B	A	F	Building Products - Home Builders
 DHI	70	A	D	A	Building Products - Home Builders
 TOL	70	A	D	F	Building Products - Home Builders
-FAST	82	D	C	A	Building Products - Retail
-INFO	67	F	F	C	Business - Information Services
-SPGI	67	D	B	F	Business - Information Services
-TRU	67	D	B	F	Business - Information Services
-MSCI	151	D	A	A	Business - Software Services
-LBTYA	96	B	D	F	Cable Television
-ALB	70	D	B	C	Chemical - Diversified
-CE	70	B	C	D	Chemical - Diversified
-FMC	70	D	D	C	Chemical - Diversified
-ASH	179	D	C	D	Chemical - Specialty
-CNX	49	B	C	A	Coal
-KRNT	96	F	D	C	Commercial Printing
-ARRS	96	A	A	C	Communication - Components
-VIAV	96	C	D	D	Communication - Components
-XXIA	96	D	A	A	Computer - Networking
-CSC	61	B	A	D	Computer - Services
-CDK	136	D	C	D	Computers - IT Services
-CUDA	136	D	A	C	Computers - IT Services
-AZPN	147	D	D	B	Computer - Software
-CRM	147	F	A	C	Computer - Software
+FAST	79	D	C	B	Building Products - Retail
+INFO	54	F	F	C	Business - Information Services
+SPGI	54	D	C	F	Business - Information Services
+TRU	54	D	B	F	Business - Information Services
+MSCI	95	D	A	A	Business - Software Services
+LBTYA	95	B	F	F	Cable Television
+ALB	63	D	B	C	Chemical - Diversified
+CE	63	B	C	D	Chemical - Diversified
+FMC	63	D	D	A	Chemical - Diversified
+ASH	187	D	C	D	Chemical - Specialty
+CNX	60	B	C	A	Coal
+KRNT	95	F	D	C	Commercial Printing
+ARRS	92	A	A	D	Communication - Components
+VIAV	92	C	D	D	Communication - Components
+CDK	135	D	C	D	Computers - IT Services
+CUDA	135	D	A	D	Computers - IT Services
+AZPN	138	D	D	B	Computer - Software
+CRM	138	F	A	D	Computer - Software
 PSTG	47	F	C	C	Computer- Storage Devices
-BUFF	155	F	A	D	Consumer Products - Staples
-ENR	155	C	A	C	Consumer Products - Staples
-ENTG	12	B	A	A	Electronics - Manufacturing Machinery
-KLIC	12	B	A	A	Electronics - Manufacturing Machinery
-KEYS	60	B	C	A	Electronics - Measuring Instruments
-LLL	39	B	B	D	Electronics - Military
-TEL	96	B	A	C	Electronics - Miscellaneous Components
-ACM	88	A	A	D	Engineering - R and D Services
-JEC	88	B	A	F	Engineering - R and D Services
-LGF.A	82	B	D	F	Film and Television Production and Distribution
-SLM	242	F	F	F	Financial - Consumer Loans
+BUFF	153	F	A	F	Consumer Products - Staples
+ENR	153	C	A	D	Consumer Products - Staples
+ENTG	9	B	A	A	Electronics - Manufacturing Machinery
+KLIC	9	B	A	A	Electronics - Manufacturing Machinery
+KEYS	74	B	C	B	Electronics - Measuring Instruments
+LLL	36	B	B	C	Electronics - Military
+TEL	93	B	A	C	Electronics - Miscellaneous Components
+ARW	54	A	F	C	Electronics - Parts Distribution
+CAVM	153	F	D	A	Electronics - Semiconductors
+ACM	86	A	A	C	Engineering - R and D Services
+JEC	86	B	A	F	Engineering - R and D Services
+LGF.A	95	B	D	D	Film and Television Production and Distribution
+SLM	242	F	F	D	Financial - Consumer Loans
 AMTD	18	D	D	A	Financial - Investment Bank
 ETFC	18	C	F	B	Financial - Investment Bank
 MS	18	C	F	B	Financial - Investment Bank
-SCHW	18	D	F	D	Financial - Investment Bank
-AMP	192	B	F	A	Financial - Investment Management
-APO	192	C	F	B	Financial - Investment Management
-EV	192	C	D	D	Financial - Investment Management
-LAZ	192	C	B	B	Financial - Investment Management
-PFG	192	A	D	C	Financial - Investment Management
-AXP	93	A	A	A	Financial - Miscellaneous Services
-ESNT	186	B	B	D	Financial - Mortgage & Related Services
-CFG	82	B	D	A	Financial - Savings and Loan
-FISV	82	D	B	C	Financial Transaction Services
-TSS	82	C	B	B	Financial Transaction Services
-V	82	F	B	D	Financial Transaction Services
-VNTV	82	D	C	C	Financial Transaction Services
-HSY	23	F	F	A	Food - Confectionery
-PPC	52	A	B	B	Food - Meat Products
-APFH	96	C	C	F	Food - Miscellaneous
-CAG	96	C	C	C	Food - Miscellaneous
-CPB	96	D	A	A	Food - Miscellaneous
-INGR	96	A	A	C	Food - Miscellaneous
-PF	96	D	D	B	Food - Miscellaneous
-POST	96	C	A	C	Food - Miscellaneous
-SYY	96	B	A	B	Food - Miscellaneous
-USFD	96	B	C	A	Food - Miscellaneous
-MGM	141	C	B	B	Gaming
-MAR	91	D	C	F	Hotels and Motels
-STAY	91	B	B	F	Hotels and Motels
-MSM	147	D	A	D	Industrial Services
-UNM	96	A	F	B	Insurance - Accident and Health
-AEL	38	A	F	D	Insurance - Life Insurance
-MFC	38	A	D	B	Insurance - Life Insurance
-HIG	58	A	D	F	Insurance - Multi line
-L	58	A	D	B	Insurance - Multi line
-PRU	58	A	B	D	Insurance - Multi line
-ALL	61	A	C	A	Insurance - Property and Casualty
-PGR	61	A	A	A	Insurance - Property and Casualty
-YELP	82	F	A	C	Internet - Content
-SABR	93	A	C	C	Internet - Software and Services
-GSK	161	A	C	B	Large Cap Pharmaceuticals
-LLY	161	C	B	A	Large Cap Pharmaceuticals
-RCL	166	B	B	A	Leisure and Recreation Services
-ETN	141	A	B	B	Manufacturing - Electronics
-ITW	39	D	B	A	Manufacturing - General Industrial
-ATU	3	C	B	F	Manufacturing - Tools & Related Products
-TWX	61	B	B	F	Media Conglomerates
-CELG	95	C	C	A	Medical - Biomedical and Genetics
-CLVS	95	F	D	D	Medical - Biomedical and Genetics
-EXAS	95	F	D	D	Medical - Biomedical and Genetics
-EXEL	95	F	A	A	Medical - Biomedical and Genetics
-MNTA	95	F	A	C	Medical - Biomedical and Genetics
-ABC	155	A	B	B	Medical - Dental Supplies
-BCR	155	C	F	A	Medical - Dental Supplies
-LCI	74	A	B	A	Medical - Drugs
-PCRX	74	D	C	F	Medical - Drugs
-IPXL	205	A	A	F	Medical - Generic Drugs
-HCA	159	A	A	B	Medical - Hospital
-UHS	159	A	A	C	Medical - Hospital
-ATHN	226	C	A	A	Medical Info Systems
-BABY	166	B	A	A	Medical - Instruments
-IDXX	166	D	A	C	Medical - Instruments
-KND	206	A	B	F	Medical - Nursing Homes
+AMP	180	A	F	A	Financial - Investment Management
+EV	180	C	D	D	Financial - Investment Management
+LAZ	180	C	B	B	Financial - Investment Management
+PFG	180	A	D	D	Financial - Investment Management
+AXP	95	A	A	B	Financial - Miscellaneous Services
+ESNT	160	B	B	D	Financial - Mortgage & Related Services
+CFG	79	B	D	B	Financial - Savings and Loan
+FISV	79	D	B	C	Financial Transaction Services
+TSS	79	C	B	B	Financial Transaction Services
+V	79	F	B	D	Financial Transaction Services
+VNTV	79	D	C	C	Financial Transaction Services
+HSY	20	F	F	A	Food - Confectionery
+PPC	20	A	B	B	Food - Meat Products
+TSN	20	A	A	D	Food - Meat Products
+APFH	95	C	C	F	Food - Miscellaneous
+CAG	95	C	C	D	Food - Miscellaneous
+CPB	95	D	A	B	Food - Miscellaneous
+INGR	95	A	A	C	Food - Miscellaneous
+PF	95	D	D	B	Food - Miscellaneous
+POST	95	C	A	C	Food - Miscellaneous
+SYY	95	C	A	B	Food - Miscellaneous
+USFD	95	B	D	A	Food - Miscellaneous
+MGM	160	C	B	B	Gaming
+MAR	70	D	C	F	Hotels and Motels
+STAY	70	B	B	F	Hotels and Motels
+ROK	95	D	A	A	Industrial Automation and Robotics
+MSM	168	D	A	F	Industrial Services
+UNM	95	A	F	B	Insurance - Accident and Health
+AEL	60	A	F	F	Insurance - Life Insurance
+MFC	60	A	D	C	Insurance - Life Insurance
+HIG	50	A	D	F	Insurance - Multi line
+L	50	A	D	A	Insurance - Multi line
+PRU	50	A	B	D	Insurance - Multi line
+ALL	68	A	C	A	Insurance - Property and Casualty
+PGR	68	B	A	A	Insurance - Property and Casualty
+FEYE	153	F	B	A	Internet - Software
+SABR	153	A	B	B	Internet - Software and Services
+GSK	168	A	C	B	Large Cap Pharmaceuticals
+LLY	168	C	C	A	Large Cap Pharmaceuticals
+RCL	183	B	B	B	Leisure and Recreation Services
+ETN	138	A	B	B	Manufacturing - Electronics
+ITW	45	D	B	B	Manufacturing - General Industrial
+PH	45	C	B	A	Manufacturing - General Industrial
+ATU	2	C	B	F	Manufacturing - Tools & Related Products
+TWX	65	B	B	D	Media Conglomerates
+BLUE	135	F	F	A	Medical - Biomedical and Genetics
+CELG	135	C	C	B	Medical - Biomedical and Genetics
+EXAS	135	F	D	C	Medical - Biomedical and Genetics
+EXEL	135	F	A	B	Medical - Biomedical and Genetics
+MNTA	135	F	A	B	Medical - Biomedical and Genetics
+ABC	153	A	B	A	Medical - Dental Supplies
+BCR	153	C	F	A	Medical - Dental Supplies
+LCI	91	A	B	A	Medical - Drugs
+PCRX	91	D	C	F	Medical - Drugs
+SCMP	91	A	A	C	Medical - Drugs
+IPXL	205	A	A	D	Medical - Generic Drugs
+HCA	164	A	A	B	Medical - Hospital
+UHS	164	A	A	D	Medical - Hospital
+ATHN	226	D	A	D	Medical Info Systems
+BABY	168	B	A	A	Medical - Instruments
+IDXX	168	D	A	D	Medical - Instruments
+KND	180	A	B	F	Medical - Nursing Homes
 AA	31	A	B	A	Metal Products - Distribution
-FMSA	4	F	F	C	Metal Products - Fasteners
-TKR	166	C	B	F	Metal Products - Procurement and Fabrication
-WOR	166	A	A	F	Metal Products - Procurement and Fabrication
-AU	176	A	A	F	Mining - Gold
-PVG	176	F	C	F	Mining - Gold
-CLF	4	A	A	C	Mining - Iron
-BBL	29	A	B	A	Mining - Miscellaneous
-HCLP	29	F	F	B	Mining - Miscellaneous
-SLCA	29	F	F	A	Mining - Miscellaneous
-ARNC	35	A	A	A	Mining - Non Ferrous
-AVY	23	B	A	C	Office Supplies
-NBR	47	C	F	F	Oil and Gas - Drilling
-PDS	47	C	F	C	Oil and Gas - Drilling
-PES	47	D	F	F	Oil and Gas - Drilling
-PTEN	47	C	F	D	Oil and Gas - Drilling
-KOS	82	D	F	F	Oil and Gas - Exploration and Production - International
+FMSA	3	F	F	A	Metal Products - Fasteners
+TKR	175	C	B	F	Metal Products - Procurement and Fabrication
+WOR	175	A	A	F	Metal Products - Procurement and Fabrication
+CLF	3	A	A	A	Mining - Iron
+VALE	3	B	A	A	Mining - Iron
+HCLP	28	F	F	A	Mining - Miscellaneous
+SLCA	28	F	F	A	Mining - Miscellaneous
+ARNC	52	A	A	B	Mining - Non Ferrous
+AVY	20	B	A	C	Office Supplies
+NBR	47	C	F	D	Oil and Gas - Drilling
+PDS	47	C	F	B	Oil and Gas - Drilling
+PES	47	D	F	B	Oil and Gas - Drilling
+PTEN	47	C	F	B	Oil and Gas - Drilling
+KOS	79	D	F	F	Oil and Gas - Exploration and Production - International
 APA	34	D	C	A	Oil and Gas - Exploration and Production - United States
+APC	34	F	C	A	Oil and Gas - Exploration and Production - United States
 CDEV	34	F	B	F	Oil and Gas - Exploration and Production - United States
-CLR	34	F	D	A	Oil and Gas - Exploration and Production - United States
-CWEI	34	F	D	A	Oil and Gas - Exploration and Production - United States
+CLR	34	D	D	A	Oil and Gas - Exploration and Production - United States
+CWEI	34	F	D	B	Oil and Gas - Exploration and Production - United States
+EQT	34	C	C	A	Oil and Gas - Exploration and Production - United States
 HK	34	B	F	C	Oil and Gas - Exploration and Production - United States
+MTDR	34	F	A	A	Oil and Gas - Exploration and Production - United States
 PDCE	34	D	C	A	Oil and Gas - Exploration and Production - United States
-REN	34	D	B	B	Oil and Gas - Exploration and Production - United States
-RRC	34	F	F	A	Oil and Gas - Exploration and Production - United States
-SN	34	B	A	C	Oil and Gas - Exploration and Production - United States
-SWN	34	B	C	B	Oil and Gas - Exploration and Production - United States
+PXD	34	F	B	A	Oil and Gas - Exploration and Production - United States
+REN	34	C	B	A	Oil and Gas - Exploration and Production - United States
+RRC	34	F	F	B	Oil and Gas - Exploration and Production - United States
+SN	34	B	A	B	Oil and Gas - Exploration and Production - United States
 SYRG	34	D	B	B	Oil and Gas - Exploration and Production - United States
-WPX	34	D	D	A	Oil and Gas - Exploration and Production - United States
-EMES	143	F	F	C	Oil and Gas - Field Services
-HAL	143	F	C	A	Oil and Gas - Field Services
-NR	143	C	D	D	Oil and Gas - Field Services
-RES	143	F	C	B	Oil and Gas - Field Services
-SND	143	F	B	B	Oil and Gas - Field Services
-TOT	233	A	D	C	Oil and Gas - Integrated - International
-DNOW	61	B	A	B	Oil and Gas - Mechanical and and Equitment
-FET	61	F	D	D	Oil and Gas - Mechanical and and Equitment
-SE	78	F	D	F	Oil and Gas - Production and Pipelines
-BPL	65	C	A	C	Oil and Gas - Production Pipeline - MLB
-SXL	65	C	F	D	Oil and Gas - Production Pipeline - MLB
-SHW	211	C	A	D	Paints and Related Products
-FBR	96	B	B	A	Paper and Related Products
-MDP	96	C	B	A	Publishing - Periodicals
-CYS	136	B	F	B	REIT and Equity Trust
-NRZ	136	D	F	A	REIT and Equity Trust
-APLE	147	C	C	F	REIT and Equity Trust - Other
-DRH	147	B	C	D	REIT and Equity Trust - Other
-FCH	147	A	B	C	REIT and Equity Trust - Other
-HST	147	B	D	D	REIT and Equity Trust - Other
-LHO	147	B	C	B	REIT and Equity Trust - Other
-NYRT	147	F	C	F	REIT and Equity Trust - Other
-OUT	147	C	B	B	REIT and Equity Trust - Other
-PDM	147	D	F	B	REIT and Equity Trust - Other
-SHO	147	B	D	F	REIT and Equity Trust - Other
-AMH	202	D	B	A	REIT and Equity Trust - Residential
-BRX	196	C	D	C	REIT and Equity Trust - Retail
-RPAI	196	D	D	C	REIT and Equity Trust - Retail
-FL	234	A	D	F	Retail - Apparel and Shoes
-FOSL	234	A	F	F	Retail - Apparel and Shoes
-DLTR	66	B	C	C	Retail - Discount Stores
-FRED	66	B	A	F	Retail - Discount Stores
-ROST	66	C	B	F	Retail - Discount Stores
-TJX	66	B	B	D	Retail - Discount Stores
-PIR	227	A	A	C	Retail - Home Furnishings
-BKS	191	A	A	F	Retail - Miscellaneous
-CAB	191	B	F	C	Retail - Miscellaneous
-SPLS	191	A	A	C	Retail - Miscellaneous
-DV	69	B	F	B	Schools
-CME	4	F	C	B	Securities and Exchanges
-IPHI	46	F	A	D	Semiconductor - Analog and Mixed
-MXIM	46	D	B	A	Semiconductor - Analog and Mixed
+WPX	34	D	F	C	Oil and Gas - Exploration and Production - United States
+XEC	34	F	A	A	Oil and Gas - Exploration and Production - United States
+EMES	95	F	F	C	Oil and Gas - Field Services
+HAL	95	F	C	A	Oil and Gas - Field Services
+NR	95	C	D	D	Oil and Gas - Field Services
+SND	95	F	B	B	Oil and Gas - Field Services
+UNT	95	C	C	F	Oil and Gas - Field Services
+CVE	65	B	D	A	Oil and Gas - Integrated - Canadian
+TOT	232	A	D	B	Oil and Gas - Integrated - International
+DNOW	63	B	A	D	Oil and Gas - Mechanical and and Equitment
+FET	63	F	D	D	Oil and Gas - Mechanical and and Equitment
+SE	95	F	D	F	Oil and Gas - Production and Pipelines
+SEMG	95	C	B	C	Oil and Gas - Production and Pipelines
+BPL	67	C	A	C	Oil and Gas - Production Pipeline - MLB
+SXL	67	C	F	D	Oil and Gas - Production Pipeline - MLB
+SHW	212	C	A	D	Paints and Related Products
+FBR	142	B	B	B	Paper and Related Products
+MDP	95	C	B	C	Publishing - Periodicals
+CYS	144	B	F	D	REIT and Equity Trust
+NRZ	144	D	F	A	REIT and Equity Trust
+APLE	135	C	C	F	REIT and Equity Trust - Other
+DRH	135	B	C	D	REIT and Equity Trust - Other
+FCH	135	A	B	D	REIT and Equity Trust - Other
+GEO	135	C	F	C	REIT and Equity Trust - Other
+HST	135	B	D	D	REIT and Equity Trust - Other
+LHO	135	B	C	D	REIT and Equity Trust - Other
+NYRT	135	F	C	F	REIT and Equity Trust - Other
+PDM	135	D	F	B	REIT and Equity Trust - Other
+SHO	135	B	F	F	REIT and Equity Trust - Other
+VER	135	C	C	B	REIT and Equity Trust - Other
+AMH	192	D	B	B	REIT and Equity Trust - Residential
+BRX	195	C	D	C	REIT and Equity Trust - Retail
+RPAI	195	D	D	D	REIT and Equity Trust - Retail
+FOSL	233	A	F	B	Retail - Apparel and Shoes
+DLTR	79	B	C	C	Retail - Discount Stores
+FRED	79	B	A	F	Retail - Discount Stores
+ROST	79	C	C	F	Retail - Discount Stores
+TJX	79	B	B	D	Retail - Discount Stores
+PIR	195	A	A	B	Retail - Home Furnishings
+BKS	202	A	A	F	Retail - Miscellaneous
+CAB	202	B	F	B	Retail - Miscellaneous
+SPLS	202	A	A	C	Retail - Miscellaneous
+DV	88	B	F	B	Schools
+IPHI	45	F	B	F	Semiconductor - Analog and Mixed
+MXIM	45	D	B	A	Semiconductor - Analog and Mixed
+CREE	36	C	B	A	Semiconductor - Discretes
 KLAC	11	B	B	A	Semiconductor Equipment - Wafer Fabrication
 LRCX	11	B	A	A	Semiconductor Equipment - Wafer Fabrication
-ISIL	10	F	C	C	Semiconductor - General
-LLTC	10	F	B	B	Semiconductor - General
-NVDA	10	F	A	F	Semiconductor - General
-STM	10	C	F	B	Semiconductor - General
-XLNX	4	D	B	C	Semiconductors - Programmable Logic
-SWKS	39	B	A	B	Semiconductors - Radio Frequency
-FRAN	231	A	C	F	Shoes and Retail Apparel
-UL	240	A	B	A	Soap and Cleaning Materials
-MAN	96	A	B	C	Staffing Firms
-TS	52	F	B	C	Steel - Pipe and Tube
-NUE	22	A	B	C	Steel - Producers
-TMST	22	C	C	D	Steel - Producers
-LULU	239	D	F	F	Textile - Apparel
-EA	227	D	A	A	Toys - Games - Hobbies
-AAL	35	A	B	D	Transportation - Airline
-ALK	35	A	B	F	Transportation - Airline
-BRS	35	F	F	C	Transportation - Airline
-DAL	35	A	B	B	Transportation - Airline
-LUV	35	B	D	D	Transportation - Airline
-SAVE	35	B	B	F	Transportation - Airline
-UAL	35	A	B	A	Transportation - Airline
-TRN	96	A	B	D	Transportation - Equipment and Leasing
-CNI	78	C	C	B	Transportation - Rail
-CSX	78	C	D	C	Transportation - Rail
-CTAS	196	D	B	D	Uniform and Related
-AEE	136	B	B	F	Utility - Electric Power
-CNP	136	C	B	D	Utility - Electric Power
-EXC	136	A	B	D	Utility - Electric Power
-NEE	136	C	D	B	Utility - Electric Power
-PNW	136	C	C	D	Utility - Electric Power
-SO	136	C	C	B	Utility - Electric Power
-XEL	136	B	B	D	Utility - Electric Power
-WGL	51	C	D	D	Utility - Gas Distribution
-WIN	143	A	D	B	Wireless National
+ISIL	8	F	C	B	Semiconductor - General
+LLTC	8	F	B	B	Semiconductor - General
+NVDA	8	F	A	F	Semiconductor - General
+STM	8	D	F	C	Semiconductor - General
+XLNX	3	D	B	C	Semiconductors - Programmable Logic
+SWKS	36	B	A	C	Semiconductors - Radio Frequency
+FRAN	230	A	C	F	Shoes and Retail Apparel
+UL	239	A	B	A	Soap and Cleaning Materials
+MAN	95	A	B	C	Staffing Firms
+TS	54	F	B	B	Steel - Pipe and Tube
+NUE	28	A	B	C	Steel - Producers
+TMST	28	C	C	C	Steel - Producers
+LULU	238	F	F	F	Textile - Apparel
+EA	195	D	A	B	Toys - Games - Hobbies
+ALK	50	A	B	F	Transportation - Airline
+DAL	50	A	C	C	Transportation - Airline
+LUV	50	B	D	D	Transportation - Airline
+SAVE	50	B	B	D	Transportation - Airline
+UAL	50	A	B	A	Transportation - Airline
+TRN	144	A	B	F	Transportation - Equipment and Leasing
+WAB	144	C	D	F	Transportation - Equipment and Leasing
+CNI	95	C	C	C	Transportation - Rail
+CSX	95	D	D	D	Transportation - Rail
+AEE	94	B	B	F	Utility - Electric Power
+CNP	94	C	B	F	Utility - Electric Power
+ETR	94	B	C	F	Utility - Electric Power
+EXC	94	A	B	D	Utility - Electric Power
+NEE	94	C	D	B	Utility - Electric Power
+NGG	94	B	C	F	Utility - Electric Power
+PNW	94	C	C	D	Utility - Electric Power
+XEL	94	B	B	D	Utility - Electric Power
+WGL	53	C	D	F	Utility - Gas Distribution
+MSI	206	A	A	A	Wireless Equipment
+WIN	166	A	D	B	Wireless National
