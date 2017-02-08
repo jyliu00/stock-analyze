@@ -59,6 +59,7 @@ enum
 	ACTION_CHECK_TREND_BO, /* trendline breakout */
 	ACTION_CHECK_STRONG_UPTREND,
 	ACTION_CHECK_STRONG_BO,
+	ACTION_CHECK_STRONG_BODY_BO,
 
 	ACTION_NR
 };
@@ -282,6 +283,9 @@ int main(int argc, const char **argv)
 			else if (strcmp(arg, "check-strong-bo") == 0) {
 				action = ACTION_CHECK_STRONG_BO;
 			}
+			else if (strcmp(arg, "check-strong-body-bo") == 0) {
+				action = ACTION_CHECK_STRONG_BODY_BO;
+			}
 			else if (strcmp(arg, "check-wup") == 0) {
 				action = ACTION_CHECK_WUP;
 			}
@@ -500,6 +504,9 @@ int main(int argc, const char **argv)
 
 	case ACTION_CHECK_STRONG_BO:
 		stock_price_check_strong_breakout(group, date, symbols_nr, (const char **)symbols);
+		break;
+	case ACTION_CHECK_STRONG_BODY_BO:
+		stock_price_check_strong_body_breakout(group, date, symbols_nr, (const char **)symbols);
 		break;
 	}
 

@@ -1210,8 +1210,9 @@ static const char * get_price_volume_change(const struct stock_price *price_hist
 {
 	static char output_str[256];
 	const struct date_price *yesterday = NULL;
+	uint32_t yesterday_2ndhigh;
 	int is_up = 0, price_change = 0, vma20d_percent = 0;
-	int price_larger_days = 0, count_price = 1;
+	int price_larger_days = 0, count_price = 1, is_first_new_high = 0;
 	int volume_larger_days = 0, count_volume = 1;
 	int up_tail_percent = 0, body_percent = 0, down_tail_percent = 0, body_size = 0;
 	int i;
@@ -1229,6 +1230,8 @@ static const char * get_price_volume_change(const struct stock_price *price_hist
 	if (!yesterday)
 		return "N/A";
 
+	yesterday_2ndhigh = get_2ndhigh(yesterday);
+
 	for ( ; i < price_history->date_cnt && i < 250 && (count_volume || count_price); i++) {
 		const struct date_price *prev = &price_history->dateprice[i];
 		if (prev->volume == 0)
@@ -1242,10 +1245,13 @@ static const char * get_price_volume_change(const struct stock_price *price_hist
 		}
 
 		if (count_price) {
-			if (get_2ndhigh(price2check) > get_2ndhigh(prev))
+			uint32_t prev_2ndhigh = get_2ndhigh(prev);
+			if (get_2ndhigh(price2check) > prev_2ndhigh)
 				price_larger_days += 1;
-			else if (get_2ndhigh(price2check) < get_2ndhigh(prev))
+			else if (get_2ndhigh(price2check) < prev_2ndhigh)
 				count_price = 0;
+			if (yesterday_2ndhigh < prev_2ndhigh)
+				is_first_new_high = 1;
 		}
 	}
 
@@ -1284,8 +1290,8 @@ static const char * get_price_volume_change(const struct stock_price *price_hist
 	}
 
 	snprintf(output_str, sizeof(output_str),
-		"price(%d.%03d > %d days, %c%d.%d%%, color=%s/trend=%s(%d.%d/%d.%d/%d.%d), body_size=%d.%d%%, volume(%d > %s%d%s days, vma20d=%s%d.%d%%%s)",
-		price2check->close / 1000, price2check->close % 1000, price_larger_days,
+		"price(%d.%03d > %d days, %s%c%d.%d%%, color=%s/trend=%s(%d.%d/%d.%d/%d.%d), body_size=%d.%d%%, volume(%d > %s%d%s days, vma20d=%s%d.%d%%%s)",
+		price2check->close / 1000, price2check->close % 1000, price_larger_days, (price_larger_days >= 200 && is_first_new_high) ? "1st_new_high, " : "",
 		is_up ? '+' : '-', price_change / 10, price_change % 10,
 		candle_color[price2check->candle_color], candle_trend[price2check->candle_trend],
 		up_tail_percent / 10, up_tail_percent % 10, body_percent / 10, body_percent % 10, down_tail_percent / 10, down_tail_percent % 10,
@@ -1937,27 +1943,46 @@ static void symbol_check_strong_uptrend(const char *symbol, const struct stock_p
 	}
 }
 
-static void symbol_check_strong_breakout(const char *symbol, const struct stock_price *price_history,
-					 const struct date_price *price2check)
+static void __symbol_check_strong_breakout(const char *symbol, const struct stock_price *price_history,
+					 const struct date_price *price2check, int strong_body)
 {
 #define STRONG_BO_MAX_DAYS   5
 	uint32_t price2check_2ndhigh = get_2ndhigh(price2check);
+	const struct date_price *yesterday = NULL;
 	int i, j;
 
-	/* must be bull bar */
-	if (price2check->close <= price2check->open)
+	/* must be bull trend bar */
+	if (price2check->candle_trend == CANDLE_TREND_BEAR && price2check->close < price2check->open)
 		return;
 
-	/* up tail <= 25% */
-	if ((price2check->high - price2check_2ndhigh) * 100 / (price2check->high - price2check->low) > 25)
-		return;
+	if (strong_body) {
+		uint64_t body_size;
+
+		if (price2check->candle_trend == CANDLE_TREND_DOJI)
+			return;
+
+                if (price2check->close >= price2check->open)
+                        body_size = price2check->close - price2check->open;
+                else
+                        body_size = price2check->open - price2check->close;
+
+		if (body_size * 1000 / price2check->open < 10) /* body size >= 1% */
+			return;
+	}
 
 	for (i = j = 0; i < price_history->date_cnt && j < STRONG_BO_MAX_DAYS; i++) {
 		const struct date_price *prev = &price_history->dateprice[i];
-		if (prev->volume == 0)
-			continue;
-
 		if (strcmp(price2check->date, prev->date) > 0) {
+			if (prev->volume == 0)
+				continue;
+
+			if (yesterday == NULL) {
+				yesterday = prev;
+				/* if not strong_body, volume needs be enough */
+				if (!strong_body && price2check->volume < prev->vma[VMA_20d])
+					return;
+			}
+
 			uint64_t prev_2ndhigh = get_2ndhigh(prev);
 			uint64_t price2check_2ndlow = get_2ndlow(price2check);
 			if (price2check_2ndhigh < prev->high
@@ -1981,6 +2006,17 @@ static void symbol_check_strong_breakout(const char *symbol, const struct stock_
 	selected_symbol_nr += 1;
 }
 
+static void symbol_check_strong_breakout(const char *symbol, const struct stock_price *price_history,
+					 const struct date_price *price2check)
+{
+	__symbol_check_strong_breakout(symbol, price_history, price2check, 0);
+}
+
+static void symbol_check_strong_body_breakout(const char *symbol, const struct stock_price *price_history,
+					 const struct date_price *price2check)
+{
+	__symbol_check_strong_breakout(symbol, price_history, price2check, 1);
+}
 
 static void symbol_check_early_up(const char *symbol, const struct stock_price *price_history,
 				    const struct date_price *price2check)
@@ -2557,6 +2593,11 @@ void stock_price_check_strong_uptrend(const char *group, const char *date, int s
 void stock_price_check_strong_breakout(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_strong_breakout);
+}
+
+void stock_price_check_strong_body_breakout(const char *group, const char *date, int symbols_nr, const char **symbols)
+{
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_strong_body_breakout);
 }
 
 void stock_price_check_early_up(const char *group, const char *date, int symbols_nr, const char **symbols)
