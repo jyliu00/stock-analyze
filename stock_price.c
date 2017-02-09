@@ -1949,10 +1949,36 @@ static void __symbol_check_strong_breakout(const char *symbol, const struct stoc
 #define STRONG_BO_MAX_DAYS   5
 	uint32_t price2check_2ndhigh = get_2ndhigh(price2check);
 	const struct date_price *yesterday = NULL;
+	uint32_t price2check_2ndlow = get_2ndlow(price2check);
+	uint32_t low_40day = price2check_2ndlow;
+	uint32_t high_40day = price2check_2ndhigh;
 	int i, j;
 
 	/* must be bull trend bar */
 	if (price2check->candle_trend == CANDLE_TREND_BEAR && price2check->close < price2check->open)
+		return;
+
+	for (i = j = 0; i < price_history->date_cnt && j < 40; i++) {
+		const struct date_price *prev = &price_history->dateprice[i];
+		if (strcmp(price2check->date, prev->date) > 0) {
+			if (prev->volume == 0)
+				continue;
+
+			uint32_t prev_2ndhigh = get_2ndhigh(prev);
+			uint32_t prev_2ndlow = get_2ndlow(prev);
+
+			if (prev_2ndlow < low_40day)
+				low_40day = prev_2ndlow;
+
+			if (prev_2ndhigh > high_40day)
+				high_40day = prev_2ndhigh;
+
+			j += 1;
+		}
+	}
+
+	if (high_40day == price2check_2ndhigh
+	    || (price2check_2ndlow > low_40day && (price2check_2ndlow - low_40day) * 100 / low_40day > 10))
 		return;
 
 	if (strong_body) {
