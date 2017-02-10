@@ -1,441 +1,245 @@
 %sector=rank2
-AAON
-ABCB
-ACTA
-ADMS
-ADRO
-AEE
-AGX
-AEG
-AGNC
-AGX
-AHH
-AIRG
-AIT
-AKS
-ALRM
-AMBR
-AMCC
-AMKR
-AMRN
-AMT
-ANET
-AOSL
-APH
-APTS
-AQXP
-ARCH
-ARCO
-ARI
-ARIA
-ARLP
-ARR
-ATRC
-AUDC
-AUO
-AVA
-AVGO
-AVGR
-AXAS
-AXTI
-AZPN
-BABY
-BAH
-BATS
-BCO
-BCR
-BCRX
-BGFV
-BGG
-BHP
-BIIB
-BIOA
-BITA
-BK
-BKMU
-BMY
-BOH
-BOJA
-BOOT
-BPFH
-BPI
-BPMC
-BRCD
-BRG
-BRKR
-BSBR
-BSM
-BTG
-BTX
-BUFF
-BV
-BZH
-CAAS
-CAKE
-CAL
-CALA
-CARA
-CBK
-CBRL
-CCP
-CCRN
-CCXI
-CDK
-CECE
-CELG
-CENT
-CETV
-CEVA
-CFMS
-CHH
-CLCD
-CLI
-CLSD
-CNCE
-CNNX
-CNP
-COBZ
-COLB
-COMM
-CPLP
-CPRT
-CR
-CSGS
-CSII
-CTRP
-CTT
-CUDA
-CVGI
-CXO
-CY
-CZZ
-DCI
-DCT
-DGI
-DLX
-DNR
-DOX
-DPZ
-DTE
-DV
-EA
-EBIX
-ECA
-ECYT
-EDIT
-EGBN
-EGHT
-EGOV
-EGRX
-EIG
-EMKR
-EMN
-ENH
-ENZ
-EPC
-EPM
-ERJ
-ESEA
-ESNT
-ETFC
-EVR
-EVRI
-EWBC
-EXAS
-FANG
-FB
-FBC
-FBNC
-FCPT
-FE
-FEYE
-FFBC
-FHB
-FITB
-FIX
-FL
-FMSA
-FOR
-FOXF
-FPI
-FRAN
-FRME
-FTD
-FTV
-FULT
-G
-GD
-GEN
-GEO
-GGB
-GHL
-GIG
-GLPI
-GLRE
-GLW
-GM
-GOGL
-GPN
-GRMN
-GRPN
-GS
-GTY
-GXP
-HAE
-HASI
-HBAN
-HDS
-HDSN
-HE
-HELE
-HIFR
-HLX
-HMLP
-HMSY
-HNRG
-HOMB
-HOME
-HOV
-HRS
-HSY
-HTGC
-HUM
-IBP
-IBTX
-ICFI
-ICL
-IDA
-ILG
-IMPV
-INDB
-INGR
-INSG
-INST
-IOC
-IPHI
-ISIL
-ISRG
-IT
-ITCI
-ITG
-ITUB
-IVR
-JIVE
-JKHY
-JNPR
-JRVR
-JWN
-KB
-KKR
-KLAC
-KN
-KOPN
-LAZ
-LDOS
-LEA
-LIFE
-LNG
-LOCK
-LOPE
-LPLA
-LPSN
-LRCX
-MA
-MAG
-MAN
-MANH
-MB
-MCD
-MDLZ
-MDSO
-MEDP
-MEOH
-MGI
-MGRC
-MIDD
-MIME
-MMYT
-MOBL
-MOMO
-MOS
-MRTN
-MSA
-MSCC
-MSI
-MTDR
-MTN
-MTZ
-MU
-MUX
-NBHC
-NBL
-NBTB
-NCR
-NCS
-NEE
-NEP
-NEWS
-NK
-NMR
-NOAH
-NTRI
-NVLS
-NWPX
-OCFC
-OCLR
-OCN
-OCRX
-ODFL
-OGE
-OGS
-ONVO
-OSIS
-PBCT
-PBPB
-PBYI
-PCH
-PDS
-PEGA
-PERY
-PETX
-PFG
-PFPT
-PFS
-PI
-PKD
-PLAY
-PLT
-PNC
-POOL
-POWI
-PPL
-PRI
-PRTK
-PTC
-PXLW
-PZZA
-QLYS
-QURE
-RDS.A
-RE
-RECN
-REGN
-REN
-RES
-RM
-RMAX
-RMBS
-ROL
-ROST
-RP
-RPXC
-RUTH
-RWT
-RXDX
-RYN
-SABR
-SAFM
-SAIC
-SALE
-SAND
-SATS
-SBCF
-SBLK
-SCG
-SCHN
-SCHW
-SCWX
-SCYX
-SF
-SFR
-SID
-SIMO
-SIVB
-SLAB
-SLCA
-SLM
-SMCI
-SN
-SNA
-SODA
-SORL
-SPR
-SPTN
-SQ
-SREV
-SRG
-SRI
-STBA
-STI
-STM
-SUI
-SWIR
-SWKS
-SWX
-SYF
-SYRG
-SYY
-TBPH
-TCS
-TEDU
-TEGP
-TI
-TLND
-TMO
-TPX
-TRIL
-TRUE
-TSLX
-TSRA
-TTC
-TTS
-TWI
-TWO
-TXN
-UAM
-UBNT
-UBSH
-UE
-UEPS
-UL
-ULTA
-UNH
-UNM
-URI
-USFD
-UTI
-VAC
-VALE
-VASC
-VBLT
-VC
-VECO
-VEEV
-VMW
-VNTV
-VRNS
-VRSK
-VSTO
-VVC
-VYGR
-WAFD
-WAGE
-WAIR
-WEC
-WEN
-WGO
-WING
-WK
-WM
-WMB
-WOR
-WPZ
-WR
-WTW
-XBIT
-XXIA
-YDKN
-YHOO
-ZEN
-ZG
-ZION
+MON	NYSE	Agriculture - Products
+NEP	NYSE	Alternative Energy - Other
+HAR	NYSE	Audio Video Production
+GM	NYSE	Automotive - Domestic
+FCAU	NYSE	Automotive - Foreign
+LEA	NYSE	Automotive - Original Equipment
+MTOR	NYSE	Automotive - Original Equipment
+AAP	NYSE	Automotive - Retail and Wholesale - Parts
+BSBR	NYSE	Banks - Foreign
+CS	NYSE	Banks - Foreign
+HSBC	NYSE	Banks - Foreign
+TD	NYSE	Banks - Foreign
+UBS	NYSE	Banks - Foreign
+BAC	NYSE	Banks - Major Regional
+CMA	NYSE	Banks - Major Regional
+FITB	NSDQ	Banks - Major Regional
+JPM	NYSE	Banks - Major Regional
+MTB	NYSE	Banks - Major Regional
+PNC	NYSE	Banks - Major Regional
+STI	NYSE	Banks - Major Regional
+USB	NYSE	Banks - Major Regional
+ASB	NYSE	Banks - Midwest
+HBAN	NSDQ	Banks - Midwest
+FULT	NSDQ	Banks - Northeast
+STL	NYSE	Banks - Northeast
+VLY	NYSE	Banks - Northeast
+WBS	NYSE	Banks - Northeast
+FHN	NYSE	Banks - Southeast
+OZRK	NSDQ	Banks - Southeast
+PNFP	NSDQ	Banks - Southeast
+RF	NYSE	Banks - Southeast
+UBSI	NSDQ	Banks - Southeast
+CFR	NYSE	Banks - Southwest
+FHB	NSDQ	Banks - West
+FRC	NYSE	Banks - West
+SIVB	NSDQ	Banks - West
+ZION	NSDQ	Banks - West
+STZ	NYSE	Beverages - Alcohol
+PEIX	NSDQ	Biofuels
+SNI	NSDQ	Broadcast Radio and Television
+TV	NYSE	Broadcast Radio and Television
+CBI	NYSE	Building Products - Heavy Construction
+DHI	NYSE	Building Products - Home Builders
+TOL	NYSE	Building Products - Home Builders
+FAST	NSDQ	Building Products - Retail
+INFO	NSDQ	Business - Information Services
+SPGI	NYSE	Business - Information Services
+TRU	NYSE	Business - Information Services
+HMHC	NSDQ	Business - Services
+MSCI	NYSE	Business - Software Services
+LBTYA	NSDQ	Cable Television
+ALB	NYSE	Chemical - Diversified
+CE	NYSE	Chemical - Diversified
+FMC	NYSE	Chemical - Diversified
+CNX	NYSE	Coal
+KRNT	NSDQ	Commercial Printing
+ARRS	NSDQ	Communication - Components
+KN	NYSE	Communication - Components
+VIAV	NSDQ	Communication - Components
+XXIA	NSDQ	Computer - Networking
+CDK	NSDQ	Computers - IT Services
+CDW	NSDQ	Computers - IT Services
+CUDA	NYSE	Computers - IT Services
+PANW	NYSE	Computers - IT Services
+CRM	NYSE	Computer - Software
+PSTG	NYSE	Computer- Storage Devices
+ENR	NYSE	Consumer Products - Staples
+ENTG	NSDQ	Electronics - Manufacturing Machinery
+KLIC	NSDQ	Electronics - Manufacturing Machinery
+KEYS	NYSE	Electronics - Measuring Instruments
+LLL	NYSE	Electronics - Military
+TEL	NYSE	Electronics - Miscellaneous Components
+CAVM	NSDQ	Electronics - Semiconductors
+OCLR	NSDQ	Fiber Optics
+LGF.A	NYSE	Film and Television Production and Distribution
+SLM	NSDQ	Financial - Consumer Loans
+AMTD	NSDQ	Financial - Investment Bank
+ETFC	NSDQ	Financial - Investment Bank
+AMP	NYSE	Financial - Investment Management
+EV	NYSE	Financial - Investment Management
+LAZ	NYSE	Financial - Investment Management
+PFG	NYSE	Financial - Investment Management
+AXP	NYSE	Financial - Miscellaneous Services
+ESNT	NYSE	Financial - Mortgage & Related Services
+CFG	NYSE	Financial - Savings and Loan
+FISV	NSDQ	Financial Transaction Services
+TSS	NYSE	Financial Transaction Services
+VNTV	NYSE	Financial Transaction Services
+V	NYSE	Financial Transaction Services
+HSY	NYSE	Food - Confectionery
+PPC	NSDQ	Food - Meat Products
+TSN	NYSE	Food - Meat Products
+APFH	NYSE	Food - Miscellaneous
+CAG	NYSE	Food - Miscellaneous
+CPB	NYSE	Food - Miscellaneous
+INGR	NYSE	Food - Miscellaneous
+PF	NYSE	Food - Miscellaneous
+POST	NYSE	Food - Miscellaneous
+SYY	NYSE	Food - Miscellaneous
+USFD	NYSE	Food - Miscellaneous
+MGM	NYSE	Gaming
+STAY	NYSE	Hotels and Motels
+ROK	NYSE	Industrial Automation and Robotics
+MSM	NYSE	Industrial Services
+UNM	NYSE	Insurance - Accident and Health
+HIG	NYSE	Insurance - Multi line
+L	NYSE	Insurance - Multi line
+ALL	NYSE	Insurance - Property and Casualty
+CINF	NSDQ	Insurance - Property and Casualty
+PGR	NYSE	Insurance - Property and Casualty
+FEYE	NSDQ	Internet - Software
+SABR	NSDQ	Internet - Software and Services
+GSK	NYSE	Large Cap Pharmaceuticals
+LLY	NYSE	Large Cap Pharmaceuticals
+SNY	NYSE	Large Cap Pharmaceuticals
+RCL	NYSE	Leisure and Recreation Services
+ABB	NYSE	Manufacturing - Electronics
+ITW	NYSE	Manufacturing - General Industrial
+PH	NYSE	Manufacturing - General Industrial
+ROP	NYSE	Manufacturing - General Industrial
+TWX	NYSE	Media Conglomerates
+CELG	NSDQ	Medical - Biomedical and Genetics
+EXAS	NSDQ	Medical - Biomedical and Genetics
+EXEL	NSDQ	Medical - Biomedical and Genetics
+MNTA	NSDQ	Medical - Biomedical and Genetics
+ABC	NYSE	Medical - Dental Supplies
+BCR	NYSE	Medical - Dental Supplies
+FGEN	NSDQ	Medical - Drugs
+LCI	NYSE	Medical - Drugs
+PCRX	NSDQ	Medical - Drugs
+IPXL	NSDQ	Medical - Generic Drugs
+HCA	NYSE	Medical - Hospital
+UHS	NYSE	Medical - Hospital
+ATHN	NSDQ	Medical Info Systems
+BABY	NSDQ	Medical - Instruments
+IDXX	NSDQ	Medical - Instruments
+KND	NYSE	Medical - Nursing Homes
+PINC	NSDQ	Medical Services
+AA	NYSE	Metal Products - Distribution
+FMSA	NYSE	Metal Products - Fasteners
+TKR	NYSE	Metal Products - Procurement and Fabrication
+CLF	NYSE	Mining - Iron
+VALE	NYSE	Mining - Iron
+HCLP	NYSE	Mining - Miscellaneous
+SLCA	NYSE	Mining - Miscellaneous
+ARNC	NYSE	Mining - Non Ferrous
+AVY	NYSE	Office Supplies
+NBR	NYSE	Oil and Gas - Drilling
+PDS	NYSE	Oil and Gas - Drilling
+PES	NYSE	Oil and Gas - Drilling
+PTEN	NSDQ	Oil and Gas - Drilling
+KOS	NYSE	Oil and Gas - Exploration and Production - International
+APA	NYSE	Oil and Gas - Exploration and Production - United States
+APC	NYSE	Oil and Gas - Exploration and Production - United States
+CDEV	NSDQ	Oil and Gas - Exploration and Production - United States
+CLR	NYSE	Oil and Gas - Exploration and Production - United States
+CWEI	NYSE	Oil and Gas - Exploration and Production - United States
+FANG	NSDQ	Oil and Gas - Exploration and Production - United States
+HK	NYSE	Oil and Gas - Exploration and Production - United States
+MTDR	NYSE	Oil and Gas - Exploration and Production - United States
+PDCE	NSDQ	Oil and Gas - Exploration and Production - United States
+PXD	NYSE	Oil and Gas - Exploration and Production - United States
+REN	NYSE	Oil and Gas - Exploration and Production - United States
+RRC	NYSE	Oil and Gas - Exploration and Production - United States
+SN	NYSE	Oil and Gas - Exploration and Production - United States
+SYRG	AMEX	Oil and Gas - Exploration and Production - United States
+WPX	NYSE	Oil and Gas - Exploration and Production - United States
+XEC	NYSE	Oil and Gas - Exploration and Production - United States
+EMES	NYSE	Oil and Gas - Field Services
+HAL	NYSE	Oil and Gas - Field Services
+SND	NSDQ	Oil and Gas - Field Services
+UNT	NYSE	Oil and Gas - Field Services
+CVE	NYSE	Oil and Gas - Integrated - Canadian
+TOT	NYSE	Oil and Gas - Integrated - International
+DNOW	NYSE	Oil and Gas - Mechanical and and Equitment
+FET	NYSE	Oil and Gas - Mechanical and and Equitment
+NOV	NYSE	Oil and Gas - Mechanical and and Equitment
+SE	NYSE	Oil and Gas - Production and Pipelines
+SXL	NYSE	Oil and Gas - Production Pipeline - MLB
+SHW	NYSE	Paints and Related Products
+FBR	NYSE	Paper and Related Products
+MDP	NYSE	Publishing - Periodicals
+NRZ	NYSE	REIT and Equity Trust
+APLE	NYSE	REIT and Equity Trust - Other
+DRH	NYSE	REIT and Equity Trust - Other
+FCH	NYSE	REIT and Equity Trust - Other
+HST	NYSE	REIT and Equity Trust - Other
+LHO	NYSE	REIT and Equity Trust - Other
+NYRT	NYSE	REIT and Equity Trust - Other
+OUT	NYSE	REIT and Equity Trust - Other
+PDM	NYSE	REIT and Equity Trust - Other
+SHO	NYSE	REIT and Equity Trust - Other
+VER	NYSE	REIT and Equity Trust - Other
+AMH	NYSE	REIT and Equity Trust - Residential
+BRX	NYSE	REIT and Equity Trust - Retail
+RPAI	NYSE	REIT and Equity Trust - Retail
+FOSL	NSDQ	Retail - Apparel and Shoes
+DLTR	NSDQ	Retail - Discount Stores
+FRED	NSDQ	Retail - Discount Stores
+ROST	NSDQ	Retail - Discount Stores
+TJX	NYSE	Retail - Discount Stores
+PIR	NYSE	Retail - Home Furnishings
+BKS	NYSE	Retail - Miscellaneous
+CAB	NYSE	Retail - Miscellaneous
+SPLS	NSDQ	Retail - Miscellaneous
+DV	NYSE	Schools
+IPHI	NYSE	Semiconductor - Analog and Mixed
+MXIM	NSDQ	Semiconductor - Analog and Mixed
+MX	NYSE	Semiconductor - Analog and Mixed
+CREE	NSDQ	Semiconductor - Discretes
+KLAC	NSDQ	Semiconductor Equipment - Wafer Fabrication
+LRCX	NSDQ	Semiconductor Equipment - Wafer Fabrication
+ISIL	NSDQ	Semiconductor - General
+NVDA	NSDQ	Semiconductor - General
+STM	NYSE	Semiconductor - General
+XLNX	NSDQ	Semiconductors - Programmable Logic
+SWKS	NSDQ	Semiconductors - Radio Frequency
+FRAN	NSDQ	Shoes and Retail Apparel
+UL	NYSE	Soap and Cleaning Materials
+MAN	NYSE	Staffing Firms
+TS	NYSE	Steel - Pipe and Tube
+NUE	NYSE	Steel - Producers
+TMST	NYSE	Steel - Producers
+LULU	NSDQ	Textile - Apparel
+EA	NSDQ	Toys - Games - Hobbies
+ALK	NYSE	Transportation - Airline
+DAL	NYSE	Transportation - Airline
+LUV	NYSE	Transportation - Airline
+SAVE	NSDQ	Transportation - Airline
+UAL	NYSE	Transportation - Airline
+TRN	NYSE	Transportation - Equipment and Leasing
+WAB	NYSE	Transportation - Equipment and Leasing
+CNI	NYSE	Transportation - Rail
+CSX	NSDQ	Transportation - Rail
+AEE	NYSE	Utility - Electric Power
+CNP	NYSE	Utility - Electric Power
+EXC	NYSE	Utility - Electric Power
+NEE	NYSE	Utility - Electric Power
+NGG	NYSE	Utility - Electric Power
+SCG	NYSE	Utility - Electric Power
+XEL	NYSE	Utility - Electric Power
+WGL	NYSE	Utility - Gas Distribution
+MSI	NYSE	Wireless Equipment
+WIN	NSDQ	Wireless National

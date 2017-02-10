@@ -206,7 +206,7 @@ int fetch_symbols_price(int realtime, const char *group, const char *fname, int 
 
 	if (fname && fname[0]) {
 		char symbol[128] = { };
-		char sector[48] = { };
+		char sector_prefix[48] = { };
 		FILE *fp = fopen(fname, "r");
 		if (!fp) {
 			anna_error("fopen(%s) failed: %d(%s)\n", fname, errno, strerror(errno));
@@ -218,6 +218,8 @@ int fetch_symbols_price(int realtime, const char *group, const char *fname, int 
 		anna_info("\n%s%s: start fetching symbols' price%s\n", ANSI_COLOR_YELLOW, fname, ANSI_COLOR_RESET);
 
 		while (fgets(symbol, sizeof(symbol), fp)) {
+			char sector[64] = { };
+
 			if (symbol[0] == '#' || symbol[0] == '\n')
 				continue;
 
@@ -231,17 +233,15 @@ int fetch_symbols_price(int realtime, const char *group, const char *fname, int 
 				continue;
 			}
 			else if (symbol[0] == '%') {
-				if (strncmp(&symbol[1], "sector=", strlen("sector=")) == 0)
-					strlcpy(sector, strchr(symbol, '=') + 1, sizeof(sector));
+				if (strncmp(&symbol[1], "sector=", strlen("sector=")) == 0) {
+					strlcpy(sector_prefix, strchr(symbol, '=') + 1, sizeof(sector_prefix));
+				}
 				continue;
 			}
 			else if (is_zacks && strchr(symbol, '\t')) {
 				char buf[128];
 				char *token;
-				//int rank;
-				//char vgm;
-				int industry_rank;
-				char v, g, m;
+				char exchange[16];
 				char industry[64];
 
 				strlcpy(buf, symbol, sizeof(buf));
@@ -261,29 +261,17 @@ int fetch_symbols_price(int realtime, const char *group, const char *fname, int 
 				if (!token) continue;
 				vgm = token[0];
 #endif
-				/* industry rank */
+				/* exchange */
 				token = strtok(NULL, "\t");
 				if (!token) continue;
-				industry_rank = atoi(token);
+				strlcpy(exchange, token, sizeof(exchange));
 
-				token = strtok(NULL, "\t");
-				if (!token) continue;
-				v = token[0];
-
-				token = strtok(NULL, "\t");
-				if (!token) continue;
-				g = token[0];
-
-				token = strtok(NULL, "\t");
-				if (!token) continue;
-				m = token[0];
-
+				/* industry */
 				token = strtok(NULL, "\t");
 				if (!token) continue;
 				strlcpy(industry, token, sizeof(industry));
 
-				//snprintf(sector, sizeof(sector), "rank%d_%c_%d_%c%c%c", rank, vgm, industry, v, g, m);
-				snprintf(sector+6, sizeof(sector) - 6, "_%d_%c%c%c(%s)", industry_rank, v, g, m, industry);
+				snprintf(sector, sizeof(sector), "%s_%s(%s)", sector_prefix, exchange, industry);
 			}
 
 			if (fetch_symbol_price_since_date(group, sector, symbol, year, month, mday) == 0)

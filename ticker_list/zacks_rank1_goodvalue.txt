@@ -1,18 +1,18 @@
 %sector=rank1_goodvalue
-BGFV	Retail - Miscellaneous
-CCRN	Staffing Firms
-CXW	REIT and Equity Trust - Other
-DB	Banks - Foreign
-GTN	Broadcast Radio and Television
-HBM	Mining - Miscellaneous
-JBL	Electronics - Manufacturing Services
-MBT	Wireless Non-US
-MDR	Oil and Gas - Mechanical and and Equitment
-MTZ	Building Products - Heavy Construction
-NCS	Building Products - Miscellaneous
-ORI	Insurance - Multi line
-PLCE	Retail - Apparel and Shoes
-SCMP	Medical - Drugs
-STLD	Steel - Producers
-TX	Steel - Producers
-WNC	Automotive - Original Equipment
+BGFV	NSDQ	Retail - Miscellaneous
+CCRN	NSDQ	Staffing Firms
+CXW	NYSE	REIT and Equity Trust - Other
+DB	NYSE	Banks - Foreign
+GTN	NYSE	Broadcast Radio and Television
+HBM	NYSE	Mining - Miscellaneous
+JBL	NYSE	Electronics - Manufacturing Services
+MBT	NYSE	Wireless Non-US
+MDR	NYSE	Oil and Gas - Mechanical and and Equitment
+MTZ	NYSE	Building Products - Heavy Construction
+NCS	NYSE	Building Products - Miscellaneous
+ORI	NYSE	Insurance - Multi line
+PLCE	NSDQ	Retail - Apparel and Shoes
+SCMP	NSDQ	Medical - Drugs
+STLD	NSDQ	Steel - Producers
+TX	NYSE	Steel - Producers
+WNC	NYSE	Automotive - Original Equipment
