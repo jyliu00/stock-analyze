@@ -1964,6 +1964,15 @@ static void __symbol_check_strong_breakout(const char *symbol, const struct stoc
 			if (prev->volume == 0)
 				continue;
 
+			if (yesterday == NULL) {
+				yesterday = prev;
+				/* if not strong_body, volume needs be enough */
+				if (!strong_body && price2check->volume < prev->vma[VMA_20d])
+					return;
+				if (strong_body && ((uint64_t)price2check->volume * 100) < ((uint64_t)prev->vma[VMA_20d] * 75))
+					return;
+			}
+
 			uint32_t prev_2ndhigh = get_2ndhigh(prev);
 			uint32_t prev_2ndlow = get_2ndlow(prev);
 
@@ -2001,13 +2010,6 @@ static void __symbol_check_strong_breakout(const char *symbol, const struct stoc
 		if (strcmp(price2check->date, prev->date) > 0) {
 			if (prev->volume == 0)
 				continue;
-
-			if (yesterday == NULL) {
-				yesterday = prev;
-				/* if not strong_body, volume needs be enough */
-				if (!strong_body && price2check->volume < prev->vma[VMA_20d])
-					return;
-			}
 
 			uint64_t prev_2ndhigh = get_2ndhigh(prev);
 			uint64_t price2check_2ndlow = get_2ndlow(price2check);
