@@ -1,18 +1,18 @@
 %sector=rank1_goodvalue
 BGFV	Retail - Miscellaneous
+CCRN	Staffing Firms
 CXW	REIT and Equity Trust - Other
-FCH	REIT and Equity Trust - Other
+DB	Banks - Foreign
 GTN	Broadcast Radio and Television
-HII	Aerospace - Defense
+HBM	Mining - Miscellaneous
 JBL	Electronics - Manufacturing Services
-MC	Financial - Investment Bank
+MBT	Wireless Non-US
 MDR	Oil and Gas - Mechanical and and Equitment
+MTZ	Building Products - Heavy Construction
 NCS	Building Products - Miscellaneous
+ORI	Insurance - Multi line
 PLCE	Retail - Apparel and Shoes
 SCMP	Medical - Drugs
-SNI	Broadcast Radio and Television
-STAY	Hotels and Motels
 STLD	Steel - Producers
 TX	Steel - Producers
-VVC	Utility - Gas Distribution
 WNC	Automotive - Original Equipment
