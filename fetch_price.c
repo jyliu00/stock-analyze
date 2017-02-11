@@ -241,8 +241,8 @@ int fetch_symbols_price(int realtime, const char *group, const char *fname, int 
 			else if (is_zacks && strchr(symbol, '\t')) {
 				char buf[128];
 				char *token;
-				char exchange[16];
-				char industry[64];
+				char exchange[16] = { 0 };
+				char industry[64] = { 0 };
 
 				strlcpy(buf, symbol, sizeof(buf));
 
@@ -250,29 +250,24 @@ int fetch_symbols_price(int realtime, const char *group, const char *fname, int 
 				token = strtok(buf, "\t");
 				if (!token) continue;
 				strlcpy(symbol, token, sizeof(symbol));
-#if 0
-				/* rank */
-				token = strtok(NULL, "\t");
-				if (!token) continue;
-				rank = atoi(token);
 
-				/* vgm value*/
-				token = strtok(NULL, "\t");
-				if (!token) continue;
-				vgm = token[0];
-#endif
 				/* exchange */
 				token = strtok(NULL, "\t");
-				if (!token) continue;
-				strlcpy(exchange, token, sizeof(exchange));
+				if (token)
+					strlcpy(exchange, token, sizeof(exchange));
 
 				/* industry */
 				token = strtok(NULL, "\t");
-				if (!token) continue;
-				strlcpy(industry, token, sizeof(industry));
+				if (token)
+					strlcpy(industry, token, sizeof(industry));
 
-				snprintf(sector, sizeof(sector), "%s_%s(%s)", sector_prefix, exchange, industry);
+				if (exchange[0])
+					snprintf(sector, sizeof(sector), "%s_%s(%s)", sector_prefix, exchange, industry);
+				else
+					strlcpy(sector, sector_prefix, sizeof(sector));
 			}
+			else
+				strlcpy(sector, sector_prefix, sizeof(sector));
 
 			if (fetch_symbol_price_since_date(group, sector, symbol, year, month, mday) == 0)
 				count += 1;
