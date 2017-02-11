@@ -1902,10 +1902,10 @@ static void symbol_check_trend_breakout(const char *symbol, const struct stock_p
 	if (!date_is_trend_breakout(symbol, price_history, price2check))
 		return;
 
-	anna_info("%s%-10s%s: date=%s, %s; %s<sector=%s>%s.\n",
+	anna_info("%s%-10s%s: date=%s, %s; %s.\n",
 		ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
 		price2check->date, get_price_volume_change(price_history, price2check),
-		ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+		price_history->sector);
 
 	selected_symbol_nr += 1;
 }
@@ -2026,10 +2026,10 @@ static void __symbol_check_strong_breakout(const char *symbol, const struct stoc
 	if (j < STRONG_BO_MAX_DAYS)
 		return;
 
-	anna_info("%s%-10s%s: date=%s, %s; %s<sector=%s>%s.\n",
+	anna_info("%s%-10s%s: date=%s, %s; %s.\n",
 		ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
 		price2check->date, get_price_volume_change(price_history, price2check),
-		ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+		price_history->sector);
 
 	selected_symbol_nr += 1;
 }
