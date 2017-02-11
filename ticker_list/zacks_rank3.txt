@@ -1,438 +1,273 @@
 %sector=rank3
 IPG	NYSE	Advertising and Marketing
 BA	NYSE	Aerospace - Defense
-GD	NYSE	Aerospace - Defense
 LDOS	NYSE	Aerospace - Defense
-LMT	NYSE	Aerospace - Defense
 NOC	NYSE	Aerospace - Defense
 AOBC	NSDQ	Aerospace - Defense Equipment
-BEAV	NSDQ	Aerospace - Defense Equipment
-COL	NYSE	Aerospace - Defense Equipment
-HXL	NYSE	Aerospace - Defense Equipment
-KTOS	NSDQ	Aerospace - Defense Equipment
-RTN	NYSE	Aerospace - Defense Equipment
+OA	NYSE	Aerospace - Defense Equipment
 SPR	NYSE	Aerospace - Defense Equipment
 ADM	NYSE	Agriculture - Operations
-AGRO	NYSE	Agriculture - Operations
 CVA	NYSE	Alternative Energy - Other
-RBA	NYSE	Auction and Valuation Services
-GPRO	NSDQ	Audio Video Production
 SNE	NYSE	Audio Video Production
 F	NYSE	Automotive - Domestic
 PCAR	NSDQ	Automotive - Domestic
-TSLA	NSDQ	Automotive - Domestic
 CNHI	NYSE	Automotive - Foreign
+TM	NYSE	Automotive - Foreign
 TTM	NYSE	Automotive - Foreign
-CMI	NYSE	Automotive - Internal Combustion Engines
 ADNT	NYSE	Automotive - Original Equipment
 AXL	NYSE	Automotive - Original Equipment
 DAN	NYSE	Automotive - Original Equipment
 DLPH	NYSE	Automotive - Original Equipment
-GNTX	NSDQ	Automotive - Original Equipment
 MGA	NYSE	Automotive - Original Equipment
 NAV	NYSE	Automotive - Original Equipment
 OSK	NYSE	Automotive - Original Equipment
-KMX	NYSE	Automotive - Retail and Wholesale - Parts
-ORLY	NSDQ	Automotive - Retail and Wholesale - Parts
-BNS	NYSE	Banks - Foreign
-HDB	NYSE	Banks - Foreign
-IBN	NYSE	Banks - Foreign
-ITUB	NYSE	Banks - Foreign
-MTU	NYSE	Banks - Foreign
+TEN	NYSE	Automotive - Original Equipment
+AZO	NYSE	Automotive - Retail and Wholesale - Parts
+ABG	NYSE	Automotive - Retail and Whole Sales
+GPI	NYSE	Automotive - Retail and Whole Sales
+LAD	NYSE	Automotive - Retail and Whole Sales
+PAG	NYSE	Automotive - Retail and Whole Sales
+CIB	NYSE	Banks - Foreign
+GGAL	NSDQ	Banks - Foreign
 RBS	NYSE	Banks - Foreign
-RY	NYSE	Banks - Foreign
 SAN	NYSE	Banks - Foreign
-BBT	NYSE	Banks - Major Regional
-BK	NYSE	Banks - Major Regional
-BKU	NYSE	Banks - Major Regional
+SUPV	NYSE	Banks - Foreign
 C	NYSE	Banks - Major Regional
-KEY	NYSE	Banks - Major Regional
-NTRS	NSDQ	Banks - Major Regional
-STT	NYSE	Banks - Major Regional
-WFC	NYSE	Banks - Major Regional
-CBSH	NSDQ	Banks - Midwest
 TCB	NYSE	Banks - Midwest
 FNB	NYSE	Banks - Southeast
-BANC	NYSE	Banks - Southwest
 BOFI	NSDQ	Banks - West
-HOPE	NSDQ	Banks - West
-PACW	NSDQ	Banks - West
 UMPQ	NSDQ	Banks - West
-BF.B	NYSE	Beverages - Alcohol
-BUD	NYSE	Beverages - Alcohol
-DEO	NYSE	Beverages - Alcohol
 CCE	NYSE	Beverages - Soft drinks
 COT	NYSE	Beverages - Soft drinks
-MNST	NSDQ	Beverages - Soft drinks
-WWAV	NYSE	Beverages - Soft drinks
-CBS	NYSE	Broadcast Radio and Television
-NFLX	NSDQ	Broadcast Radio and Television
+REGI	NSDQ	Biofuels
 NXST	NSDQ	Broadcast Radio and Television
 TGNA	NYSE	Broadcast Radio and Television
-TRCO	NYSE	Broadcast Radio and Television
-CX	NYSE	Building Products - Concrete and Aggregates
-EXP	NYSE	Building Products - Concrete and Aggregates
-MLM	NYSE	Building Products - Concrete and Aggregates
-SUM	NYSE	Building Products - Concrete and Aggregates
-BZH	NYSE	Building Products - Home Builders
-CAA	NYSE	Building Products - Home Builders
+USCR	NSDQ	Building Products - Concrete and Aggregates
+DY	NYSE	Building Products - Heavy Construction
+EME	NYSE	Building Products - Heavy Construction
+GLDD	NSDQ	Building Products - Heavy Construction
+TPC	NYSE	Building Products - Heavy Construction
 KBH	NYSE	Building Products - Home Builders
 LEN	NYSE	Building Products - Home Builders
+MDC	NYSE	Building Products - Home Builders
 TPH	NYSE	Building Products - Home Builders
 ABM	NYSE	Building Products - Maintenance Service
 CRH	NYSE	Building Products - Miscellaneous
+CSTE	NSDQ	Building Products - Miscellaneous
 HW	NYSE	Building Products - Miscellaneous
-OC	NYSE	Building Products - Miscellaneous
+PGTI	NYSE	Building Products - Miscellaneous
 URI	NYSE	Building Products - Miscellaneous
 USG	NYSE	Building Products - Miscellaneous
+WGO	NYSE	Building Products - Mobile Homes and RV Builders
+BECN	NSDQ	Building Products - Retail
+BMCH	NSDQ	Building Products - Retail
 HD	NYSE	Building Products - Retail
 LOW	NYSE	Building Products - Retail
-WY	NYSE	Building Products - Wood
-SCS	NYSE	Business - Office Products
+BCC	NYSE	Building Products - Wood
+DNB	NYSE	Business - Information Services
+KNL	NYSE	Business - Office Products
 CAR	NSDQ	Business - Services
 FDC	NYSE	Business - Services
-SCOR	NSDQ	Business - Services
-CHTR	NSDQ	Cable Television
+RPXC	NSDQ	Business - Services
+CTSH	NSDQ	Business - Software Services
 CMCSA	NSDQ	Cable Television
-LBRDK	NSDQ	Cable Television
 CC	NYSE	Chemical - Diversified
-DD	NYSE	Chemical - Diversified
 DOW	NYSE	Chemical - Diversified
 EMN	NYSE	Chemical - Diversified
 LYB	NYSE	Chemical - Diversified
 OLN	NYSE	Chemical - Diversified
-PPG	NYSE	Chemical - Diversified
-PX	NYSE	Chemical - Diversified
-UNVR	NYSE	Chemical - Diversified
 POL	NYSE	Chemical - Plastic
 TSE	NYSE	Chemical - Plastic
-ASH	NYSE	Chemical - Specialty
-AXTA	NYSE	Chemical - Specialty
-GRA	NYSE	Chemical - Specialty
-PAH	NYSE	Chemical - Specialty
 CLD	NYSE	Coal
 SXC	NYSE	Coal
-ACIA	NSDQ	Communication - Components
-ANET	NYSE	Communication - Components
+SXCP	NYSE	Coal
+WLB	NSDQ	Coal
 GLW	NYSE	Communication - Components
-SBAC	NSDQ	Communication - Infrastructure
-ZAYO	NYSE	Communication - Infrastructure
 NSR	NYSE	Communication - Network Software
 HPE	NYSE	Computer - Integrated Systems
 IBM	NYSE	Computer - Integrated Systems
-MENT	NSDQ	Computer - Integrated Systems
 NCR	NYSE	Computer - Integrated Systems
-CRAY	NSDQ	Computer - Mainframe
 AAPL	NSDQ	Computer - Mini computers
-DDD	NYSE	Computer - Mini computers
 BRCD	NSDQ	Computer - Networking
-EXTR	NSDQ	Computer - Networking
-NTCT	NSDQ	Computer - Networking
-EFII	NSDQ	Computer - Peripheral Equipment
-MRCY	NSDQ	Computer - Peripheral Equipment
-SSYS	NSDQ	Computer - Peripheral Equipment
 CSC	NYSE	Computer - Services
-LOGM	NSDQ	Computer - Services
+LIOX	NSDQ	Computer - Services
 SGMS	NSDQ	Computer - Services
+SYNT	NSDQ	Computer - Services
 DOX	NSDQ	Computers - IT Services
 ELNK	NSDQ	Computers - IT Services
 INFY	NYSE	Computers - IT Services
-NOW	NYSE	Computers - IT Services
-NTNX	NSDQ	Computers - IT Services
-ADBE	NSDQ	Computer - Software
-ADSK	NSDQ	Computer - Software
-CDNS	NSDQ	Computer - Software
-CSOD	NSDQ	Computer - Software
-IMPV	NSDQ	Computer - Software
-INTU	NSDQ	Computer - Software
-MSFT	NSDQ	Computer - Software
+DST	NYSE	Computer - Software
 ORCL	NYSE	Computer - Software
-PFPT	NSDQ	Computer - Software
-PTC	NSDQ	Computer - Software
-RHT	NYSE	Computer - Software
-SNPS	NSDQ	Computer - Software
-SSNC	NSDQ	Computer - Software
-VMW	NYSE	Computer - Software
-NMBL	NYSE	Computer- Storage Devices
 NTAP	NSDQ	Computer- Storage Devices
+SMCI	NSDQ	Computer- Storage Devices
 ACN	NYSE	Consulting Services
-CEB	NYSE	Consulting Services
-IT	NYSE	Consulting Services
-KMB	NYSE	Consumer Products - Staples
-NWL	NYSE	Consumer Products - Staples
-OLLI	NSDQ	Consumer Products - Staples
+NCI	NYSE	Consulting Services
 TUP	NYSE	Consumer Products - Staples
-BLL	NYSE	Containers - Metal and Glass
 CCK	NYSE	Containers - Metal and Glass
+SLGN	NSDQ	Containers - Metal and Glass
 BERY	NYSE	Containers - Paper and Packaging
 BMS	NYSE	Containers - Paper and Packaging
 GPK	NYSE	Containers - Paper and Packaging
 MPSX	NYSE	Containers - Paper and Packaging
 PKG	NYSE	Containers - Paper and Packaging
-SEE	NYSE	Containers - Paper and Packaging
-AVP	NYSE	Cosmetics
-COTY	NYSE	Cosmetics
 BCE	NYSE	Diversified Communication Services
 BT	NYSE	Diversified Communication Services
+CBB	NYSE	Diversified Communication Services
+NTT	NYSE	Diversified Communication Services
+TU	NYSE	Diversified Communication Services
 VIV	NYSE	Diversified Communication Services
-DHR	NYSE	Diversified Operations
-GE	NYSE	Diversified Operations
-HON	NYSE	Diversified Operations
-MIC	NYSE	Diversified Operations
-MMM	NYSE	Diversified Operations
+CR	NYSE	Diversified Operations
+ITT	NYSE	Diversified Operations
 UTX	NYSE	Diversified Operations
-NYLD	NYSE	Electric Construction
+BHE	NYSE	Electronics - Manufacturing Services
 CLS	NYSE	Electronics - Manufacturing Services
 FLEX	NSDQ	Electronics - Manufacturing Services
+PLXS	NSDQ	Electronics - Manufacturing Services
 SANM	NSDQ	Electronics - Manufacturing Services
 ORBK	NSDQ	Electronics - Measuring Instruments
-FLIR	NSDQ	Electronics - Military
-BWXT	NYSE	Electronics - Miscellaneous Components
 FN	NYSE	Electronics - Miscellaneous Components
-INVN	NYSE	Electronics - Miscellaneous Components
-TRMB	NSDQ	Electronics - Miscellaneous Products
+KEM	NYSE	Electronics - Miscellaneous Components
 ARW	NYSE	Electronics - Parts Distribution
 AVT	NYSE	Electronics - Parts Distribution
+AXE	NYSE	Electronics - Parts Distribution
 WCC	NYSE	Electronics - Parts Distribution
-AMBA	NSDQ	Electronics - Semiconductors
-AMD	NSDQ	Electronics - Semiconductors
 AMKR	NSDQ	Electronics - Semiconductors
 ASX	NYSE	Electronics - Semiconductors
 CRUS	NSDQ	Electronics - Semiconductors
-LSCC	NSDQ	Electronics - Semiconductors
-PI	NSDQ	Electronics - Semiconductors
 SIMO	NSDQ	Electronics - Semiconductors
 SYNA	NSDQ	Electronics - Semiconductors
-AME	NYSE	Electronics - Testing Equipment
-FTV	NYSE	Electronics - Testing Equipment
-WPZ	NYSE	Energy and Pipeline - Master Limited Partnerships
 ACM	NYSE	Engineering - R and D Services
 FLR	NYSE	Engineering - R and D Services
 JEC	NYSE	Engineering - R and D Services
 KBR	NYSE	Engineering - R and D Services
-PWR	NYSE	Engineering - R and D Services
-CF	NYSE	Fertilizers
 MOS	NYSE	Fertilizers
-SMG	NYSE	Fertilizers
-UAN	NYSE	Fertilizers
 CIEN	NYSE	Fiber Optics
-FOXA	NSDQ	Film and Television Production and Distribution
-IMAX	NYSE	Film and Television Production and Distribution
+LGF.A	NYSE	Film and Television Production and Distribution
 MSGN	NYSE	Film and Television Production and Distribution
 NWSA	NSDQ	Film and Television Production and Distribution
-WWE	NYSE	Film and Television Production and Distribution
 ALLY	NYSE	Financial - Consumer Loans
 COF	NYSE	Financial - Consumer Loans
 DFS	NYSE	Financial - Consumer Loans
 OMF	NYSE	Financial - Consumer Loans
 BGCP	NSDQ	Financial - Investment Bank
-KCG	NYSE	Financial - Investment Bank
-MS	NYSE	Financial - Investment Bank
-SCHW	NYSE	Financial - Investment Bank
-WETF	NSDQ	Financial - Investment Bank
+GCAP	NYSE	Financial - Investment Bank
+IBKR	NSDQ	Financial - Investment Bank
+MC	NYSE	Financial - Investment Bank
 AMG	NYSE	Financial - Investment Management
-BEN	NYSE	Financial - Investment Management
-BLK	NYSE	Financial - Investment Management
-BX	NYSE	Financial - Investment Management
+APAM	NYSE	Financial - Investment Management
 CG	NSDQ	Financial - Investment Management
-IVZ	NYSE	Financial - Investment Management
-KKR	NYSE	Financial - Investment Management
 LM	NYSE	Financial - Investment Management
-SEIC	NSDQ	Financial - Investment Management
-TROW	NSDQ	Financial - Investment Management
 WDR	NYSE	Financial - Investment Management
 CIT	NYSE	Financial - Miscellaneous Services
-LC	NYSE	Financial - Miscellaneous Services
-MCO	NYSE	Financial - Miscellaneous Services
 MGI	NSDQ	Financial - Miscellaneous Services
+ONDK	NYSE	Financial - Miscellaneous Services
 SYF	NYSE	Financial - Miscellaneous Services
+NSM	NYSE	Financial - Mortgage & Related Services
 OCN	NYSE	Financial - Mortgage & Related Services
-AF	NYSE	Financial - Savings and Loan
 EVER	NYSE	Financial - Savings and Loan
-ISBC	NSDQ	Financial - Savings and Loan
-PBCT	NSDQ	Financial - Savings and Loan
 AINV	NSDQ	Financial - SBIC & Commercial Industry
-ARCC	NSDQ	Financial - SBIC & Commercial Industry
-FSIC	NYSE	Financial - SBIC & Commercial Industry
+PNNT	NSDQ	Financial - SBIC & Commercial Industry
 ADS	NYSE	Financial Transaction Services
-GPN	NYSE	Financial Transaction Services
-MA	NYSE	Financial Transaction Services
+CATM	NSDQ	Financial Transaction Services
+EVTC	NYSE	Financial Transaction Services
+GDOT	NYSE	Financial Transaction Services
 QIWI	NSDQ	Financial Transaction Services
 WU	NYSE	Financial Transaction Services
-TWNK	NSDQ	Food - Confectionery
 DF	NYSE	Food - Dairy Products
-HRL	NYSE	Food - Meat Products
+SAFM	NSDQ	Food - Meat Products
 ARMK	NYSE	Food - Miscellaneous
-BETR	NYSE	Food - Miscellaneous
 BRFS	NYSE	Food - Miscellaneous
-GIS	NYSE	Food - Miscellaneous
-HAIN	NSDQ	Food - Miscellaneous
-KHC	NSDQ	Food - Miscellaneous
-K	NYSE	Food - Miscellaneous
-MDLZ	NSDQ	Food - Miscellaneous
-THS	NYSE	Food - Miscellaneous
-LEG	NYSE	Furniture
+SFS	NYSE	Food - Miscellaneous
+VSI	NYSE	Food - Natural Foods Products
+LZB	NYSE	Furniture
 BYD	NYSE	Gaming
-LVS	NYSE	Gaming
+ERI	NSDQ	Gaming
 PENN	NSDQ	Gaming
+PNK	NSDQ	Gaming
+RRR	NSDQ	Gaming
 OI	NYSE	Glass Products
 BAH	NYSE	Government Services
-H	NYSE	Hotels and Motels
+MMS	NYSE	Government Services
 LQ	NYSE	Hotels and Motels
-MAR	NSDQ	Hotels and Motels
 WYN	NYSE	Hotels and Motels
 WHR	NYSE	Household Appliances
 HOLI	NSDQ	Industrial Automation and Robotics
-GWW	NYSE	Industrial Services
-HDS	NSDQ	Industrial Services
 ST	NYSE	Instruments - Control
-BRKR	NSDQ	Instruments - Scientific
-WAT	NYSE	Instruments - Scientific
-AJG	NYSE	Insurance - Brokerage
-AON	NYSE	Insurance - Brokerage
-MMC	NYSE	Insurance - Brokerage
-WLTW	NSDQ	Insurance - Brokerage
+VR	NYSE	Insurance - Brokerage
+ATH	NYSE	Insurance - Life Insurance
 LNC	NYSE	Insurance - Life Insurance
+RGA	NYSE	Insurance - Life Insurance
+UAM	NYSE	Insurance - Life Insurance
 VOYA	NYSE	Insurance - Life Insurance
 AEG	NYSE	Insurance - Multi line
 AIG	NYSE	Insurance - Multi line
+AIZ	NYSE	Insurance - Multi line
 CI	NYSE	Insurance - Multi line
 CNO	NYSE	Insurance - Multi line
+L	NYSE	Insurance - Multi line
 MTG	NYSE	Insurance - Multi line
 PRU	NYSE	Insurance - Multi line
 RDN	NYSE	Insurance - Multi line
 AFSI	NSDQ	Insurance - Property and Casualty
-BRK.B	NYSE	Insurance - Property and Casualty
-CB	NYSE	Insurance - Property and Casualty
+MHLD	NSDQ	Insurance - Property and Casualty
 TRV	NYSE	Insurance - Property and Casualty
+WRB	NYSE	Insurance - Property and Casualty
 XL	NYSE	Insurance - Property and Casualty
-CTRP	NSDQ	Internet - Commerce
-JD	NSDQ	Internet - Commerce
 TVPT	NYSE	Internet - Commerce
-W	NYSE	Internet - Commerce
-WBMD	NSDQ	Internet - Content
-WB	NSDQ	Internet - Content
-YNDX	NSDQ	Internet - Content
+RATE	NYSE	Internet - Content
 YY	NSDQ	Internet - Content
-GDDY	NYSE	Internet - Delivery Services
-MMYT	NSDQ	Internet - Delivery Services
+BITA	NYSE	Internet - Delivery Services
+SALE	NSDQ	Internet - Delivery Services
 VIPS	NYSE	Internet - Delivery Services
-AKAM	NSDQ	Internet - Services
-ETSY	NSDQ	Internet - Services
-FB	NSDQ	Internet - Services
-GOOGL	NSDQ	Internet - Services
-P	NYSE	Internet - Services
-SHOP	NYSE	Internet - Services
+BCOR	NSDQ	Internet - Services
+SOHU	NSDQ	Internet - Services
 TIVO	NSDQ	Internet - Services
-TRUE	NSDQ	Internet - Services
-YHOO	NSDQ	Internet - Services
-ZG	NSDQ	Internet - Services
-BOX	NYSE	Internet - Software
-DATA	NYSE	Internet - Software
+WEB	NSDQ	Internet - Services
+BKFS	NYSE	Internet - Software
 FFIV	NSDQ	Internet - Software
-HDP	NSDQ	Internet - Software
-NEWR	NYSE	Internet - Software
-PAYC	NYSE	Internet - Software
-PYPL	NSDQ	Internet - Software
 RUBI	NYSE	Internet - Software
-SPLK	NSDQ	Internet - Software
-SQ	NYSE	Internet - Software
-TEAM	NSDQ	Internet - Software
-TWTR	NYSE	Internet - Software
-VEEV	NYSE	Internet - Software
-WDAY	NYSE	Internet - Software
-ZEN	NYSE	Internet - Software
-ELLI	NYSE	Internet - Software and Services
-MOMO	NSDQ	Internet - Software and Services
-NTES	NSDQ	Internet - Software and Services
-RNG	NYSE	Internet - Software and Services
-VRSN	NSDQ	Internet - Software and Services
-WUBA	NYSE	Internet - Software and Services
+SNCR	NSDQ	Internet - Software
 ABBV	NYSE	Large Cap Pharmaceuticals
 ABT	NYSE	Large Cap Pharmaceuticals
 AZN	NYSE	Large Cap Pharmaceuticals
-BMY	NYSE	Large Cap Pharmaceuticals
 JNJ	NYSE	Large Cap Pharmaceuticals
-MRK	NYSE	Large Cap Pharmaceuticals
 NVS	NYSE	Large Cap Pharmaceuticals
 PFE	NYSE	Large Cap Pharmaceuticals
-LITE	NSDQ	Lasers Systems and Components
+SNY	NYSE	Large Cap Pharmaceuticals
 BC	NYSE	Leisure and Recreation Products
+GOLF	NYSE	Leisure and Recreation Products
+RGR	NYSE	Leisure and Recreation Products
 AMC	NYSE	Leisure and Recreation Services
 CNK	NYSE	Leisure and Recreation Services
-ILG	NSDQ	Leisure and Recreation Services
+MYCC	NYSE	Leisure and Recreation Services
 NCLH	NSDQ	Leisure and Recreation Services
-PLNT	NYSE	Leisure and Recreation Services
 RGC	NYSE	Leisure and Recreation Services
-SIX	NYSE	Leisure and Recreation Services
-CAT	NYSE	Manufacturing - Construction and Mining
-JOY	NYSE	Manufacturing - Construction and Mining
-MTW	NYSE	Manufacturing - Construction and Mining
-TEX	NYSE	Manufacturing - Construction and Mining
-AOS	NYSE	Manufacturing - Electronics
+ABB	NYSE	Manufacturing - Electronics
 EMR	NYSE	Manufacturing - Electronics
 ETN	NYSE	Manufacturing - Electronics
+FLOW	NYSE	Manufacturing - Electronics
+RBC	NYSE	Manufacturing - Electronics
 RXN	NYSE	Manufacturing - Electronics
-AGCO	NYSE	Manufacturing - Farm Equipment
 DE	NYSE	Manufacturing - Farm Equipment
-CFX	NYSE	Manufacturing - General Industrial
-DOV	NYSE	Manufacturing - General Industrial
-FLS	NYSE	Manufacturing - General Industrial
 IR	NYSE	Manufacturing - General Industrial
-XYL	NYSE	Manufacturing - General Industrial
 PNR	NYSE	Manufacturing - Thermal Products
 SWK	NYSE	Manufacturing - Tools & Related Products
-DIS	NYSE	Media Conglomerates
+TWX	NYSE	Media Conglomerates
 VIAB	NSDQ	Media Conglomerates
-ACOR	NSDQ	Medical - Biomedical and Genetics
-ALKS	NSDQ	Medical - Biomedical and Genetics
-ALNY	NSDQ	Medical - Biomedical and Genetics
-ALXN	NSDQ	Medical - Biomedical and Genetics
 AMAG	NSDQ	Medical - Biomedical and Genetics
 AMGN	NSDQ	Medical - Biomedical and Genetics
-ARRY	NSDQ	Medical - Biomedical and Genetics
 BIIB	NSDQ	Medical - Biomedical and Genetics
-BLUE	NSDQ	Medical - Biomedical and Genetics
-BMRN	NSDQ	Medical - Biomedical and Genetics
-CARA	NSDQ	Medical - Biomedical and Genetics
-CLCD	NSDQ	Medical - Biomedical and Genetics
-CLVS	NSDQ	Medical - Biomedical and Genetics
-GILD	NSDQ	Medical - Biomedical and Genetics
-ILMN	NSDQ	Medical - Biomedical and Genetics
-INCY	NSDQ	Medical - Biomedical and Genetics
-INO	NSDQ	Medical - Biomedical and Genetics
-INVA	NSDQ	Medical - Biomedical and Genetics
-KERX	NSDQ	Medical - Biomedical and Genetics
-MDCO	NSDQ	Medical - Biomedical and Genetics
 MYGN	NSDQ	Medical - Biomedical and Genetics
-PBYI	NSDQ	Medical - Biomedical and Genetics
-SRPT	NSDQ	Medical - Biomedical and Genetics
-VRTX	NSDQ	Medical - Biomedical and Genetics
-ZIOP	NSDQ	Medical - Biomedical and Genetics
-ALGN	NSDQ	Medical - Dental Supplies
 BDX	NYSE	Medical - Dental Supplies
-ELGX	NSDQ	Medical - Dental Supplies
+HYH	NYSE	Medical - Dental Supplies
 LH	NYSE	Medical - Dental Supplies
 MCK	NYSE	Medical - Dental Supplies
 PDCO	NSDQ	Medical - Dental Supplies
-AKAO	NSDQ	Medical - Drugs
-ARIA	NSDQ	Medical - Drugs
-BCRX	NSDQ	Medical - Drugs
 CTLT	NYSE	Medical - Drugs
-ESPR	NSDQ	Medical - Drugs
 GRFS	NSDQ	Medical - Drugs
-IONS	NSDQ	Medical - Drugs
-IRWD	NSDQ	Medical - Drugs
 JAZZ	NSDQ	Medical - Drugs
-NKTR	NSDQ	Medical - Drugs
-PTCT	NSDQ	Medical - Drugs
-PTLA	NSDQ	Medical - Drugs
-SGYP	NSDQ	Medical - Drugs
 SHPG	NSDQ	Medical - Drugs
-TSRO	NSDQ	Medical - Drugs
-TXMD	AMEX	Medical - Drugs
 UTHR	NSDQ	Medical - Drugs
-AGN	NYSE	Medical - Generic Drugs
 AKRX	NSDQ	Medical - Generic Drugs
 MNK	NYSE	Medical - Generic Drugs
 AET	NYSE	Medical - HMOs
@@ -441,222 +276,107 @@ HUM	NYSE	Medical - HMOs
 MOH	NYSE	Medical - HMOs
 UNH	NYSE	Medical - HMOs
 CYH	NYSE	Medical - Hospital
-MD	NYSE	Medical - Hospital
 THC	NYSE	Medical - Hospital
 MDRX	NSDQ	Medical Info Systems
-MDSO	NSDQ	Medical Info Systems
-ABMD	NSDQ	Medical - Instruments
-ARAY	NSDQ	Medical - Instruments
-DXCM	NSDQ	Medical - Instruments
-EW	NYSE	Medical - Instruments
+QSII	NSDQ	Medical Info Systems
 GMED	NYSE	Medical - Instruments
-WMGI	NSDQ	Medical - Instruments
+TMO	NYSE	Medical - Instruments
+ENSG	NSDQ	Medical - Nursing Homes
+AFAM	NSDQ	Medical - Outpatient and Home Healthcare
 DGX	NYSE	Medical - Outpatient and Home Healthcare
 DVA	NYSE	Medical - Outpatient and Home Healthcare
 EVHC	NYSE	Medical - Outpatient and Home Healthcare
-BAX	NYSE	Medical - Products
-BSX	NYSE	Medical - Products
-HAE	NYSE	Medical - Products
+ALR	NYSE	Medical - Products
 HRC	NYSE	Medical - Products
+LNTH	NSDQ	Medical - Products
 OMI	NYSE	Medical - Products
-RMD	NYSE	Medical - Products
-SYK	NYSE	Medical - Products
 ZBH	NYSE	Medical - Products
-ABCO	NSDQ	Medical Services
+AMN	NYSE	Medical Services
+CRL	NYSE	Medical Services
 ESRX	NSDQ	Medical Services
-HQY	NSDQ	Medical Services
-Q	NYSE	Medical Services
-TDOC	NYSE	Medical Services
-XON	NYSE	Medical Services
-CENX	NSDQ	Metal Products - Procurement and Fabrication
-ABX	NYSE	Mining - Gold
-AEM	NYSE	Mining - Gold
+WOR	NYSE	Metal Products - Procurement and Fabrication
 NEM	NYSE	Mining - Gold
-PVG	NYSE	Mining - Gold
-RGLD	NSDQ	Mining - Gold
-SA	NYSE	Mining - Gold
 SBGL	NYSE	Mining - Gold
 BBL	NYSE	Mining - Miscellaneous
-CCJ	NYSE	Mining - Miscellaneous
 RIO	NYSE	Mining - Miscellaneous
-SWC	NYSE	Mining - Miscellaneous
 FCX	NYSE	Mining - Non Ferrous
-BVN	NYSE	Mining - Silver
-PAAS	NSDQ	Mining - Silver
-SLW	NYSE	Mining - Silver
+ACCO	NYSE	Office Supplies
 ATW	NYSE	Oil and Gas - Drilling
 DO	NYSE	Oil and Gas - Drilling
-ESV	NYSE	Oil and Gas - Drilling
-HP	NYSE	Oil and Gas - Drilling
 NE	NYSE	Oil and Gas - Drilling
 RDC	NYSE	Oil and Gas - Drilling
 RIG	NYSE	Oil and Gas - Drilling
 CPG	NYSE	Oil and Gas - Exploration and Production - Canadian
-ECA	NYSE	Oil and Gas - Exploration and Production - Canadian
-AR	NYSE	Oil and Gas - Exploration and Production - United States
-BBG	NYSE	Oil and Gas - Exploration and Production - United States
-CHK	NYSE	Oil and Gas - Exploration and Production - United States
-COG	NYSE	Oil and Gas - Exploration and Production - United States
-CPE	NYSE	Oil and Gas - Exploration and Production - United States
 CRC	NYSE	Oil and Gas - Exploration and Production - United States
-CRZO	NSDQ	Oil and Gas - Exploration and Production - United States
-CXO	NYSE	Oil and Gas - Exploration and Production - United States
-DVN	NYSE	Oil and Gas - Exploration and Production - United States
-EGN	NYSE	Oil and Gas - Exploration and Production - United States
-EOG	NYSE	Oil and Gas - Exploration and Production - United States
-EPE	NYSE	Oil and Gas - Exploration and Production - United States
-EQT	NYSE	Oil and Gas - Exploration and Production - United States
-GPOR	NSDQ	Oil and Gas - Exploration and Production - United States
-LNG	AMEX	Oil and Gas - Exploration and Production - United States
-LPI	NYSE	Oil and Gas - Exploration and Production - United States
-MUR	NYSE	Oil and Gas - Exploration and Production - United States
-NBL	NYSE	Oil and Gas - Exploration and Production - United States
-NFX	NYSE	Oil and Gas - Exploration and Production - United States
-OAS	NYSE	Oil and Gas - Exploration and Production - United States
-PE	NYSE	Oil and Gas - Exploration and Production - United States
-QEP	NYSE	Oil and Gas - Exploration and Production - United States
-RICE	NYSE	Oil and Gas - Exploration and Production - United States
-RSPP	NYSE	Oil and Gas - Exploration and Production - United States
-SM	NYSE	Oil and Gas - Exploration and Production - United States
-SWN	NYSE	Oil and Gas - Exploration and Production - United States
-VNOM	NSDQ	Oil and Gas - Exploration and Production - United States
-WLL	NYSE	Oil and Gas - Exploration and Production - United States
+WRD	NYSE	Oil and Gas - Exploration and Production - United States
 AROC	NYSE	Oil and Gas - Field Services
-BHI	NYSE	Oil and Gas - Field Services
-CRR	NYSE	Oil and Gas - Field Services
-HLX	NYSE	Oil and Gas - Field Services
-SLB	NYSE	Oil and Gas - Field Services
-SU	NYSE	Oil and Gas - Integrated - Canadian
 PBR	NYSE	Oil and Gas - Integrated - Emerging Markets
+BAK	NYSE	Oil and Gas - Integrated - International
 BP	NYSE	Oil and Gas - Integrated - International
 CVX	NYSE	Oil and Gas - Integrated - International
 RDS.A	NYSE	Oil and Gas - Integrated - International
 STO	NYSE	Oil and Gas - Integrated - International
-XOM	NYSE	Oil and Gas - Integrated - International
-COP	NYSE	Oil and Gas - Integrated - United States
-HES	NYSE	Oil and Gas - Integrated - United States
-MRO	NYSE	Oil and Gas - Integrated - United States
-OXY	NYSE	Oil and Gas - Integrated - United States
-SPN	NYSE	Oil and Gas - Mechanical and and Equitment
-WFT	NYSE	Oil and Gas - Mechanical and and Equitment
-AM	NYSE	Oil and Gas - Production and Pipelines
+EXTN	NYSE	Oil and Gas - Mechanical and and Equitment
 CPPL	NYSE	Oil and Gas - Production and Pipelines
-ENB	NYSE	Oil and Gas - Production and Pipelines
-FI	NYSE	Oil and Gas - Production and Pipelines
-KMI	NYSE	Oil and Gas - Production and Pipelines
-MPLX	NYSE	Oil and Gas - Production and Pipelines
 PAGP	NYSE	Oil and Gas - Production and Pipelines
-TRP	NYSE	Oil and Gas - Production and Pipelines
-WMB	NYSE	Oil and Gas - Production and Pipelines
 BWP	NYSE	Oil and Gas - Production Pipeline - MLB
 EEP	NYSE	Oil and Gas - Production Pipeline - MLB
-EEQ	NYSE	Oil and Gas - Production Pipeline - MLB
-ENLK	NYSE	Oil and Gas - Production Pipeline - MLB
-EPD	NYSE	Oil and Gas - Production Pipeline - MLB
 ETE	NYSE	Oil and Gas - Production Pipeline - MLB
-MMP	NYSE	Oil and Gas - Production Pipeline - MLB
-OKS	NYSE	Oil and Gas - Production Pipeline - MLB
 PAA	NYSE	Oil and Gas - Production Pipeline - MLB
+SEP	NYSE	Oil and Gas - Production Pipeline - MLB
+ALJ	NYSE	Oil and Gas - Refining and Marketing
 DK	NYSE	Oil and Gas - Refining and Marketing
 ENLC	NYSE	Oil and Gas - Refining and Marketing
 HFC	NYSE	Oil and Gas - Refining and Marketing
+INT	NYSE	Oil and Gas - Refining and Marketing
 MPC	NYSE	Oil and Gas - Refining and Marketing
 MUSA	NYSE	Oil and Gas - Refining and Marketing
+PSX	NYSE	Oil and Gas - Refining and Marketing
 TSO	NYSE	Oil and Gas - Refining and Marketing
 VLO	NYSE	Oil and Gas - Refining and Marketing
 WNR	NYSE	Oil and Gas - Refining and Marketing
+CVRR	NYSE	Oil and Gas - Refining and Marketing - Master Limited Partnerships
 NGL	NYSE	Oil and Gas - Refining and Marketing - Master Limited Partnerships
 SUN	NYSE	Oil and Gas - Refining and Marketing - Master Limited Partnerships
-TRGP	NYSE	Oil and Gas - Refining and Marketing - Master Limited Partnerships
-ADP	NSDQ	Outsourcing
 G	NYSE	Outsourcing
-PAYX	NSDQ	Outsourcing
+TNET	NYSE	Outsourcing
 RPM	NYSE	Paints and Related Products
 IP	NYSE	Paper and Related Products
 KS	NYSE	Paper and Related Products
 WRK	NYSE	Paper and Related Products
-DCI	NYSE	Pollution Control
-GCI	NYSE	Publishing - Newspapers
-NYT	NYSE	Publishing - Newspapers
+CECE	NSDQ	Pollution Control
+NEWM	NYSE	Publishing - Newspapers
+LGIH	NSDQ	Real Estate - Development
+JLL	NYSE	Real Estate - Operations
+PMT	NYSE	Real Estate - Operations
 RLGY	NYSE	Real Estate - Operations
-WCIC	NYSE	Real Estate - Operations
-Z	NSDQ	Real Estate - Operations
 AGNC	NSDQ	REIT and Equity Trust
-ARI	NYSE	REIT and Equity Trust
-BXMT	NYSE	REIT and Equity Trust
-CIM	NYSE	REIT and Equity Trust
 IVR	NYSE	REIT and Equity Trust
-MFA	NYSE	REIT and Equity Trust
-NYMT	NSDQ	REIT and Equity Trust
-TWO	NYSE	REIT and Equity Trust
-BDN	NYSE	REIT and Equity Trust - Other
-BXP	NYSE	REIT and Equity Trust - Other
-CCI	NYSE	REIT and Equity Trust - Other
 CCP	NYSE	REIT and Equity Trust - Other
-CONE	NSDQ	REIT and Equity Trust - Other
-CSAL	NSDQ	REIT and Equity Trust - Other
-CUBE	NYSE	REIT and Equity Trust - Other
-CUZ	NYSE	REIT and Equity Trust - Other
-DCT	NYSE	REIT and Equity Trust - Other
-DEI	NYSE	REIT and Equity Trust - Other
-DFT	NYSE	REIT and Equity Trust - Other
-DLR	NYSE	REIT and Equity Trust - Other
-DOC	NYSE	REIT and Equity Trust - Other
-DRE	NYSE	REIT and Equity Trust - Other
-GLPI	NSDQ	REIT and Equity Trust - Other
-GNL	NYSE	REIT and Equity Trust - Other
-GPT	NYSE	REIT and Equity Trust - Other
-HCN	NYSE	REIT and Equity Trust - Other
-HCP	NYSE	REIT and Equity Trust - Other
-HIW	NYSE	REIT and Equity Trust - Other
-HPP	NYSE	REIT and Equity Trust - Other
+DRH	NYSE	REIT and Equity Trust - Other
 HPT	NSDQ	REIT and Equity Trust - Other
-KRC	NYSE	REIT and Equity Trust - Other
-LAMR	NSDQ	REIT and Equity Trust - Other
-LPT	NYSE	REIT and Equity Trust - Other
-LXP	NYSE	REIT and Equity Trust - Other
-MPW	NYSE	REIT and Equity Trust - Other
-OFC	NYSE	REIT and Equity Trust - Other
-OHI	NYSE	REIT and Equity Trust - Other
+HT	NYSE	REIT and Equity Trust - Other
 PEB	NYSE	REIT and Equity Trust - Other
-PGRE	NYSE	REIT and Equity Trust - Other
-PLD	NYSE	REIT and Equity Trust - Other
-PSA	NYSE	REIT and Equity Trust - Other
-SLG	NYSE	REIT and Equity Trust - Other
-STAG	NYSE	REIT and Equity Trust - Other
-VNO	NYSE	REIT and Equity Trust - Other
-AIV	NYSE	REIT and Equity Trust - Residential
-AVB	NYSE	REIT and Equity Trust - Residential
-CPT	NYSE	REIT and Equity Trust - Residential
-EQR	NYSE	REIT and Equity Trust - Residential
-MORE	NYSE	REIT and Equity Trust - Residential
-SFR	NYSE	REIT and Equity Trust - Residential
-DDR	NYSE	REIT and Equity Trust - Retail
-GGP	NYSE	REIT and Equity Trust - Retail
-NNN	NYSE	REIT and Equity Trust - Retail
-O	NYSE	REIT and Equity Trust - Retail
-REG	NYSE	REIT and Equity Trust - Retail
-RPT	NYSE	REIT and Equity Trust - Retail
-SPG	NYSE	REIT and Equity Trust - Retail
-STOR	NYSE	REIT and Equity Trust - Retail
-WRI	NYSE	REIT and Equity Trust - Retail
+BRG	AMEX	REIT and Equity Trust - Residential
 CHS	NYSE	Retail - Apparel and Shoes
 DSW	NYSE	Retail - Apparel and Shoes
 FINL	NSDQ	Retail - Apparel and Shoes
 FL	NYSE	Retail - Apparel and Shoes
 GPS	NYSE	Retail - Apparel and Shoes
 JWN	NYSE	Retail - Apparel and Shoes
+TLYS	NYSE	Retail - Apparel and Shoes
+TECD	NSDQ	Retail - Computer Hardware
 AAN	NYSE	Retail - Consumer Electronics
+CONN	NSDQ	Retail - Consumer Electronics
 BIG	NYSE	Retail - Discount Stores
 BURL	NYSE	Retail - Discount Stores
 COST	NSDQ	Retail - Discount Stores
+ETH	NYSE	Retail - Home Furnishings
 RH	NYSE	Retail - Home Furnishings
 WSM	NYSE	Retail - Home Furnishings
-TIF	NYSE	Retail - Jewelry
 DKS	NYSE	Retail - Miscellaneous
-KAR	NYSE	Retail - Miscellaneous
+HZO	NYSE	Retail - Miscellaneous
 TSCO	NSDQ	Retail - Miscellaneous
-ULTA	NSDQ	Retail - Miscellaneous
 CVS	NYSE	Retail - Pharmacies and Drug Stores
 DPLO	NYSE	Retail - Pharmacies and Drug Stores
 GNC	NYSE	Retail - Pharmacies and Drug Stores
@@ -665,130 +385,85 @@ WBA	NSDQ	Retail - Pharmacies and Drug Stores
 DDS	NYSE	Retail - Regional Department Stores
 M	NYSE	Retail - Regional Department Stores
 ARCO	NYSE	Retail - Restaurants
-DNKN	NSDQ	Retail - Restaurants
-DPZ	NYSE	Retail - Restaurants
+BJRI	NSDQ	Retail - Restaurants
 DRI	NYSE	Retail - Restaurants
-MCD	NYSE	Retail - Restaurants
-PNRA	NSDQ	Retail - Restaurants
-SBUX	NSDQ	Retail - Restaurants
+RRGB	NSDQ	Retail - Restaurants
 SONC	NSDQ	Retail - Restaurants
-WEN	NSDQ	Retail - Restaurants
-YUM	NYSE	Retail - Restaurants
-WFM	NSDQ	Retail - Supermarkets
+TACO	NSDQ	Retail - Restaurants
 GT	NSDQ	Rubber - Tires
 IRDM	NSDQ	Satellite and Communication
-EDU	NYSE	Schools
-TAL	NYSE	Schools
-CME	NSDQ	Securities and Exchanges
-ICE	NYSE	Securities and Exchanges
-NDAQ	NSDQ	Securities and Exchanges
-ALLE	NYSE	Security and Safety Services
-FBHS	NYSE	Security and Safety Services
-JCI	NYSE	Security and Safety Services
-TASR	NSDQ	Security and Safety Services
-ADI	NSDQ	Semiconductor - Analog and Mixed
-MCHP	NSDQ	Semiconductor - Analog and Mixed
-MSCC	NSDQ	Semiconductor - Analog and Mixed
-MTSI	NSDQ	Semiconductor - Analog and Mixed
-MXL	NYSE	Semiconductor - Analog and Mixed
-NXPI	NSDQ	Semiconductor - Analog and Mixed
+SATS	NSDQ	Satellite and Communication
+LOPE	NSDQ	Schools
+LRN	NYSE	Schools
 TSM	NYSE	Semiconductor - Circuit Foundry
-MRVL	NSDQ	Semiconductor - Communications
 VSH	NYSE	Semiconductor - Discretes
+PLAB	NSDQ	Semiconductor Equipment - Photomasks
 AMAT	NSDQ	Semiconductor Equipment - Wafer Fabrication
-ASML	NSDQ	Semiconductor Equipment - Wafer Fabrication
 INTC	NSDQ	Semiconductor - General
-LLTC	NSDQ	Semiconductor - General
 MU	NSDQ	Semiconductor Memory
 QRVO	NSDQ	Semiconductors - Radio Frequency
-NKE	NYSE	Shoes and Retail Apparel
 WWW	NYSE	Shoes and Retail Apparel
-CHD	NYSE	Soap and Cleaning Materials
-CLX	NYSE	Soap and Cleaning Materials
-PG	NYSE	Soap and Cleaning Materials
+ASGN	NYSE	Staffing Firms
+KFY	NYSE	Staffing Firms
 RHI	NYSE	Staffing Firms
-MRC	NYSE	Steel - Pipe and Tube
+TEDU	NSDQ	Staffing Firms
 AKS	NYSE	Steel - Producers
 CMC	NYSE	Steel - Producers
-MT	NYSE	Steel - Producers
-ATI	NYSE	Steel - Speciality
-COH	NYSE	Textile - Apparel
-CROX	NSDQ	Textile - Apparel
+PKX	NYSE	Steel - Producers
+SCHN	NSDQ	Steel - Producers
 KORS	NYSE	Textile - Apparel
 RL	NYSE	Textile - Apparel
 TLRD	NYSE	Textile - Apparel
-UA	NYSE	Textile - Apparel
 TILE	NSDQ	Textile - Home Furnishing
-BTI	AMEX	Tobacco
-MO	NYSE	Tobacco
-PM	NYSE	Tobacco
-VGR	NYSE	Tobacco
-SNA	NYSE	Tools - Handheld
-ATVI	NSDQ	Toys - Games - Hobbies
-HAS	NSDQ	Toys - Games - Hobbies
-TTWO	NSDQ	Toys - Games - Hobbies
 AAL	NSDQ	Transportation - Airline
-BRS	NYSE	Transportation - Airline
 HA	NSDQ	Transportation - Airline
 JBLU	NSDQ	Transportation - Airline
+AL	NYSE	Transportation - Equipment and Leasing
+AYR	NYSE	Transportation - Equipment and Leasing
 GBX	NYSE	Transportation - Equipment and Leasing
+HRI	NYSE	Transportation - Equipment and Leasing
 TGH	NYSE	Transportation - Equipment and Leasing
-GWR	NYSE	Transportation - Rail
+TRTN	NYSE	Transportation - Equipment and Leasing
 KSU	NYSE	Transportation - Rail
-NSC	NYSE	Transportation - Rail
-UNP	NYSE	Transportation - Rail
 CHRW	NSDQ	Transportation - Services
-EXPD	NSDQ	Transportation - Services
 HTZ	NYSE	Transportation - Services
 XPO	NYSE	Transportation - Services
-ZTO	NYSE	Transportation - Services
-GLNG	NSDQ	Transportation - Shipping
-NAT	NYSE	Transportation - Shipping
-SALT	NYSE	Transportation - Shipping
-SBLK	NSDQ	Transportation - Shipping
+FRO	NYSE	Transportation - Shipping
+GLOP	NYSE	Transportation - Shipping
+NVGS	NYSE	Transportation - Shipping
 SFL	NYSE	Transportation - Shipping
 TK	NYSE	Transportation - Shipping
+TOO	NYSE	Transportation - Shipping
+ARCB	NSDQ	Transportation - Truck
 HTLD	NSDQ	Transportation - Truck
 JBHT	NSDQ	Transportation - Truck
+SAIA	NSDQ	Transportation - Truck
 WERN	NSDQ	Transportation - Truck
 YRCW	NSDQ	Transportation - Truck
-AEP	NYSE	Utility - Electric Power
+AEE	NYSE	Utility - Electric Power
 AES	NYSE	Utility - Electric Power
-CMS	NYSE	Utility - Electric Power
-DTE	NYSE	Utility - Electric Power
-DUK	NYSE	Utility - Electric Power
 DYN	NYSE	Utility - Electric Power
 EIX	NYSE	Utility - Electric Power
-ES	NYSE	Utility - Electric Power
+ELP	NYSE	Utility - Electric Power
 ETR	NYSE	Utility - Electric Power
 FE	NYSE	Utility - Electric Power
 GXP	NYSE	Utility - Electric Power
-LNT	NYSE	Utility - Electric Power
-OGE	NYSE	Utility - Electric Power
-PCG	NYSE	Utility - Electric Power
-PEGI	NSDQ	Utility - Electric Power
+HE	NYSE	Utility - Electric Power
 PEG	NYSE	Utility - Electric Power
-PNM	NYSE	Utility - Electric Power
-PPL	NYSE	Utility - Electric Power
-SO	NYSE	Utility - Electric Power
-TERP	NSDQ	Utility - Electric Power
-WEC	NYSE	Utility - Electric Power
-WR	NYSE	Utility - Electric Power
-NJR	NYSE	Utility - Gas Distribution
-OKE	NYSE	Utility - Gas Distribution
-SRE	NYSE	Utility - Gas Distribution
 UGI	NYSE	Utility - Gas Distribution
-AWK	NYSE	Utility - Water Supply
 SBS	NYSE	Utility - Water Supply
-WTR	NYSE	Utility - Water Supply
 RSG	NYSE	Waste Removal Services
-WM	NYSE	Waste Removal Services
 ERIC	NSDQ	Wireless Equipment
 JNPR	NYSE	Wireless Equipment
+MITL	NSDQ	Wireless Equipment
 QCOM	NSDQ	Wireless Equipment
-CTL	NYSE	Wireless National
-S	NYSE	Wireless National
+SWIR	NSDQ	Wireless Equipment
+IQNT	NSDQ	Wireless National
 TMUS	NSDQ	Wireless National
 T	NYSE	Wireless National
 VZ	NYSE	Wireless National
 AMX	NYSE	Wireless Non-US
+DCM	NYSE	Wireless Non-US
+FRP	NSDQ	Wireless Non-US
+TDS	NYSE	Wireline - National
+CNSL	NSDQ	Wireline - Regional - Rural

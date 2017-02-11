@@ -1,114 +1,51 @@
 %sector=rank1
 ERJ	NYSE	Aerospace - Defense
 CZZ	NYSE	Agriculture - Products
-DLB	NYSE	Audio Video Production
-HMC	NYSE	Automotive - Foreign
-ALSN	NYSE	Automotive - Original Equipment
-RACE	NYSE	Automotive - Original Equipment
 WNC	NYSE	Automotive - Original Equipment
 DB	NYSE	Banks - Foreign
-FMBI	NSDQ	Banks - Midwest
-PVTB	NSDQ	Banks - Midwest
+BPOP	NSDQ	Banks - Southeast
 FBP	NYSE	Banks - Southeast
-FCB	NYSE	Banks - Southeast
-HBHC	NSDQ	Banks - Southeast
-SNV	NYSE	Banks - Southeast
-TCBI	NSDQ	Banks - Southwest
 EWBC	NSDQ	Banks - West
 GTN	NYSE	Broadcast Radio and Television
-FRTA	NSDQ	Building Products - Concrete and Aggregates
-MTZ	NYSE	Building Products - Heavy Construction
+SNI	NSDQ	Broadcast Radio and Television
+CAA	NYSE	Building Products - Home Builders
 PHM	NYSE	Building Products - Home Builders
 NCS	NYSE	Building Products - Miscellaneous
-LPX	NYSE	Building Products - Wood
-KRO	NYSE	Chemical - Diversified
-MEOH	NSDQ	Chemical - Diversified
-VVV	NYSE	Chemical - Specialty
+OC	NYSE	Building Products - Miscellaneous
+ARCH	NYSE	Coal
 ARLP	NSDQ	Coal
-SHOR	NSDQ	Communication - Components
-ADTN	NSDQ	Communication - Infrastructure
-FTNT	NSDQ	Computer - Integrated Systems
-LOGI	NSDQ	Computer - Peripheral Equipment
 LPL	NYSE	Computer - Peripheral Equipment
-CARB	NSDQ	Computer - Services
-ACXM	NSDQ	Computers - IT Services
-AZPN	NSDQ	Computer - Software
-CHKP	NSDQ	Computer - Software
 STX	NSDQ	Computer- Storage Devices
 WDC	NSDQ	Computer- Storage Devices
-PBH	NYSE	Consumer Products - Discretionary
-BUFF	NSDQ	Consumer Products - Staples
 LUK	NYSE	Diversified Operations
-BRKS	NSDQ	Electronics - Manufacturing Machinery
-MKSI	NSDQ	Electronics - Manufacturing Machinery
 UCTT	NSDQ	Electronics - Manufacturing Machinery
-UTEK	NSDQ	Electronics - Manufacturing Machinery
 JBL	NYSE	Electronics - Manufacturing Services
-OSIS	NSDQ	Electronics - Miscellaneous Components
 TTMI	NSDQ	Electronics - Miscellaneous Components
-AAOI	NSDQ	Electronics - Semiconductors
 TER	NYSE	Electronics - Testing Equipment
-SQM	NYSE	Fertilizers
-GS	NYSE	Financial - Investment Bank
-RJF	NYSE	Financial - Investment Bank
-APO	NYSE	Financial - Investment Management
 OMAM	NYSE	Financial - Investment Management
 WD	NYSE	Financial - Mortgage & Related Services
-LW	NYSE	Food - Miscellaneous
-MPEL	NSDQ	Gaming
-BEL	NYSE	Hotels and Motels
-NANO	NSDQ	Instruments - Control
-AEL	NYSE	Insurance - Life Insurance
-ING	NYSE	Insurance - Life Insurance
+STAY	NYSE	Hotels and Motels
 MFC	NYSE	Insurance - Life Insurance
-ORI	NYSE	Insurance - Multi line
 AFG	NYSE	Insurance - Property and Casualty
 RE	NYSE	Insurance - Property and Casualty
-BABA	NYSE	Internet - Commerce
-YELP	NYSE	Internet - Content
-IIVI	NSDQ	Manufacturing - Electronics
 MCRN	NYSE	Manufacturing - Material Handling
-KMT	NYSE	Manufacturing - Tools & Related Products
-CYTK	NSDQ	Medical - Biomedical and Genetics
 ACET	NSDQ	Medical - Dental Supplies
-SCMP	NSDQ	Medical - Drugs
-GKOS	NYSE	Medical - Instruments
-OSUR	NSDQ	Medical - Products
 BHP	NYSE	Mining - Miscellaneous
 HBM	NYSE	Mining - Miscellaneous
-TECK	NYSE	Mining - Miscellaneous
-SCCO	NYSE	Mining - Non Ferrous
-RMP	NYSE	Oil and Gas - Exploration and Production - United States
-NR	NYSE	Oil and Gas - Field Services
-RES	NYSE	Oil and Gas - Field Services
 IMO	AMEX	Oil and Gas - Integrated - Canadian
 MDR	NYSE	Oil and Gas - Mechanical and and Equitment
-BPL	NYSE	Oil and Gas - Production Pipeline - MLB
-CYS	NYSE	REIT and Equity Trust
 NLY	NYSE	REIT and Equity Trust
-NSAM	NYSE	REIT and Equity Trust
 CXW	NYSE	REIT and Equity Trust - Other
-GEO	NYSE	REIT and Equity Trust - Other
-IRM	NYSE	REIT and Equity Trust - Other
 PLCE	NSDQ	Retail - Apparel and Shoes
 NSIT	NSDQ	Retail - Mail Order
 BGFV	NSDQ	Retail - Miscellaneous
-PLAY	NSDQ	Retail - Restaurants
-WING	NSDQ	Retail - Restaurants
-CBOE	NSDQ	Securities and Exchanges
-MKTX	NSDQ	Securities and Exchanges
-SLAB	NSDQ	Semiconductor - Analog and Mixed
-COHR	NSDQ	Semiconductor Equipment - Wafer Components
-AEIS	NSDQ	Semiconductor Equipment - Wafer Fabrication
-TXN	NSDQ	Semiconductor - General
+KLAC	NSDQ	Semiconductor Equipment - Wafer Fabrication
 CCRN	NSDQ	Staffing Firms
-STLD	NSDQ	Steel - Producers
+MT	NYSE	Steel - Producers
 TX	NYSE	Steel - Producers
 X	NYSE	Steel - Producers
 AVH	NYSE	Transportation - Air Freight and Cargo
-PAM	NYSE	Utility - Electric Power
 ATKR	NYSE	Wire and Cable Products
-BBRY	NSDQ	Wireless Non-US
 MBT	NYSE	Wireless Non-US
 SKM	NYSE	Wireless Non-US
 TSU	NYSE	Wireless Non-US
