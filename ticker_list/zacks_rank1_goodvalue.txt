@@ -1,18 +1,16 @@
 %sector=rank1_goodvalue
 BGFV	NSDQ	Retail - Miscellaneous
 CCRN	NSDQ	Staffing Firms
-CXW	NYSE	REIT and Equity Trust - Other
-DB	NYSE	Banks - Foreign
 GTN	NYSE	Broadcast Radio and Television
 HBM	NYSE	Mining - Miscellaneous
 JBL	NYSE	Electronics - Manufacturing Services
-MBT	NYSE	Wireless Non-US
 MDR	NYSE	Oil and Gas - Mechanical and and Equitment
-MTZ	NYSE	Building Products - Heavy Construction
 NCS	NYSE	Building Products - Miscellaneous
-ORI	NYSE	Insurance - Multi line
+NSIT	NSDQ	Retail - Mail Order
 PLCE	NSDQ	Retail - Apparel and Shoes
-SCMP	NSDQ	Medical - Drugs
-STLD	NSDQ	Steel - Producers
+SNI	NSDQ	Broadcast Radio and Television
+STAY	NYSE	Hotels and Motels
+THO	NYSE	Building Products - Mobile Homes and RV Builders
 TX	NYSE	Steel - Producers
-WNC	NYSE	Automotive - Original Equipment
+UCTT	NSDQ	Electronics - Manufacturing Machinery
+X	NYSE	Steel - Producers

@@ -4,10 +4,7 @@ AHGP	NSDQ	Coal
 ARLP	NSDQ	Coal
 CCRN	NSDQ	Staffing Firms
 KFRC	NSDQ	Staffing Firms
-MTZ	NYSE	Building Products - Heavy Construction
 NCS	NYSE	Building Products - Miscellaneous
 NSIT	NSDQ	Retail - Mail Order
-PKOH	NSDQ	Metal Products - Fasteners
-SNX	NYSE	Business - Software Services
 TTMI	NSDQ	Electronics - Miscellaneous Components
 TX	NYSE	Steel - Producers
