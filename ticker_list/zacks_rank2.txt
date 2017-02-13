@@ -10,10 +10,13 @@ LEA	NYSE	Automotive - Original Equipment
 MTOR	NYSE	Automotive - Original Equipment
 AAP	NYSE	Automotive - Retail and Wholesale - Parts
 CS	NYSE	Banks - Foreign
+ITUB	NYSE	Banks - Foreign
+ASB	NYSE	Banks - Midwest
 RF	NYSE	Banks - Southeast
 CFR	NYSE	Banks - Southwest
 ZION	NSDQ	Banks - West
 PEIX	NSDQ	Biofuels
+LII	NYSE	Building Products - Air Conditioner and Heating
 CBI	NYSE	Building Products - Heavy Construction
 MTZ	NYSE	Building Products - Heavy Construction
 DHI	NYSE	Building Products - Home Builders
@@ -23,13 +26,13 @@ DLX	NYSE	Business - Office Products
 SCS	NYSE	Business - Office Products
 CORE	NSDQ	Business - Services
 HMHC	NSDQ	Business - Services
-LBTYA	NSDQ	Cable Television
 RCI	NYSE	Cable Television
 CBT	NYSE	Chemical - Diversified
 CE	NYSE	Chemical - Diversified
 SHLM	NSDQ	Chemical - Plastic
 CNX	NYSE	Coal
 ARRS	NSDQ	Communication - Components
+KN	NYSE	Communication - Components
 ADTN	NSDQ	Communication - Infrastructure
 CDW	NSDQ	Computers - IT Services
 SAIC	NYSE	Computers - IT Services
@@ -38,12 +41,11 @@ KEYS	NYSE	Electronics - Measuring Instruments
 LLL	NYSE	Electronics - Military
 TEL	NYSE	Electronics - Miscellaneous Components
 BW	NYSE	Electronics - Power Generation
-SMG	NYSE	Fertilizers
 LPLA	NSDQ	Financial - Investment Bank
-SF	NYSE	Financial - Investment Bank
 AMP	NYSE	Financial - Investment Management
 PFG	NYSE	Financial - Investment Management
 AXP	NYSE	Financial - Miscellaneous Services
+HLI	NYSE	Financial - Miscellaneous Services
 CFG	NYSE	Financial - Savings and Loan
 TSS	NYSE	Financial Transaction Services
 PPC	NSDQ	Food - Meat Products
@@ -65,7 +67,6 @@ AXS	NYSE	Insurance - Property and Casualty
 PGR	NYSE	Insurance - Property and Casualty
 THG	NYSE	Insurance - Property and Casualty
 GSK	NYSE	Large Cap Pharmaceuticals
-LLY	NYSE	Large Cap Pharmaceuticals
 RCL	NYSE	Leisure and Recreation Services
 HEES	NSDQ	Manufacturing - Construction and Mining
 HUBB	NYSE	Manufacturing - Electrical Utilities
@@ -82,6 +83,7 @@ PINC	NSDQ	Medical Services
 AA	NYSE	Metal Products - Distribution
 RS	NYSE	Metal Products - Distribution
 CSTM	NYSE	Metal Products - Procurement and Fabrication
+TKR	NYSE	Metal Products - Procurement and Fabrication
 CLF	NYSE	Mining - Iron
 VALE	NYSE	Mining - Iron
 TECK	NYSE	Mining - Miscellaneous
@@ -89,6 +91,7 @@ ARNC	NYSE	Mining - Non Ferrous
 CAJ	NYSE	Office Automation and Equipment
 AVY	NYSE	Office Supplies
 HK	NYSE	Oil and Gas - Exploration and Production - United States
+SU	NYSE	Oil and Gas - Integrated - Canadian
 TOT	NYSE	Oil and Gas - Integrated - International
 UGP	NYSE	Oil and Gas - Production and Pipelines
 SXL	NYSE	Oil and Gas - Production Pipeline - MLB

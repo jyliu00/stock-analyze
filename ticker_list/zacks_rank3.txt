@@ -4,6 +4,7 @@ BA	NYSE	Aerospace - Defense
 LDOS	NYSE	Aerospace - Defense
 NOC	NYSE	Aerospace - Defense
 AOBC	NSDQ	Aerospace - Defense Equipment
+HXL	NYSE	Aerospace - Defense Equipment
 OA	NYSE	Aerospace - Defense Equipment
 SPR	NYSE	Aerospace - Defense Equipment
 ADM	NYSE	Agriculture - Operations
@@ -14,6 +15,7 @@ PCAR	NSDQ	Automotive - Domestic
 CNHI	NYSE	Automotive - Foreign
 TM	NYSE	Automotive - Foreign
 TTM	NYSE	Automotive - Foreign
+CMI	NYSE	Automotive - Internal Combustion Engines
 ADNT	NYSE	Automotive - Original Equipment
 AXL	NYSE	Automotive - Original Equipment
 DAN	NYSE	Automotive - Original Equipment
@@ -55,6 +57,7 @@ ABM	NYSE	Building Products - Maintenance Service
 CRH	NYSE	Building Products - Miscellaneous
 CSTE	NSDQ	Building Products - Miscellaneous
 HW	NYSE	Building Products - Miscellaneous
+MAS	NYSE	Building Products - Miscellaneous
 PGTI	NYSE	Building Products - Miscellaneous
 URI	NYSE	Building Products - Miscellaneous
 USG	NYSE	Building Products - Miscellaneous
@@ -102,6 +105,7 @@ NTAP	NSDQ	Computer- Storage Devices
 SMCI	NSDQ	Computer- Storage Devices
 ACN	NYSE	Consulting Services
 NCI	NYSE	Consulting Services
+NWL	NYSE	Consumer Products - Staples
 TUP	NYSE	Consumer Products - Staples
 CCK	NYSE	Containers - Metal and Glass
 SLGN	NSDQ	Containers - Metal and Glass
@@ -110,6 +114,7 @@ BMS	NYSE	Containers - Paper and Packaging
 GPK	NYSE	Containers - Paper and Packaging
 MPSX	NYSE	Containers - Paper and Packaging
 PKG	NYSE	Containers - Paper and Packaging
+SEE	NYSE	Containers - Paper and Packaging
 BCE	NYSE	Diversified Communication Services
 BT	NYSE	Diversified Communication Services
 CBB	NYSE	Diversified Communication Services
@@ -166,7 +171,6 @@ NSM	NYSE	Financial - Mortgage & Related Services
 OCN	NYSE	Financial - Mortgage & Related Services
 EVER	NYSE	Financial - Savings and Loan
 AINV	NSDQ	Financial - SBIC & Commercial Industry
-PNNT	NSDQ	Financial - SBIC & Commercial Industry
 ADS	NYSE	Financial Transaction Services
 CATM	NSDQ	Financial Transaction Services
 EVTC	NYSE	Financial Transaction Services
@@ -177,6 +181,7 @@ DF	NYSE	Food - Dairy Products
 SAFM	NSDQ	Food - Meat Products
 ARMK	NYSE	Food - Miscellaneous
 BRFS	NYSE	Food - Miscellaneous
+FLO	NYSE	Food - Miscellaneous
 SFS	NYSE	Food - Miscellaneous
 VSI	NYSE	Food - Natural Foods Products
 LZB	NYSE	Furniture
@@ -243,11 +248,11 @@ MYCC	NYSE	Leisure and Recreation Services
 NCLH	NSDQ	Leisure and Recreation Services
 RGC	NYSE	Leisure and Recreation Services
 ABB	NYSE	Manufacturing - Electronics
-EMR	NYSE	Manufacturing - Electronics
 ETN	NYSE	Manufacturing - Electronics
 FLOW	NYSE	Manufacturing - Electronics
 RBC	NYSE	Manufacturing - Electronics
 RXN	NYSE	Manufacturing - Electronics
+AGCO	NYSE	Manufacturing - Farm Equipment
 DE	NYSE	Manufacturing - Farm Equipment
 IR	NYSE	Manufacturing - General Industrial
 PNR	NYSE	Manufacturing - Thermal Products
@@ -336,8 +341,8 @@ TSO	NYSE	Oil and Gas - Refining and Marketing
 VLO	NYSE	Oil and Gas - Refining and Marketing
 WNR	NYSE	Oil and Gas - Refining and Marketing
 CVRR	NYSE	Oil and Gas - Refining and Marketing - Master Limited Partnerships
-NGL	NYSE	Oil and Gas - Refining and Marketing - Master Limited Partnerships
 SUN	NYSE	Oil and Gas - Refining and Marketing - Master Limited Partnerships
+BCO	NYSE	Outsourcing
 G	NYSE	Outsourcing
 TNET	NYSE	Outsourcing
 RPM	NYSE	Paints and Related Products
@@ -386,10 +391,10 @@ DDS	NYSE	Retail - Regional Department Stores
 M	NYSE	Retail - Regional Department Stores
 ARCO	NYSE	Retail - Restaurants
 BJRI	NSDQ	Retail - Restaurants
+BOJA	NSDQ	Retail - Restaurants
 DRI	NYSE	Retail - Restaurants
 RRGB	NSDQ	Retail - Restaurants
 SONC	NSDQ	Retail - Restaurants
-TACO	NSDQ	Retail - Restaurants
 GT	NSDQ	Rubber - Tires
 IRDM	NSDQ	Satellite and Communication
 SATS	NSDQ	Satellite and Communication
@@ -411,6 +416,8 @@ AKS	NYSE	Steel - Producers
 CMC	NYSE	Steel - Producers
 PKX	NYSE	Steel - Producers
 SCHN	NSDQ	Steel - Producers
+TRI	NYSE	Technology Services
+COH	NYSE	Textile - Apparel
 KORS	NYSE	Textile - Apparel
 RL	NYSE	Textile - Apparel
 TLRD	NYSE	Textile - Apparel
@@ -435,7 +442,6 @@ SFL	NYSE	Transportation - Shipping
 TK	NYSE	Transportation - Shipping
 TOO	NYSE	Transportation - Shipping
 ARCB	NSDQ	Transportation - Truck
-HTLD	NSDQ	Transportation - Truck
 JBHT	NSDQ	Transportation - Truck
 SAIA	NSDQ	Transportation - Truck
 WERN	NSDQ	Transportation - Truck
@@ -457,7 +463,6 @@ ERIC	NSDQ	Wireless Equipment
 JNPR	NYSE	Wireless Equipment
 MITL	NSDQ	Wireless Equipment
 QCOM	NSDQ	Wireless Equipment
-SWIR	NSDQ	Wireless Equipment
 IQNT	NSDQ	Wireless National
 TMUS	NSDQ	Wireless National
 T	NYSE	Wireless National
