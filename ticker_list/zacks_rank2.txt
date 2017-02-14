@@ -1,6 +1,7 @@
 %sector=rank2
 NCMI	NSDQ	Advertising and Marketing
 HII	NYSE	Aerospace - Defense
+HXL	NYSE	Aerospace - Defense Equipment
 NEP	NYSE	Alternative Energy - Other
 HAR	NYSE	Audio Video Production
 GM	NYSE	Automotive - Domestic
@@ -12,20 +13,20 @@ AAP	NYSE	Automotive - Retail and Wholesale - Parts
 CS	NYSE	Banks - Foreign
 ITUB	NYSE	Banks - Foreign
 ASB	NYSE	Banks - Midwest
+BPOP	NSDQ	Banks - Southeast
 RF	NYSE	Banks - Southeast
 CFR	NYSE	Banks - Southwest
 ZION	NSDQ	Banks - West
-PEIX	NSDQ	Biofuels
 LII	NYSE	Building Products - Air Conditioner and Heating
 CBI	NYSE	Building Products - Heavy Construction
 MTZ	NYSE	Building Products - Heavy Construction
 DHI	NYSE	Building Products - Home Builders
-TOL	NYSE	Building Products - Home Builders
 WLH	NYSE	Building Products - Home Builders
 DLX	NYSE	Business - Office Products
 SCS	NYSE	Business - Office Products
 CORE	NSDQ	Business - Services
 HMHC	NSDQ	Business - Services
+LBTYA	NSDQ	Cable Television
 RCI	NYSE	Cable Television
 CBT	NYSE	Chemical - Diversified
 CE	NYSE	Chemical - Diversified
@@ -36,26 +37,28 @@ KN	NYSE	Communication - Components
 ADTN	NSDQ	Communication - Infrastructure
 CDW	NSDQ	Computers - IT Services
 SAIC	NYSE	Computers - IT Services
+NTAP	NSDQ	Computer- Storage Devices
+TEF	NYSE	Diversified Communication Services
 KLIC	NSDQ	Electronics - Manufacturing Machinery
 KEYS	NYSE	Electronics - Measuring Instruments
 LLL	NYSE	Electronics - Military
 TEL	NYSE	Electronics - Miscellaneous Components
 BW	NYSE	Electronics - Power Generation
-LPLA	NSDQ	Financial - Investment Bank
+LGF.A	NYSE	Film and Television Production and Distribution
+MC	NYSE	Financial - Investment Bank
 AMP	NYSE	Financial - Investment Management
+OMAM	NYSE	Financial - Investment Management
 PFG	NYSE	Financial - Investment Management
 AXP	NYSE	Financial - Miscellaneous Services
 HLI	NYSE	Financial - Miscellaneous Services
 CFG	NYSE	Financial - Savings and Loan
 TSS	NYSE	Financial Transaction Services
-PPC	NSDQ	Food - Meat Products
 TSN	NYSE	Food - Meat Products
 INGR	NYSE	Food - Miscellaneous
 SYY	NYSE	Food - Miscellaneous
 UNFI	NSDQ	Food - Miscellaneous
 USFD	NYSE	Food - Miscellaneous
 UNM	NYSE	Insurance - Accident and Health
-AEL	NYSE	Insurance - Life Insurance
 FGL	NYSE	Insurance - Life Insurance
 PRI	NYSE	Insurance - Life Insurance
 HIG	NYSE	Insurance - Multi line
@@ -66,11 +69,16 @@ ALL	NYSE	Insurance - Property and Casualty
 AXS	NYSE	Insurance - Property and Casualty
 PGR	NYSE	Insurance - Property and Casualty
 THG	NYSE	Insurance - Property and Casualty
+TIVO	NSDQ	Internet - Services
+SNCR	NSDQ	Internet - Software
+AZN	NYSE	Large Cap Pharmaceuticals
 GSK	NYSE	Large Cap Pharmaceuticals
+NCLH	NSDQ	Leisure and Recreation Services
 RCL	NYSE	Leisure and Recreation Services
 HEES	NSDQ	Manufacturing - Construction and Mining
 HUBB	NYSE	Manufacturing - Electrical Utilities
 ABC	NYSE	Medical - Dental Supplies
+GRFS	NSDQ	Medical - Drugs
 LCI	NYSE	Medical - Drugs
 SCMP	NSDQ	Medical - Drugs
 IPXL	NSDQ	Medical - Generic Drugs
@@ -79,10 +87,10 @@ HCA	NYSE	Medical - Hospital
 UHS	NYSE	Medical - Hospital
 BABY	NSDQ	Medical - Instruments
 KND	NYSE	Medical - Nursing Homes
+ESRX	NSDQ	Medical Services
 PINC	NSDQ	Medical Services
 AA	NYSE	Metal Products - Distribution
 RS	NYSE	Metal Products - Distribution
-CSTM	NYSE	Metal Products - Procurement and Fabrication
 TKR	NYSE	Metal Products - Procurement and Fabrication
 CLF	NYSE	Mining - Iron
 VALE	NYSE	Mining - Iron
@@ -90,32 +98,29 @@ TECK	NYSE	Mining - Miscellaneous
 ARNC	NYSE	Mining - Non Ferrous
 CAJ	NYSE	Office Automation and Equipment
 AVY	NYSE	Office Supplies
+DO	NYSE	Oil and Gas - Drilling
 HK	NYSE	Oil and Gas - Exploration and Production - United States
-SU	NYSE	Oil and Gas - Integrated - Canadian
 TOT	NYSE	Oil and Gas - Integrated - International
-UGP	NYSE	Oil and Gas - Production and Pipelines
-SXL	NYSE	Oil and Gas - Production Pipeline - MLB
+ALJ	NYSE	Oil and Gas - Refining and Marketing
 FBR	NYSE	Paper and Related Products
 TTEK	NSDQ	Pollution Control
-CYS	NYSE	REIT and Equity Trust
+NLY	NYSE	REIT and Equity Trust
 CHSP	NYSE	REIT and Equity Trust - Other
-FCH	NYSE	REIT and Equity Trust - Other
+HPT	NSDQ	REIT and Equity Trust - Other
 HST	NYSE	REIT and Equity Trust - Other
-INN	NYSE	REIT and Equity Trust - Other
-LHO	NYSE	REIT and Equity Trust - Other
-SHO	NYSE	REIT and Equity Trust - Other
-FOSL	NSDQ	Retail - Apparel and Shoes
+BRG	AMEX	REIT and Equity Trust - Residential
 ZUMZ	NSDQ	Retail - Apparel and Shoes
 DLTR	NSDQ	Retail - Discount Stores
 FRED	NSDQ	Retail - Discount Stores
 TJX	NYSE	Retail - Discount Stores
-PIR	NYSE	Retail - Home Furnishings
 BKS	NYSE	Retail - Miscellaneous
 CAB	NYSE	Retail - Miscellaneous
+HZO	NYSE	Retail - Miscellaneous
 KAR	NYSE	Retail - Miscellaneous
 SPLS	NSDQ	Retail - Miscellaneous
 FRGI	NSDQ	Retail - Restaurants
 DV	NYSE	Schools
+KLAC	NSDQ	Semiconductor Equipment - Wafer Fabrication
 LRCX	NSDQ	Semiconductor Equipment - Wafer Fabrication
 SWKS	NSDQ	Semiconductors - Radio Frequency
 FRAN	NSDQ	Shoes and Retail Apparel
@@ -123,6 +128,8 @@ UL	NYSE	Soap and Cleaning Materials
 MAN	NYSE	Staffing Firms
 NUE	NYSE	Steel - Producers
 STLD	NSDQ	Steel - Producers
+X	NYSE	Steel - Producers
+ATSG	NSDQ	Transportation - Air Freight and Cargo
 ALK	NYSE	Transportation - Airline
 DAL	NYSE	Transportation - Airline
 LFL	NYSE	Transportation - Airline
@@ -134,13 +141,14 @@ TRN	NYSE	Transportation - Equipment and Leasing
 HUBG	NSDQ	Transportation - Services
 LSTR	NSDQ	Transportation - Truck
 EXC	NYSE	Utility - Electric Power
-NGG	NYSE	Utility - Electric Power
 POR	NYSE	Utility - Electric Power
 SCG	NYSE	Utility - Electric Power
 XEL	NYSE	Utility - Electric Power
 SWX	NYSE	Utility - Gas Distribution
+UGI	NYSE	Utility - Gas Distribution
 VVC	NYSE	Utility - Gas Distribution
 CLH	NYSE	Waste Removal Services
 MSI	NYSE	Wireless Equipment
+SWIR	NSDQ	Wireless Equipment
 WIN	NSDQ	Wireless National
 ORAN	NYSE	Wireless Non-US

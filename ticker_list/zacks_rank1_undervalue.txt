@@ -1,21 +1,24 @@
 %sector=rank1_undervalue
-ACCO
-AHGP
-ANW
-ARLP
-BAK
-BBY
-DBD
-DF
-FAF
-KE
-KEM
-KOP
-LMCA
-NSIT
-PKX
-SAFM
-SKYW
-TTMI
-VOXX
-WGO
+ERJ	NYSE	Aerospace - Defense
+CZZ	NYSE	Agriculture - Products
+AXL	NYSE	Automotive - Original Equipment
+WNC	NYSE	Automotive - Original Equipment
+DB	NYSE	Banks - Foreign
+PHM	NYSE	Building Products - Home Builders
+ARCH	NYSE	Coal
+ARLP	NSDQ	Coal
+LPL	NYSE	Computer - Peripheral Equipment
+LUK	NYSE	Diversified Operations
+UCTT	NSDQ	Electronics - Manufacturing Machinery
+JBL	NYSE	Electronics - Manufacturing Services
+TTMI	NSDQ	Electronics - Miscellaneous Components
+LPLA	NSDQ	Financial - Investment Bank
+PPC	NSDQ	Food - Meat Products
+ACET	NSDQ	Medical - Dental Supplies
+NSIT	NSDQ	Retail - Mail Order
+BGFV	NSDQ	Retail - Miscellaneous
+CCRN	NSDQ	Staffing Firms
+MT	NYSE	Steel - Producers
+TX	NYSE	Steel - Producers
+AVH	NYSE	Transportation - Air Freight and Cargo
+SKM	NYSE	Wireless Non-US

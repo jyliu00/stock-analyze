@@ -2,9 +2,9 @@
 ACET	NSDQ	Medical - Dental Supplies
 AHGP	NSDQ	Coal
 ARLP	NSDQ	Coal
+AXL	NYSE	Automotive - Original Equipment
 CCRN	NSDQ	Staffing Firms
 KFRC	NSDQ	Staffing Firms
-NCS	NYSE	Building Products - Miscellaneous
-NSIT	NSDQ	Retail - Mail Order
+PPC	NSDQ	Food - Meat Products
 TTMI	NSDQ	Electronics - Miscellaneous Components
 TX	NYSE	Steel - Producers
