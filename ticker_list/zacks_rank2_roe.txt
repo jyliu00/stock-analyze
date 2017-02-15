@@ -1,45 +1,45 @@
-%sector=rank2_undervalue
+%sector=rank2_roe
 GM	NYSE	Automotive - Domestic
 FCAU	NYSE	Automotive - Foreign
-HMC	NYSE	Automotive - Foreign
 LEA	NYSE	Automotive - Original Equipment
-MTOR	NYSE	Automotive - Original Equipment
 CBI	NYSE	Building Products - Heavy Construction
 MTZ	NYSE	Building Products - Heavy Construction
+STRL	NSDQ	Building Products - Heavy Construction
+CCS	NYSE	Building Products - Home Builders
 DHI	NYSE	Building Products - Home Builders
-WLH	NYSE	Building Products - Home Builders
-BCC	NYSE	Building Products - Wood
 SCS	NYSE	Business - Office Products
+PLUS	NSDQ	Business - Software Services
 SHLM	NSDQ	Chemical - Plastic
 ARRS	NSDQ	Communication - Components
+CACI	NYSE	Computer - Services
 CDW	NSDQ	Computers - IT Services
+SAIC	NYSE	Computers - IT Services
 TEF	NYSE	Diversified Communication Services
-BW	NYSE	Electronics - Power Generation
+AVAL	NYSE	Financial - Investment Management
 HLI	NYSE	Financial - Miscellaneous Services
 TSN	NYSE	Food - Meat Products
-UNFI	NSDQ	Food - Miscellaneous
-USFD	NYSE	Food - Miscellaneous
-HIG	NYSE	Insurance - Multi line
-ORI	NYSE	Insurance - Multi line
+SYY	NYSE	Food - Miscellaneous
+SPTN	NSDQ	Food - Natural Foods Products
 ALL	NYSE	Insurance - Property and Casualty
 PGR	NYSE	Insurance - Property and Casualty
-THG	NYSE	Insurance - Property and Casualty
+HEES	NSDQ	Manufacturing - Construction and Mining
+PPSI	NSDQ	Manufacturing - Electronics
+AIT	NYSE	Manufacturing - General Industrial
 ABC	NYSE	Medical - Dental Supplies
-HCA	NYSE	Medical - Hospital
-KND	NYSE	Medical - Nursing Homes
+WCG	NYSE	Medical - HMOs
 ESRX	NSDQ	Medical Services
-RS	NYSE	Metal Products - Distribution
-TOT	NYSE	Oil and Gas - Integrated - International
+PKOH	NSDQ	Metal Products - Fasteners
+SRLP	NYSE	Oil and Gas - Refining and Marketing - Master Limited Partnerships
 TTEK	NSDQ	Pollution Control
-ZUMZ	NSDQ	Retail - Apparel and Shoes
+GCO	NYSE	Retail - Apparel and Shoes
+CNXN	NSDQ	Retail - Computer Hardware
 DLTR	NSDQ	Retail - Discount Stores
-PIR	NYSE	Retail - Home Furnishings
-BKS	NYSE	Retail - Miscellaneous
 CAB	NYSE	Retail - Miscellaneous
-HZO	NYSE	Retail - Miscellaneous
 SPLS	NSDQ	Retail - Miscellaneous
+TAST	NSDQ	Retail - Restaurants
 MAN	NYSE	Staffing Firms
-X	NYSE	Steel - Producers
 DAL	NYSE	Transportation - Airline
-SKYW	NSDQ	Transportation - Airline
 UAL	NYSE	Transportation - Airline
+TRN	NYSE	Transportation - Equipment and Leasing
+HUBG	NSDQ	Transportation - Services
+WIN	NSDQ	Wireless National

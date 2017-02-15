@@ -1,6 +1,10 @@
 -include ticker_list/major_indices.txt
 -include ticker_list/zacks_rank1_roe.txt
--include ticker_list/zacks_rank1_goodvalue.txt
+-include ticker_list/zacks_rank1_undervalue.txt
+-include ticker_list/zacks_rank2_roe.txt
+-include ticker_list/zacks_rank2_undervalue.txt
+-include ticker_list/zacks_rank3_roe.txt
+-include ticker_list/zacks_rank3_undervalue.txt
 -include ticker_list/zacks_top10.txt
 -include ticker_list/zacks_rank1.txt
 -include ticker_list/zacks_rank2.txt

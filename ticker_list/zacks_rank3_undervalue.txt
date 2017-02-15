@@ -1,0 +1,162 @@
+%sector=rank3_undervalue
+ADM	NYSE	Agriculture - Operations
+F	NYSE	Automotive - Domestic
+TM	NYSE	Automotive - Foreign
+TTM	NYSE	Automotive - Foreign
+MPG	NYSE	Automotive - Internal Combustion Engines
+DAN	NYSE	Automotive - Original Equipment
+MGA	NYSE	Automotive - Original Equipment
+TEN	NYSE	Automotive - Original Equipment
+VC	NYSE	Automotive - Original Equipment
+ABG	NYSE	Automotive - Retail and Whole Sales
+GPI	NYSE	Automotive - Retail and Whole Sales
+LAD	NYSE	Automotive - Retail and Whole Sales
+PAG	NYSE	Automotive - Retail and Whole Sales
+REGI	NSDQ	Biofuels
+USCR	NSDQ	Building Products - Concrete and Aggregates
+DY	NYSE	Building Products - Heavy Construction
+EME	NYSE	Building Products - Heavy Construction
+TPC	NYSE	Building Products - Heavy Construction
+CAA	NYSE	Building Products - Home Builders
+KBH	NYSE	Building Products - Home Builders
+LEN	NYSE	Building Products - Home Builders
+MDC	NYSE	Building Products - Home Builders
+TOL	NYSE	Building Products - Home Builders
+TPH	NYSE	Building Products - Home Builders
+NCS	NYSE	Building Products - Miscellaneous
+BECN	NSDQ	Building Products - Retail
+BMCH	NSDQ	Building Products - Retail
+CORE	NSDQ	Business - Services
+OLN	NYSE	Chemical - Diversified
+POL	NYSE	Chemical - Plastic
+TSE	NYSE	Chemical - Plastic
+GPRE	NSDQ	Chemical - Specialty
+HPE	NYSE	Computer - Integrated Systems
+NCR	NYSE	Computer - Integrated Systems
+LIOX	NSDQ	Computer - Services
+SMCI	NSDQ	Computer- Storage Devices
+CCK	NYSE	Containers - Metal and Glass
+SLGN	NSDQ	Containers - Metal and Glass
+BERY	NYSE	Containers - Paper and Packaging
+AVP	NYSE	Cosmetics
+NTT	NYSE	Diversified Communication Services
+CLS	NYSE	Electronics - Manufacturing Services
+FLEX	NSDQ	Electronics - Manufacturing Services
+JBL	NYSE	Electronics - Manufacturing Services
+PLXS	NSDQ	Electronics - Manufacturing Services
+SANM	NSDQ	Electronics - Manufacturing Services
+ARW	NYSE	Electronics - Parts Distribution
+AVT	NYSE	Electronics - Parts Distribution
+AXE	NYSE	Electronics - Parts Distribution
+WCC	NYSE	Electronics - Parts Distribution
+AMKR	NSDQ	Electronics - Semiconductors
+ACM	NYSE	Engineering - R and D Services
+FLR	NYSE	Engineering - R and D Services
+JEC	NYSE	Engineering - R and D Services
+KBR	NYSE	Engineering - R and D Services
+PWR	NYSE	Engineering - R and D Services
+GCAP	NYSE	Financial - Investment Bank
+CG	NSDQ	Financial - Investment Management
+MGI	NSDQ	Financial - Miscellaneous Services
+DF	NYSE	Food - Dairy Products
+SAFM	NSDQ	Food - Meat Products
+STKL	NSDQ	Food - Miscellaneous
+LZB	NYSE	Furniture
+ERI	NSDQ	Gaming
+RRR	NSDQ	Gaming
+OI	NYSE	Glass Products
+BAH	NYSE	Government Services
+WHR	NYSE	Household Appliances
+MFC	NYSE	Insurance - Life Insurance
+RGA	NYSE	Insurance - Life Insurance
+AIZ	NYSE	Insurance - Multi line
+CI	NYSE	Insurance - Multi line
+CNO	NYSE	Insurance - Multi line
+MET	NYSE	Insurance - Multi line
+PRU	NYSE	Insurance - Multi line
+AFSI	NSDQ	Insurance - Property and Casualty
+MHLD	NSDQ	Insurance - Property and Casualty
+TVPT	NYSE	Internet - Commerce
+VIPS	NYSE	Internet - Delivery Services
+FLOW	NYSE	Manufacturing - Electronics
+CAH	NYSE	Medical - Dental Supplies
+MCK	NYSE	Medical - Dental Supplies
+PDCO	NSDQ	Medical - Dental Supplies
+AET	NYSE	Medical - HMOs
+ANTM	NYSE	Medical - HMOs
+CNC	NYSE	Medical - HMOs
+HUM	NYSE	Medical - HMOs
+MOH	NYSE	Medical - HMOs
+UNH	NYSE	Medical - HMOs
+CYH	NYSE	Medical - Hospital
+THC	NYSE	Medical - Hospital
+DVA	NYSE	Medical - Outpatient and Home Healthcare
+OMI	NYSE	Medical - Products
+CSTM	NYSE	Metal Products - Procurement and Fabrication
+ACCO	NYSE	Office Supplies
+CHK	NYSE	Oil and Gas - Exploration and Production - United States
+PBR	NYSE	Oil and Gas - Integrated - Emerging Markets
+BAK	NYSE	Oil and Gas - Integrated - International
+BP	NYSE	Oil and Gas - Integrated - International
+RDS.A	NYSE	Oil and Gas - Integrated - International
+CPPL	NYSE	Oil and Gas - Production and Pipelines
+PAGP	NYSE	Oil and Gas - Production and Pipelines
+ETE	NYSE	Oil and Gas - Production Pipeline - MLB
+PAA	NYSE	Oil and Gas - Production Pipeline - MLB
+HFC	NYSE	Oil and Gas - Refining and Marketing
+INT	NYSE	Oil and Gas - Refining and Marketing
+MPC	NYSE	Oil and Gas - Refining and Marketing
+MUSA	NYSE	Oil and Gas - Refining and Marketing
+PARR	AMEX	Oil and Gas - Refining and Marketing
+PSX	NYSE	Oil and Gas - Refining and Marketing
+TSO	NYSE	Oil and Gas - Refining and Marketing
+VLO	NYSE	Oil and Gas - Refining and Marketing
+WNR	NYSE	Oil and Gas - Refining and Marketing
+CVRR	NYSE	Oil and Gas - Refining and Marketing - Master Limited Partnerships
+SUN	NYSE	Oil and Gas - Refining and Marketing - Master Limited Partnerships
+CVG	NYSE	Outsourcing
+KS	NYSE	Paper and Related Products
+CECE	NSDQ	Pollution Control
+NEWM	NYSE	Publishing - Newspapers
+LGIH	NSDQ	Real Estate - Development
+CBG	NYSE	Real Estate - Operations
+JLL	NYSE	Real Estate - Operations
+RLGY	NYSE	Real Estate - Operations
+CHS	NYSE	Retail - Apparel and Shoes
+DSW	NYSE	Retail - Apparel and Shoes
+FINL	NSDQ	Retail - Apparel and Shoes
+FOSL	NSDQ	Retail - Apparel and Shoes
+GPS	NYSE	Retail - Apparel and Shoes
+JWN	NYSE	Retail - Apparel and Shoes
+TECD	NSDQ	Retail - Computer Hardware
+AAN	NYSE	Retail - Consumer Electronics
+BIG	NYSE	Retail - Discount Stores
+RH	NYSE	Retail - Home Furnishings
+WSM	NYSE	Retail - Home Furnishings
+DKS	NYSE	Retail - Miscellaneous
+CVS	NYSE	Retail - Pharmacies and Drug Stores
+GNC	NYSE	Retail - Pharmacies and Drug Stores
+WBA	NSDQ	Retail - Pharmacies and Drug Stores
+DDS	NYSE	Retail - Regional Department Stores
+M	NYSE	Retail - Regional Department Stores
+BJRI	NSDQ	Retail - Restaurants
+RRGB	NSDQ	Retail - Restaurants
+GT	NSDQ	Rubber - Tires
+WWW	NYSE	Shoes and Retail Apparel
+ASGN	NYSE	Staffing Firms
+TBI	NYSE	Staffing Firms
+AKS	NYSE	Steel - Producers
+PKX	NYSE	Steel - Producers
+RL	NYSE	Textile - Apparel
+TLRD	NYSE	Textile - Apparel
+AAL	NSDQ	Transportation - Airline
+GBX	NYSE	Transportation - Equipment and Leasing
+ANW	NYSE	Transportation - Shipping
+SSW	NYSE	Transportation - Shipping
+TOO	NYSE	Transportation - Shipping
+ARCB	NSDQ	Transportation - Truck
+AES	NYSE	Utility - Electric Power
+ELP	NYSE	Utility - Electric Power
+FE	NYSE	Utility - Electric Power
+ERIC	NSDQ	Wireless Equipment
+AMX	NYSE	Wireless Non-US
