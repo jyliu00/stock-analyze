@@ -1,4 +1,5 @@
 %sector=rank2
+IPG	NYSE	Advertising and Marketing
 NCMI	NSDQ	Advertising and Marketing
 HII	NYSE	Aerospace - Defense
 HXL	NYSE	Aerospace - Defense Equipment
@@ -12,6 +13,7 @@ MTOR	NYSE	Automotive - Original Equipment
 AAP	NYSE	Automotive - Retail and Wholesale - Parts
 CS	NYSE	Banks - Foreign
 ITUB	NYSE	Banks - Foreign
+TD	NYSE	Banks - Foreign
 ASB	NYSE	Banks - Midwest
 BPOP	NSDQ	Banks - Southeast
 RF	NYSE	Banks - Southeast
@@ -22,10 +24,11 @@ CBI	NYSE	Building Products - Heavy Construction
 MTZ	NYSE	Building Products - Heavy Construction
 DHI	NYSE	Building Products - Home Builders
 WLH	NYSE	Building Products - Home Builders
+BCC	NYSE	Building Products - Wood
 DLX	NYSE	Business - Office Products
 SCS	NYSE	Business - Office Products
-CORE	NSDQ	Business - Services
 HMHC	NSDQ	Business - Services
+WNS	NYSE	Business - Services
 LBTYA	NSDQ	Cable Television
 RCI	NYSE	Cable Television
 CBT	NYSE	Chemical - Diversified
@@ -44,7 +47,6 @@ KEYS	NYSE	Electronics - Measuring Instruments
 LLL	NYSE	Electronics - Military
 TEL	NYSE	Electronics - Miscellaneous Components
 BW	NYSE	Electronics - Power Generation
-LGF.A	NYSE	Film and Television Production and Distribution
 MC	NYSE	Financial - Investment Bank
 AMP	NYSE	Financial - Investment Management
 OMAM	NYSE	Financial - Investment Management
@@ -58,25 +60,25 @@ INGR	NYSE	Food - Miscellaneous
 SYY	NYSE	Food - Miscellaneous
 UNFI	NSDQ	Food - Miscellaneous
 USFD	NYSE	Food - Miscellaneous
+STAY	NYSE	Hotels and Motels
 UNM	NYSE	Insurance - Accident and Health
+AEL	NYSE	Insurance - Life Insurance
 FGL	NYSE	Insurance - Life Insurance
 PRI	NYSE	Insurance - Life Insurance
 HIG	NYSE	Insurance - Multi line
 ORI	NYSE	Insurance - Multi line
-PUK	NYSE	Insurance - Multi line
 AHL	NYSE	Insurance - Property and Casualty
 ALL	NYSE	Insurance - Property and Casualty
 AXS	NYSE	Insurance - Property and Casualty
 PGR	NYSE	Insurance - Property and Casualty
 THG	NYSE	Insurance - Property and Casualty
-TIVO	NSDQ	Internet - Services
 SNCR	NSDQ	Internet - Software
-AZN	NYSE	Large Cap Pharmaceuticals
 GSK	NYSE	Large Cap Pharmaceuticals
 NCLH	NSDQ	Leisure and Recreation Services
 RCL	NYSE	Leisure and Recreation Services
 HEES	NSDQ	Manufacturing - Construction and Mining
 HUBB	NYSE	Manufacturing - Electrical Utilities
+MCRN	NYSE	Manufacturing - Material Handling
 ABC	NYSE	Medical - Dental Supplies
 GRFS	NSDQ	Medical - Drugs
 LCI	NYSE	Medical - Drugs
@@ -89,30 +91,32 @@ BABY	NSDQ	Medical - Instruments
 KND	NYSE	Medical - Nursing Homes
 ESRX	NSDQ	Medical Services
 PINC	NSDQ	Medical Services
-AA	NYSE	Metal Products - Distribution
 RS	NYSE	Metal Products - Distribution
 TKR	NYSE	Metal Products - Procurement and Fabrication
+SBGL	NYSE	Mining - Gold
 CLF	NYSE	Mining - Iron
 VALE	NYSE	Mining - Iron
 TECK	NYSE	Mining - Miscellaneous
 ARNC	NYSE	Mining - Non Ferrous
 CAJ	NYSE	Office Automation and Equipment
 AVY	NYSE	Office Supplies
-DO	NYSE	Oil and Gas - Drilling
 HK	NYSE	Oil and Gas - Exploration and Production - United States
+TTI	NYSE	Oil and Gas - Field Services
 TOT	NYSE	Oil and Gas - Integrated - International
+DNOW	NYSE	Oil and Gas - Mechanical and and Equitment
 ALJ	NYSE	Oil and Gas - Refining and Marketing
 FBR	NYSE	Paper and Related Products
 TTEK	NSDQ	Pollution Control
-NLY	NYSE	REIT and Equity Trust
+CYS	NYSE	REIT and Equity Trust
 CHSP	NYSE	REIT and Equity Trust - Other
+FCH	NYSE	REIT and Equity Trust - Other
 HPT	NSDQ	REIT and Equity Trust - Other
-HST	NYSE	REIT and Equity Trust - Other
 BRG	AMEX	REIT and Equity Trust - Residential
 ZUMZ	NSDQ	Retail - Apparel and Shoes
 DLTR	NSDQ	Retail - Discount Stores
 FRED	NSDQ	Retail - Discount Stores
 TJX	NYSE	Retail - Discount Stores
+PIR	NYSE	Retail - Home Furnishings
 BKS	NYSE	Retail - Miscellaneous
 CAB	NYSE	Retail - Miscellaneous
 HZO	NYSE	Retail - Miscellaneous
@@ -139,16 +143,17 @@ SKYW	NSDQ	Transportation - Airline
 UAL	NYSE	Transportation - Airline
 TRN	NYSE	Transportation - Equipment and Leasing
 HUBG	NSDQ	Transportation - Services
+XPO	NYSE	Transportation - Services
+GLOG	NYSE	Transportation - Shipping
 LSTR	NSDQ	Transportation - Truck
 EXC	NYSE	Utility - Electric Power
-POR	NYSE	Utility - Electric Power
 SCG	NYSE	Utility - Electric Power
 XEL	NYSE	Utility - Electric Power
 SWX	NYSE	Utility - Gas Distribution
 UGI	NYSE	Utility - Gas Distribution
 VVC	NYSE	Utility - Gas Distribution
 CLH	NYSE	Waste Removal Services
+RSG	NYSE	Waste Removal Services
 MSI	NYSE	Wireless Equipment
-SWIR	NSDQ	Wireless Equipment
 WIN	NSDQ	Wireless National
 ORAN	NYSE	Wireless Non-US

@@ -4,14 +4,13 @@ CZZ	NYSE	Agriculture - Products
 AXL	NYSE	Automotive - Original Equipment
 WNC	NYSE	Automotive - Original Equipment
 DB	NYSE	Banks - Foreign
+PEIX	NSDQ	Biofuels
 PHM	NYSE	Building Products - Home Builders
 ARCH	NYSE	Coal
 ARLP	NSDQ	Coal
 LPL	NYSE	Computer - Peripheral Equipment
 LUK	NYSE	Diversified Operations
 UCTT	NSDQ	Electronics - Manufacturing Machinery
-JBL	NYSE	Electronics - Manufacturing Services
-TTMI	NSDQ	Electronics - Miscellaneous Components
 LPLA	NSDQ	Financial - Investment Bank
 PPC	NSDQ	Food - Meat Products
 ACET	NSDQ	Medical - Dental Supplies
