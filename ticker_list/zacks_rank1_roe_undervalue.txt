@@ -1,0 +1,27 @@
+%sector=rank1_roe
+%sector=rank1_undervalue
+ERJ	NYSE	Aerospace - Defense
+AXL	NYSE	Automotive - Original Equipment
+WNC	NYSE	Automotive - Original Equipment
+DB	NYSE	Banks - Foreign
+PHM	NYSE	Building Products - Home Builders
+AHGP	NSDQ	Coal
+ARCH	NYSE	Coal
+ARLP	NSDQ	Coal
+LPL	NYSE	Computer - Peripheral Equipment
+CENT	NSDQ	Consumer Products - Discretionary
+LUK	NYSE	Diversified Operations
+UCTT	NSDQ	Electronics - Manufacturing Machinery
+LPLA	NSDQ	Financial - Investment Bank
+ACET	NSDQ	Medical - Dental Supplies
+PKOH	NSDQ	Metal Products - Fasteners
+GCO	NYSE	Retail - Apparel and Shoes
+ZUMZ	NSDQ	Retail - Apparel and Shoes
+NSIT	NSDQ	Retail - Mail Order
+BGFV	NSDQ	Retail - Miscellaneous
+CCRN	NSDQ	Staffing Firms
+KFRC	NSDQ	Staffing Firms
+TX	NYSE	Steel - Producers
+AVH	NYSE	Transportation - Air Freight and Cargo
+SPKE	NSDQ	Utility - Electric Power
+SKM	NYSE	Wireless Non-US
