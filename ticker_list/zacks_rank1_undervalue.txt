@@ -1,10 +1,8 @@
 %sector=rank1_undervalue
 ERJ	NYSE	Aerospace - Defense
-CZZ	NYSE	Agriculture - Products
 AXL	NYSE	Automotive - Original Equipment
 WNC	NYSE	Automotive - Original Equipment
 DB	NYSE	Banks - Foreign
-PEIX	NSDQ	Biofuels
 PHM	NYSE	Building Products - Home Builders
 ARCH	NYSE	Coal
 ARLP	NSDQ	Coal
@@ -12,12 +10,11 @@ LPL	NYSE	Computer - Peripheral Equipment
 LUK	NYSE	Diversified Operations
 UCTT	NSDQ	Electronics - Manufacturing Machinery
 LPLA	NSDQ	Financial - Investment Bank
-PPC	NSDQ	Food - Meat Products
 ACET	NSDQ	Medical - Dental Supplies
+ZUMZ	NSDQ	Retail - Apparel and Shoes
 NSIT	NSDQ	Retail - Mail Order
 BGFV	NSDQ	Retail - Miscellaneous
 CCRN	NSDQ	Staffing Firms
-MT	NYSE	Steel - Producers
 TX	NYSE	Steel - Producers
 AVH	NYSE	Transportation - Air Freight and Cargo
 SKM	NYSE	Wireless Non-US

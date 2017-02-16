@@ -4,7 +4,6 @@ FDP	NYSE	Agriculture - Operations
 F	NYSE	Automotive - Domestic
 CNHI	NYSE	Automotive - Foreign
 TM	NYSE	Automotive - Foreign
-TTM	NYSE	Automotive - Foreign
 MPG	NYSE	Automotive - Internal Combustion Engines
 CPS	NYSE	Automotive - Original Equipment
 DAN	NYSE	Automotive - Original Equipment
@@ -25,6 +24,7 @@ USCR	NSDQ	Building Products - Concrete and Aggregates
 DY	NYSE	Building Products - Heavy Construction
 EME	NYSE	Building Products - Heavy Construction
 CAA	NYSE	Building Products - Home Builders
+CCS	NYSE	Building Products - Home Builders
 LEN	NYSE	Building Products - Home Builders
 TPH	NYSE	Building Products - Home Builders
 ABM	NYSE	Building Products - Maintenance Service
@@ -54,6 +54,7 @@ CCK	NYSE	Containers - Metal and Glass
 GEF	NYSE	Containers - Metal and Glass
 SLGN	NSDQ	Containers - Metal and Glass
 BERY	NYSE	Containers - Paper and Packaging
+GPK	NYSE	Containers - Paper and Packaging
 PRSC	NSDQ	Conusmer Services - Miscellaneous
 CLS	NYSE	Electronics - Manufacturing Services
 FLEX	NSDQ	Electronics - Manufacturing Services
@@ -72,12 +73,13 @@ FLR	NYSE	Engineering - R and D Services
 KBR	NYSE	Engineering - R and D Services
 GCAP	NYSE	Financial - Investment Bank
 KCG	NYSE	Financial - Investment Bank
+AB	NYSE	Financial - Investment Management
 CG	NSDQ	Financial - Investment Management
+CPSS	NSDQ	Financial - Miscellaneous Services
 IX	NYSE	Financial - Miscellaneous Services
 DF	NYSE	Food - Dairy Products
 SAFM	NSDQ	Food - Meat Products
 ARMK	NYSE	Food - Miscellaneous
-FLO	NYSE	Food - Miscellaneous
 LZB	NYSE	Furniture
 ERI	NSDQ	Gaming
 RRR	NSDQ	Gaming
@@ -113,6 +115,7 @@ PMC	NYSE	Medical - Outpatient and Home Healthcare
 RDNT	NSDQ	Medical - Outpatient and Home Healthcare
 OMI	NYSE	Medical - Products
 CIVI	NYSE	Medical Services
+ESRX	NSDQ	Medical Services
 SGRY	NSDQ	Medical Services
 BRSS	NYSE	Metal Products - Procurement and Fabrication
 CINR	NYSE	Mining - Miscellaneous
@@ -121,7 +124,6 @@ BAK	NYSE	Oil and Gas - Integrated - International
 UGP	NYSE	Oil and Gas - Production and Pipelines
 PAA	NYSE	Oil and Gas - Production Pipeline - MLB
 MUSA	NYSE	Oil and Gas - Refining and Marketing
-ATTO	NYSE	Outsourcing
 BCO	NYSE	Outsourcing
 CVG	NYSE	Outsourcing
 SYKE	NSDQ	Outsourcing
@@ -147,9 +149,11 @@ AAN	NYSE	Retail - Consumer Electronics
 BIG	NYSE	Retail - Discount Stores
 COST	NSDQ	Retail - Discount Stores
 PSMT	NSDQ	Retail - Discount Stores
+ETH	NYSE	Retail - Home Furnishings
 WSM	NYSE	Retail - Home Furnishings
 FLWS	NSDQ	Retail - Mail Order
 BBW	NYSE	Retail - Miscellaneous
+CAB	NYSE	Retail - Miscellaneous
 DKS	NYSE	Retail - Miscellaneous
 CVS	NYSE	Retail - Pharmacies and Drug Stores
 DPLO	NYSE	Retail - Pharmacies and Drug Stores
@@ -166,12 +170,10 @@ GT	NSDQ	Rubber - Tires
 GPX	NYSE	Schools
 PNTR	NSDQ	Security and Safety Services
 WWW	NYSE	Shoes and Retail Apparel
-ASGN	NYSE	Staffing Firms
 BGSF	AMEX	Staffing Firms
 NSP	NYSE	Staffing Firms
 TBI	NYSE	Staffing Firms
 RL	NYSE	Textile - Apparel
-CRWS	NSDQ	Textile - Home Furnishing
 AAL	NSDQ	Transportation - Airline
 GBX	NYSE	Transportation - Equipment and Leasing
 CHRW	NSDQ	Transportation - Services
@@ -179,6 +181,5 @@ MATX	NYSE	Transportation - Services
 SSW	NYSE	Transportation - Shipping
 TOO	NYSE	Transportation - Shipping
 SAIA	NSDQ	Transportation - Truck
-AES	NYSE	Utility - Electric Power
 FE	NYSE	Utility - Electric Power
 MITL	NSDQ	Wireless Equipment

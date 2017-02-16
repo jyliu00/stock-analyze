@@ -2,7 +2,6 @@
 ADM	NYSE	Agriculture - Operations
 F	NYSE	Automotive - Domestic
 TM	NYSE	Automotive - Foreign
-TTM	NYSE	Automotive - Foreign
 MPG	NYSE	Automotive - Internal Combustion Engines
 DAN	NYSE	Automotive - Original Equipment
 MGA	NYSE	Automotive - Original Equipment
@@ -38,6 +37,7 @@ SMCI	NSDQ	Computer- Storage Devices
 CCK	NYSE	Containers - Metal and Glass
 SLGN	NSDQ	Containers - Metal and Glass
 BERY	NYSE	Containers - Paper and Packaging
+GPK	NYSE	Containers - Paper and Packaging
 AVP	NYSE	Cosmetics
 NTT	NYSE	Diversified Communication Services
 CLS	NYSE	Electronics - Manufacturing Services
@@ -51,13 +51,14 @@ AXE	NYSE	Electronics - Parts Distribution
 WCC	NYSE	Electronics - Parts Distribution
 AMKR	NSDQ	Electronics - Semiconductors
 ACM	NYSE	Engineering - R and D Services
-FLR	NYSE	Engineering - R and D Services
 JEC	NYSE	Engineering - R and D Services
 KBR	NYSE	Engineering - R and D Services
 PWR	NYSE	Engineering - R and D Services
 GCAP	NYSE	Financial - Investment Bank
+AB	NYSE	Financial - Investment Management
 CG	NSDQ	Financial - Investment Management
 MGI	NSDQ	Financial - Miscellaneous Services
+PFSI	NYSE	Financial - Mortgage & Related Services
 DF	NYSE	Food - Dairy Products
 SAFM	NSDQ	Food - Meat Products
 STKL	NSDQ	Food - Miscellaneous
@@ -65,7 +66,6 @@ LZB	NYSE	Furniture
 ERI	NSDQ	Gaming
 RRR	NSDQ	Gaming
 OI	NYSE	Glass Products
-BAH	NYSE	Government Services
 WHR	NYSE	Household Appliances
 MFC	NYSE	Insurance - Life Insurance
 RGA	NYSE	Insurance - Life Insurance
@@ -92,13 +92,16 @@ CYH	NYSE	Medical - Hospital
 THC	NYSE	Medical - Hospital
 DVA	NYSE	Medical - Outpatient and Home Healthcare
 OMI	NYSE	Medical - Products
+ESRX	NSDQ	Medical Services
 CSTM	NYSE	Metal Products - Procurement and Fabrication
 ACCO	NYSE	Office Supplies
 CHK	NYSE	Oil and Gas - Exploration and Production - United States
 PBR	NYSE	Oil and Gas - Integrated - Emerging Markets
 BAK	NYSE	Oil and Gas - Integrated - International
 BP	NYSE	Oil and Gas - Integrated - International
+E	NYSE	Oil and Gas - Integrated - International
 RDS.A	NYSE	Oil and Gas - Integrated - International
+TOT	NYSE	Oil and Gas - Integrated - International
 CPPL	NYSE	Oil and Gas - Production and Pipelines
 PAGP	NYSE	Oil and Gas - Production and Pipelines
 ETE	NYSE	Oil and Gas - Production Pipeline - MLB
@@ -128,11 +131,13 @@ FINL	NSDQ	Retail - Apparel and Shoes
 FOSL	NSDQ	Retail - Apparel and Shoes
 GPS	NYSE	Retail - Apparel and Shoes
 JWN	NYSE	Retail - Apparel and Shoes
-TECD	NSDQ	Retail - Computer Hardware
 AAN	NYSE	Retail - Consumer Electronics
 BIG	NYSE	Retail - Discount Stores
+ETH	NYSE	Retail - Home Furnishings
+PIR	NYSE	Retail - Home Furnishings
 RH	NYSE	Retail - Home Furnishings
 WSM	NYSE	Retail - Home Furnishings
+CAB	NYSE	Retail - Miscellaneous
 DKS	NYSE	Retail - Miscellaneous
 CVS	NYSE	Retail - Pharmacies and Drug Stores
 GNC	NYSE	Retail - Pharmacies and Drug Stores
@@ -143,7 +148,6 @@ BJRI	NSDQ	Retail - Restaurants
 RRGB	NSDQ	Retail - Restaurants
 GT	NSDQ	Rubber - Tires
 WWW	NYSE	Shoes and Retail Apparel
-ASGN	NYSE	Staffing Firms
 TBI	NYSE	Staffing Firms
 AKS	NYSE	Steel - Producers
 PKX	NYSE	Steel - Producers
@@ -155,7 +159,6 @@ ANW	NYSE	Transportation - Shipping
 SSW	NYSE	Transportation - Shipping
 TOO	NYSE	Transportation - Shipping
 ARCB	NSDQ	Transportation - Truck
-AES	NYSE	Utility - Electric Power
 ELP	NYSE	Utility - Electric Power
 FE	NYSE	Utility - Electric Power
 ERIC	NSDQ	Wireless Equipment

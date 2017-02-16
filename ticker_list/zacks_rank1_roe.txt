@@ -1,16 +1,16 @@
 %sector=rank1_roe
-ACET	NSDQ	Medical - Dental Supplies
+AXL	NYSE	Automotive - Original Equipment
+WNC	NYSE	Automotive - Original Equipment
+PHM	NYSE	Building Products - Home Builders
 AHGP	NSDQ	Coal
 ARLP	NSDQ	Coal
-AXL	NYSE	Automotive - Original Equipment
-CCRN	NSDQ	Staffing Firms
 CENT	NSDQ	Consumer Products - Discretionary
-KFRC	NSDQ	Staffing Firms
 LPLA	NSDQ	Financial - Investment Bank
+ACET	NSDQ	Medical - Dental Supplies
+PKOH	NSDQ	Metal Products - Fasteners
+GCO	NYSE	Retail - Apparel and Shoes
 NSIT	NSDQ	Retail - Mail Order
-PHM	NYSE	Building Products - Home Builders
-PPC	NSDQ	Food - Meat Products
-SNX	NYSE	Business - Software Services
-SPKE	NSDQ	Utility - Electric Power
+CCRN	NSDQ	Staffing Firms
+KFRC	NSDQ	Staffing Firms
 TX	NYSE	Steel - Producers
-WNC	NYSE	Automotive - Original Equipment
+SPKE	NSDQ	Utility - Electric Power
