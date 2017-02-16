@@ -1,54 +1,53 @@
 %sector=rank1
+NYSE	37.87	A
 ERJ	NYSE	Aerospace - Defense
-CZZ	NYSE	Agriculture - Products
 AXL	NYSE	Automotive - Original Equipment
 WNC	NYSE	Automotive - Original Equipment
 DB	NYSE	Banks - Foreign
 EWBC	NSDQ	Banks - West
-PEIX	NSDQ	Biofuels
 GTN	NYSE	Broadcast Radio and Television
 SNI	NSDQ	Broadcast Radio and Television
 PHM	NYSE	Building Products - Home Builders
 OC	NYSE	Building Products - Miscellaneous
 THO	NYSE	Building Products - Mobile Homes and RV Builders
 LPX	NYSE	Building Products - Wood
+CC	NYSE	Chemical - Diversified
 ARCH	NYSE	Coal
 ARLP	NSDQ	Coal
 LPL	NYSE	Computer - Peripheral Equipment
+NTAP	NSDQ	Computer- Storage Devices
 STX	NSDQ	Computer- Storage Devices
 WDC	NSDQ	Computer- Storage Devices
-ENR	NYSE	Consumer Products - Staples
 LUK	NYSE	Diversified Operations
 UCTT	NSDQ	Electronics - Manufacturing Machinery
 TER	NYSE	Electronics - Testing Equipment
-EVR	NYSE	Financial - Investment Bank
 LPLA	NSDQ	Financial - Investment Bank
 APO	NYSE	Financial - Investment Management
 WD	NYSE	Financial - Mortgage & Related Services
-PPC	NSDQ	Food - Meat Products
+AEL	NYSE	Insurance - Life Insurance
 MTG	NYSE	Insurance - Multi line
 AFG	NYSE	Insurance - Property and Casualty
 RE	NYSE	Insurance - Property and Casualty
 SIGI	NSDQ	Insurance - Property and Casualty
-NTES	NSDQ	Internet - Software and Services
+JCOM	NSDQ	Internet - Software
 ACET	NSDQ	Medical - Dental Supplies
-AA	NYSE	Metal Products - Distribution
 BHP	NYSE	Mining - Miscellaneous
 HBM	NYSE	Mining - Miscellaneous
+CAJ	NYSE	Office Automation and Equipment
 IMO	AMEX	Oil and Gas - Integrated - Canadian
+DNOW	NYSE	Oil and Gas - Mechanical and and Equitment
 MDR	NYSE	Oil and Gas - Mechanical and and Equitment
 NLY	NYSE	REIT and Equity Trust
 CXW	NYSE	REIT and Equity Trust - Other
 PLCE	NSDQ	Retail - Apparel and Shoes
+ZUMZ	NSDQ	Retail - Apparel and Shoes
 NSIT	NSDQ	Retail - Mail Order
 BGFV	NSDQ	Retail - Miscellaneous
 CCRN	NSDQ	Staffing Firms
-MT	NYSE	Steel - Producers
 TX	NYSE	Steel - Producers
 AVH	NYSE	Transportation - Air Freight and Cargo
-WAB	NYSE	Transportation - Equipment and Leasing
+SCG	NYSE	Utility - Electric Power
 ATKR	NYSE	Wire and Cable Products
 SWIR	NSDQ	Wireless Equipment
-MBT	NYSE	Wireless Non-US
 SKM	NYSE	Wireless Non-US
 TSU	NYSE	Wireless Non-US
