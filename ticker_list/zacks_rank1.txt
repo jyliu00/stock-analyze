@@ -1,21 +1,22 @@
 %sector=rank1
-NYSE	37.87	A
-ERJ	NYSE	Aerospace - Defense
+HII	NYSE	Aerospace - Defense
+CZZ	NYSE	Agriculture - Products
 AXL	NYSE	Automotive - Original Equipment
 WNC	NYSE	Automotive - Original Equipment
+RUSHA	NSDQ	Automotive - Retail and Whole Sales
 DB	NYSE	Banks - Foreign
 EWBC	NSDQ	Banks - West
+PEIX	NSDQ	Biofuels
 GTN	NYSE	Broadcast Radio and Television
 SNI	NSDQ	Broadcast Radio and Television
 PHM	NYSE	Building Products - Home Builders
 OC	NYSE	Building Products - Miscellaneous
-THO	NYSE	Building Products - Mobile Homes and RV Builders
 LPX	NYSE	Building Products - Wood
-CC	NYSE	Chemical - Diversified
+FDC	NYSE	Business - Services
 ARCH	NYSE	Coal
 ARLP	NSDQ	Coal
+ADTN	NSDQ	Communication - Infrastructure
 LPL	NYSE	Computer - Peripheral Equipment
-NTAP	NSDQ	Computer- Storage Devices
 STX	NSDQ	Computer- Storage Devices
 WDC	NSDQ	Computer- Storage Devices
 LUK	NYSE	Diversified Operations
@@ -35,19 +36,22 @@ BHP	NYSE	Mining - Miscellaneous
 HBM	NYSE	Mining - Miscellaneous
 CAJ	NYSE	Office Automation and Equipment
 IMO	AMEX	Oil and Gas - Integrated - Canadian
-DNOW	NYSE	Oil and Gas - Mechanical and and Equitment
 MDR	NYSE	Oil and Gas - Mechanical and and Equitment
 NLY	NYSE	REIT and Equity Trust
 CXW	NYSE	REIT and Equity Trust - Other
 PLCE	NSDQ	Retail - Apparel and Shoes
-ZUMZ	NSDQ	Retail - Apparel and Shoes
+BURL	NYSE	Retail - Discount Stores
 NSIT	NSDQ	Retail - Mail Order
-BGFV	NSDQ	Retail - Miscellaneous
+PBPB	NSDQ	Retail - Restaurants
+FRAN	NSDQ	Shoes and Retail Apparel
 CCRN	NSDQ	Staffing Firms
 TX	NYSE	Steel - Producers
+X	NYSE	Steel - Producers
 AVH	NYSE	Transportation - Air Freight and Cargo
-SCG	NYSE	Utility - Electric Power
+AYR	NYSE	Transportation - Equipment and Leasing
+XPO	NYSE	Transportation - Services
 ATKR	NYSE	Wire and Cable Products
+MSI	NYSE	Wireless Equipment
 SWIR	NSDQ	Wireless Equipment
 SKM	NYSE	Wireless Non-US
 TSU	NYSE	Wireless Non-US

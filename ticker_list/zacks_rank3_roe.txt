@@ -10,6 +10,7 @@ DAN	NYSE	Automotive - Original Equipment
 MGA	NYSE	Automotive - Original Equipment
 OSK	NYSE	Automotive - Original Equipment
 TEN	NYSE	Automotive - Original Equipment
+TOWR	NYSE	Automotive - Original Equipment
 UFAB	AMEX	Automotive - Original Equipment
 VC	NYSE	Automotive - Original Equipment
 GPC	NYSE	Automotive - Replacement Parts
@@ -29,31 +30,30 @@ LEN	NYSE	Building Products - Home Builders
 TPH	NYSE	Building Products - Home Builders
 ABM	NYSE	Building Products - Maintenance Service
 NCS	NYSE	Building Products - Miscellaneous
+BLDR	NSDQ	Building Products - Retail
 UFPI	NSDQ	Building Products - Wood
 CORE	NSDQ	Business - Services
 CRD.B	NYSE	Business - Services
 PRGX	NSDQ	Business - Services
 VVI	NYSE	Business - Services
 QVCB	NSDQ	Cable Television
+HUN	NYSE	Chemical - Diversified
 KOP	NYSE	Chemical - Diversified
 SCL	NYSE	Chemical - Diversified
 SHI	NYSE	Chemical - Diversified
 POL	NYSE	Chemical - Plastic
-TSE	NYSE	Chemical - Plastic
 CNXC	NYSE	Coal
 HPE	NYSE	Computer - Integrated Systems
 NCR	NYSE	Computer - Integrated Systems
 TACT	NSDQ	Computer - Peripheral Equipment
 LIOX	NSDQ	Computer - Services
 NCIT	NSDQ	Computer - Services
-CBZ	NYSE	Consulting Services
 ACU	AMEX	Consumer Products - Discretionary
 ESND	NSDQ	Consumer Products - Discretionary
 PCMI	NSDQ	Consumer Products - Discretionary
 CCK	NYSE	Containers - Metal and Glass
 GEF	NYSE	Containers - Metal and Glass
 SLGN	NSDQ	Containers - Metal and Glass
-BERY	NYSE	Containers - Paper and Packaging
 GPK	NYSE	Containers - Paper and Packaging
 PRSC	NSDQ	Conusmer Services - Miscellaneous
 CLS	NYSE	Electronics - Manufacturing Services
@@ -75,7 +75,6 @@ GCAP	NYSE	Financial - Investment Bank
 KCG	NYSE	Financial - Investment Bank
 AB	NYSE	Financial - Investment Management
 CG	NSDQ	Financial - Investment Management
-CPSS	NSDQ	Financial - Miscellaneous Services
 IX	NYSE	Financial - Miscellaneous Services
 DF	NYSE	Food - Dairy Products
 SAFM	NSDQ	Food - Meat Products
@@ -114,6 +113,7 @@ DVA	NYSE	Medical - Outpatient and Home Healthcare
 PMC	NYSE	Medical - Outpatient and Home Healthcare
 RDNT	NSDQ	Medical - Outpatient and Home Healthcare
 OMI	NYSE	Medical - Products
+AMN	NYSE	Medical Services
 CIVI	NYSE	Medical Services
 ESRX	NSDQ	Medical Services
 SGRY	NSDQ	Medical Services
@@ -143,23 +143,18 @@ DSW	NYSE	Retail - Apparel and Shoes
 FINL	NSDQ	Retail - Apparel and Shoes
 FOSL	NSDQ	Retail - Apparel and Shoes
 GPS	NYSE	Retail - Apparel and Shoes
-JWN	NYSE	Retail - Apparel and Shoes
 TECD	NSDQ	Retail - Computer Hardware
 AAN	NYSE	Retail - Consumer Electronics
 BIG	NYSE	Retail - Discount Stores
 COST	NSDQ	Retail - Discount Stores
 PSMT	NSDQ	Retail - Discount Stores
-ETH	NYSE	Retail - Home Furnishings
 WSM	NYSE	Retail - Home Furnishings
 FLWS	NSDQ	Retail - Mail Order
-BBW	NYSE	Retail - Miscellaneous
-CAB	NYSE	Retail - Miscellaneous
 DKS	NYSE	Retail - Miscellaneous
 CVS	NYSE	Retail - Pharmacies and Drug Stores
 DPLO	NYSE	Retail - Pharmacies and Drug Stores
 GNC	NYSE	Retail - Pharmacies and Drug Stores
 WBA	NSDQ	Retail - Pharmacies and Drug Stores
-DDS	NYSE	Retail - Regional Department Stores
 M	NYSE	Retail - Regional Department Stores
 ARCO	NYSE	Retail - Restaurants
 BJRI	NSDQ	Retail - Restaurants
@@ -174,12 +169,16 @@ BGSF	AMEX	Staffing Firms
 NSP	NYSE	Staffing Firms
 TBI	NYSE	Staffing Firms
 RL	NYSE	Textile - Apparel
+CRWS	NSDQ	Textile - Home Furnishing
 AAL	NSDQ	Transportation - Airline
+DAL	NYSE	Transportation - Airline
 GBX	NYSE	Transportation - Equipment and Leasing
 CHRW	NSDQ	Transportation - Services
 MATX	NYSE	Transportation - Services
 SSW	NYSE	Transportation - Shipping
 TOO	NYSE	Transportation - Shipping
 SAIA	NSDQ	Transportation - Truck
+AES	NYSE	Utility - Electric Power
 FE	NYSE	Utility - Electric Power
+NRG	NYSE	Utility - Electric Power
 MITL	NSDQ	Wireless Equipment

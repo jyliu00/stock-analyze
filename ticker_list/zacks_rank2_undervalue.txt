@@ -1,19 +1,17 @@
 %sector=rank2_undervalue
-CZZ	NYSE	Agriculture - Products
+ERJ	NYSE	Aerospace - Defense
 GM	NYSE	Automotive - Domestic
 FCAU	NYSE	Automotive - Foreign
 HMC	NYSE	Automotive - Foreign
-TTM	NYSE	Automotive - Foreign
 LEA	NYSE	Automotive - Original Equipment
 MTOR	NYSE	Automotive - Original Equipment
-PEIX	NSDQ	Biofuels
 CBI	NYSE	Building Products - Heavy Construction
 MTZ	NYSE	Building Products - Heavy Construction
 DHI	NYSE	Building Products - Home Builders
 WLH	NYSE	Building Products - Home Builders
-BCC	NYSE	Building Products - Wood
 SCS	NYSE	Business - Office Products
 SHLM	NSDQ	Chemical - Plastic
+TSE	NYSE	Chemical - Plastic
 ARRS	NSDQ	Communication - Components
 CDW	NSDQ	Computers - IT Services
 TEF	NYSE	Diversified Communication Services
@@ -23,8 +21,6 @@ HLI	NYSE	Financial - Miscellaneous Services
 PPC	NSDQ	Food - Meat Products
 TSN	NYSE	Food - Meat Products
 UNFI	NSDQ	Food - Miscellaneous
-USFD	NYSE	Food - Miscellaneous
-HIG	NYSE	Insurance - Multi line
 ORI	NYSE	Insurance - Multi line
 ALL	NYSE	Insurance - Property and Casualty
 PGR	NYSE	Insurance - Property and Casualty
@@ -34,14 +30,12 @@ HCA	NYSE	Medical - Hospital
 KND	NYSE	Medical - Nursing Homes
 RS	NYSE	Metal Products - Distribution
 TTEK	NSDQ	Pollution Control
+ZUMZ	NSDQ	Retail - Apparel and Shoes
 DLTR	NSDQ	Retail - Discount Stores
 BKS	NYSE	Retail - Miscellaneous
 HZO	NYSE	Retail - Miscellaneous
 SPLS	NSDQ	Retail - Miscellaneous
 MAN	NYSE	Staffing Firms
 MT	NYSE	Steel - Producers
-X	NYSE	Steel - Producers
-DAL	NYSE	Transportation - Airline
 SKYW	NSDQ	Transportation - Airline
 UAL	NYSE	Transportation - Airline
-AES	NYSE	Utility - Electric Power
