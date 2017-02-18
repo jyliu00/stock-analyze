@@ -1,12 +1,12 @@
 %sector=rank3_undervalue
 ADM	NYSE	Agriculture - Operations
+BG	NYSE	Agriculture - Products
 F	NYSE	Automotive - Domestic
 TM	NYSE	Automotive - Foreign
 MPG	NYSE	Automotive - Internal Combustion Engines
 DAN	NYSE	Automotive - Original Equipment
 MGA	NYSE	Automotive - Original Equipment
 TEN	NYSE	Automotive - Original Equipment
-VC	NYSE	Automotive - Original Equipment
 ABG	NYSE	Automotive - Retail and Whole Sales
 GPI	NYSE	Automotive - Retail and Whole Sales
 LAD	NYSE	Automotive - Retail and Whole Sales
@@ -25,9 +25,8 @@ TOL	NYSE	Building Products - Home Builders
 TPH	NYSE	Building Products - Home Builders
 NCS	NYSE	Building Products - Miscellaneous
 BECN	NSDQ	Building Products - Retail
-BLDR	NSDQ	Building Products - Retail
 BMCH	NSDQ	Building Products - Retail
-BCC	NYSE	Building Products - Wood
+CAR	NSDQ	Business - Services
 CORE	NSDQ	Business - Services
 HUN	NYSE	Chemical - Diversified
 OLN	NYSE	Chemical - Diversified
@@ -40,6 +39,7 @@ SMCI	NSDQ	Computer- Storage Devices
 CCK	NYSE	Containers - Metal and Glass
 SLGN	NSDQ	Containers - Metal and Glass
 GPK	NYSE	Containers - Paper and Packaging
+WTW	NYSE	Conusmer Services - Miscellaneous
 NTT	NYSE	Diversified Communication Services
 CLS	NYSE	Electronics - Manufacturing Services
 FLEX	NSDQ	Electronics - Manufacturing Services
@@ -71,6 +71,7 @@ OI	NYSE	Glass Products
 WHR	NYSE	Household Appliances
 MFC	NYSE	Insurance - Life Insurance
 RGA	NYSE	Insurance - Life Insurance
+AEG	NYSE	Insurance - Multi line
 AIZ	NYSE	Insurance - Multi line
 CI	NYSE	Insurance - Multi line
 CNO	NYSE	Insurance - Multi line
@@ -94,7 +95,6 @@ CYH	NYSE	Medical - Hospital
 THC	NYSE	Medical - Hospital
 DVA	NYSE	Medical - Outpatient and Home Healthcare
 OMI	NYSE	Medical - Products
-AMN	NYSE	Medical Services
 ESRX	NSDQ	Medical Services
 CSTM	NYSE	Metal Products - Procurement and Fabrication
 ACCO	NYSE	Office Supplies
@@ -102,9 +102,9 @@ CHK	NYSE	Oil and Gas - Exploration and Production - United States
 PBR	NYSE	Oil and Gas - Integrated - Emerging Markets
 BAK	NYSE	Oil and Gas - Integrated - International
 BP	NYSE	Oil and Gas - Integrated - International
+E	NYSE	Oil and Gas - Integrated - International
 RDS.A	NYSE	Oil and Gas - Integrated - International
 TOT	NYSE	Oil and Gas - Integrated - International
-CPPL	NYSE	Oil and Gas - Production and Pipelines
 PAGP	NYSE	Oil and Gas - Production and Pipelines
 ETE	NYSE	Oil and Gas - Production Pipeline - MLB
 PAA	NYSE	Oil and Gas - Production Pipeline - MLB
@@ -122,30 +122,30 @@ CVG	NYSE	Outsourcing
 KS	NYSE	Paper and Related Products
 MERC	NSDQ	Paper and Related Products
 CECE	NSDQ	Pollution Control
-NEWM	NYSE	Publishing - Newspapers
 LGIH	NSDQ	Real Estate - Development
 CBG	NYSE	Real Estate - Operations
 JLL	NYSE	Real Estate - Operations
 RLGY	NYSE	Real Estate - Operations
 ASPS	NSDQ	REIT and Equity Trust
-CHS	NYSE	Retail - Apparel and Shoes
 DSW	NYSE	Retail - Apparel and Shoes
 FINL	NSDQ	Retail - Apparel and Shoes
-FOSL	NSDQ	Retail - Apparel and Shoes
 GPS	NYSE	Retail - Apparel and Shoes
 AAN	NYSE	Retail - Consumer Electronics
+BBY	NYSE	Retail - Consumer Electronics
 BIG	NYSE	Retail - Discount Stores
+TGT	NYSE	Retail - Discount Stores
+ETH	NYSE	Retail - Home Furnishings
 PIR	NYSE	Retail - Home Furnishings
 RH	NYSE	Retail - Home Furnishings
-WSM	NYSE	Retail - Home Furnishings
 CAB	NYSE	Retail - Miscellaneous
 DKS	NYSE	Retail - Miscellaneous
+SPLS	NSDQ	Retail - Miscellaneous
 CVS	NYSE	Retail - Pharmacies and Drug Stores
 GNC	NYSE	Retail - Pharmacies and Drug Stores
 WBA	NSDQ	Retail - Pharmacies and Drug Stores
-M	NYSE	Retail - Regional Department Stores
 BJRI	NSDQ	Retail - Restaurants
 RRGB	NSDQ	Retail - Restaurants
+KR	NYSE	Retail - Supermarkets
 GT	NSDQ	Rubber - Tires
 WWW	NYSE	Shoes and Retail Apparel
 TBI	NYSE	Staffing Firms
@@ -163,4 +163,5 @@ ARCB	NSDQ	Transportation - Truck
 AES	NYSE	Utility - Electric Power
 ELP	NYSE	Utility - Electric Power
 FE	NYSE	Utility - Electric Power
+ERIC	NSDQ	Wireless Equipment
 AMX	NYSE	Wireless Non-US

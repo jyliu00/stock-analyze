@@ -1,6 +1,7 @@
 %sector=rank3_roe
 MOG.A	NYSE	Aerospace - Defense Equipment
 FDP	NYSE	Agriculture - Operations
+BG	NYSE	Agriculture - Products
 F	NYSE	Automotive - Domestic
 CNHI	NYSE	Automotive - Foreign
 TM	NYSE	Automotive - Foreign
@@ -11,8 +12,6 @@ MGA	NYSE	Automotive - Original Equipment
 OSK	NYSE	Automotive - Original Equipment
 TEN	NYSE	Automotive - Original Equipment
 TOWR	NYSE	Automotive - Original Equipment
-UFAB	AMEX	Automotive - Original Equipment
-VC	NYSE	Automotive - Original Equipment
 GPC	NYSE	Automotive - Replacement Parts
 KMX	NYSE	Automotive - Retail and Wholesale - Parts
 ABG	NYSE	Automotive - Retail and Whole Sales
@@ -30,8 +29,8 @@ LEN	NYSE	Building Products - Home Builders
 TPH	NYSE	Building Products - Home Builders
 ABM	NYSE	Building Products - Maintenance Service
 NCS	NYSE	Building Products - Miscellaneous
-BLDR	NSDQ	Building Products - Retail
 UFPI	NSDQ	Building Products - Wood
+CAR	NSDQ	Business - Services
 CORE	NSDQ	Business - Services
 CRD.B	NYSE	Business - Services
 PRGX	NSDQ	Business - Services
@@ -113,7 +112,6 @@ DVA	NYSE	Medical - Outpatient and Home Healthcare
 PMC	NYSE	Medical - Outpatient and Home Healthcare
 RDNT	NSDQ	Medical - Outpatient and Home Healthcare
 OMI	NYSE	Medical - Products
-AMN	NYSE	Medical Services
 CIVI	NYSE	Medical Services
 ESRX	NSDQ	Medical Services
 SGRY	NSDQ	Medical Services
@@ -138,38 +136,37 @@ CIGI	NSDQ	Real Estate - Operations
 JLL	NYSE	Real Estate - Operations
 RLGY	NYSE	Real Estate - Operations
 ASPS	NSDQ	REIT and Equity Trust
-CHS	NYSE	Retail - Apparel and Shoes
 DSW	NYSE	Retail - Apparel and Shoes
 FINL	NSDQ	Retail - Apparel and Shoes
-FOSL	NSDQ	Retail - Apparel and Shoes
 GPS	NYSE	Retail - Apparel and Shoes
 TECD	NSDQ	Retail - Computer Hardware
 AAN	NYSE	Retail - Consumer Electronics
+BBY	NYSE	Retail - Consumer Electronics
 BIG	NYSE	Retail - Discount Stores
 COST	NSDQ	Retail - Discount Stores
 PSMT	NSDQ	Retail - Discount Stores
-WSM	NYSE	Retail - Home Furnishings
+TGT	NYSE	Retail - Discount Stores
+ETH	NYSE	Retail - Home Furnishings
 FLWS	NSDQ	Retail - Mail Order
 DKS	NYSE	Retail - Miscellaneous
+SPLS	NSDQ	Retail - Miscellaneous
 CVS	NYSE	Retail - Pharmacies and Drug Stores
 DPLO	NYSE	Retail - Pharmacies and Drug Stores
 GNC	NYSE	Retail - Pharmacies and Drug Stores
 WBA	NSDQ	Retail - Pharmacies and Drug Stores
-M	NYSE	Retail - Regional Department Stores
 ARCO	NYSE	Retail - Restaurants
 BJRI	NSDQ	Retail - Restaurants
 BOBE	NSDQ	Retail - Restaurants
 RRGB	NSDQ	Retail - Restaurants
+KR	NYSE	Retail - Supermarkets
 MYE	NYSE	Rubber - Plastics
 GT	NSDQ	Rubber - Tires
 GPX	NYSE	Schools
 PNTR	NSDQ	Security and Safety Services
 WWW	NYSE	Shoes and Retail Apparel
 BGSF	AMEX	Staffing Firms
-NSP	NYSE	Staffing Firms
 TBI	NYSE	Staffing Firms
 RL	NYSE	Textile - Apparel
-CRWS	NSDQ	Textile - Home Furnishing
 AAL	NSDQ	Transportation - Airline
 DAL	NYSE	Transportation - Airline
 GBX	NYSE	Transportation - Equipment and Leasing
@@ -177,7 +174,6 @@ CHRW	NSDQ	Transportation - Services
 MATX	NYSE	Transportation - Services
 SSW	NYSE	Transportation - Shipping
 TOO	NYSE	Transportation - Shipping
-SAIA	NSDQ	Transportation - Truck
 AES	NYSE	Utility - Electric Power
 FE	NYSE	Utility - Electric Power
 NRG	NYSE	Utility - Electric Power

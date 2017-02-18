@@ -1,17 +1,19 @@
 %sector=rank1_undervalue
-CZZ	NYSE	Agriculture - Products
 AXL	NYSE	Automotive - Original Equipment
 WNC	NYSE	Automotive - Original Equipment
 DB	NYSE	Banks - Foreign
-PEIX	NSDQ	Biofuels
 PHM	NYSE	Building Products - Home Builders
+BCC	NYSE	Building Products - Wood
 ARCH	NYSE	Coal
 ARLP	NSDQ	Coal
 LPL	NYSE	Computer - Peripheral Equipment
 LUK	NYSE	Diversified Operations
 UCTT	NSDQ	Electronics - Manufacturing Machinery
 LPLA	NSDQ	Financial - Investment Bank
+TSN	NYSE	Food - Meat Products
+PGR	NYSE	Insurance - Property and Casualty
 ACET	NSDQ	Medical - Dental Supplies
+NEWM	NYSE	Publishing - Newspapers
 NSIT	NSDQ	Retail - Mail Order
 CCRN	NSDQ	Staffing Firms
 TX	NYSE	Steel - Producers

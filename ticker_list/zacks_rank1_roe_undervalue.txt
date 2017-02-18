@@ -1,25 +1,27 @@
-%sector=rank1_roe
-%sector=rank1_undervalue
-CZZ	NYSE	Agriculture - Products
-AXL	NYSE	Automotive - Original Equipment
-WNC	NYSE	Automotive - Original Equipment
-DB	NYSE	Banks - Foreign
-PEIX	NSDQ	Biofuels
-PHM	NYSE	Building Products - Home Builders
-AHGP	NSDQ	Coal
-ARCH	NYSE	Coal
-ARLP	NSDQ	Coal
-LPL	NYSE	Computer - Peripheral Equipment
-LUK	NYSE	Diversified Operations
-UCTT	NSDQ	Electronics - Manufacturing Machinery
-LPLA	NSDQ	Financial - Investment Bank
-ACET	NSDQ	Medical - Dental Supplies
-PKOH	NSDQ	Metal Products - Fasteners
-NSIT	NSDQ	Retail - Mail Order
-CCRN	NSDQ	Staffing Firms
-KFRC	NSDQ	Staffing Firms
-TX	NYSE	Steel - Producers
-X	NYSE	Steel - Producers
-AVH	NYSE	Transportation - Air Freight and Cargo
-SPKE	NSDQ	Utility - Electric Power
-SKM	NYSE	Wireless Non-US
+%sector=rank1_roe,
+%sector=rank1_undervalue,
+AXL,
+WNC,
+DB,
+PHM,
+BCC,
+AHGP,
+ARCH,
+ARLP,
+LPL,
+CENT,
+LUK,
+UCTT,
+LPLA,
+TSN,
+PGR,
+ACET,
+NEWM,
+NSIT,
+CCRN,
+KFRC,
+TX,
+X,
+AVH,
+SPKE,
+SKM,

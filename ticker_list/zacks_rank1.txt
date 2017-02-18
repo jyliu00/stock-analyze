@@ -1,22 +1,21 @@
 %sector=rank1
 HII	NYSE	Aerospace - Defense
-CZZ	NYSE	Agriculture - Products
 AXL	NYSE	Automotive - Original Equipment
 WNC	NYSE	Automotive - Original Equipment
 RUSHA	NSDQ	Automotive - Retail and Whole Sales
 DB	NYSE	Banks - Foreign
 EWBC	NSDQ	Banks - West
-PEIX	NSDQ	Biofuels
 GTN	NYSE	Broadcast Radio and Television
-SNI	NSDQ	Broadcast Radio and Television
 PHM	NYSE	Building Products - Home Builders
 OC	NYSE	Building Products - Miscellaneous
+BCC	NYSE	Building Products - Wood
 LPX	NYSE	Building Products - Wood
 FDC	NYSE	Business - Services
+CC	NYSE	Chemical - Diversified
 ARCH	NYSE	Coal
 ARLP	NSDQ	Coal
-ADTN	NSDQ	Communication - Infrastructure
 LPL	NYSE	Computer - Peripheral Equipment
+NTAP	NSDQ	Computer- Storage Devices
 STX	NSDQ	Computer- Storage Devices
 WDC	NSDQ	Computer- Storage Devices
 LUK	NYSE	Diversified Operations
@@ -25,33 +24,34 @@ TER	NYSE	Electronics - Testing Equipment
 LPLA	NSDQ	Financial - Investment Bank
 APO	NYSE	Financial - Investment Management
 WD	NYSE	Financial - Mortgage & Related Services
-AEL	NYSE	Insurance - Life Insurance
+TSN	NYSE	Food - Meat Products
 MTG	NYSE	Insurance - Multi line
 AFG	NYSE	Insurance - Property and Casualty
+PGR	NYSE	Insurance - Property and Casualty
 RE	NYSE	Insurance - Property and Casualty
 SIGI	NSDQ	Insurance - Property and Casualty
 JCOM	NSDQ	Internet - Software
 ACET	NSDQ	Medical - Dental Supplies
+SCMP	NSDQ	Medical - Drugs
 BHP	NYSE	Mining - Miscellaneous
 HBM	NYSE	Mining - Miscellaneous
 CAJ	NYSE	Office Automation and Equipment
 IMO	AMEX	Oil and Gas - Integrated - Canadian
 MDR	NYSE	Oil and Gas - Mechanical and and Equitment
-NLY	NYSE	REIT and Equity Trust
+NEWM	NYSE	Publishing - Newspapers
 CXW	NYSE	REIT and Equity Trust - Other
 PLCE	NSDQ	Retail - Apparel and Shoes
 BURL	NYSE	Retail - Discount Stores
 NSIT	NSDQ	Retail - Mail Order
 PBPB	NSDQ	Retail - Restaurants
-FRAN	NSDQ	Shoes and Retail Apparel
+AMAT	NSDQ	Semiconductor Equipment - Wafer Fabrication
+KLAC	NSDQ	Semiconductor Equipment - Wafer Fabrication
 CCRN	NSDQ	Staffing Firms
 TX	NYSE	Steel - Producers
 X	NYSE	Steel - Producers
 AVH	NYSE	Transportation - Air Freight and Cargo
 AYR	NYSE	Transportation - Equipment and Leasing
-XPO	NYSE	Transportation - Services
 ATKR	NYSE	Wire and Cable Products
-MSI	NYSE	Wireless Equipment
 SWIR	NSDQ	Wireless Equipment
 SKM	NYSE	Wireless Non-US
 TSU	NYSE	Wireless Non-US

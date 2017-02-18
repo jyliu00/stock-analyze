@@ -4,9 +4,10 @@ WNC	NYSE	Automotive - Original Equipment
 PHM	NYSE	Building Products - Home Builders
 AHGP	NSDQ	Coal
 ARLP	NSDQ	Coal
+CENT	NSDQ	Consumer Products - Discretionary
 LPLA	NSDQ	Financial - Investment Bank
-ACET	NSDQ	Medical - Dental Supplies
-PKOH	NSDQ	Metal Products - Fasteners
+TSN	NYSE	Food - Meat Products
+PGR	NYSE	Insurance - Property and Casualty
 NSIT	NSDQ	Retail - Mail Order
 CCRN	NSDQ	Staffing Firms
 KFRC	NSDQ	Staffing Firms
