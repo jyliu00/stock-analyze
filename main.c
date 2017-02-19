@@ -36,6 +36,8 @@ enum
 	ACTION_CHECK_SMA20d_UP, /* cross above sma20 */
 	ACTION_CHECK_SMA50d_UP, /* cross above sma50 */
 	ACTION_CHECK_SMA200d_UP, /* cross above sma200 */
+	ACTION_CHECK_SMA20d_PULLBACK, /* previous day cross above sma20d, today pullback beneth sma20d */
+	ACTION_CHECK_SMA50d_PULLBACK, /* previous day cross above sma50d, today pullback beneth sma50d */
 	ACTION_CHECK_DB, /* double bottom */
 	ACTION_CHECK_PULLBACK_DB, /* pullback double bottom */
 	ACTION_CHECK_MFI_DB, /* double bottom with rising money flow index */
@@ -72,7 +74,7 @@ static void print_usage(void)
 	printf("               {fetch | fetch-rt | check-mmt | check-db | check-mfi-db | check-pullback-db | check-52w-db | "
 				"check-dbup | check-pullback-dbup | check-52w-dbup | check-strong-dbup | check-lvup | check-earlyup | check-52wlup | "
 				"check-spt | check-volume-spt | check-20d | check-30d | check-50d | check-60d | check-crawl20d | check-20dlow | check-50dlow | check-26w20dlow | check-26w50dlow | "
-				"check-10dup | check-20dup | check-50dup | check-200dup | check-pb | check-bo | check-2ndbo | check-trend-bo | check-strong-uptrend | check-strong-bo | check-wup | check-wrv | check-lv | check-chg} [symbol-1 symbol-2 ...]\n");
+				"check-10dup | check-20dup | check-50dup | check-200dup | check-20dpb | check-50dpb | check-pb | check-bo | check-2ndbo | check-trend-bo | check-strong-uptrend | check-strong-bo | check-wup | check-wrv | check-lv | check-chg} [symbol-1 symbol-2 ...]\n");
 }
 
 static int init_dirs(const char *group)
@@ -234,6 +236,12 @@ int main(int argc, const char **argv)
 			}
 			else if (strcmp(arg, "check-200dup") == 0) {
 				action = ACTION_CHECK_SMA200d_UP;
+			}
+			else if (strcmp(arg, "check-20dpb") == 0) {
+				action = ACTION_CHECK_SMA20d_PULLBACK;
+			}
+			else if (strcmp(arg, "check-50dpb") == 0) {
+				action = ACTION_CHECK_SMA50d_PULLBACK;
 			}
 			else if (strcmp(arg, "check-db") == 0) {
 				action = ACTION_CHECK_DB;
@@ -417,6 +425,14 @@ int main(int argc, const char **argv)
 
 	case ACTION_CHECK_SMA200d_UP:
 		stock_price_check_weeks_low_sma(group, date, 0, SMA_200d, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_SMA20d_PULLBACK:
+		stock_price_check_sma_pullback(group, date, SMA_20d, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_SMA50d_PULLBACK:
+		stock_price_check_sma_pullback(group, date, SMA_50d, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_DB:
