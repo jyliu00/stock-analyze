@@ -4,7 +4,6 @@ AXL	NYSE	Automotive - Original Equipment
 WNC	NYSE	Automotive - Original Equipment
 RUSHA	NSDQ	Automotive - Retail and Whole Sales
 DB	NYSE	Banks - Foreign
-EWBC	NSDQ	Banks - West
 GTN	NYSE	Broadcast Radio and Television
 PHM	NYSE	Building Products - Home Builders
 OC	NYSE	Building Products - Miscellaneous
@@ -19,7 +18,6 @@ NTAP	NSDQ	Computer- Storage Devices
 STX	NSDQ	Computer- Storage Devices
 WDC	NSDQ	Computer- Storage Devices
 LUK	NYSE	Diversified Operations
-UCTT	NSDQ	Electronics - Manufacturing Machinery
 TER	NYSE	Electronics - Testing Equipment
 LPLA	NSDQ	Financial - Investment Bank
 APO	NYSE	Financial - Investment Management
@@ -33,9 +31,11 @@ SIGI	NSDQ	Insurance - Property and Casualty
 JCOM	NSDQ	Internet - Software
 ACET	NSDQ	Medical - Dental Supplies
 SCMP	NSDQ	Medical - Drugs
+MASI	NSDQ	Medical - Instruments
 BHP	NYSE	Mining - Miscellaneous
 HBM	NYSE	Mining - Miscellaneous
 CAJ	NYSE	Office Automation and Equipment
+FTI	NYSE	Oil and Gas - Field Services
 IMO	AMEX	Oil and Gas - Integrated - Canadian
 MDR	NYSE	Oil and Gas - Mechanical and and Equitment
 NEWM	NYSE	Publishing - Newspapers
@@ -45,13 +45,10 @@ BURL	NYSE	Retail - Discount Stores
 NSIT	NSDQ	Retail - Mail Order
 PBPB	NSDQ	Retail - Restaurants
 AMAT	NSDQ	Semiconductor Equipment - Wafer Fabrication
-KLAC	NSDQ	Semiconductor Equipment - Wafer Fabrication
 CCRN	NSDQ	Staffing Firms
 TX	NYSE	Steel - Producers
-X	NYSE	Steel - Producers
 AVH	NYSE	Transportation - Air Freight and Cargo
 AYR	NYSE	Transportation - Equipment and Leasing
 ATKR	NYSE	Wire and Cable Products
-SWIR	NSDQ	Wireless Equipment
 SKM	NYSE	Wireless Non-US
 TSU	NYSE	Wireless Non-US

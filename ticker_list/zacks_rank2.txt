@@ -12,10 +12,9 @@ FCAU	NYSE	Automotive - Foreign
 HMC	NYSE	Automotive - Foreign
 LEA	NYSE	Automotive - Original Equipment
 MTOR	NYSE	Automotive - Original Equipment
+VC	NYSE	Automotive - Original Equipment
 AAP	NYSE	Automotive - Retail and Wholesale - Parts
 CS	NYSE	Banks - Foreign
-ITUB	NYSE	Banks - Foreign
-TD	NYSE	Banks - Foreign
 ASB	NYSE	Banks - Midwest
 BPOP	NSDQ	Banks - Southeast
 RF	NYSE	Banks - Southeast
@@ -41,7 +40,6 @@ KN	NYSE	Communication - Components
 ADTN	NSDQ	Communication - Infrastructure
 CDW	NSDQ	Computers - IT Services
 SAIC	NYSE	Computers - IT Services
-SPB	NYSE	Consumer Products - Staples
 TEF	NYSE	Diversified Communication Services
 KLIC	NSDQ	Electronics - Manufacturing Machinery
 KEYS	NYSE	Electronics - Measuring Instruments
@@ -61,7 +59,6 @@ PPC	NSDQ	Food - Meat Products
 INGR	NYSE	Food - Miscellaneous
 SYY	NYSE	Food - Miscellaneous
 UNFI	NSDQ	Food - Miscellaneous
-SCI	NYSE	Funeral Services
 STAY	NYSE	Hotels and Motels
 UNM	NYSE	Insurance - Accident and Health
 AEL	NYSE	Insurance - Life Insurance
@@ -94,6 +91,7 @@ AA	NYSE	Metal Products - Distribution
 RS	NYSE	Metal Products - Distribution
 TKR	NYSE	Metal Products - Procurement and Fabrication
 CLF	NYSE	Mining - Iron
+CCJ	NYSE	Mining - Miscellaneous
 ARNC	NYSE	Mining - Non Ferrous
 AVY	NYSE	Office Supplies
 HK	NYSE	Oil and Gas - Exploration and Production - United States
@@ -104,6 +102,7 @@ CHSP	NYSE	REIT and Equity Trust - Other
 HPT	NSDQ	REIT and Equity Trust - Other
 CDR	NYSE	REIT and Equity Trust - Retail
 CHS	NYSE	Retail - Apparel and Shoes
+KATE	NYSE	Retail - Apparel and Shoes
 ZUMZ	NSDQ	Retail - Apparel and Shoes
 DLTR	NSDQ	Retail - Discount Stores
 FRED	NSDQ	Retail - Discount Stores
@@ -113,7 +112,6 @@ HZO	NYSE	Retail - Miscellaneous
 KAR	NYSE	Retail - Miscellaneous
 FRGI	NSDQ	Retail - Restaurants
 DV	NYSE	Schools
-LOPE	NSDQ	Schools
 ON	NSDQ	Semiconductor - Analog and Mixed
 LRCX	NSDQ	Semiconductor Equipment - Wafer Fabrication
 SWKS	NSDQ	Semiconductors - Radio Frequency
@@ -132,9 +130,9 @@ UAL	NYSE	Transportation - Airline
 TRN	NYSE	Transportation - Equipment and Leasing
 HUBG	NSDQ	Transportation - Services
 XPO	NYSE	Transportation - Services
+GLOG	NYSE	Transportation - Shipping
 MMLP	NSDQ	Transportation - Shipping
 LSTR	NSDQ	Transportation - Truck
-ABY	NSDQ	Utility - Electric Power
 AEE	NYSE	Utility - Electric Power
 ETR	NYSE	Utility - Electric Power
 EXC	NYSE	Utility - Electric Power
@@ -143,7 +141,7 @@ SWX	NYSE	Utility - Gas Distribution
 UGI	NYSE	Utility - Gas Distribution
 VVC	NYSE	Utility - Gas Distribution
 CLH	NYSE	Waste Removal Services
-RSG	NYSE	Waste Removal Services
+WM	NYSE	Waste Removal Services
 MSI	NYSE	Wireless Equipment
 UBNT	NSDQ	Wireless Equipment
 WIN	NSDQ	Wireless National

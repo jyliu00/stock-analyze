@@ -8,6 +8,7 @@ CENT	NSDQ	Consumer Products - Discretionary
 LPLA	NSDQ	Financial - Investment Bank
 TSN	NYSE	Food - Meat Products
 PGR	NYSE	Insurance - Property and Casualty
+ACET	NSDQ	Medical - Dental Supplies
 NSIT	NSDQ	Retail - Mail Order
 CCRN	NSDQ	Staffing Firms
 KFRC	NSDQ	Staffing Firms

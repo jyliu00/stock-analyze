@@ -28,6 +28,7 @@ LAD	NYSE	Automotive - Retail and Whole Sales
 PAG	NYSE	Automotive - Retail and Whole Sales
 CIB	NYSE	Banks - Foreign
 GGAL	NSDQ	Banks - Foreign
+RBS	NYSE	Banks - Foreign
 SAN	NYSE	Banks - Foreign
 SUPV	NYSE	Banks - Foreign
 C	NYSE	Banks - Major Regional
@@ -37,6 +38,7 @@ FNB	NYSE	Banks - Southeast
 BOFI	NSDQ	Banks - West
 UMPQ	NSDQ	Banks - West
 ZION	NSDQ	Banks - West
+TAP	NYSE	Beverages - Alcohol
 CCE	NYSE	Beverages - Soft drinks
 COT	NYSE	Beverages - Soft drinks
 REGI	NSDQ	Biofuels
@@ -62,7 +64,6 @@ NCS	NYSE	Building Products - Miscellaneous
 PGTI	NYSE	Building Products - Miscellaneous
 URI	NYSE	Building Products - Miscellaneous
 USG	NYSE	Building Products - Miscellaneous
-WGO	NYSE	Building Products - Mobile Homes and RV Builders
 BECN	NSDQ	Building Products - Retail
 BMCH	NSDQ	Building Products - Retail
 HD	NYSE	Building Products - Retail
@@ -71,6 +72,7 @@ CAR	NSDQ	Business - Services
 CORE	NSDQ	Business - Services
 CTSH	NSDQ	Business - Software Services
 CMCSA	NSDQ	Cable Television
+LBTYA	NSDQ	Cable Television
 DOW	NYSE	Chemical - Diversified
 EMN	NYSE	Chemical - Diversified
 HUN	NYSE	Chemical - Diversified
@@ -115,6 +117,7 @@ CR	NYSE	Diversified Operations
 FSS	NYSE	Diversified Operations
 ITT	NYSE	Diversified Operations
 UTX	NYSE	Diversified Operations
+RTEC	NYSE	Electronics - Manufacturing Machinery
 BHE	NYSE	Electronics - Manufacturing Services
 CLS	NYSE	Electronics - Manufacturing Services
 FLEX	NSDQ	Electronics - Manufacturing Services
@@ -137,8 +140,7 @@ ACM	NYSE	Engineering - R and D Services
 FLR	NYSE	Engineering - R and D Services
 JEC	NYSE	Engineering - R and D Services
 KBR	NYSE	Engineering - R and D Services
-CF	NYSE	Fertilizers
-MOS	NYSE	Fertilizers
+AGU	NYSE	Fertilizers
 CIEN	NYSE	Fiber Optics
 MSGN	NYSE	Film and Television Production and Distribution
 NWSA	NSDQ	Film and Television Production and Distribution
@@ -155,7 +157,6 @@ CODI	NYSE	Financial - Investment Funds
 AB	NYSE	Financial - Investment Management
 AMG	NYSE	Financial - Investment Management
 APAM	NYSE	Financial - Investment Management
-CG	NSDQ	Financial - Investment Management
 LM	NYSE	Financial - Investment Management
 MCC	NYSE	Financial - Investment Management
 WDR	NYSE	Financial - Investment Management
@@ -181,6 +182,7 @@ BRFS	NYSE	Food - Miscellaneous
 FLO	NYSE	Food - Miscellaneous
 HAIN	NSDQ	Food - Miscellaneous
 SFS	NYSE	Food - Miscellaneous
+THS	NYSE	Food - Miscellaneous
 LZB	NYSE	Furniture
 BYD	NYSE	Gaming
 ERI	NSDQ	Gaming
@@ -250,7 +252,6 @@ FLOW	NYSE	Manufacturing - Electronics
 RBC	NYSE	Manufacturing - Electronics
 RXN	NYSE	Manufacturing - Electronics
 AGCO	NYSE	Manufacturing - Farm Equipment
-DE	NYSE	Manufacturing - Farm Equipment
 IR	NYSE	Manufacturing - General Industrial
 PNR	NYSE	Manufacturing - Thermal Products
 SWK	NYSE	Manufacturing - Tools & Related Products
@@ -284,6 +285,7 @@ CYH	NYSE	Medical - Hospital
 THC	NYSE	Medical - Hospital
 MDRX	NSDQ	Medical Info Systems
 QSII	NSDQ	Medical Info Systems
+ELOS	NSDQ	Medical - Instruments
 GMED	NYSE	Medical - Instruments
 TMO	NYSE	Medical - Instruments
 DGX	NYSE	Medical - Outpatient and Home Healthcare
@@ -297,6 +299,7 @@ CRL	NYSE	Medical Services
 ESRX	NSDQ	Medical Services
 CSTM	NYSE	Metal Products - Procurement and Fabrication
 WOR	NYSE	Metal Products - Procurement and Fabrication
+ABX	NYSE	Mining - Gold
 NEM	NYSE	Mining - Gold
 SBGL	NYSE	Mining - Gold
 VALE	NYSE	Mining - Iron
@@ -310,8 +313,8 @@ DO	NYSE	Oil and Gas - Drilling
 NE	NYSE	Oil and Gas - Drilling
 RDC	NYSE	Oil and Gas - Drilling
 RIG	NYSE	Oil and Gas - Drilling
-CPG	NYSE	Oil and Gas - Exploration and Production - Canadian
 CRC	NYSE	Oil and Gas - Exploration and Production - United States
+SWN	NYSE	Oil and Gas - Exploration and Production - United States
 WRD	NYSE	Oil and Gas - Exploration and Production - United States
 AROC	NYSE	Oil and Gas - Field Services
 OII	NYSE	Oil and Gas - Field Services
@@ -324,7 +327,6 @@ RDS.A	NYSE	Oil and Gas - Integrated - International
 STO	NYSE	Oil and Gas - Integrated - International
 TOT	NYSE	Oil and Gas - Integrated - International
 YPF	NYSE	Oil and Gas - Integrated - International
-DNOW	NYSE	Oil and Gas - Mechanical and and Equitment
 EXTN	NYSE	Oil and Gas - Mechanical and and Equitment
 PAGP	NYSE	Oil and Gas - Production and Pipelines
 UGP	NYSE	Oil and Gas - Production and Pipelines
@@ -334,6 +336,7 @@ ETE	NYSE	Oil and Gas - Production Pipeline - MLB
 OKS	NYSE	Oil and Gas - Production Pipeline - MLB
 PAA	NYSE	Oil and Gas - Production Pipeline - MLB
 SEP	NYSE	Oil and Gas - Production Pipeline - MLB
+SXL	NYSE	Oil and Gas - Production Pipeline - MLB
 DK	NYSE	Oil and Gas - Refining and Marketing
 ENLC	NYSE	Oil and Gas - Refining and Marketing
 HFC	NYSE	Oil and Gas - Refining and Marketing
@@ -344,6 +347,7 @@ TSO	NYSE	Oil and Gas - Refining and Marketing
 VLO	NYSE	Oil and Gas - Refining and Marketing
 WNR	NYSE	Oil and Gas - Refining and Marketing
 CVRR	NYSE	Oil and Gas - Refining and Marketing - Master Limited Partnerships
+SPH	NYSE	Oil and Gas - Refining and Marketing - Master Limited Partnerships
 SUN	NYSE	Oil and Gas - Refining and Marketing - Master Limited Partnerships
 BCO	NYSE	Outsourcing
 CVG	NYSE	Outsourcing
@@ -358,6 +362,7 @@ CBG	NYSE	Real Estate - Operations
 JLL	NYSE	Real Estate - Operations
 RLGY	NYSE	Real Estate - Operations
 AGNC	NSDQ	REIT and Equity Trust
+ARR	NYSE	REIT and Equity Trust
 ASPS	NSDQ	REIT and Equity Trust
 CYS	NYSE	REIT and Equity Trust
 IVR	NYSE	REIT and Equity Trust
@@ -390,6 +395,7 @@ TJX	NYSE	Retail - Discount Stores
 ETH	NYSE	Retail - Home Furnishings
 PIR	NYSE	Retail - Home Furnishings
 RH	NYSE	Retail - Home Furnishings
+FLWS	NSDQ	Retail - Mail Order
 CAB	NYSE	Retail - Miscellaneous
 DKS	NYSE	Retail - Miscellaneous
 SPLS	NSDQ	Retail - Miscellaneous
@@ -406,6 +412,7 @@ DRI	NYSE	Retail - Restaurants
 LOCO	NSDQ	Retail - Restaurants
 RRGB	NSDQ	Retail - Restaurants
 SONC	NSDQ	Retail - Restaurants
+TACO	NSDQ	Retail - Restaurants
 KR	NYSE	Retail - Supermarkets
 GT	NSDQ	Rubber - Tires
 IRDM	NSDQ	Satellite and Communication
@@ -419,6 +426,7 @@ QRVO	NSDQ	Semiconductors - Radio Frequency
 SKX	NYSE	Shoes and Retail Apparel
 WWW	NYSE	Shoes and Retail Apparel
 ASGN	NYSE	Staffing Firms
+KFY	NYSE	Staffing Firms
 RHI	NYSE	Staffing Firms
 TBI	NYSE	Staffing Firms
 TEDU	NSDQ	Staffing Firms
@@ -433,7 +441,6 @@ KORS	NYSE	Textile - Apparel
 RL	NYSE	Textile - Apparel
 TLRD	NYSE	Textile - Apparel
 TILE	NSDQ	Textile - Home Furnishing
-HAS	NSDQ	Toys - Games - Hobbies
 AAL	NSDQ	Transportation - Airline
 DAL	NYSE	Transportation - Airline
 HA	NSDQ	Transportation - Airline
@@ -459,6 +466,7 @@ HTLD	NSDQ	Transportation - Truck
 SAIA	NSDQ	Transportation - Truck
 WERN	NSDQ	Transportation - Truck
 AES	NYSE	Utility - Electric Power
+AVA	NYSE	Utility - Electric Power
 CPN	NYSE	Utility - Electric Power
 DYN	NYSE	Utility - Electric Power
 EIX	NYSE	Utility - Electric Power
@@ -467,15 +475,17 @@ FE	NYSE	Utility - Electric Power
 GXP	NYSE	Utility - Electric Power
 NGG	NYSE	Utility - Electric Power
 NRG	NYSE	Utility - Electric Power
+PCG	NYSE	Utility - Electric Power
 PEG	NYSE	Utility - Electric Power
+PNM	NYSE	Utility - Electric Power
 SCG	NYSE	Utility - Electric Power
 SBS	NYSE	Utility - Water Supply
-SRCL	NSDQ	Waste Removal Services
 ERIC	NSDQ	Wireless Equipment
 JNPR	NYSE	Wireless Equipment
 MITL	NSDQ	Wireless Equipment
 NOK	NYSE	Wireless Equipment
 QCOM	NSDQ	Wireless Equipment
+VSAT	NSDQ	Wireless Equipment
 TMUS	NSDQ	Wireless National
 T	NYSE	Wireless National
 VZ	NYSE	Wireless National
