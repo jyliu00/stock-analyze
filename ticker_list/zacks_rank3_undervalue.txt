@@ -25,7 +25,9 @@ TOL	NYSE	Building Products - Home Builders
 TPH	NYSE	Building Products - Home Builders
 NCS	NYSE	Building Products - Miscellaneous
 BECN	NSDQ	Building Products - Retail
+BLDR	NSDQ	Building Products - Retail
 BMCH	NSDQ	Building Products - Retail
+SCS	NYSE	Business - Office Products
 CAR	NSDQ	Business - Services
 CORE	NSDQ	Business - Services
 HUN	NYSE	Chemical - Diversified
@@ -41,6 +43,7 @@ SLGN	NSDQ	Containers - Metal and Glass
 GPK	NYSE	Containers - Paper and Packaging
 WTW	NYSE	Conusmer Services - Miscellaneous
 NTT	NYSE	Diversified Communication Services
+LUK	NYSE	Diversified Operations
 CLS	NYSE	Electronics - Manufacturing Services
 FLEX	NSDQ	Electronics - Manufacturing Services
 JBL	NYSE	Electronics - Manufacturing Services
@@ -48,7 +51,6 @@ PLXS	NSDQ	Electronics - Manufacturing Services
 SANM	NSDQ	Electronics - Manufacturing Services
 ARW	NYSE	Electronics - Parts Distribution
 AVT	NYSE	Electronics - Parts Distribution
-AXE	NYSE	Electronics - Parts Distribution
 WCC	NYSE	Electronics - Parts Distribution
 AMKR	NSDQ	Electronics - Semiconductors
 ACM	NYSE	Engineering - R and D Services
@@ -83,6 +85,7 @@ MHLD	NSDQ	Insurance - Property and Casualty
 TVPT	NYSE	Internet - Commerce
 VIPS	NYSE	Internet - Delivery Services
 FLOW	NYSE	Manufacturing - Electronics
+ABC	NYSE	Medical - Dental Supplies
 CAH	NYSE	Medical - Dental Supplies
 MCK	NYSE	Medical - Dental Supplies
 PDCO	NSDQ	Medical - Dental Supplies
@@ -93,13 +96,13 @@ HUM	NYSE	Medical - HMOs
 UNH	NYSE	Medical - HMOs
 CYH	NYSE	Medical - Hospital
 THC	NYSE	Medical - Hospital
+KND	NYSE	Medical - Nursing Homes
 DVA	NYSE	Medical - Outpatient and Home Healthcare
 OMI	NYSE	Medical - Products
 ESRX	NSDQ	Medical Services
 CSTM	NYSE	Metal Products - Procurement and Fabrication
 ACCO	NYSE	Office Supplies
 CHK	NYSE	Oil and Gas - Exploration and Production - United States
-PBR	NYSE	Oil and Gas - Integrated - Emerging Markets
 BAK	NYSE	Oil and Gas - Integrated - International
 BP	NYSE	Oil and Gas - Integrated - International
 E	NYSE	Oil and Gas - Integrated - International
@@ -120,7 +123,7 @@ CVRR	NYSE	Oil and Gas - Refining and Marketing - Master Limited Partnerships
 SUN	NYSE	Oil and Gas - Refining and Marketing - Master Limited Partnerships
 CVG	NYSE	Outsourcing
 KS	NYSE	Paper and Related Products
-MERC	NSDQ	Paper and Related Products
+WRK	NYSE	Paper and Related Products
 CECE	NSDQ	Pollution Control
 LGIH	NSDQ	Real Estate - Development
 CBG	NYSE	Real Estate - Operations
@@ -144,7 +147,6 @@ CVS	NYSE	Retail - Pharmacies and Drug Stores
 GNC	NYSE	Retail - Pharmacies and Drug Stores
 WBA	NSDQ	Retail - Pharmacies and Drug Stores
 BJRI	NSDQ	Retail - Restaurants
-RRGB	NSDQ	Retail - Restaurants
 KR	NYSE	Retail - Supermarkets
 GT	NSDQ	Rubber - Tires
 WWW	NYSE	Shoes and Retail Apparel

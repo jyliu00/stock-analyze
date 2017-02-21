@@ -2,15 +2,5 @@
 AXL	NYSE	Automotive - Original Equipment
 WNC	NYSE	Automotive - Original Equipment
 PHM	NYSE	Building Products - Home Builders
-AHGP	NSDQ	Coal
-ARLP	NSDQ	Coal
-CENT	NSDQ	Consumer Products - Discretionary
-LPLA	NSDQ	Financial - Investment Bank
 TSN	NYSE	Food - Meat Products
 PGR	NYSE	Insurance - Property and Casualty
-ACET	NSDQ	Medical - Dental Supplies
-NSIT	NSDQ	Retail - Mail Order
-CCRN	NSDQ	Staffing Firms
-KFRC	NSDQ	Staffing Firms
-TX	NYSE	Steel - Producers
-SPKE	NSDQ	Utility - Electric Power

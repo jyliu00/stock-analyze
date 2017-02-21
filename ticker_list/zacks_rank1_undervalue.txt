@@ -2,12 +2,12 @@
 AXL	NYSE	Automotive - Original Equipment
 WNC	NYSE	Automotive - Original Equipment
 DB	NYSE	Banks - Foreign
+MTZ	NYSE	Building Products - Heavy Construction
 PHM	NYSE	Building Products - Home Builders
 BCC	NYSE	Building Products - Wood
 ARCH	NYSE	Coal
 ARLP	NSDQ	Coal
 LPL	NYSE	Computer - Peripheral Equipment
-LUK	NYSE	Diversified Operations
 UCTT	NSDQ	Electronics - Manufacturing Machinery
 LPLA	NSDQ	Financial - Investment Bank
 TSN	NYSE	Food - Meat Products
@@ -16,7 +16,9 @@ ACET	NSDQ	Medical - Dental Supplies
 NEWM	NYSE	Publishing - Newspapers
 NSIT	NSDQ	Retail - Mail Order
 CCRN	NSDQ	Staffing Firms
+KFRC	NSDQ	Staffing Firms
 TX	NYSE	Steel - Producers
 X	NYSE	Steel - Producers
 AVH	NYSE	Transportation - Air Freight and Cargo
+SPKE	NSDQ	Utility - Electric Power
 SKM	NYSE	Wireless Non-US
