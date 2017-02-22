@@ -11,16 +11,12 @@ TEN	NYSE	Automotive - Original Equipment
 GPC	NYSE	Automotive - Replacement Parts
 ABG	NYSE	Automotive - Retail and Whole Sales
 GPI	NYSE	Automotive - Retail and Whole Sales
-LAD	NYSE	Automotive - Retail and Whole Sales
 PAG	NYSE	Automotive - Retail and Whole Sales
 REGI	NSDQ	Biofuels
 USCR	NSDQ	Building Products - Concrete and Aggregates
 DY	NYSE	Building Products - Heavy Construction
 EME	NYSE	Building Products - Heavy Construction
 CAA	NYSE	Building Products - Home Builders
-LEN	NYSE	Building Products - Home Builders
-TPH	NYSE	Building Products - Home Builders
-ABM	NYSE	Building Products - Maintenance Service
 NCS	NYSE	Building Products - Miscellaneous
 BLDR	NSDQ	Building Products - Retail
 SCS	NYSE	Business - Office Products
@@ -72,7 +68,6 @@ AET	NYSE	Medical - HMOs
 ANTM	NYSE	Medical - HMOs
 CNC	NYSE	Medical - HMOs
 HUM	NYSE	Medical - HMOs
-UNH	NYSE	Medical - HMOs
 THC	NYSE	Medical - Hospital
 DVA	NYSE	Medical - Outpatient and Home Healthcare
 OMI	NYSE	Medical - Products
@@ -91,22 +86,19 @@ LGIH	NSDQ	Real Estate - Development
 CBG	NYSE	Real Estate - Operations
 JLL	NYSE	Real Estate - Operations
 RLGY	NYSE	Real Estate - Operations
-ASPS	NSDQ	REIT and Equity Trust
 DSW	NYSE	Retail - Apparel and Shoes
 FINL	NSDQ	Retail - Apparel and Shoes
 GPS	NYSE	Retail - Apparel and Shoes
-AAN	NYSE	Retail - Consumer Electronics
+VRA	NSDQ	Retail - Apparel and Shoes
 BBY	NYSE	Retail - Consumer Electronics
 BIG	NYSE	Retail - Discount Stores
 COST	NSDQ	Retail - Discount Stores
 TGT	NYSE	Retail - Discount Stores
-ETH	NYSE	Retail - Home Furnishings
 FLWS	NSDQ	Retail - Mail Order
 DKS	NYSE	Retail - Miscellaneous
 SPLS	NSDQ	Retail - Miscellaneous
 CVS	NYSE	Retail - Pharmacies and Drug Stores
 DPLO	NYSE	Retail - Pharmacies and Drug Stores
-GNC	NYSE	Retail - Pharmacies and Drug Stores
 WBA	NSDQ	Retail - Pharmacies and Drug Stores
 ARCO	NYSE	Retail - Restaurants
 BJRI	NSDQ	Retail - Restaurants
@@ -123,6 +115,5 @@ CHRW	NSDQ	Transportation - Services
 SSW	NYSE	Transportation - Shipping
 TOO	NYSE	Transportation - Shipping
 AES	NYSE	Utility - Electric Power
-FE	NYSE	Utility - Electric Power
 NRG	NYSE	Utility - Electric Power
 MITL	NSDQ	Wireless Equipment

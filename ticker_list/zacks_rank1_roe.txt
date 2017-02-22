@@ -1,6 +1,6 @@
 %sector=rank1_roe
+FCAU	NYSE	Automotive - Foreign
 AXL	NYSE	Automotive - Original Equipment
 WNC	NYSE	Automotive - Original Equipment
 PHM	NYSE	Building Products - Home Builders
-TSN	NYSE	Food - Meat Products
 PGR	NYSE	Insurance - Property and Casualty

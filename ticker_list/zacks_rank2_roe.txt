@@ -1,12 +1,13 @@
 %sector=rank2_roe
 GM	NYSE	Automotive - Domestic
-FCAU	NYSE	Automotive - Foreign
 LEA	NYSE	Automotive - Original Equipment
-VC	NYSE	Automotive - Original Equipment
 KMX	NYSE	Automotive - Retail and Wholesale - Parts
+LAD	NYSE	Automotive - Retail and Whole Sales
 CBI	NYSE	Building Products - Heavy Construction
+MTZ	NYSE	Building Products - Heavy Construction
 STRL	NSDQ	Building Products - Heavy Construction
 DHI	NYSE	Building Products - Home Builders
+ABM	NYSE	Building Products - Maintenance Service
 TSE	NYSE	Chemical - Plastic
 ARRS	NSDQ	Communication - Components
 CDW	NSDQ	Computers - IT Services
@@ -15,16 +16,18 @@ TEF	NYSE	Diversified Communication Services
 AVAL	NYSE	Financial - Investment Management
 HLI	NYSE	Financial - Miscellaneous Services
 PPC	NSDQ	Food - Meat Products
+TSN	NYSE	Food - Meat Products
 SYY	NYSE	Food - Miscellaneous
 ALL	NYSE	Insurance - Property and Casualty
 HEES	NSDQ	Manufacturing - Construction and Mining
 AIT	NYSE	Manufacturing - General Industrial 
+UNH	NYSE	Medical - HMOs
 WCG	NYSE	Medical - HMOs
+SDLP	NYSE	Oil and Gas - Drilling
 TTEK	NSDQ	Pollution Control
 CHS	NYSE	Retail - Apparel and Shoes
 DLTR	NSDQ	Retail - Discount Stores
 WSM	NYSE	Retail - Home Furnishings
 MAN	NYSE	Staffing Firms
 UAL	NYSE	Transportation - Airline
-HUBG	NSDQ	Transportation - Services
 WIN	NSDQ	Wireless National

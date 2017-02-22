@@ -4,24 +4,23 @@ NCMI	NSDQ	Advertising and Marketing
 ERJ	NYSE	Aerospace - Defense
 HXL	NYSE	Aerospace - Defense Equipment
 CZZ	NYSE	Agriculture - Products
-CVA	NYSE	Alternative Energy - Other
 NEP	NYSE	Alternative Energy - Other
 HAR	NYSE	Audio Video Production
 GM	NYSE	Automotive - Domestic
-FCAU	NYSE	Automotive - Foreign
 HMC	NYSE	Automotive - Foreign
 LEA	NYSE	Automotive - Original Equipment
 MTOR	NYSE	Automotive - Original Equipment
-VC	NYSE	Automotive - Original Equipment
-AAP	NYSE	Automotive - Retail and Wholesale - Parts
+LAD	NYSE	Automotive - Retail and Whole Sales
 CS	NYSE	Banks - Foreign
 ASB	NYSE	Banks - Midwest
-BPOP	NSDQ	Banks - Southeast
+CFR	NYSE	Banks - Southwest
 PEIX	NSDQ	Biofuels
 SNI	NSDQ	Broadcast Radio and Television
 LII	NYSE	Building Products - Air Conditioner and Heating
 CBI	NYSE	Building Products - Heavy Construction
+MTZ	NYSE	Building Products - Heavy Construction
 DHI	NYSE	Building Products - Home Builders
+ABM	NYSE	Building Products - Maintenance Service
 DLX	NYSE	Business - Office Products
 HMHC	NSDQ	Business - Services
 RCI	NYSE	Cable Television
@@ -34,9 +33,9 @@ KN	NYSE	Communication - Components
 ADTN	NSDQ	Communication - Infrastructure
 CDW	NSDQ	Computers - IT Services
 SAIC	NYSE	Computers - IT Services
+SPB	NYSE	Consumer Products - Staples
 TEF	NYSE	Diversified Communication Services
 KLIC	NSDQ	Electronics - Manufacturing Machinery
-KEYS	NYSE	Electronics - Measuring Instruments
 LLL	NYSE	Electronics - Military
 TEL	NYSE	Electronics - Miscellaneous Components
 BW	NYSE	Electronics - Power Generation
@@ -47,20 +46,25 @@ OMAM	NYSE	Financial - Investment Management
 PFG	NYSE	Financial - Investment Management
 AXP	NYSE	Financial - Miscellaneous Services
 HLI	NYSE	Financial - Miscellaneous Services
+ONDK	NYSE	Financial - Miscellaneous Services
 CFG	NYSE	Financial - Savings and Loan
+EVTC	NYSE	Financial Transaction Services
 TSS	NYSE	Financial Transaction Services
 PPC	NSDQ	Food - Meat Products
+TSN	NYSE	Food - Meat Products
 INGR	NYSE	Food - Miscellaneous
 SYY	NYSE	Food - Miscellaneous
 UNFI	NSDQ	Food - Miscellaneous
 STAY	NYSE	Hotels and Motels
 UNM	NYSE	Insurance - Accident and Health
+AEL	NYSE	Insurance - Life Insurance
 FGL	NYSE	Insurance - Life Insurance
 PRI	NYSE	Insurance - Life Insurance
 ORI	NYSE	Insurance - Multi line
 AHL	NYSE	Insurance - Property and Casualty
 ALL	NYSE	Insurance - Property and Casualty
 AXS	NYSE	Insurance - Property and Casualty
+CNA	NYSE	Insurance - Property and Casualty
 THG	NYSE	Insurance - Property and Casualty
 SNCR	NSDQ	Internet - Software
 GSK	NYSE	Large Cap Pharmaceuticals
@@ -72,34 +76,37 @@ MCRN	NYSE	Manufacturing - Material Handling
 GRFS	NSDQ	Medical - Drugs
 LCI	NYSE	Medical - Drugs
 IPXL	NSDQ	Medical - Generic Drugs
+UNH	NYSE	Medical - HMOs
 WCG	NYSE	Medical - HMOs
 HCA	NYSE	Medical - Hospital
 BABY	NSDQ	Medical - Instruments
 HRC	NYSE	Medical - Products
 AMN	NYSE	Medical Services
 PINC	NSDQ	Medical Services
-RS	NYSE	Metal Products - Distribution
+AA	NYSE	Metal Products - Distribution
 TKR	NYSE	Metal Products - Procurement and Fabrication
 CLF	NYSE	Mining - Iron
 CCJ	NYSE	Mining - Miscellaneous
 ARNC	NYSE	Mining - Non Ferrous
 AVY	NYSE	Office Supplies
+SDLP	NYSE	Oil and Gas - Drilling
 HK	NYSE	Oil and Gas - Exploration and Production - United States
+MDR	NYSE	Oil and Gas - Mechanical and and Equitment
 ALJ	NYSE	Oil and Gas - Refining and Marketing
 FBR	NYSE	Paper and Related Products
 TTEK	NSDQ	Pollution Control
-NLY	NYSE	REIT and Equity Trust
 CHSP	NYSE	REIT and Equity Trust - Other
 HPT	NSDQ	REIT and Equity Trust - Other
 CDR	NYSE	REIT and Equity Trust - Retail
 CHS	NYSE	Retail - Apparel and Shoes
-KATE	NYSE	Retail - Apparel and Shoes
 ZUMZ	NSDQ	Retail - Apparel and Shoes
 DLTR	NSDQ	Retail - Discount Stores
+RH	NYSE	Retail - Home Furnishings
 WSM	NYSE	Retail - Home Furnishings
 BKS	NYSE	Retail - Miscellaneous
 HZO	NYSE	Retail - Miscellaneous
 KAR	NYSE	Retail - Miscellaneous
+CBRL	NSDQ	Retail - Restaurants
 DRI	NYSE	Retail - Restaurants
 FRGI	NSDQ	Retail - Restaurants
 DV	NYSE	Schools
@@ -121,19 +128,17 @@ SAVE	NSDQ	Transportation - Airline
 SKYW	NSDQ	Transportation - Airline
 UAL	NYSE	Transportation - Airline
 AL	NYSE	Transportation - Equipment and Leasing
-TRN	NYSE	Transportation - Equipment and Leasing
-HUBG	NSDQ	Transportation - Services
+TGH	NYSE	Transportation - Equipment and Leasing
 XPO	NYSE	Transportation - Services
-GLOG	NYSE	Transportation - Shipping
-MMLP	NSDQ	Transportation - Shipping
+SFL	NYSE	Transportation - Shipping
 LSTR	NSDQ	Transportation - Truck
 AEE	NYSE	Utility - Electric Power
 DYN	NYSE	Utility - Electric Power
 ETR	NYSE	Utility - Electric Power
 XEL	NYSE	Utility - Electric Power
+SWX	NYSE	Utility - Gas Distribution
 UGI	NYSE	Utility - Gas Distribution
 CLH	NYSE	Waste Removal Services
-WM	NYSE	Waste Removal Services
 MSI	NYSE	Wireless Equipment
 UBNT	NSDQ	Wireless Equipment
 WIN	NSDQ	Wireless National

@@ -1,11 +1,12 @@
 %sector=rank1
 HII	NYSE	Aerospace - Defense
+FCAU	NYSE	Automotive - Foreign
 AXL	NYSE	Automotive - Original Equipment
 WNC	NYSE	Automotive - Original Equipment
 RUSHA	NSDQ	Automotive - Retail and Whole Sales
 DB	NYSE	Banks - Foreign
+BPOP	NSDQ	Banks - Southeast
 GTN	NYSE	Broadcast Radio and Television
-MTZ	NYSE	Building Products - Heavy Construction
 PHM	NYSE	Building Products - Home Builders
 OC	NYSE	Building Products - Miscellaneous
 BCC	NYSE	Building Products - Wood
@@ -18,14 +19,10 @@ LPL	NYSE	Computer - Peripheral Equipment
 NTAP	NSDQ	Computer- Storage Devices
 STX	NSDQ	Computer- Storage Devices
 WDC	NSDQ	Computer- Storage Devices
-UCTT	NSDQ	Electronics - Manufacturing Machinery
 TER	NYSE	Electronics - Testing Equipment
-LPLA	NSDQ	Financial - Investment Bank
 APO	NYSE	Financial - Investment Management
 ESNT	NYSE	Financial - Mortgage & Related Services
 WD	NYSE	Financial - Mortgage & Related Services
-TSN	NYSE	Food - Meat Products
-AEL	NYSE	Insurance - Life Insurance
 MTG	NYSE	Insurance - Multi line
 AFG	NYSE	Insurance - Property and Casualty
 PGR	NYSE	Insurance - Property and Casualty
@@ -34,15 +31,12 @@ SIGI	NSDQ	Insurance - Property and Casualty
 JCOM	NSDQ	Internet - Software
 ACET	NSDQ	Medical - Dental Supplies
 MASI	NSDQ	Medical - Instruments
-AA	NYSE	Metal Products - Distribution
 BHP	NYSE	Mining - Miscellaneous
 HBM	NYSE	Mining - Miscellaneous
 CAJ	NYSE	Office Automation and Equipment
-FTI	NYSE	Oil and Gas - Field Services
 IMO	AMEX	Oil and Gas - Integrated - Canadian
-MDR	NYSE	Oil and Gas - Mechanical and and Equitment
 NEWM	NYSE	Publishing - Newspapers
-CXW	NYSE	REIT and Equity Trust - Other
+KATE	NYSE	Retail - Apparel and Shoes
 PLCE	NSDQ	Retail - Apparel and Shoes
 BURL	NYSE	Retail - Discount Stores
 NSIT	NSDQ	Retail - Mail Order
@@ -51,6 +45,6 @@ AMAT	NSDQ	Semiconductor Equipment - Wafer Fabrication
 TX	NYSE	Steel - Producers
 AVH	NYSE	Transportation - Air Freight and Cargo
 AYR	NYSE	Transportation - Equipment and Leasing
-ATKR	NYSE	Wire and Cable Products
+HUBG	NSDQ	Transportation - Services
 SKM	NYSE	Wireless Non-US
 TSU	NYSE	Wireless Non-US

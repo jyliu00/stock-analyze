@@ -2,13 +2,13 @@
 ERJ	NYSE	Aerospace - Defense
 CZZ	NYSE	Agriculture - Products
 GM	NYSE	Automotive - Domestic
-FCAU	NYSE	Automotive - Foreign
 HMC	NYSE	Automotive - Foreign
 LEA	NYSE	Automotive - Original Equipment
 MTOR	NYSE	Automotive - Original Equipment
-VC	NYSE	Automotive - Original Equipment
+LAD	NYSE	Automotive - Retail and Whole Sales
 PEIX	NSDQ	Biofuels
 CBI	NYSE	Building Products - Heavy Construction
+MTZ	NYSE	Building Products - Heavy Construction
 DHI	NYSE	Building Products - Home Builders
 TSE	NYSE	Chemical - Plastic
 ARRS	NSDQ	Communication - Components
@@ -18,16 +18,19 @@ BW	NYSE	Electronics - Power Generation
 AVAL	NYSE	Financial - Investment Management
 HLI	NYSE	Financial - Miscellaneous Services
 PPC	NSDQ	Food - Meat Products
+TSN	NYSE	Food - Meat Products
 UNFI	NSDQ	Food - Miscellaneous
 ORI	NYSE	Insurance - Multi line
 ALL	NYSE	Insurance - Property and Casualty
 THG	NYSE	Insurance - Property and Casualty
+UNH	NYSE	Medical - HMOs
 HCA	NYSE	Medical - Hospital
-RS	NYSE	Metal Products - Distribution
+SDLP	NYSE	Oil and Gas - Drilling
 TTEK	NSDQ	Pollution Control
 CHS	NYSE	Retail - Apparel and Shoes
 ZUMZ	NSDQ	Retail - Apparel and Shoes
 DLTR	NSDQ	Retail - Discount Stores
+RH	NYSE	Retail - Home Furnishings
 WSM	NYSE	Retail - Home Furnishings
 BKS	NYSE	Retail - Miscellaneous
 HZO	NYSE	Retail - Miscellaneous

@@ -7,29 +7,24 @@ MPG	NYSE	Automotive - Internal Combustion Engines
 DAN	NYSE	Automotive - Original Equipment
 MGA	NYSE	Automotive - Original Equipment
 TEN	NYSE	Automotive - Original Equipment
+GPC	NYSE	Automotive - Replacement Parts
 ABG	NYSE	Automotive - Retail and Whole Sales
 GPI	NYSE	Automotive - Retail and Whole Sales
-LAD	NYSE	Automotive - Retail and Whole Sales
 PAG	NYSE	Automotive - Retail and Whole Sales
 REGI	NSDQ	Biofuels
-CX	NYSE	Building Products - Concrete and Aggregates
 USCR	NSDQ	Building Products - Concrete and Aggregates
 DY	NYSE	Building Products - Heavy Construction
 EME	NYSE	Building Products - Heavy Construction
 TPC	NYSE	Building Products - Heavy Construction
 CAA	NYSE	Building Products - Home Builders
 KBH	NYSE	Building Products - Home Builders
-LEN	NYSE	Building Products - Home Builders
 MDC	NYSE	Building Products - Home Builders
-TOL	NYSE	Building Products - Home Builders
-TPH	NYSE	Building Products - Home Builders
 NCS	NYSE	Building Products - Miscellaneous
 BECN	NSDQ	Building Products - Retail
 BLDR	NSDQ	Building Products - Retail
 BMCH	NSDQ	Building Products - Retail
 SCS	NYSE	Business - Office Products
 CAR	NSDQ	Business - Services
-CORE	NSDQ	Business - Services
 HUN	NYSE	Chemical - Diversified
 OLN	NYSE	Chemical - Diversified
 POL	NYSE	Chemical - Plastic
@@ -57,7 +52,6 @@ ACM	NYSE	Engineering - R and D Services
 FLR	NYSE	Engineering - R and D Services
 JEC	NYSE	Engineering - R and D Services
 KBR	NYSE	Engineering - R and D Services
-PWR	NYSE	Engineering - R and D Services
 GCAP	NYSE	Financial - Investment Bank
 AB	NYSE	Financial - Investment Management
 CG	NSDQ	Financial - Investment Management
@@ -93,19 +87,19 @@ AET	NYSE	Medical - HMOs
 ANTM	NYSE	Medical - HMOs
 CNC	NYSE	Medical - HMOs
 HUM	NYSE	Medical - HMOs
-UNH	NYSE	Medical - HMOs
 CYH	NYSE	Medical - Hospital
+LPNT	NSDQ	Medical - Hospital
 THC	NYSE	Medical - Hospital
 KND	NYSE	Medical - Nursing Homes
 DVA	NYSE	Medical - Outpatient and Home Healthcare
 OMI	NYSE	Medical - Products
 ESRX	NSDQ	Medical Services
+RS	NYSE	Metal Products - Distribution
 CSTM	NYSE	Metal Products - Procurement and Fabrication
 ACCO	NYSE	Office Supplies
 CHK	NYSE	Oil and Gas - Exploration and Production - United States
 BAK	NYSE	Oil and Gas - Integrated - International
 BP	NYSE	Oil and Gas - Integrated - International
-E	NYSE	Oil and Gas - Integrated - International
 RDS.A	NYSE	Oil and Gas - Integrated - International
 TOT	NYSE	Oil and Gas - Integrated - International
 PAGP	NYSE	Oil and Gas - Production and Pipelines
@@ -114,7 +108,6 @@ PAA	NYSE	Oil and Gas - Production Pipeline - MLB
 HFC	NYSE	Oil and Gas - Refining and Marketing
 MPC	NYSE	Oil and Gas - Refining and Marketing
 MUSA	NYSE	Oil and Gas - Refining and Marketing
-PARR	AMEX	Oil and Gas - Refining and Marketing
 PSX	NYSE	Oil and Gas - Refining and Marketing
 TSO	NYSE	Oil and Gas - Refining and Marketing
 VLO	NYSE	Oil and Gas - Refining and Marketing
@@ -123,36 +116,36 @@ CVRR	NYSE	Oil and Gas - Refining and Marketing - Master Limited Partnerships
 SUN	NYSE	Oil and Gas - Refining and Marketing - Master Limited Partnerships
 CVG	NYSE	Outsourcing
 KS	NYSE	Paper and Related Products
-WRK	NYSE	Paper and Related Products
+MERC	NSDQ	Paper and Related Products
 CECE	NSDQ	Pollution Control
 LGIH	NSDQ	Real Estate - Development
 CBG	NYSE	Real Estate - Operations
 JLL	NYSE	Real Estate - Operations
 RLGY	NYSE	Real Estate - Operations
-ASPS	NSDQ	REIT and Equity Trust
+AHT	NYSE	REIT and Equity Trust - Other
 DSW	NYSE	Retail - Apparel and Shoes
 FINL	NSDQ	Retail - Apparel and Shoes
 GPS	NYSE	Retail - Apparel and Shoes
-AAN	NYSE	Retail - Consumer Electronics
+VRA	NSDQ	Retail - Apparel and Shoes
 BBY	NYSE	Retail - Consumer Electronics
 BIG	NYSE	Retail - Discount Stores
 TGT	NYSE	Retail - Discount Stores
-ETH	NYSE	Retail - Home Furnishings
 PIR	NYSE	Retail - Home Furnishings
-RH	NYSE	Retail - Home Furnishings
 CAB	NYSE	Retail - Miscellaneous
 DKS	NYSE	Retail - Miscellaneous
 SPLS	NSDQ	Retail - Miscellaneous
 CVS	NYSE	Retail - Pharmacies and Drug Stores
-GNC	NYSE	Retail - Pharmacies and Drug Stores
 WBA	NSDQ	Retail - Pharmacies and Drug Stores
+JCP	NYSE	Retail - Regional Department Stores
 BJRI	NSDQ	Retail - Restaurants
+RRGB	NSDQ	Retail - Restaurants
 KR	NYSE	Retail - Supermarkets
 GT	NSDQ	Rubber - Tires
 WWW	NYSE	Shoes and Retail Apparel
 TBI	NYSE	Staffing Firms
 AKS	NYSE	Steel - Producers
 PKX	NYSE	Steel - Producers
+GES	NYSE	Textile - Apparel
 RL	NYSE	Textile - Apparel
 TLRD	NYSE	Textile - Apparel
 AAL	NSDQ	Transportation - Airline
@@ -165,5 +158,4 @@ ARCB	NSDQ	Transportation - Truck
 AES	NYSE	Utility - Electric Power
 ELP	NYSE	Utility - Electric Power
 FE	NYSE	Utility - Electric Power
-ERIC	NSDQ	Wireless Equipment
 AMX	NYSE	Wireless Non-US
