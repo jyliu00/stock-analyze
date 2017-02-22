@@ -1451,6 +1451,17 @@ static int sma20_slope_is_shallow(const struct date_price *day1)
 	return 1;
 }
 
+static int is_sma_crossup(const struct date_price *today, const struct date_price *yesterday)
+{
+	if (today->low < yesterday->sma[sma2check] && today->close > yesterday->sma[sma2check])
+		return 1;
+
+	if (today->close > yesterday->sma[sma2check] && today->close < yesterday->sma[sma2check])
+		return 1;
+
+	return 0;
+}
+
 static void symbol_check_weeks_low_sma(const char *symbol, const struct stock_price *price_history,
 					 const struct date_price *price2check)
 {
@@ -1479,10 +1490,7 @@ static void symbol_check_weeks_low_sma(const char *symbol, const struct stock_pr
 		if (!sma20_slope_is_shallow(prev))
 			return;
 
-		if (price2check->low < prev->sma[sma2check] && price2check->close > prev->sma[sma2check])
-			break;
-
-		if (price2check->close > prev->sma[sma2check] && prev->close < prev->sma[sma2check])
+		if (is_sma_crossup(price2check, prev))
 			break;
 
 		return;
@@ -1518,24 +1526,51 @@ found:
 static void symbol_check_sma_pullback(const char *symbol, const struct stock_price *price_history,
 					 const struct date_price *price2check)
 {
-	const struct date_price *yesterday;
+	const struct date_price *yesterday, *yesterday1, *yesterday2, *yesterday3;
 	int i;
 
 	for (i = 0; i < price_history->date_cnt; i++) {
 		yesterday = &price_history->dateprice[i];
-		if (strcmp(price2check->date, yesterday->date) > 0)
+		if (strcmp(price2check->date, yesterday->date) > 0) {
+			yesterday1 = yesterday + 1;
+			yesterday2 = yesterday + 2;
+			yesterday3 = yesterday + 3;
 			break;
+		}
 	}
 
 	if (i == price_history->date_cnt)
 		return;
 
-	if (yesterday->high < yesterday->sma[sma2check]
-	    || yesterday->volume < yesterday->vma[VMA_20d]
-	    || (yesterday+1)->close > (yesterday+1)->sma[sma2check]
-	    || price2check->close > yesterday->sma[sma2check])
-		return;
+	if ((yesterday->close >= yesterday->open || yesterday->candle_color == CANDLE_COLOR_DOJI)
+	    && yesterday->high > yesterday->sma[sma2check]
+	    && yesterday->volume > yesterday->vma[VMA_20d]
+	    && yesterday1->close < yesterday1->sma[sma2check]
+	    && price2check->close < yesterday->sma[sma2check])
+	{
+		goto is_pb;
+	}
 
+	if (yesterday1->close > yesterday1->open
+	    && is_sma_crossup(yesterday1, yesterday2)
+	    && yesterday1->volume > yesterday1->vma[VMA_20d]
+	    && get_2ndhigh(price2check) < get_2ndhigh(yesterday1))
+	{
+		goto is_pb;
+	}
+
+	if (yesterday2->close > yesterday2->open
+	    && is_sma_crossup(yesterday2, yesterday3)
+	    && yesterday2->volume > yesterday2->vma[VMA_20d]
+	    && get_2ndhigh(price2check) < get_2ndhigh(yesterday2))
+	{
+		goto is_pb;
+	}
+
+
+	return;
+
+is_pb:
 	anna_info("%s%-10s%s: date=%s, %s; %s<sector=%s>%s.\n",
 		ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
 		price2check->date, get_price_volume_change(price_history, price2check),
