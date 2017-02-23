@@ -2,10 +2,11 @@
 HII	NYSE	Aerospace - Defense
 FCAU	NYSE	Automotive - Foreign
 AXL	NYSE	Automotive - Original Equipment
+LEA	NYSE	Automotive - Original Equipment
+MTOR	NYSE	Automotive - Original Equipment
 WNC	NYSE	Automotive - Original Equipment
 RUSHA	NSDQ	Automotive - Retail and Whole Sales
 DB	NYSE	Banks - Foreign
-BPOP	NSDQ	Banks - Southeast
 GTN	NYSE	Broadcast Radio and Television
 PHM	NYSE	Building Products - Home Builders
 OC	NYSE	Building Products - Miscellaneous
@@ -13,6 +14,7 @@ BCC	NYSE	Building Products - Wood
 LPX	NYSE	Building Products - Wood
 FDC	NYSE	Business - Services
 CC	NYSE	Chemical - Diversified
+TSE	NYSE	Chemical - Plastic
 ARCH	NYSE	Coal
 ARLP	NSDQ	Coal
 LPL	NYSE	Computer - Peripheral Equipment
@@ -20,8 +22,8 @@ NTAP	NSDQ	Computer- Storage Devices
 STX	NSDQ	Computer- Storage Devices
 WDC	NSDQ	Computer- Storage Devices
 TER	NYSE	Electronics - Testing Equipment
+LPLA	NSDQ	Financial - Investment Bank
 APO	NYSE	Financial - Investment Management
-ESNT	NYSE	Financial - Mortgage & Related Services
 WD	NYSE	Financial - Mortgage & Related Services
 MTG	NYSE	Insurance - Multi line
 AFG	NYSE	Insurance - Property and Casualty
@@ -30,14 +32,12 @@ RE	NYSE	Insurance - Property and Casualty
 SIGI	NSDQ	Insurance - Property and Casualty
 JCOM	NSDQ	Internet - Software
 ACET	NSDQ	Medical - Dental Supplies
-MASI	NSDQ	Medical - Instruments
 BHP	NYSE	Mining - Miscellaneous
-HBM	NYSE	Mining - Miscellaneous
+RIO	NYSE	Mining - Miscellaneous
 CAJ	NYSE	Office Automation and Equipment
 IMO	AMEX	Oil and Gas - Integrated - Canadian
+MDR	NYSE	Oil and Gas - Mechanical and and Equitment
 NEWM	NYSE	Publishing - Newspapers
-KATE	NYSE	Retail - Apparel and Shoes
-PLCE	NSDQ	Retail - Apparel and Shoes
 BURL	NYSE	Retail - Discount Stores
 NSIT	NSDQ	Retail - Mail Order
 PBPB	NSDQ	Retail - Restaurants

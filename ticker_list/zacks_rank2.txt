@@ -8,14 +8,11 @@ NEP	NYSE	Alternative Energy - Other
 HAR	NYSE	Audio Video Production
 GM	NYSE	Automotive - Domestic
 HMC	NYSE	Automotive - Foreign
-LEA	NYSE	Automotive - Original Equipment
-MTOR	NYSE	Automotive - Original Equipment
-LAD	NYSE	Automotive - Retail and Whole Sales
 CS	NYSE	Banks - Foreign
+TD	NYSE	Banks - Foreign
 ASB	NYSE	Banks - Midwest
+BPOP	NSDQ	Banks - Southeast
 CFR	NYSE	Banks - Southwest
-PEIX	NSDQ	Biofuels
-SNI	NSDQ	Broadcast Radio and Television
 LII	NYSE	Building Products - Air Conditioner and Heating
 CBI	NYSE	Building Products - Heavy Construction
 MTZ	NYSE	Building Products - Heavy Construction
@@ -26,15 +23,15 @@ HMHC	NSDQ	Business - Services
 RCI	NYSE	Cable Television
 CBT	NYSE	Chemical - Diversified
 CE	NYSE	Chemical - Diversified
-TSE	NYSE	Chemical - Plastic
 CNX	NYSE	Coal
 ARRS	NSDQ	Communication - Components
 KN	NYSE	Communication - Components
 ADTN	NSDQ	Communication - Infrastructure
+GIB	NYSE	Computer - Services
 CDW	NSDQ	Computers - IT Services
 SAIC	NYSE	Computers - IT Services
-SPB	NYSE	Consumer Products - Staples
 TEF	NYSE	Diversified Communication Services
+TI	NYSE	Diversified Communication Services
 KLIC	NSDQ	Electronics - Manufacturing Machinery
 LLL	NYSE	Electronics - Military
 TEL	NYSE	Electronics - Miscellaneous Components
@@ -87,11 +84,11 @@ AA	NYSE	Metal Products - Distribution
 TKR	NYSE	Metal Products - Procurement and Fabrication
 CLF	NYSE	Mining - Iron
 CCJ	NYSE	Mining - Miscellaneous
+HBM	NYSE	Mining - Miscellaneous
 ARNC	NYSE	Mining - Non Ferrous
 AVY	NYSE	Office Supplies
-SDLP	NYSE	Oil and Gas - Drilling
 HK	NYSE	Oil and Gas - Exploration and Production - United States
-MDR	NYSE	Oil and Gas - Mechanical and and Equitment
+SN	NYSE	Oil and Gas - Exploration and Production - United States
 ALJ	NYSE	Oil and Gas - Refining and Marketing
 FBR	NYSE	Paper and Related Products
 TTEK	NSDQ	Pollution Control
@@ -99,6 +96,8 @@ CHSP	NYSE	REIT and Equity Trust - Other
 HPT	NSDQ	REIT and Equity Trust - Other
 CDR	NYSE	REIT and Equity Trust - Retail
 CHS	NYSE	Retail - Apparel and Shoes
+KATE	NYSE	Retail - Apparel and Shoes
+PLCE	NSDQ	Retail - Apparel and Shoes
 ZUMZ	NSDQ	Retail - Apparel and Shoes
 DLTR	NSDQ	Retail - Discount Stores
 RH	NYSE	Retail - Home Furnishings
@@ -106,9 +105,7 @@ WSM	NYSE	Retail - Home Furnishings
 BKS	NYSE	Retail - Miscellaneous
 HZO	NYSE	Retail - Miscellaneous
 KAR	NYSE	Retail - Miscellaneous
-CBRL	NSDQ	Retail - Restaurants
 DRI	NYSE	Retail - Restaurants
-FRGI	NSDQ	Retail - Restaurants
 DV	NYSE	Schools
 ON	NSDQ	Semiconductor - Analog and Mixed
 KLAC	NSDQ	Semiconductor Equipment - Wafer Fabrication
@@ -132,13 +129,15 @@ TGH	NYSE	Transportation - Equipment and Leasing
 XPO	NYSE	Transportation - Services
 SFL	NYSE	Transportation - Shipping
 LSTR	NSDQ	Transportation - Truck
+ABY	NSDQ	Utility - Electric Power
 AEE	NYSE	Utility - Electric Power
 DYN	NYSE	Utility - Electric Power
 ETR	NYSE	Utility - Electric Power
 XEL	NYSE	Utility - Electric Power
-SWX	NYSE	Utility - Gas Distribution
 UGI	NYSE	Utility - Gas Distribution
+VVC	NYSE	Utility - Gas Distribution
 CLH	NYSE	Waste Removal Services
+WM	NYSE	Waste Removal Services
 MSI	NYSE	Wireless Equipment
 UBNT	NSDQ	Wireless Equipment
 WIN	NSDQ	Wireless National
