@@ -1395,29 +1395,6 @@ static void symbol_check_crawl_sma(const char *symbol, const struct stock_price 
 	}
 }
 
-static int good_volume(const struct date_price *price2check, uint32_t vma20d)
-{
-	return (price2check->volume * 10 >= vma20d * 15);
-
-#if 0
-	time_t now = time(NULL);
-	struct tm *tm_now = localtime(&now);
-	char date_now[STOCK_DATE_SZ];
-	static uint32_t trading_total_seconds = 390 * 60;
-
-	snprintf(date_now, sizeof(date_now), "%04d-%02d-%02d", tm_now->tm_year + 1900, tm_now->tm_mon + 1, tm_now->tm_mday);
-
-	/* check if now has passed trading time */
-	if (strcmp(price2check->date, date_now) < 0 || tm_now->tm_hour >= 13)
-		return (price2check->volume * 133 >= vma20d * 100);
-
-	if (tm_now->tm_hour < 6 || (tm_now->tm_hour == 6 && tm_now->tm_min < 30))
-		return 0;
-
-	return (price2check->volume * (trading_total_seconds * 133 / ((tm_now->tm_hour * 60 + tm_now->tm_min - 390) * 60 + tm_now->tm_sec)) >= vma20d * 100);
-#endif
-}
-
 static int good_up_day(const struct date_price *price2check, const struct date_price *yesterday)
 {
 	if (price2check->candle_trend == CANDLE_TREND_BEAR)
@@ -1484,7 +1461,7 @@ static void symbol_check_weeks_low_sma(const char *symbol, const struct stock_pr
 		if (!good_up_day(price2check, prev))
 			return;
 
-		if (!good_volume(price2check, prev->vma[VMA_20d]))
+		if (price2check->volume * 100 < prev->vma[VMA_20d] * 115)
 			return;
 
 		if (!sma20_slope_is_shallow(prev))
@@ -1761,7 +1738,7 @@ static void __symbol_check_doublebottom_up(const char *symbol, const struct stoc
 		return;
 #endif
 
-	if (!good_volume(price2check, prev->vma[VMA_20d]))
+	if (price2check->volume * 133 < prev->vma[VMA_20d] * 100)
 		return;
 
 	int use_today = (price2check->close < prev->close || (price2check->low < prev->low && get_2ndlow(price2check) < get_2ndlow(prev))) && price2check->candle_trend != CANDLE_TREND_BEAR;
@@ -1920,7 +1897,7 @@ static int date_is_trend_breakout(const char *symbol, const struct stock_price *
 	if (!good_up_day(price2check, yesterday))
 		return 0;
 
-	if (!good_volume(price2check, yesterday->vma[VMA_20d]))
+	if (price2check->volume * 100 < yesterday->vma[VMA_20d] * 115)
 		return 0;
 
 	if (!sma20_slope_is_shallow(yesterday))
