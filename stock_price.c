@@ -1397,7 +1397,7 @@ static void symbol_check_crawl_sma(const char *symbol, const struct stock_price 
 
 static int good_volume(const struct date_price *price2check, uint32_t vma20d)
 {
-	return (price2check->volume * 133 >= vma20d * 100);
+	return (price2check->volume * 10 >= vma20d * 15);
 
 #if 0
 	time_t now = time(NULL);
