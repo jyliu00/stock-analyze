@@ -135,6 +135,7 @@ MDC	NYSE	Building Products - Home Builders
 PHM	NYSE	Building Products - Home Builders
 TMHC	NYSE	Building Products - Home Builders
 TOL	NYSE	Building Products - Home Builders
+TPH	NYSE	Building Products - Home Builders
 CRH	NYSE	Building Products - Miscellaneous
 HW	NYSE	Building Products - Miscellaneous
 MAS	NYSE	Building Products - Miscellaneous
@@ -203,7 +204,6 @@ SBAC	NSDQ	Communication - Infrastructure
 ZAYO	NYSE	Communication - Infrastructure
 NSR	NYSE	Communication - Network Software
 FTNT	NSDQ	Computer - Integrated Systems
-HPE	NYSE	Computer - Integrated Systems
 IBM	NYSE	Computer - Integrated Systems
 MENT	NSDQ	Computer - Integrated Systems
 NCR	NYSE	Computer - Integrated Systems
@@ -214,7 +214,6 @@ HPQ	NYSE	Computer - Mini computers
 BRCD	NSDQ	Computer - Networking
 CSCO	NSDQ	Computer - Networking
 EXTR	NSDQ	Computer - Networking
-INFN	NSDQ	Computer - Networking
 NTCT	NSDQ	Computer - Networking
 XXIA	NSDQ	Computer - Networking
 LPL	NYSE	Computer - Peripheral Equipment
@@ -314,6 +313,7 @@ AAOI	NSDQ	Electronics - Semiconductors
 AMD	NSDQ	Electronics - Semiconductors
 AMKR	NSDQ	Electronics - Semiconductors
 ASX	NYSE	Electronics - Semiconductors
+AVGO	NSDQ	Electronics - Semiconductors
 CAVM	NSDQ	Electronics - Semiconductors
 CRUS	NSDQ	Electronics - Semiconductors
 HIMX	NSDQ	Electronics - Semiconductors
@@ -330,6 +330,7 @@ ACM	NYSE	Engineering - R and D Services
 FLR	NYSE	Engineering - R and D Services
 JEC	NYSE	Engineering - R and D Services
 KBR	NYSE	Engineering - R and D Services
+PWR	NYSE	Engineering - R and D Services
 CF	NYSE	Fertilizers
 MOS	NYSE	Fertilizers
 POT	NYSE	Fertilizers
@@ -423,11 +424,13 @@ LW	NYSE	Food - Miscellaneous
 MDLZ	NSDQ	Food - Miscellaneous
 PF	NYSE	Food - Miscellaneous
 POST	NYSE	Food - Miscellaneous
+SJM	NYSE	Food - Miscellaneous
 SYY	NYSE	Food - Miscellaneous
 THS	NYSE	Food - Miscellaneous
 SCI	NYSE	Funeral Services
 LEG	NYSE	Furniture
 BYD	NYSE	Gaming
+IGT	NYSE	Gaming
 LVS	NYSE	Gaming
 MGM	NYSE	Gaming
 MPEL	NSDQ	Gaming
@@ -488,6 +491,7 @@ GDDY	NYSE	Internet - Delivery Services
 VIPS	NYSE	Internet - Delivery Services
 AKAM	NSDQ	Internet - Services
 ATHM	NYSE	Internet - Services
+BIDU	NSDQ	Internet - Services
 ETSY	NSDQ	Internet - Services
 FB	NSDQ	Internet - Services
 GOOGL	NSDQ	Internet - Services
@@ -591,6 +595,8 @@ ICPT	NSDQ	Medical - Biomedical and Genetics
 ILMN	NSDQ	Medical - Biomedical and Genetics
 INO	NSDQ	Medical - Biomedical and Genetics
 INVA	NSDQ	Medical - Biomedical and Genetics
+KERX	NSDQ	Medical - Biomedical and Genetics
+KITE	NSDQ	Medical - Biomedical and Genetics
 LXRX	NSDQ	Medical - Biomedical and Genetics
 MDCO	NSDQ	Medical - Biomedical and Genetics
 MDXG	NSDQ	Medical - Biomedical and Genetics
@@ -635,6 +641,7 @@ AGN	NYSE	Medical - Generic Drugs
 AKRX	NSDQ	Medical - Generic Drugs
 IPXL	NSDQ	Medical - Generic Drugs
 MNK	NYSE	Medical - Generic Drugs
+MYL	NSDQ	Medical - Generic Drugs
 AET	NYSE	Medical - HMOs
 ANTM	NYSE	Medical - HMOs
 CNC	NYSE	Medical - HMOs
@@ -722,13 +729,14 @@ ESV	NYSE	Oil and Gas - Drilling
 HP	NYSE	Oil and Gas - Drilling
 NBR	NYSE	Oil and Gas - Drilling
 NE	NYSE	Oil and Gas - Drilling
-PDS	NYSE	Oil and Gas - Drilling
 PES	NYSE	Oil and Gas - Drilling
 PTEN	NSDQ	Oil and Gas - Drilling
 RDC	NYSE	Oil and Gas - Drilling
 RIG	NYSE	Oil and Gas - Drilling
+SDLP	NYSE	Oil and Gas - Drilling
 CPG	NYSE	Oil and Gas - Exploration and Production - Canadian
 ECA	NYSE	Oil and Gas - Exploration and Production - Canadian
+ERF	NYSE	Oil and Gas - Exploration and Production - Canadian
 KOS	NYSE	Oil and Gas - Exploration and Production - International
 APA	NYSE	Oil and Gas - Exploration and Production - United States
 APC	NYSE	Oil and Gas - Exploration and Production - United States
@@ -859,6 +867,7 @@ CYS	NYSE	REIT and Equity Trust
 MFA	NYSE	REIT and Equity Trust
 NLY	NYSE	REIT and Equity Trust
 NRZ	NYSE	REIT and Equity Trust
+NSAM	NYSE	REIT and Equity Trust
 NYMT	NSDQ	REIT and Equity Trust
 TWO	NYSE	REIT and Equity Trust
 AHT	NYSE	REIT and Equity Trust - Other
@@ -880,9 +889,11 @@ DLR	NYSE	REIT and Equity Trust - Other
 DOC	NYSE	REIT and Equity Trust - Other
 DRE	NYSE	REIT and Equity Trust - Other
 DRH	NYSE	REIT and Equity Trust - Other
+ESRT	NYSE	REIT and Equity Trust - Other
 EXR	NYSE	REIT and Equity Trust - Other
 FCH	NYSE	REIT and Equity Trust - Other
 FCPT	NYSE	REIT and Equity Trust - Other
+FR	NYSE	REIT and Equity Trust - Other
 GEO	NYSE	REIT and Equity Trust - Other
 GLPI	NSDQ	REIT and Equity Trust - Other
 GNL	NYSE	REIT and Equity Trust - Other
@@ -894,10 +905,7 @@ HPT	NSDQ	REIT and Equity Trust - Other
 HST	NYSE	REIT and Equity Trust - Other
 HTA	NYSE	REIT and Equity Trust - Other
 HT	NYSE	REIT and Equity Trust - Other
-INN	NYSE	REIT and Equity Trust - Other
-IRM	NYSE	REIT and Equity Trust - Other
 KRC	NYSE	REIT and Equity Trust - Other
-LAMR	NSDQ	REIT and Equity Trust - Other
 LHO	NYSE	REIT and Equity Trust - Other
 LPT	NYSE	REIT and Equity Trust - Other
 LXP	NYSE	REIT and Equity Trust - Other
@@ -910,7 +918,6 @@ PEB	NYSE	REIT and Equity Trust - Other
 PGRE	NYSE	REIT and Equity Trust - Other
 PLD	NYSE	REIT and Equity Trust - Other
 PSA	NYSE	REIT and Equity Trust - Other
-RLJ	NYSE	REIT and Equity Trust - Other
 SHO	NYSE	REIT and Equity Trust - Other
 SLG	NYSE	REIT and Equity Trust - Other
 STAG	NYSE	REIT and Equity Trust - Other
@@ -934,7 +941,6 @@ REG	NYSE	REIT and Equity Trust - Retail
 RPAI	NYSE	REIT and Equity Trust - Retail
 SPG	NYSE	REIT and Equity Trust - Retail
 STOR	NYSE	REIT and Equity Trust - Retail
-WPG	NYSE	REIT and Equity Trust - Retail
 WRI	NYSE	REIT and Equity Trust - Retail
 CHS	NYSE	Retail - Apparel and Shoes
 DSW	NYSE	Retail - Apparel and Shoes
@@ -942,6 +948,7 @@ FINL	NSDQ	Retail - Apparel and Shoes
 FL	NYSE	Retail - Apparel and Shoes
 GPS	NYSE	Retail - Apparel and Shoes
 KATE	NYSE	Retail - Apparel and Shoes
+LB	NYSE	Retail - Apparel and Shoes
 BBY	NYSE	Retail - Consumer Electronics
 BIG	NYSE	Retail - Discount Stores
 BURL	NYSE	Retail - Discount Stores
@@ -964,7 +971,7 @@ SPLS	NSDQ	Retail - Miscellaneous
 TSCO	NSDQ	Retail - Miscellaneous
 CVS	NYSE	Retail - Pharmacies and Drug Stores
 DPLO	NYSE	Retail - Pharmacies and Drug Stores
-HLF	NYSE	Retail - Pharmacies and Drug Stores
+RAD	NYSE	Retail - Pharmacies and Drug Stores
 WBA	NSDQ	Retail - Pharmacies and Drug Stores
 JCP	NYSE	Retail - Regional Department Stores
 M	NYSE	Retail - Regional Department Stores
