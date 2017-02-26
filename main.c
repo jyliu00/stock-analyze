@@ -62,6 +62,7 @@ enum
 	ACTION_CHECK_STRONG_UPTREND,
 	ACTION_CHECK_STRONG_BO,
 	ACTION_CHECK_STRONG_BODY_BO,
+	ACTION_CHECK_MFI,
 
 	ACTION_NR
 };
@@ -312,6 +313,9 @@ int main(int argc, const char **argv)
 			else if (strcmp(arg, "check-chg") == 0) {
 				action = ACTION_CHECK_CHANGE;
 			}
+			else if (strcmp(arg, "check-mfi") == 0) {
+				action = ACTION_CHECK_MFI;
+			}
 		}
 		else if (strncmp(arg, "-group=", strlen("-group=")) == 0) {
 			p = strchr(arg, '=');
@@ -524,6 +528,8 @@ int main(int argc, const char **argv)
 	case ACTION_CHECK_STRONG_BODY_BO:
 		stock_price_check_strong_body_breakout(group, date, symbols_nr, (const char **)symbols);
 		break;
+	case ACTION_CHECK_MFI:
+		stock_price_check_mfi(group, date, symbols_nr, (const char **)symbols);
 	}
 
 finish:

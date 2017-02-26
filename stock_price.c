@@ -2087,6 +2087,34 @@ static void symbol_check_strong_body_breakout(const char *symbol, const struct s
 	__symbol_check_strong_breakout(symbol, price_history, price2check, 1);
 }
 
+static void symbol_check_mfi(const char *symbol, const struct stock_price *price_history,
+				 const struct date_price *price2check)
+{
+	const struct date_price *yesterday, *prev_20d;
+	int i;
+
+	for (i = 0; i < price_history->date_cnt; i++) {
+		yesterday = &price_history->dateprice[i];
+		if (strcmp(price2check->date, yesterday->date) > 0) {
+			prev_20d = yesterday + 20;
+			break;
+		}
+	}
+
+	if (yesterday->mfi > prev_20d->mfi && prev_20d->mfi
+	    && (yesterday->mfi - prev_20d->mfi) * 100 / (prev_20d->mfi >= 0 ? prev_20d->mfi : -prev_20d->mfi) >= 25
+	    && yesterday->close < prev_20d->close
+	    && price2check->volume * 100 / yesterday->vma[VMA_20d] <= 60)
+	{
+		anna_info("%s%-10s%s: date=%s, %s; %s.\n",
+				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+				price2check->date, get_price_volume_change(price_history, price2check),
+				price_history->sector);
+
+		selected_symbol_nr += 1;
+	}
+}
+
 static void symbol_check_early_up(const char *symbol, const struct stock_price *price_history,
 				    const struct date_price *price2check)
 {
@@ -2674,6 +2702,11 @@ void stock_price_check_strong_breakout(const char *group, const char *date, int 
 void stock_price_check_strong_body_breakout(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_strong_body_breakout);
+}
+
+void stock_price_check_mfi(const char *group, const char *date, int symbols_nr, const char **symbols)
+{
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_mfi);
 }
 
 void stock_price_check_early_up(const char *group, const char *date, int symbols_nr, const char **symbols)

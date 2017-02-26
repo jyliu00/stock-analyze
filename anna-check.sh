@@ -12,8 +12,8 @@ printf "\n\x1b[33mStrong cross up sma20d\x1b[0m:\n\n"
 
 anna -group=$1 check-20dup
 
-printf "\n\x1b[33mStrong cross up sma50d\x1b[0m:\n\n"
+printf "\n\x1b[33mmfi\x1b[0m:\n\n"
 
-anna -group=$1 check-50dup
+anna -group=$1 check-mfi
 
 echo ""
