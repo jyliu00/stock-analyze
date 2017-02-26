@@ -1,7 +1,4 @@
 %sector=rank1_roe
-FCAU	NYSE	Automotive - Foreign
 AXL	NYSE	Automotive - Original Equipment
-WNC	NYSE	Automotive - Original Equipment
-PHM	NYSE	Building Products - Home Builders
 UNVR	NYSE	Chemical - Diversified
 PGR	NYSE	Insurance - Property and Casualty
