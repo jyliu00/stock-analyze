@@ -1151,7 +1151,7 @@ static int get_stock_price2check(const char *symbol, const char *date,
 		}
 
 		if (i == price_history->date_cnt) {
-			anna_error("date='%s' is  not found in history price\n", date);
+			//anna_error("date='%s' is  not found in history price\n", date);
 			return -1;
 		}
 	}
@@ -1174,7 +1174,7 @@ static int get_symbol_price_for_check(const char *symbol, const char *date, cons
 	}
 
 	if (get_stock_price2check(symbol, date, price_history, price2check) < 0) {
-		anna_error("%s: get_stock_price2check(%s)\n", symbol, date);
+		//anna_error("%s: get_stock_price2check(%s)\n", symbol, date);
 		return -1;
 	}
 
@@ -2528,7 +2528,7 @@ static int call_check_func(const char *symbol, const char *date, const char *fna
 	struct date_price price2check;
 
 	if (get_symbol_price_for_check(symbol, date, fname, &price_history, &price2check) < 0) {
-		anna_error("get_symbol_price_for_check(symbol=%s,date=%s,fname=%s) failed\n", symbol, date, fname);
+		//anna_error("get_symbol_price_for_check(symbol=%s,date=%s,fname=%s) failed\n", symbol, date, fname);
 		return -1;
 	}
 
