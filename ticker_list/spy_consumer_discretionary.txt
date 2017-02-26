@@ -1,5 +1,5 @@
 %sector=consumer_discretionary
-AP
+AAP
 AMZN
 AN
 AZO
@@ -84,3 +84,4 @@ WHR
 WYN
 WYNN
 YUM
+

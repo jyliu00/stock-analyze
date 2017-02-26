@@ -1,4 +1,4 @@
-%sector=financial
+%sector=spy_financial
 AMG
 AFL
 ALL
@@ -11,7 +11,7 @@ AIZ
 BAC
 BK
 BBT
-BRK-B
+BRK.B
 BLK
 HRB
 COF

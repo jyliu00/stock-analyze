@@ -1,505 +1,505 @@
-AP 	Consumer Discretionary 
-AMZN 	Consumer Discretionary 
-AN 	Consumer Discretionary 
-AZO 	Consumer Discretionary 
-BBBY 	Consumer Discretionary 
-BBY 	Consumer Discretionary 
-BWA 	Consumer Discretionary 
-KMX 	Consumer Discretionary 
-CCL 	Consumer Discretionary 
-CBS 	Consumer Discretionary 
-CHTR 	Consumer Discretionary 
-CMG 	Consumer Discretionary 
-COH 	Consumer Discretionary 
-CMCSA 	Consumer Discretionary 
-DHI 	Consumer Discretionary 
-DRI 	Consumer Discretionary 
-DLPH 	Consumer Discretionary 
-DISCA 	Consumer Discretionary 
-DISCK 	Consumer Discretionary 
-DG 	Consumer Discretionary 
-DLTR 	Consumer Discretionary 
-EXPE 	Consumer Discretionary 
-FL 	Consumer Discretionary 
-F 	Consumer Discretionary 
-GPS 	Consumer Discretionary 
-GRMN 	Consumer Discretionary 
-GM 	Consumer Discretionary 
-GPC 	Consumer Discretionary 
-GT 	Consumer Discretionary 
-HBI 	Consumer Discretionary 
-HOG 	Consumer Discretionary 
-HAR 	Consumer Discretionary 
-HAS 	Consumer Discretionary 
-HD 	Consumer Discretionary 
-IPG 	Consumer Discretionary 
-KSS 	Consumer Discretionary 
-LB 	Consumer Discretionary 
-LEN 	Consumer Discretionary 
-LKQ 	Consumer Discretionary 
-LOW 	Consumer Discretionary 
-M 	Consumer Discretionary 
-MAR 	Consumer Discretionary 
-MAT 	Consumer Discretionary 
-MCD 	Consumer Discretionary 
-KORS 	Consumer Discretionary 
-MHK 	Consumer Discretionary 
-NWL 	Consumer Discretionary 
-NWSA 	Consumer Discretionary 
-NWS 	Consumer Discretionary 
-NKE 	Consumer Discretionary 
-JWN 	Consumer Discretionary 
-ORLY 	Consumer Discretionary 
-OMC 	Consumer Discretionary 
-RL 	Consumer Discretionary 
-PCLN 	Consumer Discretionary 
-PHM 	Consumer Discretionary 
-PVH 	Consumer Discretionary 
-ROST 	Consumer Discretionary 
-RCL 	Consumer Discretionary 
-SNI 	Consumer Discretionary 
-SIG 	Consumer Discretionary 
-SNA 	Consumer Discretionary 
-SWK 	Consumer Discretionary 
-SPLS 	Consumer Discretionary 
-SBUX 	Consumer Discretionary 
-TGT 	Consumer Discretionary 
-TGNA 	Consumer Discretionary 
-TIF 	Consumer Discretionary 
-TWX 	Consumer Discretionary 
-TJX 	Consumer Discretionary 
-TSCO 	Consumer Discretionary 
-TRIP 	Consumer Discretionary 
-FOXA 	Consumer Discretionary 
-FOX 	Consumer Discretionary 
-ULTA 	Consumer Discretionary 
-UA 	Consumer Discretionary 
-UAA 	Consumer Discretionary 
-URBN 	Consumer Discretionary 
-VFC 	Consumer Discretionary 
-VIAB 	Consumer Discretionary 
-DIS 	Consumer Discretionary 
-WHR 	Consumer Discretionary 
-WYN 	Consumer Discretionary 
-WYNN 	Consumer Discretionary 
-YUM 	Consumer Discretionary 
-MO 	Consumer Staples 
-ADM 	Consumer Staples 
-BF-B 	Consumer Staples 
-CPB 	Consumer Staples 
-CHD 	Consumer Staples 
-CLX 	Consumer Staples 
-KO 	Consumer Staples 
-CL 	Consumer Staples 
-CAG 	Consumer Staples 
-STZ 	Consumer Staples 
-COST 	Consumer Staples 
-COTY 	Consumer Staples 
-CVS 	Consumer Staples 
-DPS 	Consumer Staples 
-EL 	Consumer Staples 
-GIS 	Consumer Staples 
-HRL 	Consumer Staples 
-SJM 	Consumer Staples 
-K 	Consumer Staples 
-KMB 	Consumer Staples 
-KHC 	Consumer Staples 
-KR 	Consumer Staples 
-MKC 	Consumer Staples 
-MJN 	Consumer Staples 
-TAP 	Consumer Staples 
-MDLZ 	Consumer Staples 
-MNST 	Consumer Staples 
-PEP 	Consumer Staples 
-PM 	Consumer Staples 
-PG 	Consumer Staples 
-RAI 	Consumer Staples 
-SYY 	Consumer Staples 
-HSY 	Consumer Staples 
-TSN 	Consumer Staples 
-WMT 	Consumer Staples 
-WBA 	Consumer Staples 
-WFM 	Consumer Staples 
-APC 	Energy 
-APA 	Energy 
-BHI 	Energy 
-COG 	Energy 
-CHK 	Energy 
-CVX 	Energy 
-XEC 	Energy 
-CXO 	Energy 
-COP 	Energy 
-DVN 	Energy 
-EOG 	Energy 
-EQT 	Energy 
-XOM 	Energy 
-FTI 	Energy 
-HAL 	Energy 
-HP 	Energy 
-HES 	Energy 
-KMI 	Energy 
-MRO 	Energy 
-MPC 	Energy 
-MUR 	Energy 
-NOV 	Energy 
-NFX 	Energy 
-NBL 	Energy 
-OXY 	Energy 
-OKE 	Energy 
-PSX 	Energy 
-PXD 	Energy 
-RRC 	Energy 
-SLB 	Energy 
-SWN 	Energy 
-SE 	Energy 
-TSO 	Energy 
-RIG 	Energy 
-VLO 	Energy 
-WMB 	Energy 
-AMG 	Financials 
-AFL 	Financials 
-ALL 	Financials 
-AXP 	Financials 
-AIG 	Financials 
-AMP 	Financials 
-AON 	Financials 
-AJG 	Financials 
-AIZ 	Financials 
-BAC 	Financials 
-BK 	Financials 
-BBT 	Financials 
-BRK-B 	Financials 
-BLK 	Financials 
-HRB 	Financials 
-COF 	Financials 
-SCHW 	Financials 
-CB 	Financials 
-CINF 	Financials 
-C 	Financials 
-CFG 	Financials 
-CME 	Financials 
-CMA 	Financials 
-DFS 	Financials 
-ETFC 	Financials 
-FITB 	Financials 
-BEN 	Financials 
-GS 	Financials 
-HIG 	Financials 
-HBAN 	Financials 
-ICE 	Financials 
-IVZ 	Financials 
-JPM 	Financials 
-KEY 	Financials 
-LUK 	Financials 
-LNC 	Financials 
-L 	Financials 
-MTB 	Financials 
-MMC 	Financials 
-MET 	Financials 
-MCO 	Financials 
-MS 	Financials 
-NDAQ 	Financials 
-NAVI 	Financials 
-NTRS 	Financials 
-PBCT 	Financials 
-PNC 	Financials 
-PFG 	Financials 
-PGR 	Financials 
-PRU 	Financials 
-RF 	Financials 
-SPGI 	Financials 
-STT 	Financials 
-STI 	Financials 
-SYF 	Financials 
-TROW 	Financials 
-TRV 	Financials 
-TMK 	Financials 
-USB 	Financials 
-UNM 	Financials 
-WFC 	Financials 
-WLTW 	Financials 
-XL 	Financials 
-ZION 	Financials 
-ABT 	Health Care 
-ABBV 	Health Care 
-AET 	Health Care 
-A 	Health Care 
-AGN 	Health Care 
-ALXN 	Health Care 
-ABC 	Health Care 
-AMGN 	Health Care 
-ANTM 	Health Care 
-BCR 	Health Care 
-BAX 	Health Care 
-BDX 	Health Care 
-BIIB 	Health Care 
-BSX 	Health Care 
-BMY 	Health Care 
-CAH 	Health Care 
-HSIC 	Health Care 
-CELG 	Health Care 
-CNC 	Health Care 
-CERN 	Health Care 
-CI 	Health Care 
-DVA 	Health Care 
-XRAY 	Health Care 
-EW 	Health Care 
-ENDP 	Health Care 
-EVHC 	Health Care 
-ESRX 	Health Care 
-GILD 	Health Care 
-HCA 	Health Care 
-HOLX 	Health Care 
-HUM 	Health Care 
-IDXX 	Health Care 
-ILMN 	Health Care 
-ISRG 	Health Care 
-JNJ 	Health Care 
-LH 	Health Care 
-LLY 	Health Care 
-MNK 	Health Care 
-MCK 	Health Care 
-MDT 	Health Care 
-MRK 	Health Care 
-MTD 	Health Care 
-MYL 	Health Care 
-PDCO 	Health Care 
-PKI 	Health Care 
-PRGO 	Health Care 
-PFE 	Health Care 
-DGX 	Health Care 
-REGN 	Health Care 
-SYK 	Health Care 
-COO 	Health Care 
-TMO 	Health Care 
-UNH 	Health Care 
-UHS 	Health Care 
-VAR 	Health Care 
-VRTX 	Health Care 
-WAT 	Health Care 
-ZBH 	Health Care 
-ZTS 	Health Care 
-MMM 	Industrials 
-AYI 	Industrials 
-ALK 	Industrials 
-ALLE 	Industrials 
-AAL 	Industrials 
-AME 	Industrials 
-ARNC 	Industrials 
-BA 	Industrials 
-CHRW 	Industrials 
-CAT 	Industrials 
-CTAS 	Industrials 
-CSX 	Industrials 
-CMI 	Industrials 
-DHR 	Industrials 
-DE 	Industrials 
-DAL 	Industrials 
-DOV 	Industrials 
-DNB 	Industrials 
-ETN 	Industrials 
-EMR 	Industrials 
-EFX 	Industrials 
-EXPD 	Industrials 
-FAST 	Industrials 
-FDX 	Industrials 
-FLS 	Industrials 
-FLR 	Industrials 
-FTV 	Industrials 
-FBHS 	Industrials 
-GD 	Industrials 
-GE 	Industrials 
-GWW 	Industrials 
-HON 	Industrials 
-ITW 	Industrials 
-IR 	Industrials 
-JEC 	Industrials 
-JBHT 	Industrials 
-JCI 	Industrials 
-KSU 	Industrials 
-LLL 	Industrials 
-LEG 	Industrials 
-LMT 	Industrials 
-MAS 	Industrials 
-NLSN 	Industrials 
-NSC 	Industrials 
-NOC 	Industrials 
-PCAR 	Industrials 
-PH 	Industrials 
-PNR 	Industrials 
-PBI 	Industrials 
-PWR 	Industrials 
-RTN 	Industrials 
-RSG 	Industrials 
-RHI 	Industrials 
-ROK 	Industrials 
-COL 	Industrials 
-ROP 	Industrials 
-R 	Industrials 
-LUV 	Industrials 
-SRCL 	Industrials 
-TXT 	Industrials 
-TDG 	Industrials 
-UNP 	Industrials 
-UAL 	Industrials 
-UPS 	Industrials 
-URI 	Industrials 
-UTX 	Industrials 
-VRSK 	Industrials 
-WM 	Industrials 
-XYL 	Industrials 
-ACN 	Information Technology 
-ATVI 	Information Technology 
-ADBE 	Information Technology 
-AKAM 	Information Technology 
-ADS 	Information Technology 
-GOOGL 	Information Technology 
-GOOG 	Information Technology 
-APH 	Information Technology 
-ADI 	Information Technology 
-AAPL 	Information Technology 
-AMAT 	Information Technology 
-ADSK 	Information Technology 
-ADP 	Information Technology 
-AVGO 	Information Technology 
-CA 	Information Technology 
-CSCO 	Information Technology 
-CTXS 	Information Technology 
-CTSH 	Information Technology 
-GLW 	Information Technology 
-CSRA 	Information Technology 
-EBAY 	Information Technology 
-EA 	Information Technology 
-FFIV 	Information Technology 
-FB 	Information Technology 
-FIS 	Information Technology 
-FSLR 	Information Technology 
-FISV 	Information Technology 
-FLIR 	Information Technology 
-GPN 	Information Technology 
-HRS 	Information Technology 
-HPE 	Information Technology 
-HPQ 	Information Technology 
-INTC 	Information Technology 
-IBM 	Information Technology 
-INTU 	Information Technology 
-JNPR 	Information Technology 
-KLAC 	Information Technology 
-LRCX 	Information Technology 
-LLTC 	Information Technology 
-MA 	Information Technology 
-MCHP 	Information Technology 
-MU 	Information Technology 
-MSFT 	Information Technology 
-MSI 	Information Technology 
-NTAP 	Information Technology 
-NFLX 	Information Technology 
-NVDA 	Information Technology 
-ORCL 	Information Technology 
-PAYX 	Information Technology 
-PYPL 	Information Technology 
-QRVO 	Information Technology 
-QCOM 	Information Technology 
-RHT 	Information Technology 
-CRM 	Information Technology 
-STX 	Information Technology 
-SWKS 	Information Technology 
-SYMC 	Information Technology 
-TEL 	Information Technology 
-TDC 	Information Technology 
-TXN 	Information Technology 
-TSS 	Information Technology 
-VRSN 	Information Technology 
-V 	Information Technology 
-WDC 	Information Technology 
-WU 	Information Technology 
-XRX 	Information Technology 
-XLNX 	Information Technology 
-YHOO 	Information Technology 
-APD 	Materials 
-ALB 	Materials 
-AVY 	Materials 
-BLL 	Materials 
-CF 	Materials 
-DOW 	Materials 
-DD 	Materials 
-EMN 	Materials 
-ECL 	Materials 
-FMC 	Materials 
-FCX 	Materials 
-IP 	Materials 
-IFF 	Materials 
-LYB 	Materials 
-MLM 	Materials 
-MON 	Materials 
-MOS 	Materials 
-NEM 	Materials 
-NUE 	Materials 
-PPG 	Materials 
-PX 	Materials 
-SEE 	Materials 
-SHW 	Materials 
-VMC 	Materials 
-WRK 	Materials 
-AMT 	Real Estate 
-AIV 	Real Estate 
-AVB 	Real Estate 
-BXP 	Real Estate 
-CBG 	Real Estate 
-CCI 	Real Estate 
-DLR 	Real Estate 
-EQIX 	Real Estate 
-EQR 	Real Estate 
-ESS 	Real Estate 
-EXR 	Real Estate 
-FRT 	Real Estate 
-GGP 	Real Estate 
-HCP 	Real Estate 
-HST 	Real Estate 
-IRM 	Real Estate 
-KIM 	Real Estate 
-MAC 	Real Estate 
-MAA 	Real Estate 
-PLD 	Real Estate 
-PSA 	Real Estate 
-O 	Real Estate 
-SPG 	Real Estate 
-SLG 	Real Estate 
-UDR 	Real Estate 
-VTR 	Real Estate 
-VNO 	Real Estate 
-HCN 	Real Estate 
-WY 	Real Estate 
-T 	Telecommunications Services 
-CTL 	Telecommunications Services 
-FTR 	Telecommunications Services 
-LVLT 	Telecommunications Services 
-VZ 	Telecommunications Services 
-AES 	Utilities 
-LNT 	Utilities 
-AEE 	Utilities 
-AEP 	Utilities 
-AWK 	Utilities 
-CNP 	Utilities 
-CMS 	Utilities 
-ED 	Utilities 
-D 	Utilities 
-DTE 	Utilities 
-DUK 	Utilities 
-EIX 	Utilities 
-ETR 	Utilities 
-ES 	Utilities 
-EXC 	Utilities 
-FE 	Utilities 
-NEE 	Utilities 
-NI 	Utilities 
-NRG 	Utilities 
-PCG 	Utilities 
-PNW 	Utilities 
-PPL 	Utilities 
-PEG 	Utilities 
-SCG 	Utilities 
-SRE 	Utilities 
-SO 	Utilities 
-WEC 	Utilities 
-XEL 	Utilities 
+AAP 	Consumer Discretionary
+AMZN 	Consumer Discretionary
+AN 	Consumer Discretionary
+AZO 	Consumer Discretionary
+BBBY 	Consumer Discretionary
+BBY 	Consumer Discretionary
+BWA 	Consumer Discretionary
+KMX 	Consumer Discretionary
+CCL 	Consumer Discretionary
+CBS 	Consumer Discretionary
+CHTR 	Consumer Discretionary
+CMG 	Consumer Discretionary
+COH 	Consumer Discretionary
+CMCSA 	Consumer Discretionary
+DHI 	Consumer Discretionary
+DRI 	Consumer Discretionary
+DLPH 	Consumer Discretionary
+DISCA 	Consumer Discretionary
+DISCK 	Consumer Discretionary
+DG 	Consumer Discretionary
+DLTR 	Consumer Discretionary
+EXPE 	Consumer Discretionary
+FL 	Consumer Discretionary
+F 	Consumer Discretionary
+GPS 	Consumer Discretionary
+GRMN 	Consumer Discretionary
+GM 	Consumer Discretionary
+GPC 	Consumer Discretionary
+GT 	Consumer Discretionary
+HBI 	Consumer Discretionary
+HOG 	Consumer Discretionary
+HAR 	Consumer Discretionary
+HAS 	Consumer Discretionary
+HD 	Consumer Discretionary
+IPG 	Consumer Discretionary
+KSS 	Consumer Discretionary
+LB 	Consumer Discretionary
+LEN 	Consumer Discretionary
+LKQ 	Consumer Discretionary
+LOW 	Consumer Discretionary
+M 	Consumer Discretionary
+MAR 	Consumer Discretionary
+MAT 	Consumer Discretionary
+MCD 	Consumer Discretionary
+KORS 	Consumer Discretionary
+MHK 	Consumer Discretionary
+NWL 	Consumer Discretionary
+NWSA 	Consumer Discretionary
+NWS 	Consumer Discretionary
+NKE 	Consumer Discretionary
+JWN 	Consumer Discretionary
+ORLY 	Consumer Discretionary
+OMC 	Consumer Discretionary
+RL 	Consumer Discretionary
+PCLN 	Consumer Discretionary
+PHM 	Consumer Discretionary
+PVH 	Consumer Discretionary
+ROST 	Consumer Discretionary
+RCL 	Consumer Discretionary
+SNI 	Consumer Discretionary
+SIG 	Consumer Discretionary
+SNA 	Consumer Discretionary
+SWK 	Consumer Discretionary
+SPLS 	Consumer Discretionary
+SBUX 	Consumer Discretionary
+TGT 	Consumer Discretionary
+TGNA 	Consumer Discretionary
+TIF 	Consumer Discretionary
+TWX 	Consumer Discretionary
+TJX 	Consumer Discretionary
+TSCO 	Consumer Discretionary
+TRIP 	Consumer Discretionary
+FOXA 	Consumer Discretionary
+FOX 	Consumer Discretionary
+ULTA 	Consumer Discretionary
+UA 	Consumer Discretionary
+UAA 	Consumer Discretionary
+URBN 	Consumer Discretionary
+VFC 	Consumer Discretionary
+VIAB 	Consumer Discretionary
+DIS 	Consumer Discretionary
+WHR 	Consumer Discretionary
+WYN 	Consumer Discretionary
+WYNN 	Consumer Discretionary
+YUM 	Consumer Discretionary
+MO 	Consumer Staples
+ADM 	Consumer Staples
+BF.B 	Consumer Staples
+CPB 	Consumer Staples
+CHD 	Consumer Staples
+CLX 	Consumer Staples
+KO 	Consumer Staples
+CL 	Consumer Staples
+CAG 	Consumer Staples
+STZ 	Consumer Staples
+COST 	Consumer Staples
+COTY 	Consumer Staples
+CVS 	Consumer Staples
+DPS 	Consumer Staples
+EL 	Consumer Staples
+GIS 	Consumer Staples
+HRL 	Consumer Staples
+SJM 	Consumer Staples
+K 	Consumer Staples
+KMB 	Consumer Staples
+KHC 	Consumer Staples
+KR 	Consumer Staples
+MKC 	Consumer Staples
+MJN 	Consumer Staples
+TAP 	Consumer Staples
+MDLZ 	Consumer Staples
+MNST 	Consumer Staples
+PEP 	Consumer Staples
+PM 	Consumer Staples
+PG 	Consumer Staples
+RAI 	Consumer Staples
+SYY 	Consumer Staples
+HSY 	Consumer Staples
+TSN 	Consumer Staples
+WMT 	Consumer Staples
+WBA 	Consumer Staples
+WFM 	Consumer Staples
+APC 	Energy
+APA 	Energy
+BHI 	Energy
+COG 	Energy
+CHK 	Energy
+CVX 	Energy
+XEC 	Energy
+CXO 	Energy
+COP 	Energy
+DVN 	Energy
+EOG 	Energy
+EQT 	Energy
+XOM 	Energy
+FTI 	Energy
+HAL 	Energy
+HP 	Energy
+HES 	Energy
+KMI 	Energy
+MRO 	Energy
+MPC 	Energy
+MUR 	Energy
+NOV 	Energy
+NFX 	Energy
+NBL 	Energy
+OXY 	Energy
+OKE 	Energy
+PSX 	Energy
+PXD 	Energy
+RRC 	Energy
+SLB 	Energy
+SWN 	Energy
+SE 	Energy
+TSO 	Energy
+RIG 	Energy
+VLO 	Energy
+WMB 	Energy
+AMG 	Financials
+AFL 	Financials
+ALL 	Financials
+AXP 	Financials
+AIG 	Financials
+AMP 	Financials
+AON 	Financials
+AJG 	Financials
+AIZ 	Financials
+BAC 	Financials
+BK 	Financials
+BBT 	Financials
+BRK.B 	Financials
+BLK 	Financials
+HRB 	Financials
+COF 	Financials
+SCHW 	Financials
+CB 	Financials
+CINF 	Financials
+C 	Financials
+CFG 	Financials
+CME 	Financials
+CMA 	Financials
+DFS 	Financials
+ETFC 	Financials
+FITB 	Financials
+BEN 	Financials
+GS 	Financials
+HIG 	Financials
+HBAN 	Financials
+ICE 	Financials
+IVZ 	Financials
+JPM 	Financials
+KEY 	Financials
+LUK 	Financials
+LNC 	Financials
+L 	Financials
+MTB 	Financials
+MMC 	Financials
+MET 	Financials
+MCO 	Financials
+MS 	Financials
+NDAQ 	Financials
+NAVI 	Financials
+NTRS 	Financials
+PBCT 	Financials
+PNC 	Financials
+PFG 	Financials
+PGR 	Financials
+PRU 	Financials
+RF 	Financials
+SPGI 	Financials
+STT 	Financials
+STI 	Financials
+SYF 	Financials
+TROW 	Financials
+TRV 	Financials
+TMK 	Financials
+USB 	Financials
+UNM 	Financials
+WFC 	Financials
+WLTW 	Financials
+XL 	Financials
+ZION 	Financials
+ABT 	Health Care
+ABBV 	Health Care
+AET 	Health Care
+A 	Health Care
+AGN 	Health Care
+ALXN 	Health Care
+ABC 	Health Care
+AMGN 	Health Care
+ANTM 	Health Care
+BCR 	Health Care
+BAX 	Health Care
+BDX 	Health Care
+BIIB 	Health Care
+BSX 	Health Care
+BMY 	Health Care
+CAH 	Health Care
+HSIC 	Health Care
+CELG 	Health Care
+CNC 	Health Care
+CERN 	Health Care
+CI 	Health Care
+DVA 	Health Care
+XRAY 	Health Care
+EW 	Health Care
+ENDP 	Health Care
+EVHC 	Health Care
+ESRX 	Health Care
+GILD 	Health Care
+HCA 	Health Care
+HOLX 	Health Care
+HUM 	Health Care
+IDXX 	Health Care
+ILMN 	Health Care
+ISRG 	Health Care
+JNJ 	Health Care
+LH 	Health Care
+LLY 	Health Care
+MNK 	Health Care
+MCK 	Health Care
+MDT 	Health Care
+MRK 	Health Care
+MTD 	Health Care
+MYL 	Health Care
+PDCO 	Health Care
+PKI 	Health Care
+PRGO 	Health Care
+PFE 	Health Care
+DGX 	Health Care
+REGN 	Health Care
+SYK 	Health Care
+COO 	Health Care
+TMO 	Health Care
+UNH 	Health Care
+UHS 	Health Care
+VAR 	Health Care
+VRTX 	Health Care
+WAT 	Health Care
+ZBH 	Health Care
+ZTS 	Health Care
+MMM 	Industrials
+AYI 	Industrials
+ALK 	Industrials
+ALLE 	Industrials
+AAL 	Industrials
+AME 	Industrials
+ARNC 	Industrials
+BA 	Industrials
+CHRW 	Industrials
+CAT 	Industrials
+CTAS 	Industrials
+CSX 	Industrials
+CMI 	Industrials
+DHR 	Industrials
+DE 	Industrials
+DAL 	Industrials
+DOV 	Industrials
+DNB 	Industrials
+ETN 	Industrials
+EMR 	Industrials
+EFX 	Industrials
+EXPD 	Industrials
+FAST 	Industrials
+FDX 	Industrials
+FLS 	Industrials
+FLR 	Industrials
+FTV 	Industrials
+FBHS 	Industrials
+GD 	Industrials
+GE 	Industrials
+GWW 	Industrials
+HON 	Industrials
+ITW 	Industrials
+IR 	Industrials
+JEC 	Industrials
+JBHT 	Industrials
+JCI 	Industrials
+KSU 	Industrials
+LLL 	Industrials
+LEG 	Industrials
+LMT 	Industrials
+MAS 	Industrials
+NLSN 	Industrials
+NSC 	Industrials
+NOC 	Industrials
+PCAR 	Industrials
+PH 	Industrials
+PNR 	Industrials
+PBI 	Industrials
+PWR 	Industrials
+RTN 	Industrials
+RSG 	Industrials
+RHI 	Industrials
+ROK 	Industrials
+COL 	Industrials
+ROP 	Industrials
+R 	Industrials
+LUV 	Industrials
+SRCL 	Industrials
+TXT 	Industrials
+TDG 	Industrials
+UNP 	Industrials
+UAL 	Industrials
+UPS 	Industrials
+URI 	Industrials
+UTX 	Industrials
+VRSK 	Industrials
+WM 	Industrials
+XYL 	Industrials
+ACN 	Information Technology
+ATVI 	Information Technology
+ADBE 	Information Technology
+AKAM 	Information Technology
+ADS 	Information Technology
+GOOGL 	Information Technology
+GOOG 	Information Technology
+APH 	Information Technology
+ADI 	Information Technology
+AAPL 	Information Technology
+AMAT 	Information Technology
+ADSK 	Information Technology
+ADP 	Information Technology
+AVGO 	Information Technology
+CA 	Information Technology
+CSCO 	Information Technology
+CTXS 	Information Technology
+CTSH 	Information Technology
+GLW 	Information Technology
+CSRA 	Information Technology
+EBAY 	Information Technology
+EA 	Information Technology
+FFIV 	Information Technology
+FB 	Information Technology
+FIS 	Information Technology
+FSLR 	Information Technology
+FISV 	Information Technology
+FLIR 	Information Technology
+GPN 	Information Technology
+HRS 	Information Technology
+HPE 	Information Technology
+HPQ 	Information Technology
+INTC 	Information Technology
+IBM 	Information Technology
+INTU 	Information Technology
+JNPR 	Information Technology
+KLAC 	Information Technology
+LRCX 	Information Technology
+LLTC 	Information Technology
+MA 	Information Technology
+MCHP 	Information Technology
+MU 	Information Technology
+MSFT 	Information Technology
+MSI 	Information Technology
+NTAP 	Information Technology
+NFLX 	Information Technology
+NVDA 	Information Technology
+ORCL 	Information Technology
+PAYX 	Information Technology
+PYPL 	Information Technology
+QRVO 	Information Technology
+QCOM 	Information Technology
+RHT 	Information Technology
+CRM 	Information Technology
+STX 	Information Technology
+SWKS 	Information Technology
+SYMC 	Information Technology
+TEL 	Information Technology
+TDC 	Information Technology
+TXN 	Information Technology
+TSS 	Information Technology
+VRSN 	Information Technology
+V 	Information Technology
+WDC 	Information Technology
+WU 	Information Technology
+XRX 	Information Technology
+XLNX 	Information Technology
+YHOO 	Information Technology
+APD 	Materials
+ALB 	Materials
+AVY 	Materials
+BLL 	Materials
+CF 	Materials
+DOW 	Materials
+DD 	Materials
+EMN 	Materials
+ECL 	Materials
+FMC 	Materials
+FCX 	Materials
+IP 	Materials
+IFF 	Materials
+LYB 	Materials
+MLM 	Materials
+MON 	Materials
+MOS 	Materials
+NEM 	Materials
+NUE 	Materials
+PPG 	Materials
+PX 	Materials
+SEE 	Materials
+SHW 	Materials
+VMC 	Materials
+WRK 	Materials
+AMT 	Real Estate
+AIV 	Real Estate
+AVB 	Real Estate
+BXP 	Real Estate
+CBG 	Real Estate
+CCI 	Real Estate
+DLR 	Real Estate
+EQIX 	Real Estate
+EQR 	Real Estate
+ESS 	Real Estate
+EXR 	Real Estate
+FRT 	Real Estate
+GGP 	Real Estate
+HCP 	Real Estate
+HST 	Real Estate
+IRM 	Real Estate
+KIM 	Real Estate
+MAC 	Real Estate
+MAA 	Real Estate
+PLD 	Real Estate
+PSA 	Real Estate
+O 	Real Estate
+SPG 	Real Estate
+SLG 	Real Estate
+UDR 	Real Estate
+VTR 	Real Estate
+VNO 	Real Estate
+HCN 	Real Estate
+WY 	Real Estate
+T 	Telecommunications Services
+CTL 	Telecommunications Services
+FTR 	Telecommunications Services
+LVLT 	Telecommunications Services
+VZ 	Telecommunications Services
+AES 	Utilities
+LNT 	Utilities
+AEE 	Utilities
+AEP 	Utilities
+AWK 	Utilities
+CNP 	Utilities
+CMS 	Utilities
+ED 	Utilities
+D 	Utilities
+DTE 	Utilities
+DUK 	Utilities
+EIX 	Utilities
+ETR 	Utilities
+ES 	Utilities
+EXC 	Utilities
+FE 	Utilities
+NEE 	Utilities
+NI 	Utilities
+NRG 	Utilities
+PCG 	Utilities
+PNW 	Utilities
+PPL 	Utilities
+PEG 	Utilities
+SCG 	Utilities
+SRE 	Utilities
+SO 	Utilities
+WEC 	Utilities
+XEL 	Utilities

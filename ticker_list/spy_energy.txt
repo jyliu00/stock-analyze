@@ -1,4 +1,4 @@
-%sector=energy
+%sector=spy_energy
 APC
 APA
 BHI
