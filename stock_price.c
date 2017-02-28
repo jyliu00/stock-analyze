@@ -1567,7 +1567,8 @@ static void symbol_check_sma_breakout(const char *symbol, const struct stock_pri
 		if (strcmp(price2check->date, prev->date) > 0) {
 			int above_20d_cnt = 0;
 
-			if (!is_sma_crossup(price2check, prev))
+			if (!is_sma_crossup(price2check, prev)
+			    || price2check->volume * 100 < prev->vma[VMA_20d] * 115)
 				return;
 
 			for (j = 0; i < price_history->date_cnt && j < 20; i++, j++) {
