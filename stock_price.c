@@ -1433,7 +1433,7 @@ static int is_sma_crossup(const struct date_price *today, const struct date_pric
 	if (today->low < yesterday->sma[sma2check] && today->close > yesterday->sma[sma2check])
 		return 1;
 
-	if (today->close > yesterday->sma[sma2check] && today->close < yesterday->sma[sma2check])
+	if (today->close > yesterday->sma[sma2check] && get_2ndlow(yesterday) < yesterday->sma[sma2check])
 		return 1;
 
 	return 0;
@@ -1548,6 +1548,41 @@ static void symbol_check_sma_pullback(const char *symbol, const struct stock_pri
 	return;
 
 is_pb:
+	anna_info("%s%-10s%s: date=%s, %s; %s<sector=%s>%s.\n",
+		ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+		price2check->date, get_price_volume_change(price_history, price2check),
+		ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+
+	selected_symbol_nr += 1;
+}
+
+static void symbol_check_sma_breakout(const char *symbol, const struct stock_price *price_history,
+					 const struct date_price *price2check)
+{
+	int i, j;
+
+	for (i = 0; i < price_history->date_cnt; i++) {
+		const struct date_price *prev = &price_history->dateprice[i];
+
+		if (strcmp(price2check->date, prev->date) > 0) {
+			int above_20d_cnt = 0;
+
+			if (!is_sma_crossup(price2check, prev))
+				return;
+
+			for (j = 0; i < price_history->date_cnt && j < 20; i++, j++) {
+				const struct date_price *prev = &price_history->dateprice[i];
+				if (prev->close > prev->sma[sma2check])
+					above_20d_cnt += 1;
+			}
+
+			if (above_20d_cnt > 3)
+				return;
+
+			break;
+		}
+	}
+
 	anna_info("%s%-10s%s: date=%s, %s; %s<sector=%s>%s.\n",
 		ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
 		price2check->date, get_price_volume_change(price_history, price2check),
@@ -2626,6 +2661,13 @@ void stock_price_check_sma_pullback(const char *group, const char *date, int sma
 {
 	sma2check = sma_idx;
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_sma_pullback);
+	sma2check = -1;
+}
+
+void stock_price_check_sma_breakout(const char *group, const char *date, int sma_idx, int symbols_nr, const char **symbols)
+{
+	sma2check = sma_idx;
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_sma_breakout);
 	sma2check = -1;
 }
 
