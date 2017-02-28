@@ -1,8 +1,12 @@
 %sector=rank1_undervalue
+HMC	NYSE	Automotive - Foreign
 AXL	NYSE	Automotive - Original Equipment
+VC	NYSE	Automotive - Original Equipment
+ARCH	NYSE	Coal
 ARLP	NSDQ	Coal
 PGR	NYSE	Insurance - Property and Casualty
 ACCO	NYSE	Office Supplies
 CCRN	NSDQ	Staffing Firms
 KFRC	NSDQ	Staffing Firms
+TX	NYSE	Steel - Producers
 X	NYSE	Steel - Producers
