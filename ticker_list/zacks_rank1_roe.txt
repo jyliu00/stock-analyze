@@ -1,4 +1,10 @@
 %sector=rank1_roe
-AXL	NYSE	Automotive - Original Equipment
+VC	NYSE	Automotive - Original Equipment
+PHM	NYSE	Building Products - Home Builders
 UNVR	NYSE	Chemical - Diversified
-PGR	NYSE	Insurance - Property and Casualty
+TSE	NYSE	Chemical - Plastic
+ARLP	NSDQ	Coal
+ACCO	NYSE	Office Supplies
+KFRC	NSDQ	Staffing Firms
+TX	NYSE	Steel - Producers
+SKM	NYSE	Wireless Non-US
