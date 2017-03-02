@@ -1,10 +1,10 @@
 %sector=rank1_roe
+FCAU	NYSE	Automotive - Foreign
 VC	NYSE	Automotive - Original Equipment
-PHM	NYSE	Building Products - Home Builders
 UNVR	NYSE	Chemical - Diversified
-TSE	NYSE	Chemical - Plastic
 ARLP	NSDQ	Coal
+PGR	NYSE	Insurance - Property and Casualty
 ACCO	NYSE	Office Supplies
 KFRC	NSDQ	Staffing Firms
 TX	NYSE	Steel - Producers
-SKM	NYSE	Wireless Non-US
+HUBG	NSDQ	Transportation - Services
