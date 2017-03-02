@@ -47,11 +47,6 @@ enum
 	ACTION_CHECK_BO, /* break out */
 	ACTION_CHECK_2nd_BO, /* 2nd break out */
 	ACTION_CHECK_52W_LOWUP, /* up from 52w low */
-	ACTION_CHECK_WUP, /* week up */
-	ACTION_CHECK_WRV, /* week reverse */
-	ACTION_CHECK_LOW_VOLUME,
-	ACTION_CHECK_LOW_VOLUME_UP,
-	ACTION_CHECK_VOLUME_UP,
 	ACTION_CHECK_CHANGE,
 	ACTION_CHECK_TREND_BO, /* trendline breakout */
 	ACTION_CHECK_STRONG_UPTREND,
@@ -68,9 +63,9 @@ static void print_usage(void)
 {
 	printf("Usage: anna -group={usa|china|canada|iwm|mdy|biotech|zacks|ibd|3x} [-date=yyyy-mm-dd] [-conf=filename]\n");
 	printf("               {fetch | fetch-rt | check-db | check-mfi-db | check-pullback-db | check-52w-db | "
-				"check-dbup | check-pullback-dbup | check-52w-dbup | check-strong-dbup | check-lvup | check-52wlup | "
+				"check-dbup | check-pullback-dbup | check-52w-dbup | check-strong-dbup | check-52wlup | "
 				"check-spt | check-20d | check-30d | check-50d | check-60d | check-20dlow | check-50dlow | check-26w20dlow | check-26w50dlow | "
-				"check-10dup | check-20dup | check-50dup | check-200dup | check-20dpb | check-50dpb | check-pb | check-bo | check-2ndbo | check-trend-bo | check-strong-uptrend | check-strong-bo | check-wup | check-wrv | check-lv | check-chg} [symbol-1 symbol-2 ...]\n");
+				"check-10dup | check-20dup | check-50dup | check-200dup | check-20dpb | check-50dpb | check-pb | check-bo | check-2ndbo | check-trend-bo | check-strong-uptrend | check-strong-bo | check-chg} [symbol-1 symbol-2 ...]\n");
 }
 
 static int init_dirs(const char *group)
@@ -281,21 +276,6 @@ int main(int argc, const char **argv)
 			else if (strcmp(arg, "check-strong-body-bo") == 0) {
 				action = ACTION_CHECK_STRONG_BODY_BO;
 			}
-			else if (strcmp(arg, "check-wup") == 0) {
-				action = ACTION_CHECK_WUP;
-			}
-			else if (strcmp(arg, "check-wrv") == 0) {
-				action = ACTION_CHECK_WRV;
-			}
-			else if (strcmp(arg, "check-lv") == 0) {
-				action = ACTION_CHECK_LOW_VOLUME;
-			}
-			else if (strcmp(arg, "check-lvup") == 0) {
-				action = ACTION_CHECK_LOW_VOLUME_UP;
-			}
-			else if (strcmp(arg, "check-vup") == 0) {
-				action = ACTION_CHECK_VOLUME_UP;
-			}
 			else if (strcmp(arg, "check-chg") == 0) {
 				action = ACTION_CHECK_CHANGE;
 			}
@@ -464,26 +444,6 @@ int main(int argc, const char **argv)
 	case ACTION_CHECK_52W_LOWUP:
                 stock_price_check_52w_low_up(group, date, symbols_nr, (const char **)symbols);
                 break;
-
-	case ACTION_CHECK_WUP:
-		stock_price_check_weekup(group, date, symbols_nr, (const char **)symbols);
-		break;
-
-	case ACTION_CHECK_WRV:
-		stock_price_check_week_reverse(group, date, symbols_nr, (const char **)symbols);
-		break;
-
-	case ACTION_CHECK_LOW_VOLUME:
-		stock_price_check_low_volume(group, date, symbols_nr, (const char **)symbols);
-		break;
-
-	case ACTION_CHECK_LOW_VOLUME_UP:
-		stock_price_check_low_volume_up(group, date, symbols_nr, (const char **)symbols);
-		break;
-
-	case ACTION_CHECK_VOLUME_UP:
-		stock_price_check_volume_up(group, date, symbols_nr, (const char **)symbols);
-		break;
 
 	case ACTION_CHECK_CHANGE:
 		stock_price_check_change(group, date, symbols_nr, (const char **)symbols);
