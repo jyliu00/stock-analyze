@@ -3,7 +3,7 @@
 -include ticker_list/dow30.txt
 -include ticker_list/usa_chinese_oversea.txt
 -include ticker_list/zacks_rank123_roe.txt
-#-include ticker_list/zacks_rank123.txt
+-include ticker_list/zacks_rank123.txt
 #-include ticker_list/zacks_rank1.txt
 #-include ticker_list/zacks_rank2.txt
 #-include ticker_list/zacks_rank3.txt
