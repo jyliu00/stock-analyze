@@ -1321,80 +1321,6 @@ static void symbol_check_support(const char *symbol, const struct stock_price *p
 	selected_symbol_nr += 1;
 }
 
-static void symbol_check_volume_support(const char *symbol, const struct stock_price *price_history,
-					const struct date_price *price2check)
-{
-	struct stock_support sspt = { };
-	const struct date_price *yesterday = NULL;
-	int i;
-
-	check_support(price_history, price2check, &sspt);
-
-	if (!sspt.date_nr)
-		return;
-
-	for (i = 0; i < price_history->date_cnt; i++) {
-		const struct date_price *prev = &price_history->dateprice[i];
-		if (strcmp(price2check->date, prev->date) <= 0)
-			continue;
-
-		yesterday = prev;
-
-		break;
-	}
-
-	/* volume > 1.6 times */
-	if (!yesterday || price2check->volume*10 < yesterday->vma[VMA_20d]*16)
-		return;
-
-	anna_info("%s%-10s%s: date=%s, %s; is supported by %d dates:",
-		  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
-		  price2check->date, get_price_volume_change(price_history, price2check), sspt.date_nr);
-
-	anna_info("%s<sector=%s>%s.\n", ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
-
-	selected_symbol_nr += 1;
-}
-
-static void symbol_check_crawl_sma(const char *symbol, const struct stock_price *price_history,
-				 const struct date_price *price2check)
-{
-	int i, j;
-	int count = 0;
-
-	for (i = 0; i < price_history->date_cnt; i++) {
-		const struct date_price *prev = &price_history->dateprice[i];
-		if (strcmp(price2check->date, prev->date) < 0)
-			continue;
-
-		for (j = i; j < price_history->date_cnt; j++) {
-			prev = &price_history->dateprice[j];
-
-			if (prev->volume && prev->sma[sma2check] != 0
-			    && prev->close >= prev->sma[sma2check]
-			    && (sma_hit(prev->low, prev->sma[sma2check])
-				|| sma_hit(get_2ndlow(prev), prev->sma[sma2check])))
-			{
-				count += 1;
-			}
-			else
-				break;
-		}
-
-		if (count >= 4) {
-			anna_info("%s%-10s%s: date=%s, %s; has %d days crawl on SMA%dd; %s<sector=%s>%s.\n",
-				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
-				price2check->date, get_price_volume_change(price_history, price2check),
-				count, sma2check == SMA_20d ? 20 : 50,
-				ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
-
-			selected_symbol_nr += 1;
-		}
-
-		break;
-	}
-}
-
 static int good_up_day(const struct date_price *price2check, const struct date_price *yesterday)
 {
 	if (price2check->candle_trend == CANDLE_TREND_BEAR)
@@ -2151,29 +2077,6 @@ static void symbol_check_mfi(const char *symbol, const struct stock_price *price
 	}
 }
 
-static void symbol_check_early_up(const char *symbol, const struct stock_price *price_history,
-				    const struct date_price *price2check)
-{
-	int i;
-
-	for (i = 0; i < price_history->date_cnt; i++) {
-		const struct date_price *prev = &price_history->dateprice[i];
-
-		if (strcmp(price2check->date, prev->date) <= 0)
-			continue;
-
-		if ((price2check->close - prev->close) * 1000 / prev->close >= 25) {
-			anna_info("%s%-10s%s: date=%s, %s, is early up from yesterday date=%s.\n",
-				  ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET, price2check->date,
-				  get_price_volume_change(price_history, price2check), prev->date);
-
-			selected_symbol_nr += 1;
-		}
-
-		break;
-	}
-}
-
 static void symbol_check_52w_low_up(const char *symbol, const struct stock_price *price_history,
 				    const struct date_price *price2check)
 {
@@ -2629,25 +2532,12 @@ void stock_price_check_support(const char *group, const char *date, int symbols_
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_support);
 }
 
-void stock_price_check_volume_support(const char *group, const char *date, int symbols_nr, const char **symbols)
-{
-	stock_price_check(group, date, symbols_nr, symbols, symbol_check_volume_support);
-}
-
 void stock_price_check_sma(const char *group, const char *date, int sma_idx, int symbols_nr, const char **symbols)
 {
 	sma2check = sma_idx;
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_support);
 	sma2check = -1;
 }
-
-void stock_price_check_crawl_sma(const char *group, const char *date, int sma_idx, int symbols_nr, const char **symbols)
-{
-	sma2check = sma_idx;
-	stock_price_check(group, date, symbols_nr, symbols, symbol_check_crawl_sma);
-	sma2check = -1;
-}
-
 
 void stock_price_check_weeks_low_sma(const char *group, const char *date, int weeks, int sma_idx, int symbols_nr, const char **symbols)
 {
@@ -2750,11 +2640,6 @@ void stock_price_check_strong_body_breakout(const char *group, const char *date,
 void stock_price_check_mfi(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_mfi);
-}
-
-void stock_price_check_early_up(const char *group, const char *date, int symbols_nr, const char **symbols)
-{
-	stock_price_check(group, date, symbols_nr, symbols, symbol_check_early_up);
 }
 
 void stock_price_check_52w_low_up(const char *group, const char *date, int symbols_nr, const char **symbols)

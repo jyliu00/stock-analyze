@@ -84,9 +84,7 @@ int stock_price_from_file(const char *fname, struct stock_price *price);
 int stock_price_to_file(const char *group, const char *sector, const char *symbol, const struct stock_price *price);
 void fprintf_date_price(FILE *fp, const struct date_price *p);
 void stock_price_check_support(const char *group, const char *date, int symbols_nr, const char **symbols);
-void stock_price_check_volume_support(const char *group, const char *date, int symbols_nr, const char **symbols);
 void stock_price_check_sma(const char *group, const char *date, int sma_idx, int symbols_nr, const char **symbols);
-void stock_price_check_crawl_sma(const char *group, const char *date, int sma_idx, int symbols_nr, const char **symbols);
 void stock_price_check_weeks_low_sma(const char *group, const char *date, int weeks, int sma_idx, int symbols_nr, const char **symbols);
 void stock_price_check_sma_pullback(const char *group, const char *date, int sma_idx, int symbols_nr, const char **symbols);
 void stock_price_check_sma_breakout(const char *group, const char *date, int sma_idx, int symbols_nr, const char **symbols);
@@ -105,7 +103,6 @@ void stock_price_check_strong_body_breakout(const char *group, const char *date,
 void stock_price_check_2nd_breakout(const char *group, const char *date, int symbols_nr, const char **symbols);
 void stock_price_check_trend_breakout(const char *group, const char *date, int symbols_nr, const char **symbols);
 void stock_price_check_strong_uptrend(const char *group, const char *date, int symbols_nr, const char **symbols);
-void stock_price_check_early_up(const char *group, const char *date, int symbols_nr, const char **symbols);
 void stock_price_check_52w_low_up(const char *group, const char *date, int symbols_nr, const char **symbols);
 void stock_price_check_weekup(const char *group, const char *date, int symbols_nr, const char **symbols);
 void stock_price_check_week_reverse(const char *group, const char *date, int symbols_nr, const char **symbols);

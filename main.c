@@ -11,8 +11,6 @@
 #include <sys/types.h>
 #include <ctype.h>
 
-extern void zacks_check_momentum( );
-
 static char ticker_list_fname[128];
 
 enum
@@ -22,12 +20,10 @@ enum
 	ACTION_FETCH,
 	ACTION_FETCH_REALTIME,
 	ACTION_CHECK_SPT, /* support */
-	ACTION_CHECK_VOLUME_SPT, /* extremely high or low volume at support */
 	ACTION_CHECK_SMA20d, /* support at sma20d */
 	ACTION_CHECK_SMA30d, /* support at sma30d */
 	ACTION_CHECK_SMA50d, /* support at sma50d */
 	ACTION_CHECK_SMA60d, /* support at sma60d */
-	ACTION_CHECK_CRAWL_SMA20d, /* crawl around sma20d for a few days */
 	ACTION_CHECK_26W_LOW_SMA20d, /* 26 week low cross above sma20 */
 	ACTION_CHECK_26W_LOW_SMA50d, /* 26 week low cross above sma50 */
 	ACTION_CHECK_13W_LOW_SMA20d, /* 13 week low cross above sma20 */
@@ -50,7 +46,6 @@ enum
 	ACTION_CHECK_PB, /* pull back */
 	ACTION_CHECK_BO, /* break out */
 	ACTION_CHECK_2nd_BO, /* 2nd break out */
-	ACTION_CHECK_EARLY_UP, /* early up */
 	ACTION_CHECK_52W_LOWUP, /* up from 52w low */
 	ACTION_CHECK_WUP, /* week up */
 	ACTION_CHECK_WRV, /* week reverse */
@@ -58,7 +53,6 @@ enum
 	ACTION_CHECK_LOW_VOLUME_UP,
 	ACTION_CHECK_VOLUME_UP,
 	ACTION_CHECK_CHANGE,
-	ACTION_CHECK_MOMENTUM,
 	ACTION_CHECK_TREND_BO, /* trendline breakout */
 	ACTION_CHECK_STRONG_UPTREND,
 	ACTION_CHECK_STRONG_BO,
@@ -73,9 +67,9 @@ const char *group_list[ ] = { "usa", "iwm", "mdy", "zacks", "ibd", "biotech", "3
 static void print_usage(void)
 {
 	printf("Usage: anna -group={usa|china|canada|iwm|mdy|biotech|zacks|ibd|3x} [-date=yyyy-mm-dd] [-conf=filename]\n");
-	printf("               {fetch | fetch-rt | check-mmt | check-db | check-mfi-db | check-pullback-db | check-52w-db | "
-				"check-dbup | check-pullback-dbup | check-52w-dbup | check-strong-dbup | check-lvup | check-earlyup | check-52wlup | "
-				"check-spt | check-volume-spt | check-20d | check-30d | check-50d | check-60d | check-crawl20d | check-20dlow | check-50dlow | check-26w20dlow | check-26w50dlow | "
+	printf("               {fetch | fetch-rt | check-db | check-mfi-db | check-pullback-db | check-52w-db | "
+				"check-dbup | check-pullback-dbup | check-52w-dbup | check-strong-dbup | check-lvup | check-52wlup | "
+				"check-spt | check-20d | check-30d | check-50d | check-60d | check-20dlow | check-50dlow | check-26w20dlow | check-26w50dlow | "
 				"check-10dup | check-20dup | check-50dup | check-200dup | check-20dpb | check-50dpb | check-pb | check-bo | check-2ndbo | check-trend-bo | check-strong-uptrend | check-strong-bo | check-wup | check-wrv | check-lv | check-chg} [symbol-1 symbol-2 ...]\n");
 }
 
@@ -191,14 +185,8 @@ int main(int argc, const char **argv)
 			else if (strcmp(arg, "fetch-rt") == 0) {
 				action = ACTION_FETCH_REALTIME;
 			}
-			else if (strcmp(arg, "check-mmt") == 0) {
-				action = ACTION_CHECK_MOMENTUM;
-			}
 			else if (strcmp(arg, "check-spt") == 0) {
 				action = ACTION_CHECK_SPT;
-			}
-			else if (strcmp(arg, "check-volume-spt") == 0) {
-				action = ACTION_CHECK_VOLUME_SPT;
 			}
 			else if (strcmp(arg, "check-20d") == 0) {
 				action = ACTION_CHECK_SMA20d;
@@ -211,9 +199,6 @@ int main(int argc, const char **argv)
 			}
 			else if (strcmp(arg, "check-60d") == 0) {
 				action = ACTION_CHECK_SMA60d;
-			}
-			else if (strcmp(arg, "check-crawl20d") == 0) {
-				action = ACTION_CHECK_CRAWL_SMA20d;
 			}
 			else if (strcmp(arg, "check-20dlow") == 0) {
 				action = ACTION_CHECK_13W_LOW_SMA20d;
@@ -274,9 +259,6 @@ int main(int argc, const char **argv)
 			}
 			else if (strcmp(arg, "check-pb") == 0) {
 				action = ACTION_CHECK_PB;
-			}
-			else if (strcmp(arg, "check-earlyup") == 0) {
-				action = ACTION_CHECK_EARLY_UP;
 			}
 			else if (strcmp(arg, "check-52wlup") == 0) {
 				action = ACTION_CHECK_52W_LOWUP;
@@ -371,16 +353,8 @@ int main(int argc, const char **argv)
 		fetch_symbols_price(1, group, ticker_list_fname, symbols_nr, (const char **)symbols);
 		break;
 
-	case ACTION_CHECK_MOMENTUM:
-		zacks_check_momentum( );
-		break;
-
 	case ACTION_CHECK_SPT:
 		stock_price_check_support(group, date, symbols_nr, (const char **)symbols);
-		break;
-
-	case ACTION_CHECK_VOLUME_SPT:
-		stock_price_check_volume_support(group, date, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_SMA20d:
@@ -397,10 +371,6 @@ int main(int argc, const char **argv)
 
 	case ACTION_CHECK_SMA60d:
 		stock_price_check_sma(group, date, SMA_60d, symbols_nr, (const char **)symbols);
-		break;
-
-	case ACTION_CHECK_CRAWL_SMA20d:
-		stock_price_check_crawl_sma(group, date, SMA_20d, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_26W_LOW_SMA20d:
@@ -489,10 +459,6 @@ int main(int argc, const char **argv)
 
 	case ACTION_CHECK_2nd_BO:
 		stock_price_check_2nd_breakout(group, date, symbols_nr, (const char **)symbols);
-		break;
-
-	case ACTION_CHECK_EARLY_UP:
-		stock_price_check_early_up(group, date, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_52W_LOWUP:
