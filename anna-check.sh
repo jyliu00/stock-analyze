@@ -8,12 +8,8 @@ printf "\n\x1b[33mStrong Break Out\x1b[0m:\n\n"
 
 anna -group=$1 check-strong-body-bo
 
-printf "\n\x1b[33mStrong cross up sma20d\x1b[0m:\n\n"
+printf "\n\x1b[33mSMA20d BreakOut\x1b[0m:\n\n"
 
-anna -group=$1 check-20dup
-
-printf "\n\x1b[33mmfi\x1b[0m:\n\n"
-
-anna -group=$1 check-mfi
+anna -group=$1 check-20d-bo
 
 echo ""
