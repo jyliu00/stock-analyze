@@ -2073,6 +2073,36 @@ static void symbol_check_mfi(const char *symbol, const struct stock_price *price
 	}
 }
 
+static void symbol_check_reverse_upday(const char *symbol, const struct stock_price *price_history,
+					const struct date_price *price2check)
+{
+	int i;
+
+	if (price2check->close < price2check->open
+	    || (price2check->close - price2check->low) * 100 / (price2check->high - price2check->low) < 70)
+		return;
+
+	for (i = 0; i < price_history->date_cnt; i++) {
+		const struct date_price *yesterday = &price_history->dateprice[i];
+
+		if (strcmp(price2check->date, yesterday->date) <= 0)
+			continue;
+
+		if (yesterday->close <= yesterday->open
+		    && price2check->volume >= yesterday->vma[VMA_20d] * 2)
+		{
+			anna_info("%s%-10s%s: date=%s, %s; %s.\n",
+				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+				price2check->date, get_price_volume_change(price_history, price2check),
+				price_history->sector);
+
+			selected_symbol_nr += 1;
+
+		}
+		break;
+	}
+}
+
 static void symbol_check_52w_low_up(const char *symbol, const struct stock_price *price_history,
 				    const struct date_price *price2check)
 {
@@ -2440,6 +2470,11 @@ void stock_price_check_strong_body_breakout(const char *group, const char *date,
 void stock_price_check_mfi(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_mfi);
+}
+
+void stock_price_check_reverse_upday(const char *group, const char *date, int symbols_nr, const char **symbols)
+{
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_reverse_upday);
 }
 
 void stock_price_check_52w_low_up(const char *group, const char *date, int symbols_nr, const char **symbols)

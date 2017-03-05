@@ -53,6 +53,7 @@ enum
 	ACTION_CHECK_STRONG_BO,
 	ACTION_CHECK_STRONG_BODY_BO,
 	ACTION_CHECK_MFI,
+	ACTION_CHECK_REVERSE_UPDAY,
 
 	ACTION_NR
 };
@@ -65,7 +66,8 @@ static void print_usage(void)
 	printf("               {fetch | fetch-rt | check-db | check-mfi-db | check-pullback-db | check-52w-db | "
 				"check-dbup | check-pullback-dbup | check-52w-dbup | check-strong-dbup | check-52wlup | "
 				"check-spt | check-20d | check-30d | check-50d | check-60d | check-20dlow | check-50dlow | check-26w20dlow | check-26w50dlow | "
-				"check-10dup | check-20dup | check-50dup | check-200dup | check-20dpb | check-50dpb | check-pb | check-bo | check-2ndbo | check-trend-bo | check-strong-uptrend | check-strong-bo | check-chg} [symbol-1 symbol-2 ...]\n");
+				"check-10dup | check-20dup | check-50dup | check-200dup | check-20dpb | check-50dpb | check-pb | check-bo | check-2ndbo | "
+				"check-trend-bo | check-strong-uptrend | check-strong-bo | check-mfi | check-reverse-upday | check-chg} [symbol-1 symbol-2 ...]\n");
 }
 
 static int init_dirs(const char *group)
@@ -282,6 +284,9 @@ int main(int argc, const char **argv)
 			else if (strcmp(arg, "check-mfi") == 0) {
 				action = ACTION_CHECK_MFI;
 			}
+			else if (strcmp(arg, "check-reverse-upday") == 0) {
+				action = ACTION_CHECK_REVERSE_UPDAY;
+			}
 		}
 		else if (strncmp(arg, "-group=", strlen("-group=")) == 0) {
 			p = strchr(arg, '=');
@@ -464,6 +469,11 @@ int main(int argc, const char **argv)
 		break;
 	case ACTION_CHECK_MFI:
 		stock_price_check_mfi(group, date, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_REVERSE_UPDAY:
+		stock_price_check_reverse_upday(group, date, symbols_nr, (const char **)symbols);
+		break;
 	}
 
 finish:
