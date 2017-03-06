@@ -106,6 +106,6 @@ void stock_price_check_strong_uptrend(const char *group, const char *date, int s
 void stock_price_check_52w_low_up(const char *group, const char *date, int symbols_nr, const char **symbols);
 void stock_price_check_change(const char *group, const char *date, int symbols_nr, const char **symbols);
 void stock_price_check_mfi(const char *group, const char *date, int symbols_nr, const char **symbols);
-void stock_price_check_reverse_upday(const char *group, const char *date, int symbols_nr, const char **symbols);
+void stock_price_check_reverse_up(const char *group, const char *date, int symbols_nr, const char **symbols);
 
 #endif /* __STOCK_PRICE_H__ */

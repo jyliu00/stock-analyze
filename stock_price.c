@@ -2073,7 +2073,7 @@ static void symbol_check_mfi(const char *symbol, const struct stock_price *price
 	}
 }
 
-static void symbol_check_reverse_upday(const char *symbol, const struct stock_price *price_history,
+static void symbol_check_reverse_up(const char *symbol, const struct stock_price *price_history,
 					const struct date_price *price2check)
 {
 	int i;
@@ -2089,6 +2089,9 @@ static void symbol_check_reverse_upday(const char *symbol, const struct stock_pr
 			continue;
 
 		if (yesterday->close <= yesterday->open
+		    && (price2check->high < yesterday->high || price2check->close < yesterday->high)
+		    && (price2check->close >= yesterday->low + (yesterday->high - yesterday->low) / 2)
+		    && yesterday->open > (yesterday+1)->low /* yesterday is NOT gap down */
 		    && price2check->volume >= yesterday->vma[VMA_20d] * 2)
 		{
 			anna_info("%s%-10s%s: date=%s, %s; %s.\n",
@@ -2472,9 +2475,9 @@ void stock_price_check_mfi(const char *group, const char *date, int symbols_nr, 
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_mfi);
 }
 
-void stock_price_check_reverse_upday(const char *group, const char *date, int symbols_nr, const char **symbols)
+void stock_price_check_reverse_up(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
-	stock_price_check(group, date, symbols_nr, symbols, symbol_check_reverse_upday);
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_reverse_up);
 }
 
 void stock_price_check_52w_low_up(const char *group, const char *date, int symbols_nr, const char **symbols)

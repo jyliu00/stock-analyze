@@ -53,7 +53,7 @@ enum
 	ACTION_CHECK_STRONG_BO,
 	ACTION_CHECK_STRONG_BODY_BO,
 	ACTION_CHECK_MFI,
-	ACTION_CHECK_REVERSE_UPDAY,
+	ACTION_CHECK_REVERSE_UP,
 
 	ACTION_NR
 };
@@ -284,8 +284,8 @@ int main(int argc, const char **argv)
 			else if (strcmp(arg, "check-mfi") == 0) {
 				action = ACTION_CHECK_MFI;
 			}
-			else if (strcmp(arg, "check-reverse-upday") == 0) {
-				action = ACTION_CHECK_REVERSE_UPDAY;
+			else if (strcmp(arg, "check-reverse-up") == 0) {
+				action = ACTION_CHECK_REVERSE_UP;
 			}
 		}
 		else if (strncmp(arg, "-group=", strlen("-group=")) == 0) {
@@ -471,8 +471,8 @@ int main(int argc, const char **argv)
 		stock_price_check_mfi(group, date, symbols_nr, (const char **)symbols);
 		break;
 
-	case ACTION_CHECK_REVERSE_UPDAY:
-		stock_price_check_reverse_upday(group, date, symbols_nr, (const char **)symbols);
+	case ACTION_CHECK_REVERSE_UP:
+		stock_price_check_reverse_up(group, date, symbols_nr, (const char **)symbols);
 		break;
 	}
 
