@@ -2040,9 +2040,67 @@ static void symbol_check_strong_breakout(const char *symbol, const struct stock_
 }
 
 static void symbol_check_strong_body_breakout(const char *symbol, const struct stock_price *price_history,
-					 const struct date_price *price2check)
+						 const struct date_price *price2check)
 {
 	__symbol_check_strong_breakout(symbol, price_history, price2check, 1);
+}
+
+static void symbol_check_resist_breakout(const char *symbol, const struct stock_price *price_history,
+					 const struct date_price *price2check)
+{
+	const struct date_price *yesterday;
+	int i, j, matched_date = 0;
+	uint32_t yesterday_2ndlow;
+	uint32_t price2check_2ndhigh = get_2ndhigh(price2check);
+
+	for (i = 0; i < price_history->date_cnt; i++) {
+		yesterday = &price_history->dateprice[i];
+		if (strcmp(price2check->date, yesterday->date) > 0)
+			break;
+	}
+
+	if (price2check->volume * 100 < yesterday->vma[VMA_20d] * 115)
+		return;
+
+	i += 1;
+
+	if (i == price_history->date_cnt)
+		return;
+
+	yesterday_2ndlow = get_2ndlow(yesterday);
+
+	for (j = 0; j < 250 && i < price_history->date_cnt; i++, j++) {
+		const struct date_price *prev = &price_history->dateprice[i];
+		uint32_t prev_2ndhigh = get_2ndhigh(prev);
+
+		if (prev_2ndhigh >= price2check_2ndhigh)
+			break;
+
+		if (!is_resist(prev->sr_flag));
+			continue;
+
+		if (prev->sr_flag & SR_F_RESIST_HIGH) {
+			if (price2check->close > prev->high
+			    && (price2check->low < prev->high || yesterday_2ndlow < prev->high))
+				matched_date += 1;
+		}
+		else if (prev->sr_flag & SR_F_RESIST_HIGH) {
+			if (price2check->close > prev_2ndhigh
+			    && (price2check->low < prev_2ndhigh || yesterday_2ndlow < prev_2ndhigh))
+				matched_date += 1;
+		}
+	}
+
+	if (matched_date < 2)
+		return;
+
+	anna_info("%s%-10s%s: date=%s, matched_date=%d, %s; %s.\n",
+		ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+		price2check->date, matched_date, get_price_volume_change(price_history, price2check),
+		price_history->sector);
+
+	selected_symbol_nr += 1;
+
 }
 
 static void symbol_check_mfi(const char *symbol, const struct stock_price *price_history,
@@ -2468,6 +2526,11 @@ void stock_price_check_strong_breakout(const char *group, const char *date, int 
 void stock_price_check_strong_body_breakout(const char *group, const char *date, int symbols_nr, const char **symbols)
 {
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_strong_body_breakout);
+}
+
+void stock_price_check_resist_breakout(const char *group, const char *date, int symbols_nr, const char **symbols)
+{
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_resist_breakout);
 }
 
 void stock_price_check_mfi(const char *group, const char *date, int symbols_nr, const char **symbols)

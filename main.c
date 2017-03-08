@@ -52,6 +52,7 @@ enum
 	ACTION_CHECK_STRONG_UPTREND,
 	ACTION_CHECK_STRONG_BO,
 	ACTION_CHECK_STRONG_BODY_BO,
+	ACTION_CHECK_RESIST_BO,
 	ACTION_CHECK_MFI,
 	ACTION_CHECK_REVERSE_UP,
 
@@ -67,7 +68,7 @@ static void print_usage(void)
 				"check-dbup | check-pullback-dbup | check-52w-dbup | check-strong-dbup | check-52wlup | "
 				"check-spt | check-20d | check-30d | check-50d | check-60d | check-20dlow | check-50dlow | check-26w20dlow | check-26w50dlow | "
 				"check-10dup | check-20dup | check-50dup | check-200dup | check-20dpb | check-50dpb | check-pb | check-bo | check-2ndbo | "
-				"check-trend-bo | check-strong-uptrend | check-strong-bo | check-mfi | check-reverse-upday | check-chg} [symbol-1 symbol-2 ...]\n");
+				"check-trend-bo | check-strong-uptrend | check-strong-bo | check-resist-bo | check-mfi | check-reverse-upday | check-chg} [symbol-1 symbol-2 ...]\n");
 }
 
 static int init_dirs(const char *group)
@@ -278,6 +279,9 @@ int main(int argc, const char **argv)
 			else if (strcmp(arg, "check-strong-body-bo") == 0) {
 				action = ACTION_CHECK_STRONG_BODY_BO;
 			}
+			else if (strcmp(arg, "check-resist-bo") == 0) {
+				action = ACTION_CHECK_RESIST_BO;
+			}
 			else if (strcmp(arg, "check-chg") == 0) {
 				action = ACTION_CHECK_CHANGE;
 			}
@@ -467,6 +471,11 @@ int main(int argc, const char **argv)
 	case ACTION_CHECK_STRONG_BODY_BO:
 		stock_price_check_strong_body_breakout(group, date, symbols_nr, (const char **)symbols);
 		break;
+
+	case ACTION_CHECK_RESIST_BO:
+		stock_price_check_resist_breakout(group, date, symbols_nr, (const char **)symbols);
+		break;
+
 	case ACTION_CHECK_MFI:
 		stock_price_check_mfi(group, date, symbols_nr, (const char **)symbols);
 		break;
