@@ -1359,7 +1359,7 @@ static int is_sma_crossup(const struct date_price *today, const struct date_pric
 	if (today->low < yesterday->sma[sma2check] && today->close > yesterday->sma[sma2check])
 		return 1;
 
-	if (today->close > yesterday->sma[sma2check] && get_2ndlow(yesterday) < yesterday->sma[sma2check])
+	if (today->close > yesterday->sma[sma2check] && yesterday->low < yesterday->sma[sma2check])
 		return 1;
 
 	return 0;
