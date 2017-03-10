@@ -1518,6 +1518,45 @@ static void symbol_check_sma_breakout(const char *symbol, const struct stock_pri
 	selected_symbol_nr += 1;
 }
 
+static void symbol_check_sma_trendup(const char *symbol, const struct stock_price *price_history,
+					 const struct date_price *price2check)
+{
+	const struct date_price *yesterday;
+	uint64_t diff_low, diff_open;
+	int i, j;
+
+	if (price2check->close < price2check->open)
+		return;
+
+	for (i = 0; i < price_history->date_cnt; i++) {
+		yesterday = &price_history->dateprice[i];
+		if (strcmp(price2check->date, yesterday->date) > 0)
+			break;
+	}
+
+	if (i == price_history->date_cnt)
+		return;
+
+	diff_low = price2check->low > yesterday->sma[sma2check] ? (price2check->low - yesterday->sma[sma2check]) : (yesterday->sma[sma2check] - price2check->low);
+	diff_open = price2check->open > yesterday->sma[sma2check] ? (price2check->open - yesterday->sma[sma2check]) : (yesterday->sma[sma2check] - price2check->open);
+
+	if (diff_low * 1000 / yesterday->sma[sma2check] > 5 && diff_open * 1000 / yesterday->sma[sma2check] > 5)
+		return;
+
+	for (j = 0; j < sma_days[sma2check] && i < price_history->date_cnt; i++, j++) {
+		const struct date_price *prev = &price_history->dateprice[i];
+		if (prev->close < prev->sma[sma2check])
+			return;
+	}
+
+	anna_info("%s%-10s%s: date=%s, %s; %s<sector=%s>%s.\n",
+		ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+		price2check->date, get_price_volume_change(price_history, price2check),
+		ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+
+	selected_symbol_nr += 1;
+}
+
 static int get_date_count(const struct stock_price *price_history, const char *date1, const char *date2)
 {
 	const char *date_smaller, *date_bigger;
@@ -2450,6 +2489,13 @@ void stock_price_check_sma_breakout(const char *group, const char *date, int sma
 {
 	sma2check = sma_idx;
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_sma_breakout);
+	sma2check = -1;
+}
+
+void stock_price_check_sma_trendup(const char *group, const char *date, int sma_idx, int symbols_nr, const char **symbols)
+{
+	sma2check = sma_idx;
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_sma_trendup);
 	sma2check = -1;
 }
 

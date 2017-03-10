@@ -35,6 +35,7 @@ enum
 	ACTION_CHECK_SMA20d_PULLBACK, /* previous day cross above sma20d, today pullback beneth sma20d */
 	ACTION_CHECK_SMA50d_PULLBACK, /* previous day cross above sma50d, today pullback beneth sma50d */
 	ACTION_CHECK_SMA20d_BREAKOUT, /* breakout sma20d */
+	ACTION_CHECK_SMA10d_TRENDUP,
 	ACTION_CHECK_DB, /* double bottom */
 	ACTION_CHECK_PULLBACK_DB, /* pullback double bottom */
 	ACTION_CHECK_MFI_DB, /* double bottom with rising money flow index */
@@ -231,6 +232,9 @@ int main(int argc, const char **argv)
 			else if (strcmp(arg, "check-20d-bo") == 0) {
 				action = ACTION_CHECK_SMA20d_BREAKOUT;
 			}
+			else if (strcmp(arg, "check-10d-trendup") == 0) {
+				action = ACTION_CHECK_SMA10d_TRENDUP;
+			}
 			else if (strcmp(arg, "check-db") == 0) {
 				action = ACTION_CHECK_DB;
 			}
@@ -404,6 +408,10 @@ int main(int argc, const char **argv)
 
 	case ACTION_CHECK_SMA20d_BREAKOUT:
 		stock_price_check_sma_breakout(group, date, SMA_20d, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_SMA10d_TRENDUP:
+		stock_price_check_sma_trendup(group, date, SMA_10d, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_DB:
