@@ -32,6 +32,7 @@ enum
 	ACTION_CHECK_SMA20d_UP, /* cross above sma20 */
 	ACTION_CHECK_SMA50d_UP, /* cross above sma50 */
 	ACTION_CHECK_SMA200d_UP, /* cross above sma200 */
+	ACTION_CHECK_STRONG_SMA20d_UP,
 	ACTION_CHECK_SMA20d_PULLBACK, /* previous day cross above sma20d, today pullback beneth sma20d */
 	ACTION_CHECK_SMA50d_PULLBACK, /* previous day cross above sma50d, today pullback beneth sma50d */
 	ACTION_CHECK_SMA20d_BREAKOUT, /* breakout sma20d */
@@ -68,8 +69,8 @@ static void print_usage(void)
 	printf("               {fetch | fetch-rt | check-db | check-mfi-db | check-pullback-db | check-52w-db | "
 				"check-dbup | check-pullback-dbup | check-52w-dbup | check-strong-dbup | check-52wlup | "
 				"check-spt | check-20d | check-30d | check-50d | check-60d | check-20dlow | check-50dlow | check-26w20dlow | check-26w50dlow | "
-				"check-10dup | check-20dup | check-50dup | check-200dup | check-20dpb | check-50dpb | check-pb | check-bo | check-2ndbo | "
-				"check-trend-bo | check-strong-uptrend | check-strong-bo | check-resist-bo | check-mfi | check-reverse-upday | check-chg} [symbol-1 symbol-2 ...]\n");
+				"check-10dup | check-20dup | check-strong-20dup | check-50dup | check-200dup | check-20dpb | check-50dpb | check-pb | check-bo | check-2ndbo | "
+				"check-trend-bo | check-strong-uptrend | check-strong-bo | check-10d-trendup | check-resist-bo | check-mfi | check-reverse-upday | check-chg} [symbol-1 symbol-2 ...]\n");
 }
 
 static int init_dirs(const char *group)
@@ -216,6 +217,9 @@ int main(int argc, const char **argv)
 			}
 			else if (strcmp(arg, "check-20dup") == 0) {
 				action = ACTION_CHECK_SMA20d_UP;
+			}
+			else if (strcmp(arg, "check-strong-20dup") == 0) {
+				action = ACTION_CHECK_STRONG_SMA20d_UP;
 			}
 			else if (strcmp(arg, "check-50dup") == 0) {
 				action = ACTION_CHECK_SMA50d_UP;
@@ -408,6 +412,10 @@ int main(int argc, const char **argv)
 
 	case ACTION_CHECK_SMA20d_BREAKOUT:
 		stock_price_check_sma_breakout(group, date, SMA_20d, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_STRONG_SMA20d_UP:
+		stock_price_check_strong_sma_up(group, date, SMA_20d, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_SMA10d_TRENDUP:

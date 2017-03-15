@@ -89,6 +89,7 @@ void stock_price_check_weeks_low_sma(const char *group, const char *date, int we
 void stock_price_check_sma_pullback(const char *group, const char *date, int sma_idx, int symbols_nr, const char **symbols);
 void stock_price_check_sma_breakout(const char *group, const char *date, int sma_idx, int symbols_nr, const char **symbols);
 void stock_price_check_sma_trendup(const char *group, const char *date, int sma_idx, int symbols_nr, const char **symbols);
+void stock_price_check_strong_sma_up(const char *group, const char *date, int sma_idx, int symbols_nr, const char **symbols);
 void stock_price_check_doublebottom(const char *group, const char *date, int symbols_nr, const char **symbols);
 void stock_price_check_mfi_doublebottom(const char *group, const char *date, int symbols_nr, const char **symbols);
 void stock_price_check_pullback_doublebottom(const char *group, const char *date, int symbols_nr, const char **symbols);

@@ -1557,6 +1557,46 @@ static void symbol_check_sma_trendup(const char *symbol, const struct stock_pric
 	selected_symbol_nr += 1;
 }
 
+static void symbol_check_strong_sma_up(const char *symbol, const struct stock_price *price_history,
+					 const struct date_price *price2check)
+{
+	const struct date_price *yesterday;
+	uint32_t price2check_2ndhigh = get_2ndhigh(price2check);
+	int i, j;
+
+	if (price2check->close < price2check->open)
+		return;
+
+	for (i = 0; i < price_history->date_cnt; i++) {
+		yesterday = &price_history->dateprice[i];
+		if (strcmp(price2check->date, yesterday->date) > 0)
+			break;
+	}
+
+	if (i == price_history->date_cnt)
+		return;
+
+	if (!is_sma_crossup(price2check, yesterday)
+	    || price2check->volume * 100 < yesterday->vma[VMA_20d] * 125)
+		return;
+
+	for (j = 0; j < 15 && i < price_history->date_cnt; j++, i++) {
+		const struct date_price *prev = &price_history->dateprice[i];
+		if (price2check_2ndhigh < get_2ndhigh(prev))
+			break;
+	}
+
+	if (j < 15)
+		return;
+
+	anna_info("%s%-10s%s: date=%s, %s; %s<sector=%s>%s.\n",
+		ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
+		price2check->date, get_price_volume_change(price_history, price2check),
+		ANSI_COLOR_YELLOW, price_history->sector, ANSI_COLOR_RESET);
+
+	selected_symbol_nr += 1;
+}
+
 static int get_date_count(const struct stock_price *price_history, const char *date1, const char *date2)
 {
 	const char *date_smaller, *date_bigger;
@@ -2496,6 +2536,13 @@ void stock_price_check_sma_trendup(const char *group, const char *date, int sma_
 {
 	sma2check = sma_idx;
 	stock_price_check(group, date, symbols_nr, symbols, symbol_check_sma_trendup);
+	sma2check = -1;
+}
+
+void stock_price_check_strong_sma_up(const char *group, const char *date, int sma_idx, int symbols_nr, const char **symbols)
+{
+	sma2check = sma_idx;
+	stock_price_check(group, date, symbols_nr, symbols, symbol_check_strong_sma_up);
 	sma2check = -1;
 }
 
