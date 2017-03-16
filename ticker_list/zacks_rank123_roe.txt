@@ -194,10 +194,10 @@ BUFF	NSDQ	Consumer Products - Staples
 EPC	NYSE	Consumer Products - Staples
 KMB	NYSE	Consumer Products - Staples
 NWL	NYSE	Consumer Products - Staples
+SPB	NYSE	Consumer Products - Staples
 TUP	NYSE	Consumer Products - Staples
 BLL	NYSE	Containers - Metal and Glass
 CCK	NYSE	Containers - Metal and Glass
-ATR	NYSE	Containers - Paper and Packaging
 BERY	NYSE	Containers - Paper and Packaging
 BMS	NYSE	Containers - Paper and Packaging
 GPK	NYSE	Containers - Paper and Packaging
@@ -283,7 +283,8 @@ PFG	NYSE	Financial - Investment Management
 TROW	NSDQ	Financial - Investment Management
 AER	NYSE	Financial - Leasing Companies
 AXP	NYSE	Financial - Miscellaneous Services
-HLI	NYSE	Financial - Miscellaneous Services
+EEFT	NSDQ	Financial - Miscellaneous Services
+HAWK	NSDQ	Financial - Miscellaneous Services
 SYF	NYSE	Financial - Miscellaneous Services
 ESNT	NYSE	Financial - Mortgage & Related Services
 EVER	NYSE	Financial - Savings and Loan
@@ -300,12 +301,14 @@ FISV	NSDQ	Financial Transaction Services
 FLT	NYSE	Financial Transaction Services
 GPN	NYSE	Financial Transaction Services
 MA	NYSE	Financial Transaction Services
+PAY	NYSE	Financial Transaction Services
 QIWI	NSDQ	Financial Transaction Services
 TSS	NYSE	Financial Transaction Services
 VNTV	NYSE	Financial Transaction Services
 V	NYSE	Financial Transaction Services
 WEX	NYSE	Financial Transaction Services
 HSY	NYSE	Food - Confectionery
+TWNK	NSDQ	Food - Confectionery
 DF	NYSE	Food - Dairy Products
 PPC	NSDQ	Food - Meat Products
 SAFM	NSDQ	Food - Meat Products
@@ -325,7 +328,6 @@ SYY	NYSE	Food - Miscellaneous
 VSI	NYSE	Food - Natural Foods Products
 SCI	NYSE	Funeral Services
 LEG	NYSE	Furniture
-LZB	NYSE	Furniture
 BYD	NYSE	Gaming
 IGT	NYSE	Gaming
 LVS	NYSE	Gaming
@@ -333,11 +335,9 @@ OI	NYSE	Glass Products
 BAH	NYSE	Government Services
 MMS	NYSE	Government Services
 HLT	NYSE	Hotels and Motels
-MAR	NSDQ	Hotels and Motels
 STAY	NYSE	Hotels and Motels
 WYN	NYSE	Hotels and Motels
 WHR	NYSE	Household Appliances
-HOLI	NSDQ	Industrial Automation and Robotics
 ROK	NYSE	Industrial Automation and Robotics
 GWW	NYSE	Industrial Services
 HDS	NSDQ	Industrial Services
@@ -451,7 +451,6 @@ HSIC	NSDQ	Medical - Dental Supplies
 LH	NYSE	Medical - Dental Supplies
 MCK	NYSE	Medical - Dental Supplies
 PDCO	NSDQ	Medical - Dental Supplies
-WST	NYSE	Medical - Dental Supplies
 CORT	NSDQ	Medical - Drugs
 CTLT	NYSE	Medical - Drugs
 GRFS	NSDQ	Medical - Drugs
@@ -479,7 +478,6 @@ GMED	NYSE	Medical - Instruments
 HOLX	NSDQ	Medical - Instruments
 ISRG	NSDQ	Medical - Instruments
 MASI	NSDQ	Medical - Instruments
-STE	NYSE	Medical - Instruments
 TMO	NYSE	Medical - Instruments
 DGX	NYSE	Medical - Outpatient and Home Healthcare
 DVA	NYSE	Medical - Outpatient and Home Healthcare
@@ -529,10 +527,10 @@ TLLP	NYSE	Oil and Gas - Production Pipeline - MLB
 MUSA	NYSE	Oil and Gas - Refining and Marketing
 ADP	NSDQ	Outsourcing
 BCO	NYSE	Outsourcing
-BR	NYSE	Outsourcing
 CVG	NYSE	Outsourcing
 G	NYSE	Outsourcing
 PAYX	NSDQ	Outsourcing
+TNET	NYSE	Outsourcing
 RPM	NYSE	Paints and Related Products
 SHW	NYSE	Paints and Related Products
 IP	NYSE	Paper and Related Products
@@ -570,11 +568,9 @@ AIV	NYSE	REIT and Equity Trust - Residential
 AVB	NYSE	REIT and Equity Trust - Residential
 CPT	NYSE	REIT and Equity Trust - Residential
 ELS	NYSE	REIT and Equity Trust - Residential
-EQR	NYSE	REIT and Equity Trust - Residential
 EPR	NYSE	REIT and Equity Trust - Retail
 FRT	NYSE	REIT and Equity Trust - Retail
 GGP	NYSE	REIT and Equity Trust - Retail
-SKT	NYSE	REIT and Equity Trust - Retail
 UE	NYSE	REIT and Equity Trust - Retail
 WRI	NYSE	REIT and Equity Trust - Retail
 CHS	NYSE	Retail - Apparel and Shoes
@@ -585,20 +581,19 @@ GPS	NYSE	Retail - Apparel and Shoes
 JWN	NYSE	Retail - Apparel and Shoes
 KATE	NYSE	Retail - Apparel and Shoes
 PLCE	NSDQ	Retail - Apparel and Shoes
+TECD	NSDQ	Retail - Computer Hardware
 BBY	NYSE	Retail - Consumer Electronics
 BIG	NYSE	Retail - Discount Stores
 COST	NSDQ	Retail - Discount Stores
+DG	NYSE	Retail - Discount Stores
 DLTR	NSDQ	Retail - Discount Stores
 ROST	NSDQ	Retail - Discount Stores
 TGT	NYSE	Retail - Discount Stores
 TJX	NYSE	Retail - Discount Stores
 WSM	NYSE	Retail - Home Furnishings
-TIF	NYSE	Retail - Jewelry
 HSNI	NSDQ	Retail - Mail Order
 NLS	NYSE	Retail - Mail Order
-BBBY	NSDQ	Retail - Miscellaneous
 DKS	NYSE	Retail - Miscellaneous
-FIVE	NSDQ	Retail - Miscellaneous
 SPLS	NSDQ	Retail - Miscellaneous
 TSCO	NSDQ	Retail - Miscellaneous
 ULTA	NSDQ	Retail - Miscellaneous
@@ -606,7 +601,6 @@ CVS	NYSE	Retail - Pharmacies and Drug Stores
 M	NYSE	Retail - Regional Department Stores
 BJRI	NSDQ	Retail - Restaurants
 BLMN	NSDQ	Retail - Restaurants
-CAKE	NSDQ	Retail - Restaurants
 CBRL	NSDQ	Retail - Restaurants
 DRI	NYSE	Retail - Restaurants
 MCD	NYSE	Retail - Restaurants
@@ -625,7 +619,6 @@ DV	NYSE	Schools
 EDU	NYSE	Schools
 LOPE	NSDQ	Schools
 TAL	NYSE	Schools
-ICE	NYSE	Securities and Exchanges
 NDAQ	NSDQ	Securities and Exchanges
 FBHS	NYSE	Security and Safety Services
 JCI	NYSE	Security and Safety Services
@@ -707,10 +700,10 @@ CHRW	NSDQ	Transportation - Services
 EXPD	NSDQ	Transportation - Services
 ANW	NYSE	Transportation - Shipping
 CMRE	NYSE	Transportation - Shipping
+DHT	NYSE	Transportation - Shipping
 FRO	NYSE	Transportation - Shipping
 HTLD	NSDQ	Transportation - Truck
 JBHT	NSDQ	Transportation - Truck
-ODFL	NSDQ	Transportation - Truck
 CTAS	NSDQ	Uniform and Related
 AEP	NYSE	Utility - Electric Power
 BKH	NYSE	Utility - Electric Power
@@ -740,7 +733,6 @@ SBS	NYSE	Utility - Water Supply
 WTR	NYSE	Utility - Water Supply
 SRCL	NSDQ	Waste Removal Services
 WM	NYSE	Waste Removal Services
-BDC	NYSE	Wire and Cable Products
 JNPR	NYSE	Wireless Equipment
 QCOM	NSDQ	Wireless Equipment
 UBNT	NSDQ	Wireless Equipment

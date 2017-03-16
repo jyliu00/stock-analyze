@@ -1577,6 +1577,7 @@ static void symbol_check_strong_sma_up(const char *symbol, const struct stock_pr
 		return;
 
 	if (!is_sma_crossup(price2check, yesterday)
+	    || is_sma_crossup(yesterday, yesterday+1)
 	    || price2check->volume * 100 < yesterday->vma[VMA_20d] * 125)
 		return;
 
