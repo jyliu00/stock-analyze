@@ -2216,21 +2216,18 @@ static void symbol_check_reverse_up(const char *symbol, const struct stock_price
 {
 	int i;
 
-	if (price2check->close < price2check->open
-	    || (price2check->close - price2check->low) * 100 / (price2check->high - price2check->low) < 70)
-		return;
-
 	for (i = 0; i < price_history->date_cnt; i++) {
 		const struct date_price *yesterday = &price_history->dateprice[i];
 
 		if (strcmp(price2check->date, yesterday->date) <= 0)
 			continue;
 
-		if (yesterday->close <= yesterday->open
-		    && (price2check->high < yesterday->high || price2check->close < yesterday->high)
-		    && (price2check->close >= yesterday->low + (yesterday->high - yesterday->low) / 2)
-		    && yesterday->open > (yesterday+1)->low /* yesterday is NOT gap down */
-		    && price2check->volume >= yesterday->vma[VMA_20d] * 2)
+		if ((yesterday+1)->close > (yesterday+1)->open
+		    && (yesterday+1)->volume * 100 >= (yesterday+1)->vma[VMA_20d] * 120
+		    && yesterday->close <= (yesterday+1)->close && yesterday->close >= (yesterday+1)->low
+		    && yesterday->volume >= yesterday->vma[VMA_20d]
+		    && price2check->close > yesterday->high
+		    && price2check->close > (yesterday+1)->high)
 		{
 			anna_info("%s%-10s%s: date=%s, %s; %s.\n",
 				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
