@@ -2223,9 +2223,9 @@ static void symbol_check_reverse_up(const char *symbol, const struct stock_price
 			continue;
 
 		if ((yesterday+1)->close > (yesterday+1)->open
-		    && (yesterday+1)->volume * 100 >= (yesterday+1)->vma[VMA_20d] * 120
-		    && yesterday->close <= (yesterday+1)->close && yesterday->close >= (yesterday+1)->low
-		    && yesterday->volume >= yesterday->vma[VMA_20d]
+		    && yesterday->close <= (yesterday+1)->high && yesterday->close >= (yesterday+1)->low
+		    && (yesterday->volume * 100 >= yesterday->vma[VMA_20d] * 120
+			|| (yesterday+1)->volume * 100 >= (yesterday+1)->vma[VMA_20d] * 120)
 		    && price2check->close > yesterday->high
 		    && price2check->close > (yesterday+1)->high)
 		{
