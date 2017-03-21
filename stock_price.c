@@ -2222,12 +2222,14 @@ static void symbol_check_reverse_up(const char *symbol, const struct stock_price
 		if (strcmp(price2check->date, yesterday->date) <= 0)
 			continue;
 
-		if ((yesterday+1)->close > (yesterday+1)->open
-		    && yesterday->close <= (yesterday+1)->high && yesterday->close >= (yesterday+1)->low
-		    && (yesterday->volume * 100 >= yesterday->vma[VMA_20d] * 120
-			|| (yesterday+1)->volume * 100 >= (yesterday+1)->vma[VMA_20d] * 120)
-		    && price2check->close > yesterday->high
-		    && price2check->close > (yesterday+1)->high)
+		if (yesterday->volume * 100 < yesterday->vma[VMA_20d] * 120
+		    || yesterday->close > (yesterday+1)->high
+		    || price2check->close < yesterday->high
+		    || price2check->close < (yesterday+1)->high)
+			return;
+
+		if (/*((yesterday+1)->candle_color == CANDLE_COLOR_RED && yesterday->candle_color == CANDLE_COLOR_GREEN)
+		    ||*/ ((yesterday+1)->candle_color == CANDLE_COLOR_GREEN && yesterday->candle_color == CANDLE_COLOR_RED))
 		{
 			anna_info("%s%-10s%s: date=%s, %s; %s.\n",
 				ANSI_COLOR_YELLOW, symbol, ANSI_COLOR_RESET,
