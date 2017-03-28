@@ -12,4 +12,8 @@ printf "\n\x1b[33mSMA20d BreakOut\x1b[0m:\n\n"
 
 anna -group=$1 check-20d-bo $2
 
+printf "\n\x1b[33mSMA10d BreakOut\x1b[0m:\n\n"
+
+anna -group=$1 check-10d-bo $2
+
 echo ""
