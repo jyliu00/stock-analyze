@@ -1497,9 +1497,13 @@ static void symbol_check_sma_breakout(const char *symbol, const struct stock_pri
 			    || price2check->volume * 100 < prev->vma[VMA_20d] * 115)
 				return;
 
+			if (price2check->close <= prev->close
+			    || (price2check->close - prev->close) * 1000 / prev->close < 20)
+				return;
+
 			for (j = 0; i < price_history->date_cnt && j < 20; i++, j++) {
 				const struct date_price *prev = &price_history->dateprice[i];
-				if (prev->close > prev->sma[sma2check])
+				if (prev->close > prev->sma[SMA_20d])
 					above_20d_cnt += 1;
 			}
 
