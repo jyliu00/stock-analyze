@@ -1778,7 +1778,9 @@ static void __symbol_check_doublebottom_up(const char *symbol, const struct stoc
 		return;
 
 	if (strong &&
-	    ((price2check->volume * 100 < prev->vma[VMA_20d] * 150) || get_2ndhigh(price2check) < get_2ndhigh(prev)))
+	    (price2check->volume * 100 < prev->vma[VMA_20d] * 150
+	     || price2check->close <= prev->close
+	     || (price2check->close - prev->close) * 1000 / prev->close < 20))
 		return;
 	else if (price2check->volume * 133 < prev->vma[VMA_20d] * 100)
 		return;
