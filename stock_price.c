@@ -1777,14 +1777,10 @@ static void __symbol_check_doublebottom_up(const char *symbol, const struct stoc
 	    || ((price2check->high - price2check->close) * 100 / (price2check->high - price2check->low) >= 25))
 		return;
 
-	if (strong && !is_strong_up(price_history, price2check, NULL))
+	if (strong &&
+	    ((price2check->volume * 100 < prev->vma[VMA_20d] * 150) || get_2ndhigh(price2check) < get_2ndhigh(prev)))
 		return;
-#if 0
-	if (!sma20_slope_is_shallow(prev))
-		return;
-#endif
-
-	if (price2check->volume * 133 < prev->vma[VMA_20d] * 100)
+	else if (price2check->volume * 133 < prev->vma[VMA_20d] * 100)
 		return;
 
 	int use_today = (price2check->close < prev->close || (price2check->low < prev->low && get_2ndlow(price2check) < get_2ndlow(prev))) && price2check->candle_trend != CANDLE_TREND_BEAR;
