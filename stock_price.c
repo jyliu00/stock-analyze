@@ -1977,6 +1977,10 @@ static void symbol_check_trend_breakout(const char *symbol, const struct stock_p
 	if (i == price_history->date_cnt)
 		return;
 
+	if (price2check->close <= yesterday->close
+	    || (price2check->close - yesterday->close) * 1000 / yesterday->close < 20)
+		return;
+
 	if (date_is_trend_breakout(symbol, price_history, yesterday))
 		return;
 
@@ -2051,6 +2055,9 @@ static void __symbol_check_strong_breakout(const char *symbol, const struct stoc
 				if (!strong_body && price2check->volume < prev->vma[VMA_20d])
 					return;
 				if (strong_body && ((uint64_t)price2check->volume * 100) < ((uint64_t)prev->vma[VMA_20d] * 75))
+					return;
+				if (price2check->close <= prev->close
+				    || (price2check->close - prev->close) * 1000 / prev->close < 20)
 					return;
 			}
 
