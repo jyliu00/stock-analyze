@@ -399,7 +399,7 @@ int main(int argc, const char **argv)
 		break;
 
 	case ACTION_CHECK_SMA50d_UP:
-		stock_price_check_weeks_low_sma(group, date, 0, SMA_50d, symbols_nr, (const char **)symbols);
+		stock_price_check_sma_up(group, date, SMA_50d, symbols_nr, (const char **)symbols);
 		break;
 
 	case ACTION_CHECK_SMA200d_UP:
