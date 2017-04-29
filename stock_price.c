@@ -1611,6 +1611,9 @@ static void symbol_check_sma_up(const char *symbol, const struct stock_price *pr
 	if (price2check->close < price2check->open)
 		return;
 
+	if ((get_2ndhigh(price2check) - price2check->low) * 100 / (price2check->high - price2check->low) < 50)
+		return;
+
 	for (i = 0; i < price_history->date_cnt; i++) {
 		yesterday = &price_history->dateprice[i];
 		if (strcmp(price2check->date, yesterday->date) > 0)

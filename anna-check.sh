@@ -2,7 +2,7 @@
 
 printf "\n\x1b[33mSMA50d Up\x1b[0m:\n\n"
 
-#anna -group=$1 check-50dup $2
+anna -group=$1 check-50dup $2
 
 #printf "\n\x1b[33mStrong Body BreakOut\x1b[0m:\n\n"
 
