@@ -21,11 +21,13 @@ OSK	NYSE	Automotive - Original Equipment
 TEN	NYSE	Automotive - Original Equipment
 WNC	NYSE	Automotive - Original Equipment
 GPC	NYSE	Automotive - Replacement Parts
+SPXC	NYSE	Automotive - Replacement Parts
 AN	NYSE	Automotive - Retail and Whole Sales
 LAD	NYSE	Automotive - Retail and Whole Sales
 PAG	NYSE	Automotive - Retail and Whole Sales
 DB	NYSE	Banks - Foreign
 COT	NYSE	Beverages - Soft drinks
+REGI	NSDQ	Biofuels
 CX	NYSE	Building Products - Concrete and Aggregates
 EME	NYSE	Building Products - Heavy Construction
 MTZ	NYSE	Building Products - Heavy Construction
@@ -44,7 +46,6 @@ NCS	NYSE	Building Products - Miscellaneous
 THO	NYSE	Building Products - Mobile Homes and RV Builders
 WGO	NYSE	Building Products - Mobile Homes and RV Builders
 BECN	NSDQ	Building Products - Retail
-BLDR	NSDQ	Building Products - Retail
 BMCH	NSDQ	Building Products - Retail
 BCC	NYSE	Building Products - Wood
 MLHR	NSDQ	Business - Office Products
@@ -58,12 +59,10 @@ GPRE	NSDQ	Chemical - Specialty
 KRA	NYSE	Chemical - Specialty
 ARLP	NSDQ	Coal
 SXC	NYSE	Coal
-SXCP	NYSE	Coal
 ARRS	NSDQ	Communication - Components
 NCR	NYSE	Computer - Integrated Systems
 CDW	NSDQ	Computers - IT Services
 CSRA	NYSE	Computers - IT Services
-SAIC	NYSE	Computers - IT Services
 SMCI	NSDQ	Computer- Storage Devices
 PRTY	NYSE	Consumer Products - Discretionary
 CCK	NYSE	Containers - Metal and Glass
@@ -98,7 +97,6 @@ ARMK	NYSE	Food - Miscellaneous
 DAR	NYSE	Food - Miscellaneous
 NOMD	NYSE	Food - Miscellaneous
 SYY	NYSE	Food - Miscellaneous
-THS	NYSE	Food - Miscellaneous
 USFD	NYSE	Food - Miscellaneous
 PFGC	NYSE	Food - Natural Foods Products
 SFM	NSDQ	Food - Natural Foods Products
@@ -123,6 +121,7 @@ ALL	NYSE	Insurance - Property and Casualty
 FAF	NYSE	Insurance - Property and Casualty
 PGR	NYSE	Insurance - Property and Casualty
 VIPS	NYSE	Internet - Delivery Services
+AMC	NYSE	Leisure and Recreation Services
 MYCC	NYSE	Leisure and Recreation Services
 TEX	NYSE	Manufacturing - Construction and Mining
 AGCO	NYSE	Manufacturing - Farm Equipment
@@ -137,7 +136,6 @@ ANTM	NYSE	Medical - HMOs
 CNC	NYSE	Medical - HMOs
 HUM	NYSE	Medical - HMOs
 MOH	NYSE	Medical - HMOs
-SEM	NYSE	Medical - HMOs
 UNH	NYSE	Medical - HMOs
 WCG	NYSE	Medical - HMOs
 CYH	NYSE	Medical - Hospital
@@ -156,6 +154,7 @@ ATW	NYSE	Oil and Gas - Drilling
 ESV	NYSE	Oil and Gas - Drilling
 CVE	NYSE	Oil and Gas - Integrated - Canadian
 PBR	NYSE	Oil and Gas - Integrated - Emerging Markets
+RDS.A	NYSE	Oil and Gas - Integrated - International
 TOT	NYSE	Oil and Gas - Integrated - International
 MDR	NYSE	Oil and Gas - Mechanical and and Equitment
 PAGP	NYSE	Oil and Gas - Production and Pipelines
@@ -171,21 +170,22 @@ VLO	NYSE	Oil and Gas - Refining and Marketing
 WNR	NYSE	Oil and Gas - Refining and Marketing
 CVRR	NYSE	Oil and Gas - Refining and Marketing - Master Limited Partnerships
 SUN	NYSE	Oil and Gas - Refining and Marketing - Master Limited Partnerships
-BCO	NYSE	Outsourcing
 CVG	NYSE	Outsourcing
 KS	NYSE	Paper and Related Products
 UFS	NYSE	Paper and Related Products
 WRK	NYSE	Paper and Related Products
 TTEK	NSDQ	Pollution Control
 GCI	NYSE	Publishing - Newspapers
-LGIH	NSDQ	Real Estate - Development
 CBG	NYSE	Real Estate - Operations
 RLGY	NYSE	Real Estate - Operations
 ASPS	NSDQ	REIT and Equity Trust
 BKE	NYSE	Retail - Apparel and Shoes
 CHS	NYSE	Retail - Apparel and Shoes
+DSW	NYSE	Retail - Apparel and Shoes
 FOSL	NSDQ	Retail - Apparel and Shoes
+GCO	NYSE	Retail - Apparel and Shoes
 GPS	NYSE	Retail - Apparel and Shoes
+TECD	NSDQ	Retail - Computer Hardware
 AAN	NYSE	Retail - Consumer Electronics
 BBY	NYSE	Retail - Consumer Electronics
 BIG	NYSE	Retail - Discount Stores
@@ -200,16 +200,19 @@ BGFV	NSDQ	Retail - Miscellaneous
 BKS	NYSE	Retail - Miscellaneous
 CAB	NYSE	Retail - Miscellaneous
 DKS	NYSE	Retail - Miscellaneous
+HZO	NYSE	Retail - Miscellaneous
 ODP	NSDQ	Retail - Miscellaneous
 CVS	NYSE	Retail - Pharmacies and Drug Stores
 DPLO	NYSE	Retail - Pharmacies and Drug Stores
 GNC	NYSE	Retail - Pharmacies and Drug Stores
 WBA	NSDQ	Retail - Pharmacies and Drug Stores
 JCP	NYSE	Retail - Regional Department Stores
+M	NYSE	Retail - Regional Department Stores
 BJRI	NSDQ	Retail - Restaurants
 BLMN	NSDQ	Retail - Restaurants
 FRGI	NSDQ	Retail - Restaurants
 CBD	NYSE	Retail - Supermarkets
+KR	NYSE	Retail - Supermarkets
 WMT	NYSE	Retail - Supermarkets
 GT	NSDQ	Rubber - Tires
 WWW	NYSE	Shoes and Retail Apparel
@@ -222,6 +225,7 @@ SCHN	NSDQ	Steel - Producers
 TX	NYSE	Steel - Producers
 CRS	NYSE	Steel - Speciality
 PVH	NYSE	Textile - Apparel
+RL	NYSE	Textile - Apparel
 FDX	NYSE	Transportation - Air Freight and Cargo
 RLGT	AMEX	Transportation - Air Freight and Cargo
 AAL	NSDQ	Transportation - Airline
@@ -232,7 +236,6 @@ UAL	NYSE	Transportation - Airline
 GBX	NYSE	Transportation - Equipment and Leasing
 TRN	NYSE	Transportation - Equipment and Leasing
 CHRW	NSDQ	Transportation - Services
-STB	NSDQ	Transportation - Services
 XPO	NYSE	Transportation - Services
 ANW	NYSE	Transportation - Shipping
 SSW	NYSE	Transportation - Shipping
