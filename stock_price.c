@@ -1630,7 +1630,7 @@ static void symbol_check_sma_up(const char *symbol, const struct stock_price *pr
 	    && yesterday->close > yesterday->sma[sma2check])
 		return;
 
-	if (price2check->volume * 100 < yesterday->vma[VMA_20d] * 115)
+	if ((uint64_t)price2check->volume * 100 < (uint64_t)yesterday->vma[VMA_20d] * 115)
 		return;
 
 	anna_info("%s%-10s%s: date=%s, %s; %s<sector=%s>%s.\n",
