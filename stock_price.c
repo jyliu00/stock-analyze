@@ -1384,10 +1384,13 @@ static void symbol_check_weeks_low_sma(const char *symbol, const struct stock_pr
 		if (!prev->sma[sma2check])
 			return;
 
+		if (prev->close > prev->sma[SMA_50d])
+			return;
+
 		if (!good_up_day(price2check, prev))
 			return;
 
-		if (price2check->volume * 100 < prev->vma[VMA_20d] * 115)
+		if ((uint64_t)price2check->volume * 100 < (uint64_t)prev->vma[VMA_20d] * 115)
 			return;
 
 		if (!sma20_slope_is_shallow(prev))
