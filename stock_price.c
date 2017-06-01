@@ -1816,7 +1816,7 @@ static void __symbol_check_doublebottom_up(const char *symbol, const struct stoc
 		return;
 
 	if (price2check->high == price2check->low
-	    || ((price2check->high - price2check->close) * 100 / (price2check->high - price2check->low) >= 25))
+	    || ((price2check->high - price2check->close) * 100 / (price2check->high - price2check->low) >= 30))
 		return;
 
 	if (strong &&
@@ -1834,6 +1834,9 @@ static void __symbol_check_doublebottom_up(const char *symbol, const struct stoc
 	for (i = 0; i < sspt.date_nr; i++) {
 		if (sspt.is_doublebottom[i]) {
 			int datecnt = get_date_count(price_history, sspt.date[i], use_today ? price2check->date : prev->date);
+
+			if (datecnt < 9)
+				return;
 
 			if (check_pullback && !datecnt_match_check_pullback(check_pullback, datecnt))
 				return;
