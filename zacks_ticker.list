@@ -2,10 +2,8 @@
 -include ticker_list/usa_leaders.txt
 -include ticker_list/dow30.txt
 -include ticker_list/usa_chinese_oversea.txt
-#-include ticker_list/zacks_rank123_roe.txt
--include ticker_list/zacks_eps.txt
-#-include ticker_list/zacks_rank123.txt
--include ticker_list/usa_solar.txt
-#-include ticker_list/zacks_rank1.txt
-#-include ticker_list/zacks_rank2.txt
-#-include ticker_list/zacks_rank3.txt
+-include ticker_list/zacks_vgm.txt
+-include ticker_list/zacks_rank12.txt
+-include ticker_list/zacks_homerun.txt
+-include ticker_list/zacks_under10.txt
+-include ticker_list/zacks_focus_list.txt

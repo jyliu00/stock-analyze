@@ -58,6 +58,7 @@ enum
 	ACTION_CHECK_RESIST_BO,
 	ACTION_CHECK_MFI,
 	ACTION_CHECK_REVERSE_UP,
+	ACTION_CHECK_HIGHER_LOW,
 
 	ACTION_NR
 };
@@ -68,7 +69,7 @@ static void print_usage(void)
 {
 	printf("Usage: anna -group={usa|china|canada|iwm|mdy|biotech|zacks|ibd|3x} [-date=yyyy-mm-dd] [-conf=filename]\n");
 	printf("               {fetch | fetch-rt | check-db | check-mfi-db | check-pullback-db | check-52w-db | "
-				"check-dbup | check-pullback-dbup | check-52w-dbup | check-strong-dbup | check-52wlup | "
+				"check-dbup | check-pullback-dbup | check-52w-dbup | check-strong-dbup | check-52wlup | check-higher-low"
 				"check-spt | check-20d | check-30d | check-50d | check-60d | check-20dlow | check-50dlow | check-26w20dlow | check-26w50dlow | "
 				"check-10dup | check-20dup | check-strong-20dup | check-50dup | check-200dup | check-20dpb | check-50dpb | check-pb | check-bo | check-2ndbo | "
 				"check-trend-bo | check-strong-uptrend | check-strong-bo | check-10d-trendup | check-resist-bo | check-mfi | check-reverse-upday | check-chg} [symbol-1 symbol-2 ...]\n");
@@ -303,6 +304,9 @@ int main(int argc, const char **argv)
 			else if (strcmp(arg, "check-reverse-up") == 0) {
 				action = ACTION_CHECK_REVERSE_UP;
 			}
+			else if (strcmp(arg, "check-higher-low") == 0) {
+				action = ACTION_CHECK_HIGHER_LOW;
+			}
 		}
 		else if (strncmp(arg, "-group=", strlen("-group=")) == 0) {
 			p = strchr(arg, '=');
@@ -506,6 +510,10 @@ int main(int argc, const char **argv)
 
 	case ACTION_CHECK_REVERSE_UP:
 		stock_price_check_reverse_up(group, date, symbols_nr, (const char **)symbols);
+		break;
+
+	case ACTION_CHECK_HIGHER_LOW:
+		stock_price_check_higher_low(group, date, symbols_nr, (const char **)symbols);
 		break;
 	}
 

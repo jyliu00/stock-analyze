@@ -1,8 +1,8 @@
 %sector=major_indices
-TLT
 SPY
 QQQ
 IWM
+TLT
 IBB
 XBI
 XLB
