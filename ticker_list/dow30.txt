@@ -5,8 +5,8 @@ BA
 CAT
 CSCO
 CVX
-DD
 DIS
+DWDP
 GE
 GS
 HD
