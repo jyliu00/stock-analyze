@@ -1,15 +1,13 @@
-%sector=zacks_focus_list
 A
 AAPL
 AEP
-B
 BA
 BAC
 BR
 CACI
 CAT
-CBG
 CBOE
+CBRE
 CC
 CE
 CMA
@@ -18,8 +16,7 @@ DE
 DFS
 DG
 DTE
-FB
-GRPN
+GE
 HBAN
 HD
 HII
@@ -35,8 +32,8 @@ MAN
 MSFT
 MTZ
 MU
+NGVT
 NVDA
-PLCE
 PRU
 SAM
 SQ
@@ -47,6 +44,7 @@ UNH
 V
 VFC
 WDC
+WFC
 WGO
 WMT
 XOM
